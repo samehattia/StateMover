@@ -201,33 +201,55 @@ void traverse ( vpiHandle  mod_handle) {
 
 	vpiHandle   mod_itr_handle;
 	int 		error_code;
+	int                   type;
 
 	// print module name
-	vpi_printf( (char*)"\nModule: %s", vpi_get_str( vpiDefName, mod_handle ));
-	vpi_printf( (char*)" - Instance: %s\n", vpi_get_str( vpiName, mod_handle ));
+	type = vpi_get(vpiType, mod_handle);
+	if (type == vpiModule || type == vpiModuleArray) {
+		vpi_printf( (char*)"\nModule: %s", vpi_get_str( vpiDefName, mod_handle ));
+	}
+	else {
+		vpi_printf( (char*)"\nGenblk");
+	}
+	vpi_printf( (char*)" - Instance: %s\n", vpi_get_str( vpiFullName, mod_handle ));
 
-	// get module registers
+	// get module (or genblk) registers
 	get_state_element(mod_handle);
 
-	// get an iterator on submodules of this module
-	mod_itr_handle = vpi_iterate( vpiModule, mod_handle );
+	// get an iterator on internal scopes (submodules or genblks) of this module
+	mod_itr_handle = vpi_iterate( vpiInternalScope, mod_handle );
 	error_code  = check_error();
 
 	if ( ! error_code && mod_itr_handle ) {
 
-		// get a submodule handle
+		// get a scope (i.e. submodule or genblk) handle
 		mod_handle = vpi_scan( mod_itr_handle );
 		error_code = check_error();
 
 		while ( mod_handle ) {
 
-			// recursive call traverse by this submodule
-			traverse( mod_handle);
+			// check if this scope is protected
+			if (!(vpi_get(vpiIsProtected, mod_handle))) {
 
-			// free the module handle
+				// get scope type
+				type = vpi_get(vpiType, mod_handle); 
+
+				// assert that this scope is submodule or genblk
+				if (type == vpiModule || type ==  vpiModuleArray || type == vpiGenScope || type == vpiGenScopeArray) {
+
+					// recursive call traverse by this scope
+					traverse( mod_handle);
+				}
+
+			} 
+			else { 
+				vpi_printf( (char*)"\tProtected\n");
+			}
+
+			// free the scope handle
 			vpi_free_object( mod_handle );
 
-			// get the next submodule
+			// get the next scope (i.e. submodule or genblk)
 			mod_handle = vpi_scan( mod_itr_handle );
 			error_code = check_error();
 
