@@ -4,6 +4,7 @@
 #include <string.h>
 #include "vpi_user.h"
 #define FILENAME "param.txt"
+// #define VERBOSE
 
 using namespace std;
 
@@ -12,6 +13,7 @@ struct state_element {
 	vpiHandle 	elem_handle;
 	int 		elem_size;
 	char*		elem_value;
+	char*		elem_init_value;
 
 };
 
@@ -28,6 +30,39 @@ int check_error()
 	}
 
 	return error_code;
+}
+
+void restore_init_state ()
+{
+	s_vpi_value restored_value;
+	restored_value.format = vpiHexStrVal;
+
+	vpi_printf( (char*)"Restoring Initial State\n" );
+
+	for (list<state_element>::iterator it=state_elem_list.begin(); it != state_elem_list.end(); ++it) {
+
+		restored_value.value.str = (char*) malloc((it->elem_size + 1) * sizeof(char));
+		strcpy(restored_value.value.str, it->elem_init_value);
+		vpi_put_value(it->elem_handle, &restored_value, NULL, vpiNoDelay);
+
+	}
+
+}
+
+void save_init_state ()
+{
+	s_vpi_value current_value;
+	current_value.format = vpiHexStrVal;
+
+	vpi_printf( (char*)"Saving Initial Value\n");
+
+	for (list<state_element>::iterator it=state_elem_list.begin(); it != state_elem_list.end(); ++it) {
+
+		vpi_get_value(it->elem_handle, &current_value);
+		strcpy(it->elem_init_value, current_value.value.str);
+
+	}
+
 }
 
 void corrupt_state ()
@@ -72,7 +107,8 @@ PLI_INT32 save_state (p_cb_data cb_data)
 
 	}
 
-	corrupt_state();
+	// corrupt_state();
+	restore_init_state();
 
 	return 0;
 }
@@ -104,6 +140,7 @@ void alloc_state_element ( vpiHandle elem_handle ) {
 	se.elem_handle = elem_handle;
 	se.elem_size = vpi_get( vpiSize, elem_handle );
 	se.elem_value = (char*) malloc((se.elem_size + 1) * sizeof(char));
+	se.elem_init_value = (char*) malloc((se.elem_size + 1) * sizeof(char));
 	state_elem_list.push_back(se);
 
 }
@@ -133,10 +170,10 @@ void get_state_element ( vpiHandle  mod_handle ) {
 		error_code = check_error();
 
 		while ( reg_handle ) {
-
+#ifdef VERBOSE
 			// print register name
 			vpi_printf( (char*)"\tReg: %s\n", vpi_get_str( vpiName, reg_handle ));
-
+#endif
 			// allocate register in the state_element list
 			alloc_state_element(reg_handle);
 
@@ -161,10 +198,10 @@ void get_state_element ( vpiHandle  mod_handle ) {
 		error_code = check_error();
 
 		while ( mem_handle ) {
-
+#ifdef VERBOSE
 			// print memory name
 			vpi_printf( (char*)"\tMem: %s\n", vpi_get_str( vpiName, mem_handle ));
-
+#endif
 			// get an iterator on memory registers
 			memreg_itr_handle = vpi_iterate( vpiVarSelect, mem_handle );
 			error_code  = check_error();
@@ -203,6 +240,7 @@ void traverse ( vpiHandle  mod_handle) {
 	int 		error_code;
 	int                   type;
 
+#ifdef VERBOSE
 	// print module name
 	type = vpi_get(vpiType, mod_handle);
 	if (type == vpiModule || type == vpiModuleArray) {
@@ -212,6 +250,7 @@ void traverse ( vpiHandle  mod_handle) {
 		vpi_printf( (char*)"\nGenblk");
 	}
 	vpi_printf( (char*)" - Instance: %s\n", vpi_get_str( vpiFullName, mod_handle ));
+#endif
 
 	// get module (or genblk) registers
 	get_state_element(mod_handle);
@@ -243,7 +282,7 @@ void traverse ( vpiHandle  mod_handle) {
 
 			} 
 			else { 
-				vpi_printf( (char*)"\tProtected\n");
+				vpi_printf( (char*)"\tProtected: Instance: %s\n", vpi_get_str( vpiFullName, mod_handle ));
 			}
 
 			// free the scope handle
@@ -318,6 +357,9 @@ void cssim( void )
 
 	// traverse the design down from this module to create the state_element list
 	traverse ( module_handle );
+
+	// save the initial state of the task
+	save_init_state ();
 
 	vpi_printf( (char*)"\n===========================\n" );
 }
