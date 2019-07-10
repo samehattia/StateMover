@@ -4,7 +4,7 @@
 #include <string.h>
 #include "vpi_user.h"
 #define FILENAME "param.txt"
-// #define VERBOSE
+#define VERBOSE
 
 using namespace std;
 
@@ -49,7 +49,7 @@ void restore_init_state ()
 
 }
 
-void save_init_state ()
+PLI_INT32 save_init_state (p_cb_data cb_data)
 {
 	s_vpi_value current_value;
 	current_value.format = vpiHexStrVal;
@@ -63,6 +63,7 @@ void save_init_state ()
 
 	}
 
+	return 0;
 }
 
 void corrupt_state ()
@@ -296,30 +297,25 @@ void traverse ( vpiHandle  mod_handle) {
 	}
 }
 
-/*****************************************************************************
- *
- * cssim()
- *
- * Simulating Context Switching by saving and restoring state
- *
- *****************************************************************************/
-
-void cssim( void )
+/**
+ * Context Saving and Restoring Simulator
+ */
+void csr_sim( void )
 {
 
 	fstream 	fs;
 	vpiHandle   	module_handle;
 	int 		error_code;
 	
-	s_cb_data cb_save, cb_restore;
-	s_vpi_value cb_value_s, cb_value_r;
-	s_vpi_time cb_time_s, cb_time_r;
+	s_cb_data cb_save, cb_restore, cb_init;
+	s_vpi_value cb_value_s, cb_value_r, cb_value_i;
+	s_vpi_time cb_time_s, cb_time_r, cb_time_i;
 	
-	char module_name[100], save_signal[100], restore_signal[100]; //TODO more efficient way
+	char module_name[100], save_signal[100], restore_signal[100], init_signal[100]; //TODO more efficient way
 
-	vpi_printf( (char*)"\n===========================\n" );
-	vpi_printf( (char*)"Context Switching Simulator\n" );
-	vpi_printf( (char*)"===========================\n" );
+	vpi_printf( (char*)"\n======================================\n" );
+	vpi_printf( (char*)"Context Saving and Restoring Simulator" );
+	vpi_printf( (char*)"\n======================================\n" );
 	
 	// open parameters file for read
 	fs.open(FILENAME, fstream::in);
@@ -327,7 +323,7 @@ void cssim( void )
 		vpi_printf( (char*)"File not found\n");
 	
 	// read design parameters
-	fs >> module_name >> save_signal >> restore_signal;
+	fs >> module_name >> save_signal >> restore_signal >> init_signal;
 
 	// get a handle for save signal, and set the callback function save_state 
 	cb_save.reason = cbValueChange;
@@ -351,6 +347,17 @@ void cssim( void )
 	cb_save.user_data = NULL;
 	vpi_register_cb(&cb_restore);
 
+	// set the callback function save_init_state
+	cb_init.reason = cbValueChange;
+	cb_init.cb_rtn = save_init_state;
+	cb_init.obj =vpi_handle_by_name(init_signal, 0);
+	cb_init.value = &cb_value_i;
+	cb_init.time = &cb_time_i;
+	cb_time_i.type = vpiSuppressTime;
+	cb_value_i.format = vpiIntVal;
+	cb_save.user_data = NULL;
+	vpi_register_cb(&cb_init);
+
 	// get a handle for the swapped module
 	module_handle = vpi_handle_by_name(module_name, 0);
 	error_code  = check_error();
@@ -358,20 +365,15 @@ void cssim( void )
 	// traverse the design down from this module to create the state_element list
 	traverse ( module_handle );
 
-	// save the initial state of the task
-	save_init_state ();
-
-	vpi_printf( (char*)"\n===========================\n" );
+	vpi_printf( (char*)"\n======================================\n" );
 }
 
 
-/*****************************************************************************
- *
+/**
  * Required structure for initializing VPI routines.
- *
- *****************************************************************************/
+ */
 void (*vlog_startup_routines[])() = {
-	cssim,
+	csr_sim,
 	0
 };
 

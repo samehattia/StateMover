@@ -17,12 +17,12 @@ CFLAGS = -c -g -I$(MODELSIM)/include -fPIC
 # 64-bit G++ linking flags
 LFLAGS = -shared -Bsymbolic
 
-all: cssim.cpp
-	g++ $(CFLAGS) cssim.cpp
-	g++ $(LFLAGS) -o cssim.sl cssim.o  
+all: csr_sim.cpp
+	g++ $(CFLAGS) csr_sim.cpp
+	g++ $(LFLAGS) -o csr_sim.sl csr_sim.o
 
 clean: 
-	rm -rf cssim.sl cssim.o 
+	rm -rf csr_sim.sl csr_sim.o
 
 
 

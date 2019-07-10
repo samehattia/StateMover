@@ -1,4 +1,4 @@
-Context Switching Simulator V0
+Context Saving and Restoring Simulator
 
 1) Given verilog design files, a verilog testbench, and the name of the module to be swapped.
 2) Search for this module in the design.
