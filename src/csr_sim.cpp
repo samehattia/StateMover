@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <list>
-#include <string.h>
 #include "vpi_user.h"
 #include "csr_sim.h"
 #include "state_element.h"
 #include "state_access.h"
 
 using namespace std;
+
+string module_name;
 
 void traverse (vpiHandle  mod_handle) {
 
@@ -80,7 +81,6 @@ void traverse (vpiHandle  mod_handle) {
  */
 void csr_sim( void )
 {
-
 	fstream fs;
 	vpiHandle module_handle;
 	int error_code;
@@ -90,23 +90,30 @@ void csr_sim( void )
 	s_vpi_value cb_value_s, cb_value_r, cb_value_i;
 	s_vpi_time cb_time_s, cb_time_r, cb_time_i;
 	
-	char module_name[100], save_signal[100], restore_signal[100], init_signal[100]; //TODO more efficient way
+	char save_signal[100], restore_signal[100], init_signal[100]; //TODO more efficient way
 
 	vpi_printf( (char*)"\n======================================\n" );
 	vpi_printf( (char*)"Context Saving and Restoring Simulator" );
 	vpi_printf( (char*)"\n======================================\n" );
 	
 	// open parameters file for read
-	fs.open(FILENAME, fstream::in);
+	fs.open(PARAM_FILE_NAME, fstream::in);
 	if (!fs.is_open()) 
 		vpi_printf( (char*)"File not found\n");
 	
 	// read design parameters
 	fs >> module_name >> save_signal >> restore_signal >> init_signal;
 
+	// close parameters file
+	fs.close();
+
 	// get a handle for save signal, and set the callback function save_state 
 	cb_save.reason = cbValueChange;
+#ifdef HARDWARE
+	cb_save.cb_rtn = dump_simulation_state;
+#else
 	cb_save.cb_rtn = save_state;
+#endif
 	cb_save.obj = vpi_handle_by_name(save_signal, 0);
 	cb_save.value = &cb_value_s;
 	cb_save.time = &cb_time_s;
@@ -117,7 +124,11 @@ void csr_sim( void )
 
 	// get a handle for restore signal, and set the callback function restore_state 
 	cb_restore.reason = cbValueChange;
+#ifdef HARDWARE
+	cb_restore.cb_rtn = restore_hardware_state;
+#else
 	cb_restore.cb_rtn = restore_state;
+#endif
 	cb_restore.obj = vpi_handle_by_name(restore_signal, 0);
 	cb_restore.value = &cb_value_r;
 	cb_restore.time = &cb_time_r;
@@ -126,7 +137,7 @@ void csr_sim( void )
 	cb_save.user_data = NULL;
 	vpi_register_cb(&cb_restore);
 
-	// set the callback function save_init_state
+	// get a handle for init signal,set the callback function save_init_state
 	cb_init.reason = cbValueChange;
 	cb_init.cb_rtn = save_init_state;
 	cb_init.obj =vpi_handle_by_name(init_signal, 0);
@@ -138,12 +149,21 @@ void csr_sim( void )
 	vpi_register_cb(&cb_init);
 
 	// get a handle for the swapped module
-	module_handle = vpi_handle_by_name(module_name, 0);
+	module_handle = vpi_handle_by_name((char*)module_name.c_str(), 0);
 	if ((error_code = vpi_chk_error(&error_info)) && error_info.message)
 		vpi_printf( (char*)"  %s\n", error_info.message);
 
 	// traverse the design down from this module to create the state_element list
-	traverse ( module_handle );
+	traverse (module_handle);
+
+#ifdef HARDWARE
+#ifdef VERBOSE
+	// print the list of hardware registers
+	vpi_printf( (char*)"\nList of hardware registers:\n");
+	for (auto& se: state_element_map)
+		vpi_printf( (char*)"\t%s\n", se.first.c_str());
+#endif
+#endif
 
 	vpi_printf( (char*)"\n======================================\n" );
 }

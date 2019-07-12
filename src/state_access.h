@@ -8,5 +8,7 @@ PLI_INT32 save_init_state(p_cb_data cb_data);
 void corrupt_state();
 PLI_INT32 save_state(p_cb_data cb_data);
 PLI_INT32 restore_state(p_cb_data cb_data);
+PLI_INT32 restore_hardware_state(p_cb_data cb_data);
+PLI_INT32 dump_simulation_state(p_cb_data cb_data);
 
 #endif

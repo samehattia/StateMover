@@ -1,7 +1,9 @@
 #ifndef CSR_SIM_H
 #define CSR_SIM_H
 
-#define FILENAME "param.txt"
+#define PARAM_FILE_NAME "param.txt"
+#define DUMP_IN_FILE_NAME "hw_state.dump"
+#define DUMP_OUT_FILE_NAME "sim_state.dump"
 
 // Define VERBOSE to print more information on module state elements
 #define VERBOSE
@@ -11,5 +13,11 @@
 
 // Define RESTORE_INIT_STATE if you want to restore the initial module state immediately after saving the module state
 // #define RESTORE_INIT_STATE
+
+// Define HARDWARE if you want to dump and restore hardware state
+#define HARDWARE
+
+// Module name
+extern std::string module_name;
 
 #endif

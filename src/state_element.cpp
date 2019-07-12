@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string.h>
 #include "vpi_user.h"
 #include "csr_sim.h"
 #include "state_element.h"
@@ -8,8 +7,64 @@
 using namespace std;
 
 list<state_element> state_elem_list;
+unordered_map<string,state_element> state_element_map;
 
-static state_element alloc_state_element (vpiHandle elem_handle) {
+static void add_state_element(state_element se, vpiHandle mod_handle) {
+
+	int error_code;
+	s_vpi_error_info error_info;
+
+	// Add the state element to the state element list
+	state_elem_list.push_back(se);
+
+	// Exit if the state element is inside a genblk
+	int type = vpi_get(vpiType, mod_handle);
+	if (type == vpiGenScope || type == vpiGenScopeArray)
+		return;
+
+	// Check if the state element is an actual FF in the synthesized netlist
+	// Xilinx: FF module is named FD*E and the actual register is Q_out connect to the Q port
+	string module_name = vpi_get_str(vpiDefName, mod_handle);
+	string register_name = vpi_get_str(vpiName, se.elem_handle);
+
+	if ((module_name == "FDRE" || module_name == "FDCE" || module_name == "FDPE" || 
+		module_name == "FDSE") && register_name == "Q_out") {
+		// Get the instance name of the module
+		//string instance_name = vpi_get_str(vpiFullName, mod_handle);
+
+		// get an iterator on ports of this module
+		vpiHandle port_itr_handle = vpi_iterate(vpiPort, mod_handle);
+		if ((error_code = vpi_chk_error(&error_info)) && error_info.message)
+			vpi_printf( (char*)"  %s\n", error_info.message);
+
+		if (!error_code && port_itr_handle) {
+			// get a port handle
+			vpiHandle port_handle = vpi_scan(port_itr_handle);
+			if ((error_code = vpi_chk_error(&error_info)) && error_info.message)
+				vpi_printf( (char*)"  %s\n", error_info.message);
+
+			while (port_handle) {
+				string port_name = vpi_get_str(vpiName, port_handle);
+
+				// If the port is found
+				if (port_name == "Q") {
+					// Get the net connected to that port
+					vpiHandle net_handle = vpi_handle(vpiHighConn, port_handle);
+					string net_name = vpi_get_str(vpiFullName, net_handle);
+					state_element_map.emplace(net_name, se);
+					break;
+				}
+
+				// get the next port
+				port_handle = vpi_scan(port_itr_handle);
+				if ((error_code = vpi_chk_error(&error_info)) && error_info.message)
+					vpi_printf( (char*)"  %s\n", error_info.message);
+			}
+		}
+	}
+}
+
+static state_element alloc_state_element(vpiHandle elem_handle) {
 
 	state_element se;
 
@@ -21,7 +76,7 @@ static state_element alloc_state_element (vpiHandle elem_handle) {
 	return se;
 }
 
-void get_state_element (vpiHandle  mod_handle) {
+void get_state_element(vpiHandle mod_handle) {
 
 	vpiHandle reg_handle;
 	vpiHandle reg_itr_handle;
@@ -54,9 +109,9 @@ void get_state_element (vpiHandle  mod_handle) {
 			// print register name
 			vpi_printf( (char*)"\tReg: %s\n", vpi_get_str( vpiName, reg_handle ));
 #endif
-			// allocate register in the state_element list
+			// allocate register in the state_element list/map
 			state_element se = alloc_state_element(reg_handle);
-			state_elem_list.push_back(se);
+			add_state_element(se, mod_handle);
 
 			// free the register handle
 			// vpi_free_object( reg_handle );
@@ -100,9 +155,9 @@ void get_state_element (vpiHandle  mod_handle) {
 
 				while ( memreg_handle ) {
 
-					// allocate register in the state_element list
+					// allocate register in the state_element list/map
 					state_element se = alloc_state_element(memreg_handle);
-					state_elem_list.push_back(se);
+					add_state_element(se, mod_handle);
 
 					// get the next register
 					memreg_handle = vpi_scan( memreg_itr_handle );
