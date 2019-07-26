@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "vpi_user.h"
 #include "csr_sim.h"
 #include "state_element.h"
@@ -51,6 +52,11 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 					// Get the net connected to that port
 					vpiHandle net_handle = vpi_handle(vpiHighConn, port_handle);
 					string net_name = vpi_get_str(vpiFullName, net_handle);
+					// Remove escaped characters from the net_name
+					net_name.erase(std::remove(net_name.begin(), net_name.end(), '\\'), net_name.end());
+					net_name.erase(std::remove(net_name.begin(), net_name.end(), '^'), net_name.end());
+					net_name.erase(std::remove(net_name.begin(), net_name.end(), ' '), net_name.end());
+					// Add the state element to the state element map
 					state_element_map.emplace(net_name, se);
 					break;
 				}
