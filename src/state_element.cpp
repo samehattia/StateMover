@@ -24,11 +24,11 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 		return;
 
 	// Check if the state element is an actual FF in the synthesized netlist
-	// Xilinx: FF module is named FD*E and the actual register is Q_out connect to the Q port
+	// Xilinx: FF module is named FD*E and the actual register is Q_out connected to the Q port
 	string module_name = vpi_get_str(vpiDefName, mod_handle);
 	string register_name = vpi_get_str(vpiName, se.elem_handle);
 
-	if ((module_name == "FDRE" || module_name == "FDCE" || module_name == "FDPE" || 
+	if ((module_name == "FDRE" || module_name == "FDCE" || module_name == "FDPE" ||
 		module_name == "FDSE") && register_name == "Q_out") {
 		// Get the instance name of the module
 		//string instance_name = vpi_get_str(vpiFullName, mod_handle);
@@ -67,6 +67,43 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 					vpi_printf( (char*)"  %s\n", error_info.message);
 			}
 		}
+	}
+
+	// Check if the state element is a LUTRAM in the synthesized netlist
+	// Xilinx: LUTRAM module is named RAM*M* and the actual memory is mem_[a-h]
+	// Xilinx: OR LUTRAM module is named RAM*X1* and the actual memory is mem
+	else if ((module_name == "RAM32M16" || module_name == "RAM64M8" ||
+		module_name == "RAM32M" || module_name == "RAM64M" ||
+		module_name == "RAM32X1D" || module_name == "RAM64X1D" ||
+		module_name == "RAM32X1S" || module_name == "RAM64X1S") &&
+		(register_name == "mem" || register_name == "mem_a" || register_name == "mem_b" ||
+		register_name == "mem_c" || register_name == "mem_d" || register_name == "mem_e" ||
+		register_name == "mem_f" || register_name == "mem_g" || register_name == "mem_h")) {
+
+		// Add the state element to the state element map
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+
+	// Check if the state element is a SRL in the synthesized netlist
+	// Xilinx: LUTRAM module is named SRL16E and the actual memory is data
+	else if (module_name == "SRL16E" && register_name == "data") {
+
+		// Add the state element to the state element map
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
 	}
 }
 
