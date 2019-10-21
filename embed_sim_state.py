@@ -2,18 +2,21 @@
 
 import sys
 import os.path
+from collections import defaultdict
+from timeit import default_timer as timer
 
 from logic_location import parse_logic_location_file
 from ram_location import parse_ram_location_file
 
 from file_parser import parse_bit_file
+from file_parser import parse_partial_bit_file_to_get_start
 from file_parser import parse_rbt_file
 from register_writer import set_register_value_in_partial_bit_file
 from lram_writer import set_named_lram_value_in_partial_bit_file
 from lram_reader import get_lram_location_in_partial_frame_data
 
 # Information collected from the .ll file
-reg_name = []
+reg_name = {}
 reg_bit_offset = []
 reg_frame_address = [] 
 reg_frame_offset = []
@@ -28,7 +31,7 @@ bram_bit = []
 lram_bit_offset = []
 lram_frame_address = []
 lram_frame_offset = []
-lram_xy = []
+lram_xy = defaultdict(list)
 lram_bit = []
 
 # Information collected from the .rl file
@@ -58,19 +61,10 @@ else:
 	print("Expects at least three arguments: logic location file, [ram location file], bitstream file and dump file")
 	exit()
 
+start = timer()
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
 	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
-
-# Sort lram list
-indexes = list(range(len(lram_xy)))
-indexes.sort(key=lram_xy.__getitem__)
-
-lram_bit_offset = list(map(lram_bit_offset.__getitem__, indexes))
-lram_frame_address = list(map(lram_frame_address.__getitem__, indexes))
-lram_frame_offset = list(map(lram_frame_offset.__getitem__, indexes))
-lram_xy = list(map(lram_xy.__getitem__, indexes))
-lram_bit = list(map(lram_bit.__getitem__, indexes))
 
 # Parse the ram location file
 if rl_file_name:
@@ -79,7 +73,7 @@ if rl_file_name:
 
 # Parse the partial bit file
 with open(bit_partial_file_name, 'rb') as bit_partial_file:
-	parse_bit_file(bit_partial_file, bit_partial_frame_data, partial_start_byte, True, partial_start_address, partial_word_count)
+	parse_partial_bit_file_to_get_start(bit_partial_file, bit_partial_frame_data, partial_start_byte, True, partial_start_address, partial_word_count)
 
 with open(dump_file_name, 'r') as input_file:
 	data = input_file.readlines()
@@ -92,3 +86,12 @@ with open(dump_file_name, 'r') as input_file:
 
 		else:
 			set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, ram_name, ram_type, ram_xy, ram_bel)
+'''
+# Open the binary partial bitstream .bit file for reading and writing
+with open(bit_partial_file_name, 'r+b') as bit_partial_file:
+	bit_partial_file.seek(partial_start_byte[0])
+	for word in bit_partial_frame_data:
+		bit_partial_file.write(word.to_bytes(4, byteorder='big'))
+'''
+end = timer()
+print(end - start)

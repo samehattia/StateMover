@@ -2,7 +2,7 @@ from lram_reader import get_lram_location_in_partial_frame_data
 from lram_reader import get_lram_location_in_frame_data
 import re
 
-def set_lram_value_in_partial_bit_file(lram_x, lram_y, lram_width, lram_value, partial_design_name, partial_start_address, partial_start_byte, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
+def set_lram_value_in_partial_bit_file(lram_x, lram_y, lram_l, lram_width, lram_value, partial_design_name, partial_start_address, partial_start_byte, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
 
 	if '.bit' in partial_design_name:
 		partial_file_name = partial_design_name
@@ -12,7 +12,7 @@ def set_lram_value_in_partial_bit_file(lram_x, lram_y, lram_width, lram_value, p
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(partial_file_name, 'r+b') as partial_file:
 		
-		lram_location, lram_b = get_lram_location_in_partial_frame_data(lram_x, lram_y, partial_start_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+		lram_location, lram_b = get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, partial_start_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
 		# Loop on the bits of the lram
 		for i in range(int(len(lram_location)/lram_width)):
@@ -63,15 +63,14 @@ def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_desi
 		# Get the location of this lram in the partial bitstream file
 		x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
-		lram_location, lram_b = get_lram_location_in_partial_frame_data(x, y, partial_start_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
 		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16' or lram_type == 'RAM32M':
-			lut = ord(lram_name[-1]) - ord('a')
+			lut = lram_name[-1]
 		else:
-			lut = ord(lram_bel[0]) - ord('A')	
-		lut_location = lram_location[lut * 64 : lut * 64 + 64]
-		lut_b = lram_b[lut * 64 : lut * 64 + 64]
+			lut = lram_bel[0]
+		l = lut.upper()
+		lut_location, lut_b =  get_lram_location_in_partial_frame_data(x, y, l, partial_start_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
 		# Check which LUT5 (the lower or the upper) of this LUT6 should be updated
 		if lram_type == 'SRL16E':
@@ -146,15 +145,14 @@ def set_named_lram_value_in_bit_file(lram_name, lram_value, design_name, start_b
 		# Get the location of this lram in the partial bitstream file
 		x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
-		lram_location, lram_b = get_lram_location_in_frame_data(x, y, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
 		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16' or lram_type == 'RAM32M':
-			lut = ord(lram_name[-1]) - ord('a')
+			lut = lram_name[-1]
 		else:
-			lut = ord(lram_bel[0]) - ord('A')	
-		lut_location = lram_location[lut * 64 : lut * 64 + 64]
-		lut_b = lram_b[lut * 64 : lut * 64 + 64]
+			lut = lram_bel[0]
+		l = lut.upper()
+		lut_location, lut_b = get_lram_location_in_frame_data(x, y, l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
 		# Check which LUT5 (the lower or the upper) of this LUT6 should be updated
 		if lram_type == 'SRL16E':

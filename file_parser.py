@@ -7,6 +7,39 @@ from frame_parser import parse_binary_configuration_information
 FRAME_LENGTH = 123
 MAX_FRAMES = 32530
 
+# Number of minor frames at each column in XCKU040
+XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 
+	12, 12, 58, 6, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 
+	12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 
+	58, 6, 84, 0, 0, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 
+	12, 58, 4, 12, 12, 58, 6, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 
+	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
+	58, 12, 12, 58, 14]
+
+def parse_partial_rdbk_file_fast(rdbk_file, frame_data, start_address):
+	lines = rdbk_file.readlines()
+
+	# Can also be done using the bitoffset instead of frame index
+	block, row, column, minor = parse_frame_address(start_address)
+	frames_per_row = sum(XCKU040_frame_count)
+	accumulated_frame_count = sum(XCKU040_frame_count[0:column])	
+	full_frame_data_index =  (minor + accumulated_frame_count + frames_per_row * row)
+
+	# Convert start_address into index
+	for i in range(full_frame_data_index*FRAME_LENGTH):
+		frame_data.append('00000000000000000000000000000000')
+
+	for line in lines[10 + FRAME_LENGTH:]:
+		frame_data.append(line)
+
+def parse_rdbk_file_fast(rdbk_file, frame_data):
+	lines = rdbk_file.readlines()
+
+	for line in lines[10 + FRAME_LENGTH:]:
+		frame_data.append(line)
+
 def parse_rdbk_file(rdbk_file, frame_data):
 	# Skip overhead words (10 words + one frame)
 	for i in range(10 + FRAME_LENGTH):
@@ -108,6 +141,58 @@ def parse_bit_file(bit_file, frame_data, start_byte, partial=False, partial_star
 
 		# Parse frame data
 		bit_byte_no = parse_binary_frame_data(bit_file, start_address, word_count, frame_data, bit_byte_no)	
+
+def parse_partial_bit_file_to_get_start(bit_file, frame_data, start_byte, partial=False, partial_start_address=[], partial_word_count=[]):
+	bit_byte_no = 0
+
+	# Skip file header, stop when a Sync word AA995566 is detected
+	while True:
+		# Read one byte from the file
+		byte = bit_file.read(1)
+		bit_byte_no = bit_byte_no + 1
+		if ord(byte) == 0xAA:
+			byte = bit_file.read(1)
+			bit_byte_no = bit_byte_no + 1
+			if ord(byte) == 0x99:
+				byte = bit_file.read(1)
+				bit_byte_no = bit_byte_no + 1
+				if ord(byte) == 0x55:
+					byte = bit_file.read(1)
+					bit_byte_no = bit_byte_no + 1
+					if ord(byte) == 0x66:
+						break
+
+	# Retrieve configuration information and skip to frame data
+	start_address, word_count, bit_byte_no = parse_binary_configuration_information(bit_file, bit_byte_no)
+
+	start_byte.append(bit_byte_no)  # full or partial
+	if partial:
+		partial_start_address.append(start_address)
+		partial_word_count.append(word_count)
+
+def parse_full_bit_file_to_get_start(bit_file, frame_data, start_byte):
+	bit_byte_no = 0
+
+	# Skip file header, stop when a Sync word AA995566 is detected
+	while True:
+		# Read one byte from the file
+		byte = bit_file.read(1)
+		bit_byte_no = bit_byte_no + 1
+		if ord(byte) == 0xAA:
+			byte = bit_file.read(1)
+			bit_byte_no = bit_byte_no + 1
+			if ord(byte) == 0x99:
+				byte = bit_file.read(1)
+				bit_byte_no = bit_byte_no + 1
+				if ord(byte) == 0x55:
+					byte = bit_file.read(1)
+					bit_byte_no = bit_byte_no + 1
+					if ord(byte) == 0x66:
+						break
+
+	# Retrieve configuration information and skip to frame data
+	start_address, word_count, bit_byte_no = parse_binary_configuration_information(bit_file, bit_byte_no)
+	start_byte.append(bit_byte_no)
 
 def parse_msk_file(msk_file, mask_data):
 	# Skip file header, stop when a Sync word AA995566 is detected

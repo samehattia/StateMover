@@ -116,49 +116,40 @@ def print_logic_location_info(reg_bit_offset, reg_frame_address, reg_slice_xy, b
 
 def parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
 
-	#### Skip the header section ####
-	# Read the first line
-	line = ll_file.readline()
-	# Split the line into words delimited with space
-	words = line.split()
-
-	# Loop until the first word in the line is Bit
-	while words[0] != 'Bit':
-		# Read the next line
-		line = ll_file.readline()
+	# Read the file
+	#lines = ll_file.readlines()
+	reg_index = 0
+	lram_index = 0
+	for line in ll_file: # lines:
 		# Split the line into words delimited with space
-		words = line.split()
+		# words = line.split()
 
-	#### Parse the file ####
-	while True:
-		# If the line doesn't start with 'Bit' or we reach the EOF, break
-		if not line or words[0] != 'Bit':
-			break
+		# Skip the header section
+		if line[0] != 'B':
+			continue
 
 		# Check if the line contains information about design elements and store it
-		if len(words) >= 9 and 'Net=' in words[8] and 'Latch=' in words[7]:
-			reg_name.append(words[8].lstrip('Net='))
-			reg_bit_offset.append(int(words[1]))
-			reg_frame_address.append(int(words[2].lstrip('0x'), 16))
-			reg_frame_offset.append(int(words[3]))
-			reg_slice_xy.append(words[6].lstrip('Block=SLICE_'))
-
+		if line[44] == 'S': # SLICE
+			words = line.split()
+			if len(words) >= 9 and words[8][0] == 'N' and words[7][0] == 'L': # Net= Latch=
+				reg_name[words[8].lstrip('Net=')] = reg_index
+				reg_bit_offset.append(int(words[1]))
+				reg_frame_address.append(int(words[2].lstrip('0x'), 16))
+				reg_frame_offset.append(int(words[3]))
+				reg_slice_xy.append(words[6].lstrip('Block=SLICE_'))
+				reg_index = reg_index + 1
+			elif words[7][0] == 'R': # Ram=
+				lram_xy[words[6].lstrip('Block=SLICE_') + 'L' + words[7][4]].append(lram_index)
+				lram_bit_offset.append(int(words[1]))
+				lram_frame_address.append(int(words[2].lstrip('0x'), 16))
+				lram_frame_offset.append(int(words[3]))
+				lram_bit.append(re.split(":", words[7], 0)[1])
+				lram_index = lram_index + 1
+		'''
 		if 'RAM=B:' in words[7] and 'Block=RAMB36' in words[6]:
 			bram_bit_offset.append(int(words[1]))
 			bram_frame_address.append(int(words[2].lstrip('0x'), 16))
 			bram_frame_offset.append(int(words[3]))
 			bram_xy.append(words[6].lstrip('Block=RAMB36_'))
 			bram_bit.append(words[7].lstrip('RAM=B:'))
-
-		if 'Ram=' in words[7] and 'Block=SLICE' in words[6]:
-			lram_bit_offset.append(int(words[1]))
-			lram_frame_address.append(int(words[2].lstrip('0x'), 16))
-			lram_frame_offset.append(int(words[3]))
-			lram_xy.append(words[6].lstrip('Block=SLICE_'))
-			lram_bit.append(words[7].lstrip('Ram='))
-
-		# Read the next line
-		line = ll_file.readline()
-		# Split the line into words delimited with space
-		words = line.split()
-
+		'''

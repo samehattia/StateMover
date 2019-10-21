@@ -115,3 +115,28 @@ def set_register_value_in_bit_file(register_name, register_width, value, design_
 			# Overwrite the word after the modification
 			file.seek(word_offset)
 			file.write(bytes(word))
+
+def set_register_value_in_partial_frame_data(register_name, register_width, value, partial_frame_data, partial_start_address, partial_start_byte, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+
+	# Loop on the bits of the register
+	for i in range(register_width):
+		if register_width == 1:
+			name = register_name
+		else:
+			name = register_name + '[' + str(i) + ']'
+
+		# Get the location (frame data word index, and the bit offset in that word) of the register bit
+		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+
+		# Jump to this word and read it
+		word = partial_frame_data[location_partial]
+
+		# Bit manipulate (inverted) that byte
+		bit_value = ((value >> i) & 0x1) ^ 0x1
+		if bit_value == 0:
+			word = word & ~(1 << bit_offset)
+		else:
+			word = word | (1 << bit_offset)
+
+		# Overwrite the word after the modification
+		partial_frame_data[location_partial] = word

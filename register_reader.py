@@ -16,15 +16,11 @@ XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 1
 
 def get_register_info(register_name, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
 
-	begin_index = 0
-	for name in reg_name:
-		if name == register_name:
-			bit_offset = reg_bit_offset[begin_index]
-			frame_address = reg_frame_address[begin_index]
-			frame_offset =  reg_frame_offset[begin_index]
-			return bit_offset, frame_address, frame_offset
-		begin_index = begin_index + 1
-	return 0, 0, 0	
+	index = reg_name[register_name]
+	bit_offset = reg_bit_offset[index]
+	frame_address = reg_frame_address[index]
+	frame_offset =  reg_frame_offset[index]
+	return bit_offset, frame_address, frame_offset
 
 def print_register_info(register_name, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
 
@@ -62,6 +58,20 @@ def get_register_location_in_partial_frame_data(register_name, start_frame_addre
 	bit = frame_offset % 32
 
 	return location, bit
+
+def get_register_value_from_frame_data_fast(register_name, register_width, frame_data, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+	value = 0
+
+	for i in range(register_width):
+		if register_width == 1:
+			name = register_name
+		else:
+			name = register_name + '[' + str(i) + ']'
+		location_full, bit_full = get_register_location_in_frame_data(name, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+		bit_value = ((int(frame_data[location_full], 2) >> bit_full) & 0x1) ^ 0x1
+		value = value | (bit_value << i)
+
+	return value
 
 def get_register_value_from_frame_data(register_name, register_width, frame_data, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
 	value = 0

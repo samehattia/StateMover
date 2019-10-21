@@ -3,6 +3,7 @@
 import sys
 import re
 import os.path
+from collections import defaultdict
 
 from logic_location import parse_logic_location_file
 from ram_location import parse_ram_location_file
@@ -12,7 +13,7 @@ from register_reader import get_register_value_from_frame_data
 from lram_reader import get_lram_value_from_frame_data
 
 # Information collected from the .ll file
-reg_name = []
+reg_name = {}
 reg_bit_offset = []
 reg_frame_address = [] 
 reg_frame_offset = []
@@ -27,7 +28,7 @@ bram_bit = []
 lram_bit_offset = []
 lram_frame_address = []
 lram_frame_offset = []
-lram_xy = []
+lram_xy = defaultdict(list)
 lram_bit = []
 
 # Information collected from the .rl file
@@ -55,16 +56,6 @@ else:
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
 	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
-
-# Sort lram list
-indexes = list(range(len(lram_xy)))
-indexes.sort(key=lram_xy.__getitem__)
-
-lram_bit_offset = list(map(lram_bit_offset.__getitem__, indexes))
-lram_frame_address = list(map(lram_frame_address.__getitem__, indexes))
-lram_frame_offset = list(map(lram_frame_offset.__getitem__, indexes))
-lram_xy = list(map(lram_xy.__getitem__, indexes))
-lram_bit = list(map(lram_bit.__getitem__, indexes))
 
 # Parse the ram location file
 if rl_file_name:

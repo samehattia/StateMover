@@ -11,8 +11,10 @@ from ram_location import parse_ram_location_file
 
 # Fast means that the frame data is in string format (not converted to int)
 from file_parser import parse_rdbk_file_fast
+from file_parser import parse_partial_rdbk_file_fast
 from register_reader import get_register_value_from_frame_data_fast
 from lram_reader import get_lram_value_from_frame_data_fast
+from frame_parser import parse_frame_address
 
 from file_parser import parse_rdbk_file
 from register_reader import get_register_value_from_frame_data
@@ -63,6 +65,26 @@ start = timer()
 with open(ll_file_name, 'r') as ll_file:
 	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
 
+min_reg_frame_address = min(reg_frame_address)
+block, row, column, minor = parse_frame_address(min_reg_frame_address)
+print(hex(min_reg_frame_address))
+print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
+
+max_reg_frame_address = max(reg_frame_address)
+block, row, column, minor = parse_frame_address(max_reg_frame_address)
+print(hex(max_reg_frame_address))
+print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
+
+min_lram_frame_address = min(lram_frame_address)
+block, row, column, minor = parse_frame_address(min_lram_frame_address)
+print(hex(min_lram_frame_address))
+print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
+
+max_lram_frame_address = max(lram_frame_address)
+block, row, column, minor = parse_frame_address(max_lram_frame_address)
+print(hex(max_lram_frame_address))
+print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
+
 # Parse the ram location file
 if rl_file_name:
 	with open(rl_file_name, 'r') as rl_file:
@@ -70,7 +92,7 @@ if rl_file_name:
 
 # Parse the readback file
 with open(rdbk_file_name, 'r') as rdbk_file:
-	parse_rdbk_file_fast(rdbk_file, rdbk_frame_data)
+	parse_partial_rdbk_file_fast(rdbk_file, rdbk_frame_data, min_reg_frame_address)
 
 # Dump state elements values
 with open("hw_state.dump", 'w') as output_file:
