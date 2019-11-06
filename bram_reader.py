@@ -15,21 +15,18 @@ def get_bram_info(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_fram
 	frame_address = [0] * 32768
 	frame_offset = [0] * 32768
 
-	# loop on all the bram frame data
-	for i in range(len(bram_xy)):
-		x = int(re.split("Y", bram_xy[i].lstrip('X'), 0)[0])
-		y = int(re.split("Y", bram_xy[i].lstrip('X'), 0)[1])
+	xy = 'X' + str(bram_x) + 'Y' + str(bram_y)
+	index_list = bram_xy[xy]
 
-		# Check if this data is related to this certain bram
-		if bram_x == x and bram_y == y:
-			# skip parity bits
-			if 'PARBIT' in bram_bit[i]:
-				continue
-			# get bit number
-			bit = int(bram_bit[i].lstrip('BIT'))
-			bit_offset[bit] = bram_bit_offset[i]
-			frame_address[bit] = bram_frame_address[i]
-			frame_offset[bit] = bram_frame_offset[i]
+	for i in index_list:
+		# skip parity bits
+		if 'PARBIT' in bram_bit[i]:
+			continue
+		# get bit number
+		bit = int(bram_bit[i].lstrip('BIT'))
+		bit_offset[bit] = bram_bit_offset[i]
+		frame_address[bit] = bram_frame_address[i]
+		frame_offset[bit] = bram_frame_offset[i]
 
 	return bit_offset, frame_address, frame_offset
 
@@ -107,6 +104,24 @@ def get_bram_value_from_frame_data(bram_x, bram_y, bram_width, frame_data, bram_
 			word_location = bram_location[i * bram_width + j]
 			bit_location = bram_b[i * bram_width + j]
 			bit_value = (frame_data[word_location] >> bit_location) & 0x1
+			value = value | (bit_value << j)
+		
+		bram_value.append(value)
+
+	return bram_value
+
+def get_bram_value_from_frame_data_fast(bram_x, bram_y, bram_width, frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):	
+
+	bram_value = []
+	bram_location, bram_b = get_bram_location_in_frame_data(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	
+	for i in range(int(len(bram_location)/bram_width)):
+		value = 0
+		
+		for j in range(bram_width):
+			word_location = bram_location[i * bram_width + j]
+			bit_location = bram_b[i * bram_width + j]
+			bit_value = (int(frame_data[word_location], 2) >> bit_location) & 0x1
 			value = value | (bit_value << j)
 		
 		bram_value.append(value)

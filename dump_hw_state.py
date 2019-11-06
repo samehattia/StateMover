@@ -13,10 +13,12 @@ from ram_location import parse_ram_location_file
 from file_parser import parse_rdbk_file_fast
 from register_reader import get_register_value_from_frame_data_fast
 from lram_reader import get_lram_value_from_frame_data_fast
+from bram_reader import get_bram_value_from_frame_data_fast
 
 from file_parser import parse_rdbk_file
 from register_reader import get_register_value_from_frame_data
 from lram_reader import get_lram_value_from_frame_data
+from bram_reader import get_bram_value_from_frame_data
 
 # Information collected from the .ll file
 reg_name = {}
@@ -28,7 +30,7 @@ reg_slice_xy = []
 bram_bit_offset = []
 bram_frame_address = []
 bram_frame_offset = []
-bram_xy = []
+bram_xy = defaultdict(list)
 bram_bit = []
 
 lram_bit_offset = []
@@ -61,7 +63,7 @@ else:
 start = timer()
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
 
 # Parse the ram location file
 if rl_file_name:
@@ -79,7 +81,7 @@ with open("hw_state.dump", 'w') as output_file:
 		value = get_register_value_from_frame_data_fast(name, 1, rdbk_frame_data, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
 		output_file.write(name + ' ' + str(value) + '\n')
 
-	# Dump lutram values
+	# Dump ram values
 	for i in range(len(ram_name)):
 		name = ram_name[i]
 		x = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[0])
@@ -117,6 +119,11 @@ with open("hw_state.dump", 'w') as output_file:
 			odd_bits_bin = lut_value_bin[-32] + lut_value_bin[-30] + lut_value_bin[-28] + lut_value_bin[-26] + lut_value_bin[-24] + lut_value_bin[-22] + lut_value_bin[-20] + lut_value_bin[-18] + lut_value_bin[-16] + lut_value_bin[-14]+ lut_value_bin[-12] + lut_value_bin[-10] + lut_value_bin[-8] + lut_value_bin[-6] + lut_value_bin[-4] + lut_value_bin[-2]
 			srl_value = int(odd_bits_bin, 2)
 			output_file.write(name + '/data' + ' ' + "{:04x}".format(srl_value, 'x') + '\n')
+
+		# Check if the RAM is a blockRAM
+		elif ram_type[i] == 'RAMB36E2':
+			value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+			output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
 		# Any other type of LUTRAM
 		else:	

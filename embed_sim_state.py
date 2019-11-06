@@ -25,7 +25,7 @@ reg_slice_xy = []
 bram_bit_offset = []
 bram_frame_address = []
 bram_frame_offset = []
-bram_xy = []
+bram_xy = defaultdict(list)
 bram_bit = []
 
 lram_bit_offset = []

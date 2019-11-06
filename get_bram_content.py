@@ -3,6 +3,7 @@
 import sys
 import re
 import os.path
+from collections import defaultdict
 
 from logic_location import parse_logic_location_file
 from ram_location import parse_ram_location_file
@@ -13,7 +14,7 @@ from lram_reader import get_lram_value_from_frame_data
 from bram_reader import get_bram_value_from_frame_data
 
 # Information collected from the .ll file
-reg_name = []
+reg_name = {}
 reg_bit_offset = []
 reg_frame_address = [] 
 reg_frame_offset = []
@@ -22,13 +23,13 @@ reg_slice_xy = []
 bram_bit_offset = []
 bram_frame_address = []
 bram_frame_offset = []
-bram_xy = []
+bram_xy = defaultdict(list)
 bram_bit = []
 
 lram_bit_offset = []
 lram_frame_address = []
 lram_frame_offset = []
-lram_xy = []
+lram_xy = defaultdict(list)
 lram_bit = []
 
 # Information collected from the .rl file
@@ -46,12 +47,12 @@ if len(sys.argv) == 5:
 	bram_x = sys.argv[3]
 	bram_y = sys.argv[4]
 else:
-	print("Expects at least four arguments: logic location file, [ram location file], readback file, bram_x, bram_y")
+	print("Expects four arguments: logic location file, readback file, bram_x, bram_y")
 	exit()
 
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
 
 # Parse the readback file
 with open(rdbk_file_name, 'r') as rdbk_file:
@@ -60,5 +61,7 @@ with open(rdbk_file_name, 'r') as rdbk_file:
 # Dump state elements values
 bram_value = get_bram_value_from_frame_data(bram_x, bram_y, 256, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
 
+count = 0
 for value in bram_value:
-	print(hex(value))
+	print(str(count) + ':\t' + hex(value))
+	count = count + 1
