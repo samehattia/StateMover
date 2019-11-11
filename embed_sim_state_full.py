@@ -15,6 +15,7 @@ from file_parser import parse_rbt_file
 from register_writer import set_register_value_in_bit_file
 from lram_writer import set_named_lram_value_in_bit_file
 from bram_writer import set_named_bram_value_in_bit_file
+from bram_writer import set_named_bram_reg_value_in_bit_file
 from lram_reader import get_lram_location_in_frame_data
 
 # Information collected from the .ll file
@@ -80,12 +81,15 @@ with open(dump_file_name, 'r') as input_file:
 	for line in data:
 		words = line.split()
 
-		# Check if the line is related to a register, a bram or a lutram
+		# Check if the line is related to a register, a bram, a bram reg or a lutram
 		if len(words[1]) == 1:
 			set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
 
 		elif len(words[1]) > 64:
 			set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
+
+		elif len(words[1]) == 8 and 'mem_b_lat' in words[0]:
+			set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
 
 		else:
 			set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, ram_name, ram_type, ram_xy, ram_bel)

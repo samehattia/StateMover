@@ -14,6 +14,7 @@ from file_parser import parse_rdbk_file_fast
 from register_reader import get_register_value_from_frame_data_fast
 from lram_reader import get_lram_value_from_frame_data_fast
 from bram_reader import get_bram_value_from_frame_data_fast
+from bram_reader import get_bram_reg_value_from_frame_data_fast
 
 from file_parser import parse_rdbk_file
 from register_reader import get_register_value_from_frame_data
@@ -124,6 +125,9 @@ with open("hw_state.dump", 'w') as output_file:
 		elif ram_type[i] == 'RAMB36E2':
 			value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
 			output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data_fast(x, y, rdbk_frame_data)
+			output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
 		# Any other type of LUTRAM
 		else:	

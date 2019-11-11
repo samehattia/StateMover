@@ -5,6 +5,20 @@ from frame_parser import parse_frame_address
 FRAME_LENGTH = 123
 MAX_FRAMES = 32530
 
+# Number of minor frames at each column in XCKU040
+XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 
+	12, 12, 58, 6, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 
+	12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 
+	58, 6, 84, 0, 0, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 
+	12, 58, 4, 12, 12, 58, 6, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 
+	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
+	58, 12, 12, 58, 14]
+
+# Which frame column has BRAM configuration (not BRAM contents)
+XCKU040_bram_columns = [7, 19, 43, 55, 67, 91, 119, 146, 170, 182]
+
 ''' 
 for a certain BRAM, return a location array which contains the word number
 for each bit in this BRAM, and the bit offest in this word
@@ -145,3 +159,75 @@ def get_bram_value_from_partial_frame_data(bram_x, bram_y, bram_width, partial_f
 		bram_value.append(value)
 
 	return bram_value
+
+def get_bram_reg_location_in_frame_data(bram_x, bram_y):
+
+	location = [0] * 36
+	bit = [0] * 36
+
+	# Calculate bram init frame index
+	# Convert BRAM_XY to Frame slot (Column and Row)
+	# In XCKU040, there are 10 BRAM columns, and each slot has 12 BRAMs
+	column = XCKU040_bram_columns[bram_x]
+	row = int(bram_y / 12)
+
+	# Get the frame index of that slot
+	# A slot has multiple frames. A bram configuration slot has 4 frames
+	# The information of the BRAM registers is in the frame with minor 3 in that slot
+	minor = 3
+	frames_per_row = sum(XCKU040_frame_count)
+	accumulated_frame_count = sum(XCKU040_frame_count[0:column])	
+	bram_reg_frame_index =  (minor + accumulated_frame_count + frames_per_row * row)
+
+	# Reverse engineered info about the word and bit offest of the BRAM regs (INITA/INITB) inside that frame
+	# The word offset of the first BRAM in the slot
+	bram_reg_word_offset_0 = [0, 5, 0, 6,    1, 6, 1, 7,    2, 2, 8, 3,    8, 3, 9, 4,    9, 7, 0, 5,    0, 6, 1, 6,    1, 7, 2, 2,    8, 3, 8, 3,    9, 4, 9, 7]
+	init_a_bit_offset =  [1, 17, 17, 1,    1, 17, 17, 1,    1, 17, 1, 1,    17, 17, 1, 1,    17, 17,  9, 25,    25,  9,  9, 25,    25,  9,  9, 25,     9,  9, 25, 25,     9,  9, 25, 25]
+	init_b_bit_offset =  [7, 23, 23, 7,    7, 23, 23, 7,    7, 23, 7, 7,    23, 23, 7, 7,    23, 23, 15, 31,    31, 15, 15, 31,    31, 15, 15, 31,    15, 15, 31, 31,    15, 15, 31, 31]
+
+	# Get mem_b_lat location
+	for i in range(36):
+		# The word offset of other BRAMs is BRAM0: 0-9 BRAM1: 10-19 ... BRAM5: 50-59 BRAM6: 63-72 ... BRAM11: 103-112 BRAM12: 113-122
+		bram_reg_word_offset = bram_reg_word_offset_0[i] + ((bram_y % 12) * 10)
+		if (bram_y % 12) > 5:
+			bram_reg_word_offset = bram_reg_word_offset + 3
+		location[i] = bram_reg_frame_index * 123 + bram_reg_word_offset
+		bit[i] = init_b_bit_offset[i]
+
+	return location, bit
+
+def get_bram_reg_value_from_frame_data_fast(bram_x, bram_y, frame_data):
+
+	bram_reg_value = []
+	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y)
+
+	value = 0
+
+	# Get mem_b_lat value
+	for j in range(32):
+		word_location = bram_reg_location[j]
+		bit_location = bram_reg_b[j]
+		bit_value = (int(frame_data[word_location], 2) >> bit_location) & 0x1
+		value = value | (bit_value << j)
+
+	bram_reg_value.append(value)
+
+	return bram_reg_value
+
+def get_bram_reg_value_from_frame_data(bram_x, bram_y, frame_data):
+
+	bram_reg_value = []
+	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y)
+
+	value = 0
+
+	# Get mem_b_lat value
+	for j in range(32):
+		word_location = bram_reg_location[j]
+		bit_location = bram_reg_b[j]
+		bit_value = (frame_data[word_location] >> bit_location) & 0x1
+		value = value | (bit_value << j)
+
+	bram_reg_value.append(value)
+
+	return bram_reg_value
