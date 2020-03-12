@@ -6,7 +6,7 @@
 #define DUMP_OUT_FILE_NAME "sim_state.dump"
 
 // Define VERBOSE to print more information on module state elements
-#define VERBOSE
+// #define VERBOSE
 
 // Define CORRUPT_STATE if you want to corrupt the module state immediately after saving it
 // #define CORRUPT_STATE

@@ -3,12 +3,49 @@
 #include <list>
 #include <algorithm>
 #include <string.h>
+#include <chrono>
 #include "vpi_user.h"
 #include "csr_sim.h"
 #include "state_element.h"
 #include "state_access.h"
 
 using namespace std;
+
+//CREDIT: https://stackoverflow.com/questions/18310952/convert-strings-between-hex-format-and-binary-format
+string hex2bin(const string &s){
+    string out;
+    for(auto i: s){
+        uint8_t n;
+        if(i <= '9' and i >= '0')
+            n = i - '0';
+        else
+            n = 10 + i - 'a';
+        for(int8_t j = 3; j >= 0; --j)
+            out.push_back((n & (1<<j))? '1':'0');
+    }
+
+    return out;
+}
+
+//CREDIT: https://stackoverflow.com/questions/18310952/convert-strings-between-hex-format-and-binary-format
+string bin2hex(const string &s){
+    string out;
+    for(uint i = 0; i < s.size(); i += 4){
+        int8_t n = 0;
+        for(uint j = i; j < i + 4; ++j){
+            n <<= 1;
+            if(s[j] == '1')
+                n |= 1;
+        }
+
+        if(n<=9)
+            out.push_back('0' + n);
+        else
+            out.push_back('a' + n - 10);
+    }
+
+    return out;
+}
 
 void restore_init_state()
 {
@@ -91,7 +128,7 @@ PLI_INT32 save_state(p_cb_data cb_data)
 
 #ifdef CORRUPT_STATE
 	corrupt_state();
-#elif RESTORE_INIT_STATE
+#elif defined RESTORE_INIT_STATE
 	restore_init_state();
 #endif
 
@@ -121,6 +158,8 @@ PLI_INT32 restore_state(p_cb_data cb_data)
 
 PLI_INT32 restore_hardware_state(p_cb_data cb_data)
 {
+	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+
 	fstream fs;
 	string register_name;
 	string register_value;
@@ -159,19 +198,40 @@ PLI_INT32 restore_hardware_state(p_cb_data cb_data)
 		fs >> register_value;
 
 		// Overwrite the register value with the value in the dump file
-		restored_value.value.str = (char*) malloc((se.elem_size + 1) * sizeof(char));
-		strcpy(restored_value.value.str, register_value.c_str());
-		vpi_put_value(se.elem_handle, &restored_value, NULL, vpiNoDelay);
+		if (vpi_get(vpiType, se.elem_handle) == vpiReg) {
+			restored_value.value.str = (char*) malloc((se.elem_size + 1) * sizeof(char));
+			strcpy(restored_value.value.str, register_value.c_str());
+			vpi_put_value(se.elem_handle, &restored_value, NULL, vpiNoDelay);
+		}
+		// Overwrite the memory value with the value in the dump file
+		else {
+			string memory_value = hex2bin(register_value);
+
+			// Overwrite memory registers
+			for (size_t i = 0; i < se.elem_size; i++) {
+				vpiHandle memreg_handle = vpi_handle_by_index(se.elem_handle, i);
+				restored_value.value.str = (char*) malloc((1 + 1) * sizeof(char));
+				restored_value.value.str[0] = memory_value[se.elem_size-1-i];
+				restored_value.value.str[1] = '\0';
+				vpi_put_value(memreg_handle, &restored_value, NULL, vpiNoDelay);
+			}
+		}
 	}
 
 	// close dump file
 	fs.close();
+
+	chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
+	std::chrono::duration<double, milli> fp_ms = t2 - t1;
+	vpi_printf( (char*)"  %f ms\n", fp_ms.count());
 	
 	return 0;
 }
 
 PLI_INT32 dump_simulation_state(p_cb_data cb_data)
 {
+	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+
 	fstream fs;
 	string register_name;
 	string register_value;
@@ -200,15 +260,34 @@ PLI_INT32 dump_simulation_state(p_cb_data cb_data)
 		replace(register_name.begin(), register_name.end(), '.', '/');
 
 		// Get the register value from the simulation
-		vpi_get_value(se.second.elem_handle, &current_value);
-		register_value = current_value.value.str;
+		if (vpi_get(vpiType, se.second.elem_handle) == vpiReg) {
+			vpi_get_value(se.second.elem_handle, &current_value);
+			register_value = current_value.value.str;
+		}
+		// Get the memory value from the simulation
+		else {
+			string memory_value = "";
 
+			// get memory registers
+			for (size_t i = 0; i < se.second.elem_size; i++) {
+				vpiHandle memreg_handle = vpi_handle_by_index(se.second.elem_handle, i);
+				vpi_get_value(memreg_handle, &current_value);
+				memory_value = current_value.value.str + memory_value;
+			}
+
+			// Convert binary array to hex
+			register_value = bin2hex(memory_value);
+		}
 		// Dump the register value to the dump file
 		fs << register_name << " " << register_value << endl;
 	}
 
 	// close dump file
 	fs.close();
+
+	chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
+	std::chrono::duration<double, milli> fp_ms = t2 - t1;
+	vpi_printf( (char*)"  %f ms\n", fp_ms.count());
 	
 	return 0;
 }

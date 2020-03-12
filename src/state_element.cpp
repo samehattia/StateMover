@@ -16,7 +16,8 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 	s_vpi_error_info error_info;
 
 	// Add the state element to the state element list
-	state_elem_list.push_back(se);
+	if (vpi_get(vpiType, se.elem_handle) == vpiReg)
+		state_elem_list.push_back(se);
 
 	// Exit if the state element is inside a genblk
 	int type = vpi_get(vpiType, mod_handle);
@@ -105,6 +106,35 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 			register_full_name.end());
 		state_element_map.emplace(register_full_name, se);
 	}
+
+	// Check if the state element is a BlockRAM in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 and the actual memory is mem
+	else if (module_name == "RAMB36E2" && register_name == "mem") {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		// Get rid of padding
+		se.elem_size = 32768;
+		state_element_map.emplace(register_full_name, se);
+	}
+	// Check if the state element is a BlockRAM internal registers in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 and the internal latches/registers is mem_a/b_lat/reg
+	else if (module_name == "RAMB36E2" && (register_name == "mem_a_lat" || register_name == "mem_b_lat" ||
+		register_name == "mem_a_reg" || register_name == "mem_b_reg")) {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+
 }
 
 static state_element alloc_state_element(vpiHandle elem_handle) {
@@ -184,6 +214,10 @@ void get_state_element(vpiHandle mod_handle) {
 			// print memory name
 			vpi_printf( (char*)"\tMem: %s\n", vpi_get_str( vpiName, mem_handle ));
 #endif
+			// allocate memory in the state_element map only
+			state_element se = alloc_state_element(mem_handle);
+			add_state_element(se, mod_handle);
+
 			// get an iterator on memory registers
 			memreg_itr_handle = vpi_iterate( vpiVarSelect, mem_handle );
 			if ((error_code = vpi_chk_error(&error_info)) && error_info.message)
@@ -198,7 +232,7 @@ void get_state_element(vpiHandle mod_handle) {
 
 				while ( memreg_handle ) {
 
-					// allocate register in the state_element list/map
+					// allocate memory register in the state_element list only
 					state_element se = alloc_state_element(memreg_handle);
 					add_state_element(se, mod_handle);
 

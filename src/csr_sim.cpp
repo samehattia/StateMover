@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <chrono>
 #include "vpi_user.h"
 #include "csr_sim.h"
 #include "state_element.h"
@@ -154,7 +155,11 @@ void csr_sim( void )
 		vpi_printf( (char*)"  %s\n", error_info.message);
 
 	// traverse the design down from this module to create the state_element list
+	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 	traverse (module_handle);
+	chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
+	std::chrono::duration<double, milli> fp_ms = t2 - t1;
+	vpi_printf( (char*)"  %f ms\n", fp_ms.count());
 
 #ifdef HARDWARE
 #ifdef VERBOSE
