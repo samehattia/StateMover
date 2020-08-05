@@ -119,8 +119,21 @@ with open("hw_state.dump", 'w') as output_file:
 			value = get_bram_value_from_frame_data(x, y, 32768, bit_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
 			output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-			value = get_bram_reg_value_from_frame_data(x, y, bit_frame_data)
+			value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'a', bit_frame_data)
+			output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'b', bit_frame_data)
 			output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
+
+		elif ram_type[i] == 'RAMB18E2':
+			value = get_bram_value_from_frame_data(x, y, 16384, bit_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+			output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'a', bit_frame_data)
+			output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'b', bit_frame_data)
+			output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
 		# Any other type of LUTRAM
 		else:	

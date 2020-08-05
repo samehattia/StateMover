@@ -114,7 +114,7 @@ def print_logic_location_info(reg_bit_offset, reg_frame_address, reg_slice_xy, b
 	for col in range(BRAM_COLUMNS):
 		print(str(col) + "\t" + str(bram_frame_count[col]))
 
-def parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, bram_enable=False):
+def parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, bram_enable=False, task_name=''):
 
 	# Read the file
 	#lines = ll_file.readlines()
@@ -133,6 +133,8 @@ def parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_addre
 		if line[44] == 'S': # Block=(S)LICE
 			words = line.split()
 			if len(words) >= 9 and words[8][0] == 'N' and words[7][0] == 'L': # (N)et= (L)atch=
+				if task_name != '' and not words[8].lstrip('Net=').startswith(task_name):
+					continue
 				reg_name[words[8].lstrip('Net=')] = reg_index
 				reg_bit_offset.append(int(words[1]))
 				reg_frame_address.append(int(words[2].lstrip('0x'), 16))
@@ -151,6 +153,14 @@ def parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_addre
 			words = line.split()
 			if line[48] == '3': # Block=RAMB(3)6'
 				bram_xy[words[6].lstrip('Block=RAMB36_')].append(bram_index) # X_Y_
+				bram_bit_offset.append(int(words[1]))
+				bram_frame_address.append(int(words[2].lstrip('0x'), 16))
+				bram_frame_offset.append(int(words[3]))				
+				bram_bit.append(words[7].lstrip('RAM=B:'))
+				bram_index = bram_index + 1
+			# FIXME: RAM18 XY can collide with RAM36 XY	
+			elif line[48] == '1': # Block=RAMB(1)8'
+				bram_xy[words[6].lstrip('Block=RAMB18_')].append(bram_index) # X_Y_
 				bram_bit_offset.append(int(words[1]))
 				bram_frame_address.append(int(words[2].lstrip('0x'), 16))
 				bram_frame_offset.append(int(words[3]))				

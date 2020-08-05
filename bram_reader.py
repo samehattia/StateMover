@@ -160,10 +160,13 @@ def get_bram_value_from_partial_frame_data(bram_x, bram_y, bram_width, partial_f
 
 	return bram_value
 
-def get_bram_reg_location_in_frame_data(bram_x, bram_y):
+def get_bram_reg_location_in_frame_data(bram_x, bram_y, bram_bel, bram_reg_l):
 
 	location = [0] * 36
 	bit = [0] * 36
+
+	if 'RAMB18' in bram_bel:
+		bram_y = int(bram_y/2) 
 
 	# Calculate bram init frame index
 	# Convert BRAM_XY to Frame slot (Column and Row)
@@ -192,19 +195,33 @@ def get_bram_reg_location_in_frame_data(bram_x, bram_y):
 		if (bram_y % 12) > 5:
 			bram_reg_word_offset = bram_reg_word_offset + 3
 		location[i] = bram_reg_frame_index * 123 + bram_reg_word_offset
-		bit[i] = init_b_bit_offset[i]
+		if bram_reg_l == 'a':
+			bit[i] = init_a_bit_offset[i]
+		else:
+			bit[i] = init_b_bit_offset[i]
+
+	if  'RAMB18' in bram_bel:
+		if bram_bel[-1] == 'L':
+			location = [location[0], location[2], location[4], location[6], location[9], location[11], location[13], location[15], location[8], location[18], location[20], location[22], location[24], location[27], location[29], location[31]]
+			bit = [bit[0], bit[2], bit[4], bit[6], bit[9], bit[11], bit[13], bit[15], bit[8], bit[18], bit[20], bit[22], bit[24], bit[27], bit[29], bit[31]]
+		else:
+			location = [location[1], location[3], location[5], location[7], location[10], location[12], location[14], location[16], location[17], location[19], location[21], location[23], location[25], location[28], location[30], location[32]]
+			bit = [bit[1], bit[3], bit[5], bit[7], bit[10], bit[12], bit[14], bit[16], bit[17], bit[19], bit[21], bit[23], bit[25], bit[28], bit[30], bit[32]]
+	else:
+		location = location[0:32]
+		bit = bit[0:32]
 
 	return location, bit
 
-def get_bram_reg_value_from_frame_data_fast(bram_x, bram_y, frame_data):
+def get_bram_reg_value_from_frame_data_fast(bram_x, bram_y, bram_bel, bram_reg_l, frame_data):
 
 	bram_reg_value = []
-	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y)
+	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y, bram_bel, bram_reg_l)
 
 	value = 0
 
 	# Get mem_b_lat value
-	for j in range(32):
+	for j in range(len(bram_reg_location)):
 		word_location = bram_reg_location[j]
 		bit_location = bram_reg_b[j]
 		bit_value = (int(frame_data[word_location], 2) >> bit_location) & 0x1
@@ -214,15 +231,15 @@ def get_bram_reg_value_from_frame_data_fast(bram_x, bram_y, frame_data):
 
 	return bram_reg_value
 
-def get_bram_reg_value_from_frame_data(bram_x, bram_y, frame_data):
+def get_bram_reg_value_from_frame_data(bram_x, bram_y, bram_bel, bram_reg_l, frame_data):
 
 	bram_reg_value = []
-	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y)
+	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(bram_x, bram_y, bram_bel, bram_reg_l)
 
 	value = 0
 
 	# Get mem_b_lat value
-	for j in range(32):
+	for j in range(len(bram_reg_location)):
 		word_location = bram_reg_location[j]
 		bit_location = bram_reg_b[j]
 		bit_value = (frame_data[word_location] >> bit_location) & 0x1

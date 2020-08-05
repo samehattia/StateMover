@@ -88,7 +88,7 @@ with open(dump_file_name, 'r') as input_file:
 		elif len(words[1]) > 64:
 			set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
 
-		elif len(words[1]) == 8 and 'mem_b_lat' in words[0]:
+		elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
 			set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
 
 		else:

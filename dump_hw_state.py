@@ -53,23 +53,35 @@ if len(sys.argv) == 3:
 	ll_file_name = sys.argv[1]
 	rl_file_name = 0
 	rdbk_file_name = sys.argv[2]
+	task_name = ''
 elif len(sys.argv) == 4:
 	ll_file_name = sys.argv[1]
 	rl_file_name = sys.argv[2]
 	rdbk_file_name = sys.argv[3]
+	task_name = ''
+elif len(sys.argv) >= 5:
+	ll_file_name = sys.argv[1]
+	rl_file_name = sys.argv[2]
+	rdbk_file_name = sys.argv[3]
+	task_name = sys.argv[4]
 else:
 	print("Expects at least two arguments: logic location file, [ram location file] and readback file")
 	exit()
 
+if len(sys.argv) > 5 and sys.argv[5] == '-no_bram':
+	bram_enable = False
+else:
+	bram_enable = True
+
 start = timer()
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
+	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, bram_enable, task_name)
 
 # Parse the ram location file
 if rl_file_name:
 	with open(rl_file_name, 'r') as rl_file:
-		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
+		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel, True, task_name)
 
 # Parse the readback file
 with open(rdbk_file_name, 'r') as rdbk_file:
@@ -123,11 +135,26 @@ with open("hw_state.dump", 'w') as output_file:
 
 		# Check if the RAM is a blockRAM
 		elif ram_type[i] == 'RAMB36E2':
-			value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
-			output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
+			if bram_enable:
+				value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+				output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-			value = get_bram_reg_value_from_frame_data_fast(x, y, rdbk_frame_data)
+			value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'a', rdbk_frame_data)
+			output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'b', rdbk_frame_data)
 			output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
+
+		elif ram_type[i] == 'RAMB18E2':
+			if bram_enable:
+				value = get_bram_value_from_frame_data_fast(x, y, 16384, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+				output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'a', rdbk_frame_data)
+			output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
+
+			value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'b', rdbk_frame_data)
+			output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
 		# Any other type of LUTRAM
 		else:	

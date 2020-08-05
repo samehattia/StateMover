@@ -124,14 +124,19 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_n
 				bram_bel = ram_bel[i]
 				break
 
+		if 'mem_b_lat' in bram_reg_name:
+			bram_reg_l = 'b'
+		else:
+			bram_reg_l = 'a'	
+
 		# Get the location of this lram in the partial bitstream file
 		x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
-		bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(x, y)
+		bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(x, y, bram_bel, bram_reg_l)
 
 		# Set mem_b_lat value
-		for i in range(32):
+		for i in range(len(bram_reg_location)):
 			# Calculate the word offset inside the file in bytes (skipping the header bytes)
 			word_offset = (start_byte) + (bram_reg_location[i] * 4)
 
