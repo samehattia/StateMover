@@ -5,8 +5,7 @@ import re
 import os.path
 from timeit import default_timer as timer
 
-from logic_location import parse_logic_location_file
-from ram_location import parse_ram_location_file
+from file_parser import parse_location_files
 
 # Fast means that the frame data is in string format (not converted to int)
 from file_parser import parse_rdbk_file_fast
@@ -62,14 +61,7 @@ if '-bit_file' in opts:
 
 start = timer()
 
-# Parse the logic location file
-with open(ll_file_name, 'r') as ll_file:
-	registers, blockrams, lutrams = parse_logic_location_file(ll_file, bram_enable, task_name)
-
-# Parse the ram location file
-if rl_file_name:
-	with open(rl_file_name, 'r') as rl_file:
-		rams = parse_ram_location_file(rl_file, True, task_name)
+registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name)
 
 if not BITFILE:
 	rdbk_frame_data = []

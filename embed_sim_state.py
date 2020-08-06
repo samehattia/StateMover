@@ -4,8 +4,7 @@ import sys
 import os.path
 from timeit import default_timer as timer
 
-from logic_location import parse_logic_location_file
-from ram_location import parse_ram_location_file
+from file_parser import parse_location_files
 
 from file_parser import parse_bit_file
 from file_parser import parse_rbt_file
@@ -49,14 +48,7 @@ if '-partial_bitstream' in opts:
 
 start = timer()
 
-# Parse the logic location file
-with open(ll_file_name, 'r') as ll_file:
-	registers, blockrams, lutrams = parse_logic_location_file(ll_file, True)
-
-# Parse the ram location file
-if rl_file_name:
-	with open(rl_file_name, 'r') as rl_file:
-		rams = parse_ram_location_file(rl_file)
+registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, True, '')
 
 if not PARTIAL:
 	start_byte = []

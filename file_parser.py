@@ -1,8 +1,14 @@
+import pickle
+import os.path
+
 from frame_parser import parse_frame_address
 from frame_parser import parse_frame_data
 from frame_parser import parse_binary_frame_data
 from frame_parser import parse_configuration_information
 from frame_parser import parse_binary_configuration_information
+
+from logic_location import parse_logic_location_file
+from ram_location import parse_ram_location_file
 
 FRAME_LENGTH = 123
 MAX_FRAMES = 32530
@@ -218,3 +224,61 @@ def parse_msk_file(msk_file, mask_data):
 
 		# Parse frame data
 		parse_binary_frame_data(msk_file, start_address, word_count, mask_data)
+
+def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
+
+	registers_file = 'registers.pickle'
+	blockrams_file = 'blockrams.pickle'
+	lutrams_file = 'lutrams.pickle'
+	rams_file = 'rams.pickle'
+
+	if os.path.isfile(registers_file) and os.path.isfile(blockrams_file) and os.path.isfile(lutrams_file):
+		# Load the parser output from pickle files
+		infile = open(registers_file,'rb')
+		registers = pickle.load(infile)
+		infile.close()
+
+		infile = open(blockrams_file,'rb')
+		blockrams = pickle.load(infile)
+		infile.close()
+
+		infile = open(lutrams_file,'rb')
+		lutrams = pickle.load(infile)
+		infile.close()
+
+	else:
+		# Parse the logic location file
+		with open(ll_file_name, 'r') as ll_file:
+			registers, blockrams, lutrams = parse_logic_location_file(ll_file, bram_enable, task_name)
+
+		# Save the parser output to pickle files
+		outfile = open(registers_file,'wb')
+		pickle.dump(registers,outfile)
+		outfile.close()
+
+		outfile = open(blockrams_file,'wb')
+		pickle.dump(blockrams,outfile)
+		outfile.close()
+
+		outfile = open(lutrams_file,'wb')
+		pickle.dump(lutrams,outfile)
+		outfile.close()
+
+	if os.path.isfile(rams_file):
+		# Load the parser output from pickle files
+		infile = open(rams_file,'rb')
+		rams = pickle.load(infile)
+		infile.close()
+
+	else:
+		# Parse the ram location file
+		if rl_file_name:
+			with open(rl_file_name, 'r') as rl_file:
+				rams = parse_ram_location_file(rl_file, True, task_name)
+
+		# Save the parser output to pickle files
+		outfile = open(rams_file,'wb')
+		pickle.dump(rams,outfile)
+		outfile.close()
+
+	return registers, blockrams, lutrams, rams
