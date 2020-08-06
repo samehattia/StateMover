@@ -49,38 +49,45 @@ ram_type = []
 ram_xy = [] 
 ram_bel = []
 
-# First argument: logic location file, Second argument: bitstream file, Third argument: dump file
-if len(sys.argv) == 4:
-	ll_file_name = sys.argv[1]
+# Parse command line arguments into program arguments and options
+opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
+args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
+
+# Expected arguments: logic location file, [ram location file], bitstream file, dump file
+if len(args) == 3:
+	ll_file_name = args[0]
 	rl_file_name = 0
-	bit_file_name = sys.argv[2]
-	dump_file_name = sys.argv[3] #"sim_state.dump"
-elif len(sys.argv) > 4:
-	ll_file_name = sys.argv[1]
-	rl_file_name = sys.argv[2]
-	bit_file_name = sys.argv[3]
-	dump_file_name = sys.argv[4] #"sim_state.dump"
+	bit_file_name = args[1]
+	dump_file_name = args[2]
+elif len(args) == 4:
+	ll_file_name = args[0]
+	rl_file_name = args[1]
+	bit_file_name = args[2]
+	dump_file_name = args[3]
 else:
 	print("Expects at least three arguments: logic location file, [ram location file], bitstream file and dump file")
 	exit()
 
+# Expected options: -partial_bitstream
 PARTIAL = False
+if '-partial_bitstream' in opts:
+	PARTIAL = True
 
 start = timer()
+
+# Parse the logic location file
+with open(ll_file_name, 'r') as ll_file:
+	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
+
+# Parse the ram location file
+if rl_file_name:
+	with open(rl_file_name, 'r') as rl_file:
+		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
 
 if not PARTIAL:
 	start_byte = []
 
 	bit_frame_data = []
-
-	# Parse the logic location file
-	with open(ll_file_name, 'r') as ll_file:
-		parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
-
-	# Parse the ram location file
-	if rl_file_name:
-		with open(rl_file_name, 'r') as rl_file:
-			parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
 
 	# Parse the bit file
 	with open(bit_file_name, 'rb') as bit_file:
@@ -111,20 +118,8 @@ elif PARTIAL:
 
 	bit_partial_frame_data = []
 
-	bit_partial_file_name = bit_file_name
-
-	start = timer()
-	# Parse the logic location file
-	with open(ll_file_name, 'r') as ll_file:
-		parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
-
-	# Parse the ram location file
-	if rl_file_name:
-		with open(rl_file_name, 'r') as rl_file:
-			parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
-
 	# Parse the partial bit file
-	with open(bit_partial_file_name, 'rb') as bit_partial_file:
+	with open(bit_file_name, 'rb') as bit_partial_file:
 		parse_partial_bit_file_to_get_start(bit_partial_file, bit_partial_frame_data, partial_start_byte, True, partial_start_address, partial_word_count)
 
 	with open(dump_file_name, 'r') as input_file:
