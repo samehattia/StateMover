@@ -23,30 +23,30 @@ XCKU040_bram_columns = [7, 19, 43, 55, 67, 91, 119, 146, 170, 182]
 for a certain BRAM, return a location array which contains the word number
 for each bit in this BRAM, and the bit offest in this word
 '''
-def get_bram_info(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):
+def get_bram_info(bram_x, bram_y, blockrams):
 
 	bit_offset = [0] * 32768
 	frame_address = [0] * 32768
 	frame_offset = [0] * 32768
 
 	xy = 'X' + str(bram_x) + 'Y' + str(bram_y)
-	index_list = bram_xy[xy]
+	bram_loc_info_list = blockrams[xy]
 
-	for i in index_list:
+	for bram_loc_info in bram_loc_info_list:
 		# skip parity bits
-		if 'PARBIT' in bram_bit[i]:
+		if 'PARBIT' in bram_loc_info.bit:
 			continue
 		# get bit number
-		bit = int(bram_bit[i].lstrip('BIT'))
-		bit_offset[bit] = bram_bit_offset[i]
-		frame_address[bit] = bram_frame_address[i]
-		frame_offset[bit] = bram_frame_offset[i]
+		bit = int(bram_loc_info.bit.lstrip('BIT'))
+		bit_offset[bit] = bram_loc_info.bit_offset
+		frame_address[bit] = bram_loc_info.frame_address
+		frame_offset[bit] = bram_loc_info.frame_offset
 
 	return bit_offset, frame_address, frame_offset
 
-def get_bram_location_in_frame_data(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):
+def get_bram_location_in_frame_data(bram_x, bram_y, blockrams):
 
-	bit_offset, frame_address, frame_offset = get_bram_info(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	bit_offset, frame_address, frame_offset = get_bram_info(bram_x, bram_y, blockrams)
 
 	location = [0] * 32768
 	bit = [0] * 32768
@@ -76,9 +76,9 @@ def get_bram_location_in_frame_data(bram_x, bram_y, bram_bit_offset, bram_frame_
 	'''
 	return location, bit
 
-def get_bram_location_in_partial_frame_data(bram_x, bram_y, start_frame_address, word_count, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):
+def get_bram_location_in_partial_frame_data(bram_x, bram_y, start_frame_address, word_count, blockrams):
 	
-	bit_offset, frame_address, frame_offset = get_bram_info(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	bit_offset, frame_address, frame_offset = get_bram_info(bram_x, bram_y, blockrams)
 	start_word = 0
 
 	for i in range(len(start_frame_address)):
@@ -106,10 +106,10 @@ def get_bram_location_in_partial_frame_data(bram_x, bram_y, start_frame_address,
 
 	return location, bit
 
-def get_bram_value_from_frame_data(bram_x, bram_y, bram_width, frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):	
+def get_bram_value_from_frame_data(bram_x, bram_y, bram_width, frame_data, blockrams):	
 
 	bram_value = []
-	bram_location, bram_b = get_bram_location_in_frame_data(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	bram_location, bram_b = get_bram_location_in_frame_data(bram_x, bram_y, blockrams)
 	
 	for i in range(int(len(bram_location)/bram_width)):
 		value = 0
@@ -124,10 +124,10 @@ def get_bram_value_from_frame_data(bram_x, bram_y, bram_width, frame_data, bram_
 
 	return bram_value
 
-def get_bram_value_from_frame_data_fast(bram_x, bram_y, bram_width, frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):	
+def get_bram_value_from_frame_data_fast(bram_x, bram_y, bram_width, frame_data, blockrams):	
 
 	bram_value = []
-	bram_location, bram_b = get_bram_location_in_frame_data(bram_x, bram_y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	bram_location, bram_b = get_bram_location_in_frame_data(bram_x, bram_y, blockrams)
 	
 	for i in range(int(len(bram_location)/bram_width)):
 		value = 0
@@ -142,10 +142,10 @@ def get_bram_value_from_frame_data_fast(bram_x, bram_y, bram_width, frame_data, 
 
 	return bram_value
 
-def get_bram_value_from_partial_frame_data(bram_x, bram_y, bram_width, partial_frame_data, start_frame_address, word_count, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):	
+def get_bram_value_from_partial_frame_data(bram_x, bram_y, bram_width, partial_frame_data, start_frame_address, word_count, blockrams):	
 
 	bram_value = []
-	bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, start_frame_address, word_count, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+	bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, start_frame_address, word_count, blockrams)
 	
 	for i in range(len(bram_location)/bram_width):
 		value = 0

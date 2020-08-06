@@ -4,7 +4,7 @@ from bram_reader import get_bram_location_in_frame_data
 from bram_reader import get_bram_reg_location_in_frame_data
 import re
 
-def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, partial_design_name, partial_start_address, word_count, partial_start_byte, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit):
+def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, partial_design_name, partial_start_address, word_count, partial_start_byte, blockrams):
 
 	if '.bit' in partial_design_name:
 		partial_file_name = partial_design_name
@@ -14,7 +14,7 @@ def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, p
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(partial_file_name, 'r+b') as partial_file:
 		
-		bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, partial_start_address, word_count, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+		bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, partial_start_address, word_count, blockrams)
 
 		start_word = 0
 		for i in range(len(partial_start_address)):
@@ -53,7 +53,7 @@ def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, p
 				partial_file.seek(word_offset)
 				partial_file.write(bytes(word))
 
-def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_byte, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel):
+def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_byte, blockrams, rams):
 
 	if '.bit' in design_name:
 		file_name = design_name
@@ -63,21 +63,19 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_b
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(file_name, 'r+b') as file:
 		
-		# Get info about the lram from its name
-		bram_name_stripped = bram_name[:bram_name.rfind('/')]
-		for i in range(len(ram_name)):
-			if bram_name_stripped == ram_name[i]:
-				bram_type = ram_type[i]
-				xy = ram_xy[i]
-				bram_bel = ram_bel[i]
-				break
+		# Get info about the bram from its name
+		bram_name_stripped = bram_reg_name[:bram_reg_name.rfind('/')]
+		ram_info = rams[bram_name_stripped]
+		bram_type = ram_info.ram_type
+		xy = ram_info.ram_xy
+		bram_bel = ram_info.ram_bel
 
 		# Get the location of this lram in the partial bitstream file
 		x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
-		bram_location, bram_b = get_bram_location_in_frame_data(x, y, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+		bram_location, bram_b = get_bram_location_in_frame_data(x, y, blockrams)
 
 		# Loop on the bits of the bram
 		for i in range(len(bram_location)):
@@ -105,7 +103,7 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_b
 			file.seek(word_offset)
 			file.write(bytes(word))
 
-def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_name, start_byte, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel):
+def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_name, start_byte, blockrams, rams):
 
 	if '.bit' in design_name:
 		file_name = design_name
@@ -117,12 +115,10 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_n
 		
 		# Get info about the bram from its name
 		bram_name_stripped = bram_reg_name[:bram_reg_name.rfind('/')]
-		for i in range(len(ram_name)):
-			if bram_name_stripped == ram_name[i]:
-				bram_type = ram_type[i]
-				xy = ram_xy[i]
-				bram_bel = ram_bel[i]
-				break
+		ram_info = rams[bram_name_stripped]
+		bram_type = ram_info.ram_type
+		xy = ram_info.ram_xy
+		bram_bel = ram_info.ram_bel
 
 		if 'mem_b_lat' in bram_reg_name:
 			bram_reg_l = 'b'

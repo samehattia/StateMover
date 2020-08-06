@@ -2,7 +2,6 @@
 
 import sys
 import os.path
-from collections import defaultdict
 from timeit import default_timer as timer
 
 from logic_location import parse_logic_location_file
@@ -23,31 +22,6 @@ from lram_writer import set_named_lram_value_in_bit_file
 from lram_reader import get_lram_location_in_frame_data
 from bram_writer import set_named_bram_value_in_bit_file
 from bram_writer import set_named_bram_reg_value_in_bit_file
-
-# Information collected from the .ll file
-reg_name = {}
-reg_bit_offset = []
-reg_frame_address = [] 
-reg_frame_offset = []
-reg_slice_xy = []
-
-bram_bit_offset = []
-bram_frame_address = []
-bram_frame_offset = []
-bram_xy = defaultdict(list)
-bram_bit = []
-
-lram_bit_offset = []
-lram_frame_address = []
-lram_frame_offset = []
-lram_xy = defaultdict(list)
-lram_bit = []
-
-# Information collected from the .rl file
-ram_name = [] 
-ram_type = [] 
-ram_xy = [] 
-ram_bel = []
 
 # Parse command line arguments into program arguments and options
 opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
@@ -77,12 +51,12 @@ start = timer()
 
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, True)
+	registers, blockrams, lutrams = parse_logic_location_file(ll_file, True)
 
 # Parse the ram location file
 if rl_file_name:
 	with open(rl_file_name, 'r') as rl_file:
-		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
+		rams = parse_ram_location_file(rl_file)
 
 if not PARTIAL:
 	start_byte = []
@@ -100,16 +74,16 @@ if not PARTIAL:
 
 			# Check if the line is related to a register, a bram, a bram reg or a lutram
 			if len(words[1]) == 1:
-				set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+				set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
 
 			elif len(words[1]) > 64:
-				set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
+				set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
 
 			elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
-				set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, ram_name, ram_type, ram_xy, ram_bel)
+				set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
 
 			else:
-				set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, ram_name, ram_type, ram_xy, ram_bel)
+				set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], lutrams, rams)
 
 elif PARTIAL:
 	partial_start_address = []
@@ -129,10 +103,10 @@ elif PARTIAL:
 
 			# Check if the line is related to a register or a lutram
 			if len(words[1]) == 1:
-				set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+				set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], registers)
 
 			else:
-				set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, ram_name, ram_type, ram_xy, ram_bel)
+				set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], lutrams, rams)
 	'''
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(bit_partial_file_name, 'r+b') as bit_partial_file:

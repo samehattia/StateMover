@@ -21,7 +21,7 @@ for a certain LUTRAM, return a location array which contains the word number
 for each bit in this LUTRAM, and the bit offest in this word
 Each LUTRAM consists of 8 LUTs [A-H], each of them is 64 bits
 '''
-def get_lram_info(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
+def get_lram_info(lram_x, lram_y, lram_l, lutrams):
 
 	bit_offset = [0] * 64
 	frame_address = [0] * 64
@@ -29,14 +29,14 @@ def get_lram_info(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, l
 
 	# loop on all the lram frame data
 	xy = 'X' + str(lram_x) + 'Y' + str(lram_y) + 'L' + lram_l
-	index_list = lram_xy[xy]
+	lram_loc_info_list = lutrams[xy]
 
-	for i in index_list:
+	for lram_loc_info in lram_loc_info_list:
 		# get bit number
-		bit = int(lram_bit[i])
-		bit_offset[bit] = lram_bit_offset[i]
-		frame_address[bit] = lram_frame_address[i]
-		frame_offset[bit] = lram_frame_offset[i]
+		bit = int(lram_loc_info.bit)
+		bit_offset[bit] = lram_loc_info.bit_offset
+		frame_address[bit] = lram_loc_info.frame_address
+		frame_offset[bit] = lram_loc_info.frame_offset
 	'''
 	for i in range(len(lram_xy)):
 		#x = int(re.split("Y", lram_xy[i].lstrip('X'), 0)[0])
@@ -60,9 +60,9 @@ def get_lram_info(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, l
 	'''
 	return bit_offset, frame_address, frame_offset
 
-def get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
+def get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lutrams):
 
-	bit_offset, frame_address, frame_offset = get_lram_info(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	bit_offset, frame_address, frame_offset = get_lram_info(lram_x, lram_y, lram_l, lutrams)
 
 	location = [0] * 64
 	bit = [0] * 64
@@ -73,9 +73,9 @@ def get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lram_bit_offset, lra
 
 	return location, bit
 
-def get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):
+def get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_address, lutrams):
 	
-	bit_offset, frame_address, frame_offset = get_lram_info(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	bit_offset, frame_address, frame_offset = get_lram_info(lram_x, lram_y, lram_l, lutrams)
 
 	location = [0] * 64
 	bit = [0] * 64
@@ -98,10 +98,10 @@ def get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_
 
 	return location, bit
 
-def get_lram_value_from_frame_data_fast(lram_x, lram_y, lram_l, lram_width, frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):	
+def get_lram_value_from_frame_data_fast(lram_x, lram_y, lram_l, lram_width, frame_data, lutrams):	
 
 	lram_value = []
-	lram_location, lram_b = get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	lram_location, lram_b = get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lutrams)
 
 	for i in range(int(len(lram_location)/lram_width)):
 		value = 0
@@ -116,10 +116,10 @@ def get_lram_value_from_frame_data_fast(lram_x, lram_y, lram_l, lram_width, fram
 
 	return lram_value
 
-def get_lram_value_from_frame_data(lram_x, lram_y, lram_l, lram_width, frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):	
+def get_lram_value_from_frame_data(lram_x, lram_y, lram_l, lram_width, frame_data, lutrams):	
 
 	lram_value = []
-	lram_location, lram_b = get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	lram_location, lram_b = get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lutrams)
 
 	for i in range(int(len(lram_location)/lram_width)):
 		value = 0
@@ -134,10 +134,10 @@ def get_lram_value_from_frame_data(lram_x, lram_y, lram_l, lram_width, frame_dat
 
 	return lram_value
 
-def get_lram_value_from_partial_frame_data(lram_x, lram_y, lram_l, lram_width, partial_frame_data, start_frame_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit):	
+def get_lram_value_from_partial_frame_data(lram_x, lram_y, lram_l, lram_width, partial_frame_data, start_frame_address, lutrams):	
 
 	lram_value = []
-	lram_location, lram_b = get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_address, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+	lram_location, lram_b = get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_address, lutrams)
 	
 	for i in range(int(len(lram_location)/lram_width)):
 		value = 0

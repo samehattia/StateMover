@@ -3,7 +3,6 @@
 import sys
 import re
 import os.path
-from collections import defaultdict
 from timeit import default_timer as timer
 
 from logic_location import parse_logic_location_file
@@ -25,31 +24,6 @@ from register_reader import get_register_value_from_frame_data
 from lram_reader import get_lram_value_from_frame_data
 from bram_reader import get_bram_value_from_frame_data
 from bram_reader import get_bram_reg_value_from_frame_data
-
-# Information collected from the .ll file
-reg_name = {}
-reg_bit_offset = []
-reg_frame_address = [] 
-reg_frame_offset = []
-reg_slice_xy = []
-
-bram_bit_offset = []
-bram_frame_address = []
-bram_frame_offset = []
-bram_xy = defaultdict(list)
-bram_bit = []
-
-lram_bit_offset = []
-lram_frame_address = []
-lram_frame_offset = []
-lram_xy = defaultdict(list)
-lram_bit = []
-
-# Information collected from the .rl file
-ram_name = [] 
-ram_type = [] 
-ram_xy = [] 
-ram_bel = []
 
 # Parse command line arguments into program arguments and options
 opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
@@ -90,12 +64,12 @@ start = timer()
 
 # Parse the logic location file
 with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit, bram_enable, task_name)
+	registers, blockrams, lutrams = parse_logic_location_file(ll_file, bram_enable, task_name)
 
 # Parse the ram location file
 if rl_file_name:
 	with open(rl_file_name, 'r') as rl_file:
-		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel, True, task_name)
+		rams = parse_ram_location_file(rl_file, True, task_name)
 
 if not BITFILE:
 	rdbk_frame_data = []
@@ -106,22 +80,22 @@ if not BITFILE:
 			parse_rdbk_file_fast(rdbk_file, rdbk_frame_data)
 
 	elif PARTIAL:
-		min_reg_frame_address = min(reg_frame_address)
+		min_reg_frame_address = min(registers.values(), key=lambda x: x.frame_address).frame_address
 		block, row, column, minor = parse_frame_address(min_reg_frame_address)
 		print(hex(min_reg_frame_address))
 		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
 
-		max_reg_frame_address = max(reg_frame_address)
+		max_reg_frame_address = max(registers.values(), key=lambda x: x.frame_address).frame_address
 		block, row, column, minor = parse_frame_address(max_reg_frame_address)
 		print(hex(max_reg_frame_address))
 		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
 
-		min_lram_frame_address = min(lram_frame_address)
+		min_lram_frame_address = min(lutrams.values(), key=lambda x: x.frame_address).frame_address
 		block, row, column, minor = parse_frame_address(min_lram_frame_address)
 		print(hex(min_lram_frame_address))
 		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
 
-		max_lram_frame_address = max(lram_frame_address)
+		max_lram_frame_address = max(lutrams.values(), key=lambda x: x.frame_address).frame_address
 		block, row, column, minor = parse_frame_address(max_lram_frame_address)
 		print(hex(max_lram_frame_address))
 		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
@@ -133,26 +107,29 @@ if not BITFILE:
 	# Dump state elements values
 	with open("hw_state.dump", 'w') as output_file:
 		# Dump register values
-		for name in reg_name:
-			value = get_register_value_from_frame_data_fast(name, 1, rdbk_frame_data, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+		for name in registers:
+			value = get_register_value_from_frame_data_fast(name, 1, rdbk_frame_data, registers)
 			output_file.write(name + ' ' + str(value) + '\n')
 
 		# Dump ram values
-		for i in range(len(ram_name)):
-			name = ram_name[i]
-			x = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[0])
-			y = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[1])
+		for name, ram_info in rams.items():
+			ram_type = ram_info.ram_type
+			ram_xy = ram_info.ram_xy
+			ram_bel = ram_info.ram_bel
+
+			x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+			y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 64
-			if ram_type[i] == 'RAM64M8' or ram_type[i] == 'RAM64M':
+			if ram_type == 'RAM64M8' or ram_type == 'RAM64M':
 				for j in range(8):
-					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j), 64, rdbk_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j), 64, rdbk_frame_data, lutrams)
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 32
-			elif ram_type[i] == 'RAM32M16' or ram_type[i] == 'RAM32M':
+			elif ram_type == 'RAM32M16' or ram_type == 'RAM32M':
 				for j in range(8):
-					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j), 64, rdbk_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j), 64, rdbk_frame_data, lutrams)
 					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
 					lut_value = value[0]
 					lut_value_bin = "{:064b}".format(lut_value, 'b')
@@ -161,11 +138,11 @@ if not BITFILE:
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(lutram_value, 'x') + '\n')
 
 			# Check if the RAM is an SRL
-			elif ram_type[i] == 'SRL16E':
-				lut = ram_bel[i][0]
-				value = get_lram_value_from_frame_data_fast(x, y, lut, 64, rdbk_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+			elif ram_type == 'SRL16E':
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data_fast(x, y, lut, 64, rdbk_frame_data, lutrams)
 				# The value of an SRL16E with bel [A-H]6LUT is in the odd bits of most 32 bits
-				if ram_bel[i][1] == '6':
+				if ram_bel[1] == '6':
 					lut_value = value[0] >> 32
 				# The value of an SRL16E with bel [A-H]5LUT is in the odd bits of least 32 bits
 				else:
@@ -177,32 +154,32 @@ if not BITFILE:
 				output_file.write(name + '/data' + ' ' + "{:04x}".format(srl_value, 'x') + '\n')
 
 			# Check if the RAM is a blockRAM
-			elif ram_type[i] == 'RAMB36E2':
+			elif ram_type == 'RAMB36E2':
 				if bram_enable:
-					value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+					value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, blockrams)
 					output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'a', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'a', rdbk_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'b', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'b', rdbk_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-			elif ram_type[i] == 'RAMB18E2':
+			elif ram_type == 'RAMB18E2':
 				if bram_enable:
-					value = get_bram_value_from_frame_data_fast(x, y, 16384, rdbk_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+					value = get_bram_value_from_frame_data_fast(x, y, 16384, rdbk_frame_data, blockrams)
 					output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'a', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'a', rdbk_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel[i], 'b', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'b', rdbk_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
 			# Any other type of LUTRAM
 			else:	
-				lut = ram_bel[i][0]
-				value = get_lram_value_from_frame_data_fast(x, y, lut, 64, rdbk_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data_fast(x, y, lut, 64, rdbk_frame_data, lutrams)
 				output_file.write(name + '/mem' + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 elif BITFILE:
@@ -218,26 +195,29 @@ elif BITFILE:
 	# Dump state elements values
 	with open("hw_state.dump", 'w') as output_file:
 		# Dump register values
-		for name in reg_name:
-			value = get_register_value_from_frame_data(name, 1, bit_frame_data, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+		for name in registers:
+			value = get_register_value_from_frame_data(name, 1, bit_frame_data, registers)
 			output_file.write(name + ' ' + str(value) + '\n')
 
 		# Dump ram values
-		for i in range(len(ram_name)):
-			name = ram_name[i]
-			x = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[0])
-			y = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[1])
+		for name, ram_info in rams.items():
+			ram_type = ram_info.ram_type
+			ram_xy = ram_info.ram_xy
+			ram_bel = ram_info.ram_bel
+
+			x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+			y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 64
-			if ram_type[i] == 'RAM64M8' or ram_type[i] == 'RAM64M':
+			if ram_type == 'RAM64M8' or ram_type == 'RAM64M':
 				for j in range(8):
-					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j), 64, bit_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j), 64, bit_frame_data, lutrams)
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 32
-			elif ram_type[i] == 'RAM32M16' or ram_type[i] == 'RAM32M':
+			elif ram_type == 'RAM32M16' or ram_type == 'RAM32M':
 				for j in range(8):
-					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j), 64, bit_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j), 64, bit_frame_data, lutrams)
 					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
 					lut_value = value[0]
 					lut_value_bin = "{:064b}".format(lut_value, 'b')
@@ -246,11 +226,11 @@ elif BITFILE:
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(lutram_value, 'x') + '\n')
 
 			# Check if the RAM is an SRL
-			elif ram_type[i] == 'SRL16E':
-				lut = ram_bel[i][0]
-				value = get_lram_value_from_frame_data(x, y, lut, 64, bit_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+			elif ram_type == 'SRL16E':
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data(x, y, lut, 64, bit_frame_data, lutrams)
 				# The value of an SRL16E with bel [A-H]6LUT is in the odd bits of most 32 bits
-				if ram_bel[i][1] == '6':
+				if ram_bel[1] == '6':
 					lut_value = value[0] >> 32
 				# The value of an SRL16E with bel [A-H]5LUT is in the odd bits of least 32 bits
 				else:
@@ -262,30 +242,30 @@ elif BITFILE:
 				output_file.write(name + '/data' + ' ' + "{:04x}".format(srl_value, 'x') + '\n')
 
 			# Check if the RAM is a blockRAM
-			elif ram_type[i] == 'RAMB36E2':
-				value = get_bram_value_from_frame_data(x, y, 32768, bit_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+			elif ram_type == 'RAMB36E2':
+				value = get_bram_value_from_frame_data(x, y, 32768, bit_frame_data, blockrams)
 				output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'a', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'a', bit_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'b', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'b', bit_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-			elif ram_type[i] == 'RAMB18E2':
-				value = get_bram_value_from_frame_data(x, y, 16384, bit_frame_data, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit)
+			elif ram_type == 'RAMB18E2':
+				value = get_bram_value_from_frame_data(x, y, 16384, bit_frame_data, blockrams)
 				output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'a', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'a', bit_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel[i], 'b', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'b', bit_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
 			# Any other type of LUTRAM
 			else:	
-				lut = ram_bel[i][0]
-				value = get_lram_value_from_frame_data(x, y, lut, 64, bit_frame_data, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)			
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data(x, y, lut, 64, bit_frame_data, lutrams)			
 				output_file.write(name + '/mem' + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 end = timer()

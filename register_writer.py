@@ -1,7 +1,7 @@
 from register_reader import get_register_location_in_partial_frame_data
 from register_reader import get_register_location_in_frame_data
 
-def set_register_value_in_partial_rbt_file(register_name, register_width, value, partial_design_name, partial_start_address, partial_start_line, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+def set_register_value_in_partial_rbt_file(register_name, register_width, value, partial_design_name, partial_start_address, partial_start_line, registers):
 
 	if '.rbt' in partial_design_name:
 		partial_file_name = partial_design_name
@@ -17,7 +17,7 @@ def set_register_value_in_partial_rbt_file(register_name, register_width, value,
 		else:
 			name = register_name + '[' + str(i) + ']'
 
-		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, registers)
 		line_partial = location_partial + partial_start_line + 1
 		bit_value = ((value >> i) & 0x1) ^ 0x1
 		word = bytearray(data[line_partial])
@@ -30,7 +30,7 @@ def set_register_value_in_partial_rbt_file(register_name, register_width, value,
 	with open(partial_file_name, 'w') as partial_file:
 		partial_file.writelines(data)
 
-def set_register_value_in_partial_bit_file(register_name, register_width, value, partial_design_name, partial_start_address, partial_start_byte, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+def set_register_value_in_partial_bit_file(register_name, register_width, value, partial_design_name, partial_start_address, partial_start_byte, registers):
 
 	if '.bit' in partial_design_name:
 		partial_file_name = partial_design_name
@@ -48,7 +48,7 @@ def set_register_value_in_partial_bit_file(register_name, register_width, value,
 				name = register_name + '[' + str(i) + ']'
 
 			# Get the location (frame data word index, and the bit offset in that word) of the register bit
-			location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+			location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, registers)
 
 			# Calculate the word offset inside the file in bytes (skipping the header bytes)
 			word_offset = (partial_start_byte) + (location_partial * 4)
@@ -73,7 +73,7 @@ def set_register_value_in_partial_bit_file(register_name, register_width, value,
 			partial_file.seek(word_offset)
 			partial_file.write(bytes(word))
 
-def set_register_value_in_bit_file(register_name, register_width, value, design_name, start_byte, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+def set_register_value_in_bit_file(register_name, register_width, value, design_name, start_byte, registers):
 
 	if '.bit' in design_name:
 		file_name = design_name
@@ -91,7 +91,7 @@ def set_register_value_in_bit_file(register_name, register_width, value, design_
 				name = register_name + '[' + str(i) + ']'
 
 			# Get the location (frame data word index, and the bit offset in that word) of the register bit
-			location, bit_offset = get_register_location_in_frame_data(name, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+			location, bit_offset = get_register_location_in_frame_data(name, registers)
 
 			# Calculate the word offset inside the file in bytes (skipping the header bytes)
 			word_offset = (start_byte) + (location * 4)
@@ -116,7 +116,7 @@ def set_register_value_in_bit_file(register_name, register_width, value, design_
 			file.seek(word_offset)
 			file.write(bytes(word))
 
-def set_register_value_in_partial_frame_data(register_name, register_width, value, partial_frame_data, partial_start_address, partial_start_byte, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset):
+def set_register_value_in_partial_frame_data(register_name, register_width, value, partial_frame_data, partial_start_address, partial_start_byte, registers):
 
 	# Loop on the bits of the register
 	for i in range(register_width):
@@ -126,7 +126,7 @@ def set_register_value_in_partial_frame_data(register_name, register_width, valu
 			name = register_name + '[' + str(i) + ']'
 
 		# Get the location (frame data word index, and the bit offset in that word) of the register bit
-		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset)
+		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, registers)
 
 		# Jump to this word and read it
 		word = partial_frame_data[location_partial]
