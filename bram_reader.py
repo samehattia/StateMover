@@ -25,22 +25,12 @@ for each bit in this BRAM, and the bit offest in this word
 '''
 def get_bram_info(bram_x, bram_y, blockrams):
 
-	bit_offset = [0] * 32768
-	frame_address = [0] * 32768
-	frame_offset = [0] * 32768
+	bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y)
+	bram_loc_info = blockrams[bram_id]
 
-	xy = 'X' + str(bram_x) + 'Y' + str(bram_y)
-	bram_loc_info_list = blockrams[xy]
-
-	for bram_loc_info in bram_loc_info_list:
-		# skip parity bits
-		if 'PARBIT' in bram_loc_info.bit:
-			continue
-		# get bit number
-		bit = int(bram_loc_info.bit.lstrip('BIT'))
-		bit_offset[bit] = bram_loc_info.bit_offset
-		frame_address[bit] = bram_loc_info.frame_address
-		frame_offset[bit] = bram_loc_info.frame_offset
+	bit_offset = bram_loc_info.bit_offset
+	frame_address = bram_loc_info.frame_address
+	frame_offset =  bram_loc_info.frame_offset
 
 	return bit_offset, frame_address, frame_offset
 

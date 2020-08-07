@@ -10,26 +10,26 @@ class RegLocationInfo:
 	bit_offset = 0
 	frame_address = 0
 	frame_offset = 0
-	slice_xy = ''
+	#slice_xy = ''
 
-	def __init__(self, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy):
+	def __init__(self, reg_bit_offset, reg_frame_address, reg_frame_offset):
 		self.bit_offset = reg_bit_offset
 		self.frame_address = reg_frame_address
 		self.frame_offset = reg_frame_offset
-		self.slice_xy = reg_slice_xy
+		#self.slice_xy = reg_slice_xy
 
 class RamLocationInfo:
 	"""Defines a RAM location info"""
-	bit_offset = 0
-	frame_address = 0
-	frame_offset = 0
-	bit = ''
+	bit_offset = []
+	frame_address = []
+	frame_offset = []
+	#bit = []
 
-	def __init__(self, ram_bit_offset, ram_frame_address, ram_frame_offset, ram_bit):
+	def __init__(self, ram_bit_offset, ram_frame_address, ram_frame_offset):
 		self.bit_offset = ram_bit_offset
 		self.frame_address = ram_frame_address
 		self.frame_offset = ram_frame_offset
-		self.bit = ram_bit
+		#self.bit = ram_bit
 
 '''
 This function helps in generating the frame count of each column (number of minor frames per each column).
@@ -144,8 +144,8 @@ def print_logic_location_info(reg_bit_offset, reg_frame_address, reg_slice_xy, b
 def parse_logic_location_file(ll_file, bram_enable=False, task_name=''):
 
 	registers = {}
-	blockrams = defaultdict(list)
-	lutrams = defaultdict(list)
+	blockrams = {}
+	lutrams = {}
 
 	# Read the file
 	#lines = ll_file.readlines()
@@ -168,31 +168,59 @@ def parse_logic_location_file(ll_file, bram_enable=False, task_name=''):
 				reg_frame_address = int(words[2].lstrip('0x'), 16)
 				reg_frame_offset = int(words[3])
 				reg_slice_xy = words[6].lstrip('Block=SLICE_')
-				registers[words[8].lstrip('Net=')] = RegLocationInfo(reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy)
+				registers[words[8].lstrip('Net=')] = RegLocationInfo(reg_bit_offset, reg_frame_address, reg_frame_offset)
 			
 			elif words[7][0] == 'R': # (R)am=
 				lram_bit_offset = int(words[1])
 				lram_frame_address = int(words[2].lstrip('0x'), 16)
 				lram_frame_offset = int(words[3])
-				lram_bit = re.split(":", words[7], 0)[1]
-				lutrams[words[6].lstrip('Block=SLICE_') + 'L' + words[7][4]].append(RamLocationInfo(lram_bit_offset, lram_frame_address, lram_frame_offset, lram_bit)) # [X_Y_L_] e.g. [X15Y9LA]
+				
+				lram_id = words[6].lstrip('Block=SLICE_') + 'L' + words[7][4] # [X_Y_L_] e.g. [X15Y9LA]
+				lram_bit = int(re.split(":", words[7], 0)[1])
+
+				# Check if the lutram doesn't exist and create it
+				if not lram_id in lutrams:
+					lutrams[lram_id] = RamLocationInfo([0] * 64, [0] * 64, [0] * 64)
+				lutrams[lram_id].bit_offset[lram_bit] = lram_bit_offset
+				lutrams[lram_id].frame_address[lram_bit] = lram_frame_address
+				lutrams[lram_id].frame_offset[lram_bit] = lram_frame_offset
 
 		elif bram_enable and line[44] == 'R': # Block=(R)AMB
 			words = line.split()
+
+			# skip parity bits
+			if 'PARBIT' in words[7]:
+				continue
 			
 			if line[48] == '3': # Block=RAMB(3)6'
 				bram_bit_offset = int(words[1])
 				bram_frame_address = int(words[2].lstrip('0x'), 16)
-				bram_frame_offset = int(words[3])		
-				bram_bit = words[7].lstrip('RAM=B:')
-				blockrams[words[6].lstrip('Block=RAMB36_')].append(RamLocationInfo(bram_bit_offset, bram_frame_address, bram_frame_offset, bram_bit)) # X_Y_
+				bram_frame_offset = int(words[3])
+
+				bram_id = words[6].lstrip('Block=RAMB36_') # X_Y_
+				bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+
+				# Check if the blockram doesn't exist and create it
+				if not bram_id in blockrams:
+					blockrams[bram_id] = RamLocationInfo([0] * 32768, [0] * 32768, [0] * 32768)
+				blockrams[bram_id].bit_offset[bram_bit] = bram_bit_offset
+				blockrams[bram_id].frame_address[bram_bit] = bram_frame_address
+				blockrams[bram_id].frame_offset[bram_bit] = bram_frame_offset
 			
 			# FIXME: RAM18 XY can collide with RAM36 XY	
 			elif line[48] == '1': # Block=RAMB(1)8'
 				bram_bit_offset = int(words[1])
 				bram_frame_address = int(words[2].lstrip('0x'), 16)
-				bram_frame_offset = int(words[3])			
-				bram_bit = words[7].lstrip('RAM=B:')
-				blockrams[words[6].lstrip('Block=RAMB18_')].append(RamLocationInfo(bram_bit_offset, bram_frame_address, bram_frame_offset, bram_bit)) # X_Y_
+				bram_frame_offset = int(words[3])
+
+				bram_id = words[6].lstrip('Block=RAMB18_') # X_Y_
+				bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+
+				# Check if the blockram doesn't exist and create it
+				if not bram_id in blockrams:
+					blockrams[bram_id] = RamLocationInfo([0] * 16384, [0] * 16384, [0] * 16384)
+				blockrams[bram_id].bit_offset[bram_bit] = bram_bit_offset
+				blockrams[bram_id].frame_address[bram_bit] = bram_frame_address
+				blockrams[bram_id].frame_offset[bram_bit] = bram_frame_offset
 
 	return registers, blockrams, lutrams

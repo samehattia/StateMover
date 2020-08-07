@@ -23,41 +23,13 @@ Each LUTRAM consists of 8 LUTs [A-H], each of them is 64 bits
 '''
 def get_lram_info(lram_x, lram_y, lram_l, lutrams):
 
-	bit_offset = [0] * 64
-	frame_address = [0] * 64
-	frame_offset = [0] * 64
+	lram_id = 'X' + str(lram_x) + 'Y' + str(lram_y) + 'L' + lram_l
+	lram_loc_info = lutrams[lram_id]
 
-	# loop on all the lram frame data
-	xy = 'X' + str(lram_x) + 'Y' + str(lram_y) + 'L' + lram_l
-	lram_loc_info_list = lutrams[xy]
+	bit_offset = lram_loc_info.bit_offset
+	frame_address = lram_loc_info.frame_address
+	frame_offset =  lram_loc_info.frame_offset
 
-	for lram_loc_info in lram_loc_info_list:
-		# get bit number
-		bit = int(lram_loc_info.bit)
-		bit_offset[bit] = lram_loc_info.bit_offset
-		frame_address[bit] = lram_loc_info.frame_address
-		frame_offset[bit] = lram_loc_info.frame_offset
-	'''
-	for i in range(len(lram_xy)):
-		#x = int(re.split("Y", lram_xy[i].lstrip('X'), 0)[0])
-		#y = int(re.split("Y", lram_xy[i].lstrip('X'), 0)[1])
-
-		# Check if this data is related to this certain lram
-		#if lram_x == x and lram_y == y:
-		if xy == lram_xy[i]:
-			# Do the following for the next 8 * 64 then break
-			
-			for j in range(8*64):
-				if i+j >= len(lram_xy) or xy != lram_xy[i+j]:
-					break
-				# get bit number
-				lut = ord(re.split(":", lram_bit[i+j], 0)[0]) - ord('A')
-				bit = int(re.split(":", lram_bit[i+j], 0)[1])
-				bit_offset[lut * 64 + bit] = lram_bit_offset[i+j]
-				frame_address[lut * 64 + bit] = lram_frame_address[i+j]
-				frame_offset[lut * 64 + bit] = lram_frame_offset[i+j]
-			break
-	'''
 	return bit_offset, frame_address, frame_offset
 
 def get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lutrams):
