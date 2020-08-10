@@ -40,6 +40,15 @@ def parse_partial_rdbk_file_fast(rdbk_file, frame_data, start_address):
 	for line in lines[10 + FRAME_LENGTH:]:
 		frame_data.append(line)
 
+def parse_rdbk_file_reverse_fast(rdbk_file, frame_data):
+	hex_values = rdbk_file.readline()
+
+	rev = {'0': '0000', '1':'1000', '2':'0100', '3':'1100', '4':'0010', '5':'1010', '6':'0110', '7':'1110', '8':'0001', '9': '1001', 'a':'0101', 'b':'1101', 'c':'0011', 'd':'1011', 'e':'0111', 'f':'1111'}
+
+	start_index = len(hex_values) - 1 - ((10 + FRAME_LENGTH) * 8)
+	for i in range(start_index, -1, -8):
+		frame_data.append(rev[hex_values[i]] + rev[hex_values[i - 1]] + rev[hex_values[i - 2]] + rev[hex_values[i - 3]] + rev[hex_values[i - 4]] + rev[hex_values[i - 5]] + rev[hex_values[i - 6]] + rev[hex_values[i - 7]] + '\n')
+
 def parse_rdbk_file_fast(rdbk_file, frame_data):
 	lines = rdbk_file.readlines()
 
