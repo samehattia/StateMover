@@ -64,7 +64,7 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_b
 	with open(file_name, 'r+b') as file:
 		
 		# Get info about the bram from its name
-		bram_name_stripped = bram_reg_name[:bram_reg_name.rfind('/')]
+		bram_name_stripped = bram_name[:bram_name.rfind('/')]
 		ram_info = rams[bram_name_stripped]
 		bram_type = ram_info.ram_type
 		xy = ram_info.ram_xy

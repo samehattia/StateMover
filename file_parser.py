@@ -285,9 +285,12 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
 			with open(rl_file_name, 'r') as rl_file:
 				rams = parse_ram_location_file(rl_file, True, task_name)
 
-		# Save the parser output to pickle files
-		outfile = open(rams_file,'wb')
-		pickle.dump(rams,outfile)
-		outfile.close()
+			# Save the parser output to pickle files
+			outfile = open(rams_file,'wb')
+			pickle.dump(rams,outfile)
+			outfile.close()
+			
+		else:
+			rams = {}
 
 	return registers, blockrams, lutrams, rams

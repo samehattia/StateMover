@@ -42,13 +42,16 @@ else:
 	exit()
 
 # Expected options: -partial_bitstream
+bram_enable = True
 PARTIAL = False
 if '-partial_bitstream' in opts:
 	PARTIAL = True
+if '-no_bram' in opts:
+	bram_enable = False
 
 start = timer()
 
-registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, True, '')
+registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, bram_enable, '')
 
 if not PARTIAL:
 	start_byte = []
@@ -95,13 +98,13 @@ elif PARTIAL:
 
 			# Check if the line is related to a register or a lutram
 			if len(words[1]) == 1:
-				set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], registers)
+				set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_file_name, partial_start_address[0], partial_start_byte[0], registers)
 
 			else:
-				set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file_name, partial_start_address[0], partial_start_byte[0], lutrams, rams)
+				set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_file_name, partial_start_address[0], partial_start_byte[0], lutrams, rams)
 	'''
 	# Open the binary partial bitstream .bit file for reading and writing
-	with open(bit_partial_file_name, 'r+b') as bit_partial_file:
+	with open(bit_file_name, 'r+b') as bit_partial_file:
 		bit_partial_file.seek(partial_start_byte[0])
 		for word in bit_partial_frame_data:
 			bit_partial_file.write(word.to_bytes(4, byteorder='big'))
