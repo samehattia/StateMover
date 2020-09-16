@@ -71,7 +71,7 @@ def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_desi
 		lut_location, lut_b =  get_lram_location_in_partial_frame_data(x, y, l, partial_start_address, lutrams)
 
 		# Check which LUT5 (the lower or the upper) of this LUT6 should be updated
-		if lram_type == 'SRL16E':
+		if lram_type == 'SRL16E' or lram_type == 'RAM32X1S':
 			if lram_bel[1] == '5':
 				lut_location = lut_location[0:32]
 				lut_b = lut_b[0:32]
@@ -151,7 +151,7 @@ def set_named_lram_value_in_bit_file(lram_name, lram_value, design_name, start_b
 		lut_location, lut_b = get_lram_location_in_frame_data(x, y, l, lutrams)
 
 		# Check which LUT5 (the lower or the upper) of this LUT6 should be updated
-		if lram_type == 'SRL16E':
+		if lram_type == 'SRL16E' or lram_type == 'RAM32X1S':
 			if lram_bel[1] == '5':
 				lut_location = lut_location[0:32]
 				lut_b = lut_b[0:32]

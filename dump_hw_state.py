@@ -168,6 +168,18 @@ if not BITFILE:
 				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'b', rdbk_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
+			# Check if the RAM is RAM32X1S (half width single LUTRAM)
+			elif ram_type == 'RAM32X1S':
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data_fast(x, y, lut, 64, rdbk_frame_data, lutrams)
+				# The value of a RAM32X1S with bel [A-H]6LUT is in the most 32 bits
+				if ram_bel[1] == '6':
+					lut_value = value[0] >> 32
+				# The value of a RAM32X1S with bel [A-H]5LUT is in the least 32 bits
+				else:
+					lut_value = value[0] & 0xFFFFFFFF
+				output_file.write(name + '/mem' + ' ' + "{:08x}".format(lut_value, 'x') + '\n')
+
 			# Any other type of LUTRAM
 			else:	
 				lut = ram_bel[0]
@@ -253,6 +265,18 @@ elif BITFILE:
 
 				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'b', bit_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
+
+			# Check if the RAM is RAM32X1S (half width single LUTRAM)
+			elif ram_type == 'RAM32X1S':
+				lut = ram_bel[0]
+				value = get_lram_value_from_frame_data(x, y, lut, 64, bit_frame_data, lutrams)
+				# The value of a RAM32X1S with bel [A-H]6LUT is in the most 32 bits
+				if ram_bel[1] == '6':
+					lut_value = value[0] >> 32
+				# The value of a RAM32X1S with bel [A-H]5LUT is in the least 32 bits
+				else:
+					lut_value = value[0] & 0xFFFFFFFF
+				output_file.write(name + '/mem' + ' ' + "{:08x}".format(lut_value, 'x') + '\n')
 
 			# Any other type of LUTRAM
 			else:	
