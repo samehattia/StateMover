@@ -69,7 +69,16 @@ if not PARTIAL:
 
 			# Check if the line is related to a register, a bram, a bram reg or a lutram
 			if len(words[1]) == 1:
-				set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
+				# Check if it is a register and not a bram reg quickly
+				if words[0][-1] != 't': # _la(t)
+					set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
+
+				# A register but ends with 't'
+				elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
+					set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
+
+				else:
+					set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
 
 			elif len(words[1]) > 64:
 				set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)

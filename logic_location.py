@@ -187,22 +187,27 @@ def parse_logic_location_file(ll_file, bram_enable=False, task_name=''):
 
 		elif bram_enable and line[44] == 'R': # Block=(R)AMB
 			words = line.split()
-
-			# skip parity bits
-			if 'PARBIT' in words[7]:
-				continue
 			
 			if line[48] == '3': # Block=RAMB(3)6'
 				bram_bit_offset = int(words[1])
 				bram_frame_address = int(words[2].lstrip('0x'), 16)
 				bram_frame_offset = int(words[3])
 
-				bram_id = words[6].lstrip('Block=RAMB36_') # X_Y_
-				bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+				if words[7][6] == 'P': # RAM=B:(P)ARBIT
+					bram_id = words[6].lstrip('Block=RAMB36_') + 'P' # X_Y_P
+					bram_bit = int(words[7].lstrip('RAM=B:PARBIT'))
 
-				# Check if the blockram doesn't exist and create it
-				if not bram_id in blockrams:
-					blockrams[bram_id] = RamLocationInfo([0] * 32768, [0] * 32768, [0] * 32768)
+					# Check if the blockram doesn't exist and create it
+					if not bram_id in blockrams:
+						blockrams[bram_id] = RamLocationInfo([0] * 4096, [0] * 4096, [0] * 4096)
+				else:
+					bram_id = words[6].lstrip('Block=RAMB36_') # X_Y_
+					bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+					
+					# Check if the blockram doesn't exist and create it
+					if not bram_id in blockrams:
+						blockrams[bram_id] = RamLocationInfo([0] * 32768, [0] * 32768, [0] * 32768)
+
 				blockrams[bram_id].bit_offset[bram_bit] = bram_bit_offset
 				blockrams[bram_id].frame_address[bram_bit] = bram_frame_address
 				blockrams[bram_id].frame_offset[bram_bit] = bram_frame_offset
@@ -213,12 +218,21 @@ def parse_logic_location_file(ll_file, bram_enable=False, task_name=''):
 				bram_frame_address = int(words[2].lstrip('0x'), 16)
 				bram_frame_offset = int(words[3])
 
-				bram_id = words[6].lstrip('Block=RAMB18_') # X_Y_
-				bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+				if words[7][6] == 'P': # RAM=B:(P)ARBIT
+					bram_id = words[6].lstrip('Block=RAMB18_') + 'P' # X_Y_P
+					bram_bit = int(words[7].lstrip('RAM=B:PARBIT'))
 
-				# Check if the blockram doesn't exist and create it
-				if not bram_id in blockrams:
-					blockrams[bram_id] = RamLocationInfo([0] * 16384, [0] * 16384, [0] * 16384)
+					# Check if the blockram doesn't exist and create it
+					if not bram_id in blockrams:
+						blockrams[bram_id] = RamLocationInfo([0] * 2048, [0] * 2048, [0] * 2048)
+				else:
+					bram_id = words[6].lstrip('Block=RAMB18_') # X_Y_
+					bram_bit = int(words[7].lstrip('RAM=B:BIT'))
+
+					# Check if the blockram doesn't exist and create it
+					if not bram_id in blockrams:
+						blockrams[bram_id] = RamLocationInfo([0] * 16384, [0] * 16384, [0] * 16384)
+
 				blockrams[bram_id].bit_offset[bram_bit] = bram_bit_offset
 				blockrams[bram_id].frame_address[bram_bit] = bram_frame_address
 				blockrams[bram_id].frame_offset[bram_bit] = bram_frame_offset

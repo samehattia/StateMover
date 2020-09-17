@@ -148,25 +148,43 @@ if not BITFILE:
 			# Check if the RAM is a blockRAM
 			elif ram_type == 'RAMB36E2':
 				if bram_enable:
-					value = get_bram_value_from_frame_data_fast(x, y, 32768, rdbk_frame_data, blockrams)
+					value = get_bram_value_from_frame_data_fast(x, y, False, 32768, rdbk_frame_data, blockrams)
 					output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'a', rdbk_frame_data)
+					value = get_bram_value_from_frame_data_fast(x, y, True, 4096, rdbk_frame_data, blockrams)
+					output_file.write(name + '/memp' + ' ' + "{:01024x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, False, ram_bel, 'a', rdbk_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'b', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, True, ram_bel, 'a', rdbk_frame_data)
+				output_file.write(name + '/memp_a_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, False, ram_bel, 'b', rdbk_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, True, ram_bel, 'b', rdbk_frame_data)
+				output_file.write(name + '/memp_b_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
 
 			elif ram_type == 'RAMB18E2':
 				if bram_enable:
-					value = get_bram_value_from_frame_data_fast(x, y, 16384, rdbk_frame_data, blockrams)
+					value = get_bram_value_from_frame_data_fast(x, y, False, 16384, rdbk_frame_data, blockrams)
 					output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'a', rdbk_frame_data)
+					value = get_bram_value_from_frame_data_fast(x, y, True, 2048, rdbk_frame_data, blockrams)
+					output_file.write(name + '/memp' + ' ' + "{:0512x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, False, ram_bel, 'a', rdbk_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data_fast(x, y, ram_bel, 'b', rdbk_frame_data)
+				value = get_bram_reg_value_from_frame_data_fast(x, y, True, ram_bel, 'a', rdbk_frame_data)
+				output_file.write(name + '/memp_a_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, False, ram_bel, 'b', rdbk_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data_fast(x, y, True, ram_bel, 'b', rdbk_frame_data)
+				output_file.write(name + '/memp_b_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM is RAM32X1S (half width single LUTRAM)
 			elif ram_type == 'RAM32X1S':
@@ -247,24 +265,44 @@ elif BITFILE:
 
 			# Check if the RAM is a blockRAM
 			elif ram_type == 'RAMB36E2':
-				value = get_bram_value_from_frame_data(x, y, 32768, bit_frame_data, blockrams)
-				output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
+				if bram_enable:
+					value = get_bram_value_from_frame_data(x, y, False, 32768, bit_frame_data, blockrams)
+					output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'a', bit_frame_data)
+					value = get_bram_value_from_frame_data(x, y, True, 4096, bit_frame_data, blockrams)
+					output_file.write(name + '/memp' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'a', bit_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'b', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, True, ram_bel, 'a', bit_frame_data)
+				output_file.write(name + '/memp_a_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'b', bit_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:08x}".format(value[0], 'x') + '\n')
 
-			elif ram_type == 'RAMB18E2':
-				value = get_bram_value_from_frame_data(x, y, 16384, bit_frame_data, blockrams)
-				output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
+				value = get_bram_reg_value_from_frame_data(x, y, True, ram_bel, 'b', bit_frame_data)
+				output_file.write(name + '/memp_b_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'a', bit_frame_data)
+			elif ram_type == 'RAMB18E2':
+				if bram_enable:
+					value = get_bram_value_from_frame_data(x, y, False, 16384, bit_frame_data, blockrams)
+					output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
+
+					value = get_bram_value_from_frame_data(x, y, True, 2048, bit_frame_data, blockrams)
+					output_file.write(name + '/memp' + ' ' + "{:0512x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'a', bit_frame_data)
 				output_file.write(name + '/mem_a_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_reg_value_from_frame_data(x, y, ram_bel, 'b', bit_frame_data)
+				value = get_bram_reg_value_from_frame_data(x, y, True, ram_bel, 'a', bit_frame_data)
+				output_file.write(name + '/memp_a_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'b', bit_frame_data)
 				output_file.write(name + '/mem_b_lat' + ' ' + "{:04x}".format(value[0], 'x') + '\n')
+
+				value = get_bram_reg_value_from_frame_data(x, y, True, ram_bel, 'b', bit_frame_data)
+				output_file.write(name + '/memp_b_lat' + ' ' + "{:01x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM is RAM32X1S (half width single LUTRAM)
 			elif ram_type == 'RAM32X1S':

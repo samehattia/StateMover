@@ -4,7 +4,7 @@ from bram_reader import get_bram_location_in_frame_data
 from bram_reader import get_bram_reg_location_in_frame_data
 import re
 
-def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, partial_design_name, partial_start_address, word_count, partial_start_byte, blockrams):
+def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_p, bram_width, bram_value, partial_design_name, partial_start_address, word_count, partial_start_byte, blockrams):
 
 	if '.bit' in partial_design_name:
 		partial_file_name = partial_design_name
@@ -14,7 +14,7 @@ def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_width, bram_value, p
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(partial_file_name, 'r+b') as partial_file:
 		
-		bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, partial_start_address, word_count, blockrams)
+		bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, bram_p, partial_start_address, word_count, blockrams)
 
 		start_word = 0
 		for i in range(len(partial_start_address)):
@@ -64,6 +64,10 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_b
 	with open(file_name, 'r+b') as file:
 		
 		# Get info about the bram from its name
+		if bram_name[-1] == 'p': # /memp
+			bram_p = True
+		else:
+			bram_p = False
 		bram_name_stripped = bram_name[:bram_name.rfind('/')]
 		ram_info = rams[bram_name_stripped]
 		bram_type = ram_info.ram_type
@@ -75,7 +79,7 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, design_name, start_b
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
-		bram_location, bram_b = get_bram_location_in_frame_data(x, y, blockrams)
+		bram_location, bram_b = get_bram_location_in_frame_data(x, y, bram_p, blockrams)
 
 		# Loop on the bits of the bram
 		for i in range(len(bram_location)):
@@ -114,13 +118,17 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_n
 	with open(file_name, 'r+b') as file:
 		
 		# Get info about the bram from its name
+		if 'memp_' in bram_reg_name:
+			bram_p = True
+		else:
+			bram_p = False
 		bram_name_stripped = bram_reg_name[:bram_reg_name.rfind('/')]
 		ram_info = rams[bram_name_stripped]
 		bram_type = ram_info.ram_type
 		xy = ram_info.ram_xy
 		bram_bel = ram_info.ram_bel
 
-		if 'mem_b_lat' in bram_reg_name:
+		if '_b_lat' in bram_reg_name:
 			bram_reg_l = 'b'
 		else:
 			bram_reg_l = 'a'	
@@ -129,7 +137,7 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, design_n
 		x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
-		bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(x, y, bram_bel, bram_reg_l)
+		bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(x, y, bram_p, bram_bel, bram_reg_l)
 
 		# Set mem_b_lat value
 		for i in range(len(bram_reg_location)):
