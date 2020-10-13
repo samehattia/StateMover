@@ -178,18 +178,18 @@ PLI_INT32 restore_hardware_state(p_cb_data cb_data)
 		return 0;
 	}
 	
+	replace(module_name.begin(), module_name.end(), '.', '/');
+
 	while(true) {
 		// Get the register name from the dump file
 		fs >> register_name;
 		if (fs.eof())
 			break;
 
-		// The dump file has the following format: pr_module/*/reg_name
-		// The state_element_map has the following format: tb_module.*.pr_module.reg_name
-		replace(register_name.begin(), register_name.end(), '/', '.');
-		size_t pos = register_name.find_first_of(".");
-		register_name = register_name.substr(pos);
-		register_name = module_name + register_name;
+		// The dump file has the following format: some_module/*/reg_name
+		// The state_element_map has the following format: tb_module/top_module/some_module/*/reg_name
+		size_t pos = module_name.find("/", module_name.find("/") + 1); // 2nd / position
+		register_name = module_name.substr(0, pos+1) + register_name;
 
 		// Get the state_element whose name is register_name
 		state_element se = state_element_map.at(register_name);
@@ -249,15 +249,16 @@ PLI_INT32 dump_simulation_state(p_cb_data cb_data)
 		vpi_printf((char*)"Cannot create file\n");
 		return 0;
 	}
+
+	replace(module_name.begin(), module_name.end(), '.', '/');
 	
 	for (auto& se: state_element_map) {
-		// The state_element_map has the following format: tb_module.*.pr_module.reg_name
-		// The dump file has the following format: pr_module/*/reg_name
+		// The state_element_map has the following format: tb_module/top_module/some_module/*/reg_name
+		// The dump file has the following format: some_module/*/reg_name
 		register_name = se.first;
 		
-		size_t pos = module_name.find_last_of(".");
+		size_t pos = module_name.find("/", module_name.find("/") + 1); // 2nd / position
 		register_name = register_name.substr(pos+1);
-		replace(register_name.begin(), register_name.end(), '.', '/');
 
 		// Get the register value from the simulation
 		if (vpi_get(vpiType, se.second.elem_handle) == vpiReg) {
