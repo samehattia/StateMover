@@ -16,6 +16,9 @@
 
 // Define HARDWARE if you want to dump and restore hardware state
 #define HARDWARE
+// Define BRAM_REGISTERS and DSP_REGISTERS if you want to dump and restore BRAM/DSP internal state
+#define BRAM_REGISTERS
+#define DSP_REGISTERS
 
 // Module name
 extern std::string module_name;

@@ -108,8 +108,8 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 	}
 
 	// Check if the state element is a BlockRAM in the synthesized netlist
-	// Xilinx: BlockRAM module is named RAMB36E2 and the actual memory is mem
-	else if (module_name == "RAMB36E2" && register_name == "mem") {
+	// Xilinx: BlockRAM module is named RAMB36E2 or RAMB16E2 and the actual memory is mem
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && register_name == "mem") {
 		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
 		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
 			register_full_name.end());
@@ -118,13 +118,33 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
 			register_full_name.end());
 		// Get rid of padding
-		se.elem_size = 32768;
+		if (module_name == "RAMB36E2")
+			se.elem_size = 32768;
+		else
+			se.elem_size = 16384;
 		state_element_map.emplace(register_full_name, se);
 	}
-	// Check if the state element is a BlockRAM internal registers in the synthesized netlist
+	// Check if the state element is a BlockRAM in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 or RAMB16E2 and the actual memory is memp
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && register_name == "memp") {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		// Get rid of padding
+		if (module_name == "RAMB36E2")
+			se.elem_size = 32768/8;
+		else
+			se.elem_size = 16384/8;
+		state_element_map.emplace(register_full_name, se);
+	}
+
+	// Check if the state element is a BlockRAM internal latches in the synthesized netlist
 	// Xilinx: BlockRAM module is named RAMB36E2 and the internal latches/registers is mem_a/b_lat/reg
-	else if (module_name == "RAMB36E2" && (register_name == "mem_a_lat" || register_name == "mem_b_lat" ||
-		register_name == "mem_a_reg" || register_name == "mem_b_reg")) {
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && (register_name == "mem_a_lat" || register_name == "mem_b_lat")) {
 		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
 		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
 			register_full_name.end());
@@ -134,6 +154,64 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 			register_full_name.end());
 		state_element_map.emplace(register_full_name, se);
 	}
+	// Check if the state element is a BlockRAM internal latches in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 and the internal latches/registers is memp_a/b_lat/reg
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && (register_name == "memp_a_lat" || register_name == "memp_b_lat")) {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+
+#ifdef BRAM_REGISTERS
+	// Check if the state element is a BlockRAM internal registers in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 and the internal latches/registers is mem_a/b_lat/reg
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && (register_name == "mem_a_reg" || register_name == "mem_b_reg")) {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+	// Check if the state element is a BlockRAM internal registers in the synthesized netlist
+	// Xilinx: BlockRAM module is named RAMB36E2 and the internal latches/registers is memp_a/b_lat/reg
+	else if ((module_name == "RAMB36E2" || module_name == "RAMB18E2") && (register_name == "memp_a_reg" || register_name == "memp_b_reg")) {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+#endif
+
+#ifdef DSP_REGISTERS
+	// Check if the state element is a DSP internal register in the synthesized netlist
+	// Xilinx: DSP module is named DSP48E2 and the internal registers are A1_reg, A2_reg, B1_DATA_out, B2_reg
+	// C_reg, U_DATA_reg, V_DATA_reg, D_DATA_reg, AD_DATA_reg, ALU_OUT_reg
+	else if (module_name == "DSP48E2" && (register_name == "A1_reg" || register_name == "A2_reg" ||
+		register_name == "B1_DATA_out" || register_name == "B2_reg" || register_name == "C_reg" ||
+		register_name == "U_DATA_reg" || register_name == "V_DATA_reg" || register_name == "D_DATA_reg" ||
+		register_name == "AD_DATA_reg" || register_name == "ALU_OUT_reg")) {
+		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '\\'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), '^'),
+			register_full_name.end());
+		register_full_name.erase(std::remove(register_full_name.begin(), register_full_name.end(), ' '),
+			register_full_name.end());
+		state_element_map.emplace(register_full_name, se);
+	}
+#endif
 
 }
 
