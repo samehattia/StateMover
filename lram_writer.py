@@ -63,8 +63,13 @@ def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_desi
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
-		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16' or lram_type == 'RAM32M':
+		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16':
 			lut = lram_name[-1]
+		elif lram_type == 'RAM32M':
+			if lram_bel[0] == 'H':
+				lut = chr(ord(lram_name[-1]) + 4)
+			else:
+				lut = lram_name[-1]
 		else:
 			lut = lram_bel[0]
 		l = lut.upper()
@@ -143,8 +148,13 @@ def set_named_lram_value_in_bit_file(lram_name, lram_value, design_name, start_b
 		y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
 		# Check which LUT6 in the 8 LUTs of this lram should be updated
-		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16' or lram_type == 'RAM32M':
+		if lram_type == 'RAM64M8' or lram_type == 'RAM64M' or lram_type == 'RAM32M16':
 			lut = lram_name[-1]
+		elif lram_type == 'RAM32M':
+			if lram_bel[0] == 'H':
+				lut = chr(ord(lram_name[-1]) + 4)
+			else:
+				lut = lram_name[-1]
 		else:
 			lut = lram_bel[0]
 		l = lut.upper()

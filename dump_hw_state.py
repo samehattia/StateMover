@@ -119,9 +119,24 @@ if not BITFILE:
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 32
-			elif ram_type == 'RAM32M16' or ram_type == 'RAM32M':
+			elif ram_type == 'RAM32M16':
 				for j in range(8):
 					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j), 64, rdbk_frame_data, lutrams)
+					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
+					lut_value = value[0]
+					lut_value_bin = "{:064b}".format(lut_value, 'b')
+					lutram_value_bin = lut_value_bin[-64] + lut_value_bin[-32] + lut_value_bin[-63] + lut_value_bin[-31] + lut_value_bin[-62] + lut_value_bin[-30] + lut_value_bin[-61] + lut_value_bin[-29] + lut_value_bin[-60] + lut_value_bin[-28]+ lut_value_bin[-59] + lut_value_bin[-27] + lut_value_bin[-58] + lut_value_bin[-26] + lut_value_bin[-57] + lut_value_bin[-25] + lut_value_bin[-56] + lut_value_bin[-24] + lut_value_bin[-55] + lut_value_bin[-23] + lut_value_bin[-54] + lut_value_bin[-22] + lut_value_bin[-53] + lut_value_bin[-21] + lut_value_bin[-52] + lut_value_bin[-20]+ lut_value_bin[-51] + lut_value_bin[-19] + lut_value_bin[-50] + lut_value_bin[-18] + lut_value_bin[-49] + lut_value_bin[-17] + lut_value_bin[-48] + lut_value_bin[-16] + lut_value_bin[-47] + lut_value_bin[-15] + lut_value_bin[-46] + lut_value_bin[-14] + lut_value_bin[-45] + lut_value_bin[-13] + lut_value_bin[-44] + lut_value_bin[-12]+ lut_value_bin[-43] + lut_value_bin[-11] + lut_value_bin[-42] + lut_value_bin[-10] + lut_value_bin[-41] + lut_value_bin[-9] + lut_value_bin[-40] + lut_value_bin[-8] + lut_value_bin[-39] + lut_value_bin[-7] + lut_value_bin[-38] + lut_value_bin[-6] + lut_value_bin[-37] + lut_value_bin[-5] + lut_value_bin[-36] + lut_value_bin[-4]+ lut_value_bin[-35] + lut_value_bin[-3] + lut_value_bin[-34] + lut_value_bin[-2] + lut_value_bin[-33] + lut_value_bin[-1]
+					lutram_value = int(lutram_value_bin, 2)
+					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(lutram_value, 'x') + '\n')
+
+			# Check if the RAM occupies the 4 LUTs and has a depth of 32
+			elif ram_type == 'RAM32M':
+				for j in range(4):
+					if ram_bel[0] == 'H':
+						top = 4
+					else:
+						top = 0
+					value = get_lram_value_from_frame_data_fast(x, y, chr(ord('A') + j + top), 64, rdbk_frame_data, lutrams)
 					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
 					lut_value = value[0]
 					lut_value_bin = "{:064b}".format(lut_value, 'b')
@@ -237,9 +252,24 @@ elif BITFILE:
 					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(value[0], 'x') + '\n')
 
 			# Check if the RAM occupies the 8 LUTs and has a depth of 32
-			elif ram_type == 'RAM32M16' or ram_type == 'RAM32M':
+			elif ram_type == 'RAM32M16':
 				for j in range(8):
 					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j), 64, bit_frame_data, lutrams)
+					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
+					lut_value = value[0]
+					lut_value_bin = "{:064b}".format(lut_value, 'b')
+					lutram_value_bin = lut_value_bin[-64] + lut_value_bin[-32] + lut_value_bin[-63] + lut_value_bin[-31] + lut_value_bin[-62] + lut_value_bin[-30] + lut_value_bin[-61] + lut_value_bin[-29] + lut_value_bin[-60] + lut_value_bin[-28]+ lut_value_bin[-59] + lut_value_bin[-27] + lut_value_bin[-58] + lut_value_bin[-26] + lut_value_bin[-57] + lut_value_bin[-25] + lut_value_bin[-56] + lut_value_bin[-24] + lut_value_bin[-55] + lut_value_bin[-23] + lut_value_bin[-54] + lut_value_bin[-22] + lut_value_bin[-53] + lut_value_bin[-21] + lut_value_bin[-52] + lut_value_bin[-20]+ lut_value_bin[-51] + lut_value_bin[-19] + lut_value_bin[-50] + lut_value_bin[-18] + lut_value_bin[-49] + lut_value_bin[-17] + lut_value_bin[-48] + lut_value_bin[-16] + lut_value_bin[-47] + lut_value_bin[-15] + lut_value_bin[-46] + lut_value_bin[-14] + lut_value_bin[-45] + lut_value_bin[-13] + lut_value_bin[-44] + lut_value_bin[-12]+ lut_value_bin[-43] + lut_value_bin[-11] + lut_value_bin[-42] + lut_value_bin[-10] + lut_value_bin[-41] + lut_value_bin[-9] + lut_value_bin[-40] + lut_value_bin[-8] + lut_value_bin[-39] + lut_value_bin[-7] + lut_value_bin[-38] + lut_value_bin[-6] + lut_value_bin[-37] + lut_value_bin[-5] + lut_value_bin[-36] + lut_value_bin[-4]+ lut_value_bin[-35] + lut_value_bin[-3] + lut_value_bin[-34] + lut_value_bin[-2] + lut_value_bin[-33] + lut_value_bin[-1]
+					lutram_value = int(lutram_value_bin, 2)
+					output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(lutram_value, 'x') + '\n')
+
+			# Check if the RAM occupies the 4 LUTs and has a depth of 32
+			elif ram_type == 'RAM32M':
+				for j in range(4):
+					if ram_bel[0] == 'H':
+						top = 4
+					else:
+						top = 0 
+					value = get_lram_value_from_frame_data(x, y, chr(ord('A') + j + top), 64, bit_frame_data, lutrams)
 					# The value of an RAM32M is constructed from one bit from the least 32 bits then one bit from th most 32 bits and so on
 					lut_value = value[0]
 					lut_value_bin = "{:064b}".format(lut_value, 'b')
