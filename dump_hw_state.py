@@ -9,7 +9,9 @@ from file_parser import parse_location_files
 
 # Fast means that the frame data is in string format (not converted to int)
 from file_parser import parse_rdbk_file_fast
+from file_parser import parse_rdbk_file_reverse_fast
 from file_parser import parse_partial_rdbk_file_fast
+from file_parser import parse_partial_rdbk_file_reverse_fast
 
 from register_reader import get_register_value_from_frame_data_fast
 from lram_reader import get_lram_value_from_frame_data_fast
@@ -39,7 +41,7 @@ elif len(args) == 3:
 	rl_file_name = args[1]
 	rdbk_file_name = args[2]
 	task_name = ''
-elif len(args) == 4:
+elif len(args) >= 4:
 	ll_file_name = args[0]
 	rl_file_name = args[1]
 	rdbk_file_name = args[2]
@@ -56,6 +58,7 @@ if '-no_bram' in opts:
 	bram_enable = False
 if '-partial_readback' in opts:
 	PARTIAL = True
+	start_address = args[-1]
 if '-bit_file' in opts:
 	BITFILE = True
 
@@ -72,29 +75,9 @@ if not BITFILE:
 			parse_rdbk_file_fast(rdbk_file, rdbk_frame_data)
 
 	elif PARTIAL:
-		min_reg_frame_address = min(registers.values(), key=lambda x: x.frame_address).frame_address
-		block, row, column, minor = parse_frame_address(min_reg_frame_address)
-		print(hex(min_reg_frame_address))
-		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
-
-		max_reg_frame_address = max(registers.values(), key=lambda x: x.frame_address).frame_address
-		block, row, column, minor = parse_frame_address(max_reg_frame_address)
-		print(hex(max_reg_frame_address))
-		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
-
-		min_lram_frame_address = min(lutrams.values(), key=lambda x: x.frame_address).frame_address
-		block, row, column, minor = parse_frame_address(min_lram_frame_address)
-		print(hex(min_lram_frame_address))
-		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
-
-		max_lram_frame_address = max(lutrams.values(), key=lambda x: x.frame_address).frame_address
-		block, row, column, minor = parse_frame_address(max_lram_frame_address)
-		print(hex(max_lram_frame_address))
-		print(str(block) + ' ' + str(row) + ' ' + str(column) + ' ' + str(minor))
-
 		# Parse the readback file
 		with open(rdbk_file_name, 'r') as rdbk_file:
-			parse_partial_rdbk_file_fast(rdbk_file, rdbk_frame_data, min_reg_frame_address)
+			rdbk_frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16))
 
 	# Dump state elements values
 	with open("hw_state.dump", 'w') as output_file:
