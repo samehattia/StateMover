@@ -64,30 +64,34 @@ if not PARTIAL:
 
 	with open(dump_file_name, 'r') as input_file:
 		data = input_file.readlines()
-		for line in data:
-			words = line.split()
 
-			# Check if the line is related to a register, a bram, a bram reg or a lutram
-			if len(words[1]) == 1:
-				# Check if it is a register and not a bram reg quickly
-				if words[0][-1] != 't': # _la(t)
-					set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
+		# Open the binary bitstream .bit file for reading and writing
+		with open(bit_file_name, 'r+b') as bit_file:
+			
+			for line in data:
+				words = line.split()
 
-				# A register but ends with 't'
-				elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
-					set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file_name, start_byte[0], registers)
+				# Check if the line is related to a register, a bram, a bram reg or a lutram
+				if len(words[1]) == 1:
+					# Check if it is a register and not a bram reg quickly
+					if words[0][-1] != 't': # _la(t)
+						set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file, start_byte[0], registers)
+
+					# A register but ends with 't'
+					elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
+						set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file, start_byte[0], registers)
+
+					else:
+						set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], blockrams, rams)
+
+				elif len(words[1]) > 64:
+					set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], blockrams, rams)
+
+				elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
+					set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], blockrams, rams)
 
 				else:
-					set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
-
-			elif len(words[1]) > 64:
-				set_named_bram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
-
-			elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
-				set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], blockrams, rams)
-
-			else:
-				set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file_name, start_byte[0], lutrams, rams)
+					set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], lutrams, rams)
 
 elif PARTIAL:
 	partial_start_address = []
@@ -102,15 +106,19 @@ elif PARTIAL:
 
 	with open(dump_file_name, 'r') as input_file:
 		data = input_file.readlines()
-		for line in data:
-			words = line.split()
 
-			# Check if the line is related to a register or a lutram
-			if len(words[1]) == 1:
-				set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_file_name, partial_start_address[0], partial_start_byte[0], registers)
+		# Open the binary partial bitstream .bit file for reading and writing
+		with open(bit_file_name, 'r+b') as bit_partial_file:
 
-			else:
-				set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_file_name, partial_start_address[0], partial_start_byte[0], lutrams, rams)
+			for line in data:
+				words = line.split()
+
+				# Check if the line is related to a register or a lutram
+				if len(words[1]) == 1:
+					set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+
+				else:
+					set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file, partial_start_address[0], partial_start_byte[0], lutrams, rams)
 	'''
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(bit_file_name, 'r+b') as bit_partial_file:
