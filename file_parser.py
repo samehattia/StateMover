@@ -24,7 +24,7 @@ XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 1
 	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
 	58, 12, 12, 58, 14]
 
-def parse_partial_rdbk_file_fast(rdbk_file, start_address):
+def parse_partial_rdbk_file_fast(rdbk_file, start_address, bram_rdbk_file=0, bram_start_address=0):
 	# Convert start_address into index
 	# Can also be done using the bitoffset instead of frame index
 	block, row, column, minor = parse_frame_address(start_address)
@@ -36,9 +36,18 @@ def parse_partial_rdbk_file_fast(rdbk_file, start_address):
 
 	parse_rdbk_file_fast(rdbk_file, frame_data)
 
+	if bram_rdbk_file:
+		# Convert start_address into index
+		block, row, column, minor = parse_frame_address(bram_start_address)
+		frames_per_row = 128 * 10 + 2
+		full_frame_data_index =  (minor + 128 * column + frames_per_row * row)
+
+		frame_data.extend(['00000000000000000000000000000000'] * (26120 * FRAME_LENGTH - len(frame_data) + full_frame_data_index * FRAME_LENGTH))
+		parse_rdbk_file_fast(bram_rdbk_file, frame_data)
+
 	return frame_data
 
-def parse_partial_rdbk_file_reverse_fast(rdbk_file, start_address):
+def parse_partial_rdbk_file_reverse_fast(rdbk_file, start_address, bram_rdbk_file=0, bram_start_address=0):
 	# Convert start_address into index
 	# Can also be done using the bitoffset instead of frame index
 	block, row, column, minor = parse_frame_address(start_address)
@@ -49,6 +58,15 @@ def parse_partial_rdbk_file_reverse_fast(rdbk_file, start_address):
 	frame_data = ['00000000000000000000000000000000']*(full_frame_data_index*FRAME_LENGTH)
 
 	parse_rdbk_file_reverse_fast(rdbk_file, frame_data)
+
+	if bram_rdbk_file:
+		# Convert start_address into index
+		block, row, column, minor = parse_frame_address(bram_start_address)
+		frames_per_row = 128 * 10 + 2
+		full_frame_data_index =  (minor + 128 * column + frames_per_row * row)
+
+		frame_data.extend(['00000000000000000000000000000000'] * (26120 * FRAME_LENGTH - len(frame_data) + full_frame_data_index * FRAME_LENGTH))
+		parse_rdbk_file_reverse_fast(bram_rdbk_file, frame_data)
 
 	return frame_data
 

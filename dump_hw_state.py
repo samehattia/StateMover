@@ -58,7 +58,12 @@ if '-no_bram' in opts:
 	bram_enable = False
 if '-partial_readback' in opts:
 	PARTIAL = True
-	start_address = args[-1]
+	if bram_enable:
+		start_address = args[-3]
+		bram_rdbk_file_name =  args[-2]
+		bram_start_address = args[-1]
+	else:
+		start_address = args[-1]
 if '-bit_file' in opts:
 	BITFILE = True
 
@@ -75,10 +80,16 @@ if not BITFILE:
 			parse_rdbk_file_fast(rdbk_file, rdbk_frame_data)
 
 	elif PARTIAL:
-		# Parse the readback file
-		with open(rdbk_file_name, 'r') as rdbk_file:
-			rdbk_frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16))
-
+		if bram_enable:
+			# Parse the partial readback file and the partial bram readback file
+			with open(rdbk_file_name, 'r') as rdbk_file:
+				with open(bram_rdbk_file_name, 'r') as bram_rdbk_file:
+					rdbk_frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16), bram_rdbk_file, int(bram_start_address, 16))
+		else:
+			# Parse the partial readback file
+			with open(rdbk_file_name, 'r') as rdbk_file:
+				rdbk_frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16))
+	
 	# Dump state elements values
 	with open("hw_state.dump", 'w') as output_file:
 		# Dump register values
