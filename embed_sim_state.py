@@ -14,9 +14,6 @@ from file_parser import parse_full_bit_file_to_get_start
 
 from frame_parser import convert_frame_address_to_frame_index
 
-from lram_writer import set_named_lram_value_in_partial_bit_file
-from lram_reader import get_lram_location_in_partial_frame_data
-
 from register_writer import set_register_value_in_bit_file
 from lram_writer import set_named_lram_value_in_bit_file
 from lram_reader import get_lram_location_in_frame_data
@@ -94,7 +91,7 @@ if not PARTIAL:
 					set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], blockrams, rams)
 
 				else:
-					set_named_lram_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], lutrams, rams)
+					set_named_lram_value_in_bit_file(lutrams, rams, words[0], int(words[1], 16), bit_file, start_byte[0])
 
 elif PARTIAL:
 	partial_start_address = []
@@ -141,7 +138,7 @@ elif PARTIAL:
 					BRAM_REG = True
 
 				else:
-					set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], lutrams, rams)
+					set_named_lram_value_in_bit_file(lutrams, rams, words[0], int(words[1], 16), bit_partial_file, partial_start_byte[0], partial_start_word_index[0])
 	'''
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(bit_file_name, 'r+b') as bit_partial_file:
