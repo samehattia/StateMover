@@ -342,6 +342,19 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
 		with open(ll_file_name, 'r') as ll_file:
 			registers, blockrams, lutrams = parse_logic_location_file(ll_file, bram_enable, task_name)
 
+		# Filter blockrams to only include blockrams in the ram location file
+		if blockrams:
+			blockrams_filtered = {}
+			for name, ram_info in rams.items():
+				ram_type = ram_info.ram_type
+				ram_xy = ram_info.ram_xy
+
+				if ram_type == 'RAMB36E2' or ram_type == 'RAMB18E2':
+					blockrams_filtered[ram_xy] = blockrams[ram_xy]
+					blockrams_filtered[ram_xy + 'P'] = blockrams[ram_xy + 'P']
+
+			blockrams = blockrams_filtered
+
 		# Save the parser output to pickle files
 		outfile = open(registers_file,'wb')
 		pickle.dump(registers,outfile)

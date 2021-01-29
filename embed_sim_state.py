@@ -113,9 +113,24 @@ elif PARTIAL:
 			for line in data:
 				words = line.split()
 
-				# Check if the line is related to a register or a lutram
+				# Check if the line is related to a register, a bram, a bram reg or a lutram
 				if len(words[1]) == 1:
-					set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+					# Check if it is a register and not a bram reg quickly
+					if words[0][-1] != 't': # _la(t)
+						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+
+					# A register but ends with 't'
+					elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
+						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+
+					else:
+						BRAM_REG = True
+
+				elif len(words[1]) > 64:
+					BRAM_MEM = True
+
+				elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
+					BRAM_REG = True
 
 				else:
 					set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file, partial_start_address[0], partial_start_byte[0], lutrams, rams)
