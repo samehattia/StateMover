@@ -1,20 +1,5 @@
-from frame_parser import parse_frame_address
 
-FRAME_LENGTH = 123
-MAX_FRAMES = 32530
-
-# Number of minor frames at each column in XCKU040
-XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 
-	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 
-	12, 12, 58, 6, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 
-	12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 
-	58, 6, 84, 0, 0, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 58, 
-	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 
-	12, 58, 4, 12, 12, 58, 6, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 
-	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
-	58, 12, 12, 58, 14]
-
-def get_register_info(register_name, registers):
+def get_register_info(registers, register_name):
 
 	reg_loc_info = registers[register_name]
 	bit_offset = reg_loc_info.bit_offset
@@ -22,33 +7,16 @@ def get_register_info(register_name, registers):
 	frame_offset =  reg_loc_info.frame_offset
 	return bit_offset, frame_address, frame_offset
 
-def print_register_info(register_name, registers):
+def get_register_location_in_frame_data(registers, register_name, start_word_index=0):
 
-	bit_offset, frame_address, frame_offset = get_register_info(register_name, registers)
-	print("Name = " + register_name + '\nBit offset = ' + str(bit_offset) + ' Frame address = ' +  
-		str(hex(frame_address)) + ' Frame offset = ' + str(frame_offset))
+	bit_offset, frame_address, frame_offset = get_register_info(registers, register_name)
 
-	block, row, column, minor = parse_frame_address(frame_address)
-	print ("Block = " + str(block) + " Row = " + str(row) + " Column = " + str(column) + " minor = " + str(minor)) 
+	word_index = (bit_offset >> 5) - start_word_index
+	bit_index = bit_offset % 32
 
-def get_register_location_in_frame_data(register_name, registers):
-	bit_offset, frame_address, frame_offset = get_register_info(register_name, registers)
+	return word_index, bit_index
 
-	location = bit_offset >> 5
-	bit = bit_offset % 32
-
-	return location, bit
-
-def get_register_location_in_partial_frame_data(register_name, start_word_index, registers):
-
-	bit_offset, frame_address, frame_offset = get_register_info(register_name, registers)
-
-	location = (bit_offset >> 5) - start_word_index
-	bit = bit_offset % 32
-
-	return location, bit
-
-def get_register_value_from_frame_data_fast(register_name, register_width, frame_data, registers):
+def get_register_value_from_frame_data(registers, register_name, register_width, frame_data, start_word_index=0, fast=False):
 	value = 0
 
 	for i in range(register_width):
@@ -56,36 +24,12 @@ def get_register_value_from_frame_data_fast(register_name, register_width, frame
 			name = register_name
 		else:
 			name = register_name + '[' + str(i) + ']'
-		location_full, bit_full = get_register_location_in_frame_data(name, registers)
-		bit_value = ((int(frame_data[location_full], 2) >> bit_full) & 0x1) ^ 0x1
-		value = value | (bit_value << i)
 
-	return value
-
-def get_register_value_from_frame_data(register_name, register_width, frame_data, registers):
-	value = 0
-
-	for i in range(register_width):
-		if register_width == 1:
-			name = register_name
+		word_index, bit_index = get_register_location_in_frame_data(registers, name, start_word_index)
+		if fast:
+			bit_value = ((int(frame_data[word_index], 2) >> bit_index) & 0x1) ^ 0x1
 		else:
-			name = register_name + '[' + str(i) + ']'
-		location_full, bit_full = get_register_location_in_frame_data(name, registers)
-		bit_value = ((frame_data[location_full] >> bit_full) & 0x1) ^ 0x1
-		value = value | (bit_value << i)
-
-	return value
-
-def get_register_value_from_partial_frame_data(register_name, register_width, partial_frame_data, start_frame_address, registers):
-	value = 0
-
-	for i in range(register_width):
-		if register_width == 1:
-			name = register_name
-		else:
-			name = register_name + '[' + str(i) + ']'
-		location_partial, bit_partial = get_register_location_in_partial_frame_data(name, start_frame_address, registers)
-		bit_value = ((partial_frame_data[location_partial] >> bit_partial) & 0x1) ^ 0x1
+			bit_value = ((frame_data[word_index] >> bit_index) & 0x1) ^ 0x1
 		value = value | (bit_value << i)
 
 	return value

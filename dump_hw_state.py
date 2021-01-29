@@ -13,7 +13,6 @@ from file_parser import parse_rdbk_file_reverse_fast
 from file_parser import parse_partial_rdbk_file_fast
 from file_parser import parse_partial_rdbk_file_reverse_fast
 
-from register_reader import get_register_value_from_frame_data_fast
 from lram_reader import get_lram_value_from_frame_data_fast
 from bram_reader import get_bram_value_from_frame_data_fast
 from bram_reader import get_bram_reg_value_from_frame_data_fast
@@ -73,6 +72,7 @@ registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file
 
 if not BITFILE:
 	rdbk_frame_data = []
+	FAST = True
 
 	if not PARTIAL:
 		# Parse the readback file
@@ -94,7 +94,7 @@ if not BITFILE:
 	with open("hw_state.dump", 'w') as output_file:
 		# Dump register values
 		for name in registers:
-			value = get_register_value_from_frame_data_fast(name, 1, rdbk_frame_data, registers)
+			value = get_register_value_from_frame_data(registers, name, 1, rdbk_frame_data, 0, FAST)
 			output_file.write(name + ' ' + str(value) + '\n')
 
 		# Dump ram values
@@ -227,7 +227,7 @@ elif BITFILE:
 	with open("hw_state.dump", 'w') as output_file:
 		# Dump register values
 		for name in registers:
-			value = get_register_value_from_frame_data(name, 1, bit_frame_data, registers)
+			value = get_register_value_from_frame_data(registers, name, 1, bit_frame_data)
 			output_file.write(name + ' ' + str(value) + '\n')
 
 		# Dump ram values

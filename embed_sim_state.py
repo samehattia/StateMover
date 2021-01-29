@@ -14,7 +14,6 @@ from file_parser import parse_full_bit_file_to_get_start
 
 from frame_parser import convert_frame_address_to_frame_index
 
-from register_writer import set_register_value_in_partial_bit_file
 from lram_writer import set_named_lram_value_in_partial_bit_file
 from lram_reader import get_lram_location_in_partial_frame_data
 
@@ -79,11 +78,11 @@ if not PARTIAL:
 				if len(words[1]) == 1:
 					# Check if it is a register and not a bram reg quickly
 					if words[0][-1] != 't': # _la(t)
-						set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file, start_byte[0], registers)
+						set_register_value_in_bit_file(registers, words[0], 1, int(words[1]), bit_file, start_byte[0])
 
 					# A register but ends with 't'
 					elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
-						set_register_value_in_bit_file(words[0], 1, int(words[1]), bit_file, start_byte[0], registers)
+						set_register_value_in_bit_file(registers, words[0], 1, int(words[1]), bit_file, start_byte[0])
 
 					else:
 						set_named_bram_reg_value_in_bit_file(words[0], int(words[1], 16), bit_file, start_byte[0], blockrams, rams)
@@ -126,11 +125,11 @@ elif PARTIAL:
 				if len(words[1]) == 1:
 					# Check if it is a register and not a bram reg quickly
 					if words[0][-1] != 't': # _la(t)
-						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], registers)
+						set_register_value_in_bit_file(registers, words[0], 1, int(words[1]), bit_partial_file, partial_start_byte[0], partial_start_word_index[0])
 
 					# A register but ends with 't'
 					elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
-						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], registers)
+						set_register_value_in_bit_file(registers, words[0], 1, int(words[1]), bit_partial_file, partial_start_byte[0], partial_start_word_index[0])
 
 					else:
 						BRAM_REG = True
