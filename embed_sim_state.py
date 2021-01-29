@@ -12,6 +12,8 @@ from file_parser import parse_rbt_file
 from file_parser import parse_partial_bit_file_to_get_start
 from file_parser import parse_full_bit_file_to_get_start
 
+from frame_parser import convert_frame_address_to_frame_index
+
 from register_writer import set_register_value_in_partial_bit_file
 from lram_writer import set_named_lram_value_in_partial_bit_file
 from lram_reader import get_lram_location_in_partial_frame_data
@@ -21,6 +23,8 @@ from lram_writer import set_named_lram_value_in_bit_file
 from lram_reader import get_lram_location_in_frame_data
 from bram_writer import set_named_bram_value_in_bit_file
 from bram_writer import set_named_bram_reg_value_in_bit_file
+
+FRAME_LENGTH = 123
 
 # Parse command line arguments into program arguments and options
 opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
@@ -104,6 +108,11 @@ elif PARTIAL:
 	with open(bit_file_name, 'rb') as bit_partial_file:
 		parse_partial_bit_file_to_get_start(bit_partial_file, bit_partial_frame_data, partial_start_byte, True, partial_start_address, partial_word_count)
 
+	# Convert Start Address to Start Word Index (location offset)
+	partial_start_word_index = []
+	for i in range(len(partial_start_address)):
+		partial_start_word_index.append(convert_frame_address_to_frame_index(partial_start_address[i]) * FRAME_LENGTH)
+
 	with open(dump_file_name, 'r') as input_file:
 		data = input_file.readlines()
 
@@ -117,11 +126,11 @@ elif PARTIAL:
 				if len(words[1]) == 1:
 					# Check if it is a register and not a bram reg quickly
 					if words[0][-1] != 't': # _la(t)
-						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], registers)
 
 					# A register but ends with 't'
 					elif not ('memp_b_lat' in words[0] or 'memp_a_lat' in words[0]):
-						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_address[0], partial_start_byte[0], registers)
+						set_register_value_in_partial_bit_file(words[0], 1, int(words[1]), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], registers)
 
 					else:
 						BRAM_REG = True
@@ -133,7 +142,7 @@ elif PARTIAL:
 					BRAM_REG = True
 
 				else:
-					set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file, partial_start_address[0], partial_start_byte[0], lutrams, rams)
+					set_named_lram_value_in_partial_bit_file(words[0], int(words[1], 16), bit_partial_file, partial_start_word_index[0], partial_start_byte[0], lutrams, rams)
 	'''
 	# Open the binary partial bitstream .bit file for reading and writing
 	with open(bit_file_name, 'r+b') as bit_partial_file:

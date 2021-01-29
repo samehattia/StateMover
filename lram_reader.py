@@ -45,28 +45,16 @@ def get_lram_location_in_frame_data(lram_x, lram_y, lram_l, lutrams):
 
 	return location, bit
 
-def get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_frame_address, lutrams):
+def get_lram_location_in_partial_frame_data(lram_x, lram_y, lram_l, start_word_index, lutrams):
 	
 	bit_offset, frame_address, frame_offset = get_lram_info(lram_x, lram_y, lram_l, lutrams)
 
 	location = [0] * 64
 	bit = [0] * 64
 
-	frames_per_row = sum(XCKU040_frame_count)
-	
-	s_block, s_row, s_column, s_minor = parse_frame_address(start_frame_address)
-
-	s_accumulated_frame_count = sum(XCKU040_frame_count[0:s_column])
-	s_full_frame_data_index =  (s_minor + s_accumulated_frame_count + frames_per_row * s_row) * FRAME_LENGTH
-
-	for i in range(len(frame_address)):
-		block, row, column, minor = parse_frame_address(frame_address[i])
-		
-		accumulated_frame_count = sum(XCKU040_frame_count[0:column])
-		full_frame_data_index =  (minor + accumulated_frame_count + frames_per_row * row) * FRAME_LENGTH
-
-		location[i] = (full_frame_data_index - s_full_frame_data_index) + (frame_offset[i] >> 5)
-		bit[i] = frame_offset[i] % 32
+	for i in range(len(bit_offset)):
+		location[i] = (bit_offset[i] >> 5) - start_word_index
+		bit[i] = bit_offset[i] % 32
 
 	return location, bit
 

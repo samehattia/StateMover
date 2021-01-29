@@ -39,23 +39,12 @@ def get_register_location_in_frame_data(register_name, registers):
 
 	return location, bit
 
-def get_register_location_in_partial_frame_data(register_name, start_frame_address, registers):
+def get_register_location_in_partial_frame_data(register_name, start_word_index, registers):
 
 	bit_offset, frame_address, frame_offset = get_register_info(register_name, registers)
 
-	block, row, column, minor = parse_frame_address(frame_address)
-	s_block, s_row, s_column, s_minor = parse_frame_address(start_frame_address)
-
-	frames_per_row = sum(XCKU040_frame_count)
-
-	accumulated_frame_count = sum(XCKU040_frame_count[0:column])	
-	full_frame_data_index =  (minor + accumulated_frame_count + frames_per_row * row) * FRAME_LENGTH
-
-	s_accumulated_frame_count = sum(XCKU040_frame_count[0:s_column])	
-	s_full_frame_data_index =  (s_minor + s_accumulated_frame_count + frames_per_row * s_row) * FRAME_LENGTH
-
-	location = (full_frame_data_index - s_full_frame_data_index) + (frame_offset >> 5)
-	bit = frame_offset % 32
+	location = (bit_offset >> 5) - start_word_index
+	bit = bit_offset % 32
 
 	return location, bit
 

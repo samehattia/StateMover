@@ -30,7 +30,7 @@ def set_register_value_in_partial_rbt_file(register_name, register_width, value,
 	with open(partial_file_name, 'w') as partial_file:
 		partial_file.writelines(data)
 
-def set_register_value_in_partial_bit_file(register_name, register_width, value, partial_file, partial_start_address, partial_start_byte, registers):
+def set_register_value_in_partial_bit_file(register_name, register_width, value, partial_file, partial_start_word_index, partial_start_byte, registers):
 
 	# Loop on the bits of the register
 	for i in range(register_width):
@@ -40,7 +40,7 @@ def set_register_value_in_partial_bit_file(register_name, register_width, value,
 			name = register_name + '[' + str(i) + ']'
 
 		# Get the location (frame data word index, and the bit offset in that word) of the register bit
-		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_address, registers)
+		location_partial, bit_offset = get_register_location_in_partial_frame_data(name, partial_start_word_index, registers)
 
 		# Calculate the word offset inside the file in bytes (skipping the header bytes)
 		word_offset = (partial_start_byte) + (location_partial * 4)

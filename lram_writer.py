@@ -33,7 +33,7 @@ def set_lram_value_in_partial_bit_file(lram_x, lram_y, lram_l, lram_width, lram_
 			partial_file.seek(word_offset)
 			partial_file.write(bytes(word))
 
-def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_file, partial_start_address, partial_start_byte, lutrams, rams):
+def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_file, partial_start_word_index, partial_start_byte, lutrams, rams):
 	
 	# Get info about the lram from its name
 	lram_name_stripped = lram_name[:lram_name.rfind('/')]
@@ -57,7 +57,7 @@ def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_file
 	else:
 		lut = lram_bel[0]
 	l = lut.upper()
-	lut_location, lut_b =  get_lram_location_in_partial_frame_data(x, y, l, partial_start_address, lutrams)
+	lut_location, lut_b =  get_lram_location_in_partial_frame_data(x, y, l, partial_start_word_index, lutrams)
 
 	# Check which LUT5 (the lower or the upper) of this LUT6 should be updated
 	if lram_type == 'SRL16E' or lram_type == 'RAM32X1S':

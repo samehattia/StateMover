@@ -1,5 +1,19 @@
 import struct
 
+FRAME_LENGTH = 123
+MAX_FRAMES = 32530
+
+# Number of minor frames at each column in XCKU040
+XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 
+	12, 12, 58, 6, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 
+	12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 58, 4, 12, 12, 
+	58, 6, 84, 0, 0, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 58, 
+	4, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 12, 58, 4, 12, 58, 
+	12, 58, 4, 12, 12, 58, 6, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 4, 12, 58, 12, 12, 58, 12, 
+	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
+	58, 12, 12, 58, 14]
+
 def parse_frame_address(frame_address):
 	block = frame_address >> 23
 	row = (frame_address >> 17) & 0x3F
@@ -106,3 +120,15 @@ def parse_binary_configuration_information(data_file, byte_no=0):
 			break
 
 	return start_address, word_count, byte_no
+
+def convert_frame_address_to_frame_index(frame_address):
+
+	frames_per_row = sum(XCKU040_frame_count)
+	
+	block, row, column, minor = parse_frame_address(frame_address)
+
+	accumulated_frame_count = sum(XCKU040_frame_count[0:column])
+	
+	frame_index =  (minor + accumulated_frame_count + frames_per_row * row)
+
+	return frame_index
