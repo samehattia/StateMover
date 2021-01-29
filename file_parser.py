@@ -235,13 +235,19 @@ def parse_partial_bit_file_to_get_start(bit_file, frame_data, start_byte, partia
 					if ord(byte) == 0x66:
 						break
 
-	# Retrieve configuration information and skip to frame data
-	start_address, word_count, bit_byte_no = parse_binary_configuration_information(bit_file, bit_byte_no)
+	while True:
+		# Retrieve configuration information and skip to frame data
+		start_address, word_count, bit_byte_no = parse_binary_configuration_information(bit_file, bit_byte_no)
+		if word_count == -1:
+			break
+		start_byte.append(bit_byte_no)  # full or partial
+		if partial:
+			partial_start_address.append(start_address)
+			partial_word_count.append(word_count)
 
-	start_byte.append(bit_byte_no)  # full or partial
-	if partial:
-		partial_start_address.append(start_address)
-		partial_word_count.append(word_count)
+		# Skip frame data
+		bit_file.seek(word_count * 4, 1)
+		bit_byte_no += word_count * 4
 
 def parse_full_bit_file_to_get_start(bit_file, frame_data, start_byte):
 	bit_byte_no = 0

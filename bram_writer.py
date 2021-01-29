@@ -1,51 +1,42 @@
 from frame_parser import parse_frame_address
-from bram_reader import get_bram_location_in_partial_frame_data
 from bram_reader import get_bram_location_in_frame_data
 from bram_reader import get_bram_reg_location_in_frame_data
 import re
 
-def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_p, bram_width, bram_value, partial_file, partial_start_address, word_count, partial_start_byte, blockrams):
+def set_bram_value_in_bit_file(blockrams, bram_x, bram_y, bram_p, bram_width, bram_value, bit_file, start_byte, start_word_index=0, clb_words=0):
 
-	bram_location, bram_b = get_bram_location_in_partial_frame_data(bram_x, bram_y, bram_p, partial_start_address, word_count, blockrams)
-
-	start_word = 0
-	for i in range(len(partial_start_address)):
-		s_block, s_row, s_column, s_minor = parse_frame_address(partial_start_address[i])
-		start_byte = partial_start_byte[i]
-		# Bram Frames found
-		if (s_block == 1):
-			break
-		# skip clb frame words
-		start_word = start_word + word_count[i]
+	word_index, bit_index = get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_word_index, clb_words)
 
 	# Loop on the bits of the bram
-	for i in range(len(bram_location)/bram_width):
+	for i in range(int(len(word_index)/bram_width)):
 
 		for j in range(bram_width):
 			# Calculate the word offset inside the file in bytes (skipping the header bytes)
-			word_offset = (start_byte) + ((bram_location[i * bram_width + j] - start_word) * 4)
+			# In case of a partial bit file, start_byte is calculated from the start of the BRAM region, while the bram_location is calculated for all frame data
+			# Thus the number of CLB words has to be subtracted
+			word_offset = (start_byte) + ((word_index[i * bram_width + j] - clb_words) * 4)
 
 			# Jump to this word and read it
-			partial_file.seek(word_offset)
-			word = bytearray(partial_file.read(4))
+			bit_file.seek(word_offset)
+			word = bytearray(bit_file.read(4))
 
 			# Get the byte we need to modify
-			byte_offset = (3 - (bram_b[i * bram_width + j] >> 3))
+			byte_offset = (3 - (bit_index[i * bram_width + j] >> 3))
 			byte = word[byte_offset]
 
 			# Bit manipulate that byte
 			bit_value = (bram_value[i] >> j) & 0x1 
 			if bit_value == 0:
-				byte = byte & ~(1 << (bram_b[i * bram_width + j] % 8))
+				byte = byte & ~(1 << (bit_index[i * bram_width + j] % 8))
 			else:
-				byte = byte | (1 << (bram_b[i * bram_width + j] % 8))
+				byte = byte | (1 << (bit_index[i * bram_width + j] % 8))
 			word[byte_offset] = byte
 
 			# Overwrite the word after the modification
-			partial_file.seek(word_offset)
-			partial_file.write(bytes(word))
+			bit_file.seek(word_offset)
+			bit_file.write(bytes(word))
 
-def set_named_bram_value_in_bit_file(bram_name, bram_value, file, start_byte, blockrams, rams):
+def set_named_bram_value_in_bit_file(blockrams, rams, bram_name, bram_value, bit_file, start_byte, start_word_index=0, clb_words=0):
 
 	# Get info about the bram from its name
 	if bram_name[-1] == 'p': # /memp
@@ -63,35 +54,37 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, file, start_byte, bl
 	y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
 	# Check which LUT6 in the 8 LUTs of this lram should be updated
-	bram_location, bram_b = get_bram_location_in_frame_data(x, y, bram_p, blockrams)
+	word_index, bit_index = get_bram_location_in_frame_data(blockrams, x, y, bram_p, start_word_index, clb_words)
 
 	# Loop on the bits of the bram
-	for i in range(len(bram_location)):
+	for i in range(len(word_index)):
 
 		# Calculate the word offset inside the file in bytes (skipping the header bytes)
-		word_offset = (start_byte) + (bram_location[i] * 4)
+		# In case of a partial bit file, start_byte is calculated from the start of the BRAM region, while the bram_location is calculated for all frame data
+		# Thus the number of CLB words has to be subtracted
+		word_offset = (start_byte) + ((word_index[i] - clb_words) * 4)
 
 		# Jump to this word and read it
-		file.seek(word_offset)
-		word = bytearray(file.read(4))
+		bit_file.seek(word_offset)
+		word = bytearray(bit_file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - (bram_b[i] >> 3))
+		byte_offset = (3 - (bit_index[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte
 		bit_value = (bram_value >> i) & 0x1 
 		if bit_value == 0:
-			byte = byte & ~(1 << (bram_b[i] % 8))
+			byte = byte & ~(1 << (bit_index[i] % 8))
 		else:
-			byte = byte | (1 << (bram_b[i] % 8))
+			byte = byte | (1 << (bit_index[i] % 8))
 		word[byte_offset] = byte
 
 		# Overwrite the word after the modification
-		file.seek(word_offset)
-		file.write(bytes(word))
+		bit_file.seek(word_offset)
+		bit_file.write(bytes(word))
 
-def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, file, start_byte, blockrams, rams):
+def set_named_bram_reg_value_in_bit_file(blockrams, rams, bram_reg_name, bram_reg_value, bit_file, start_byte):
 	
 	# Get info about the bram from its name
 	if 'memp_' in bram_reg_name:
@@ -113,29 +106,29 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, file, st
 	x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 	y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
-	bram_reg_location, bram_reg_b = get_bram_reg_location_in_frame_data(x, y, bram_p, bram_bel, bram_reg_l)
+	word_index, bit_index = get_bram_reg_location_in_frame_data(x, y, bram_p, bram_bel, bram_reg_l)
 
 	# Set mem_b_lat value
-	for i in range(len(bram_reg_location)):
+	for i in range(len(word_index)):
 		# Calculate the word offset inside the file in bytes (skipping the header bytes)
-		word_offset = (start_byte) + (bram_reg_location[i] * 4)
+		word_offset = (start_byte) + (word_index[i] * 4)
 
 		# Jump to this word and read it
-		file.seek(word_offset)
-		word = bytearray(file.read(4))
+		bit_file.seek(word_offset)
+		word = bytearray(bit_file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - (bram_reg_b[i] >> 3))
+		byte_offset = (3 - (bit_index[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte
 		bit_value = (bram_reg_value >> i) & 0x1 
 		if bit_value == 0:
-			byte = byte & ~(1 << (bram_reg_b[i] % 8))
+			byte = byte & ~(1 << (bit_index[i] % 8))
 		else:
-			byte = byte | (1 << (bram_reg_b[i] % 8))
+			byte = byte | (1 << (bit_index[i] % 8))
 		word[byte_offset] = byte
 
 		# Overwrite the word after the modification
-		file.seek(word_offset)
-		file.write(bytes(word))
+		bit_file.seek(word_offset)
+		bit_file.write(bytes(word))
