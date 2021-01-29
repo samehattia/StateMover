@@ -45,7 +45,7 @@ def get_bram_location_in_frame_data(bram_x, bram_y, bram_p, blockrams):
 	bit = [0] * len(bit_offset)
 
 	for i in range(len(bit_offset)):
-		location[i] = int(bit_offset[i] / 32)
+		location[i] = (bit_offset[i] >> 5)
 		bit[i] = bit_offset[i] % 32
 
 	# print information about the distrubtion of the bram content in the 128 frames
@@ -94,7 +94,7 @@ def get_bram_location_in_partial_frame_data(bram_x, bram_y, bram_p, start_frame_
 
 		s_full_frame_data_index = (s_minor + 128 * s_column  + frames_per_row * s_row) * FRAME_LENGTH
 
-		location[i] = start_word + (full_frame_data_index - s_full_frame_data_index) + int(frame_offset[i] / 32)
+		location[i] = start_word + (full_frame_data_index - s_full_frame_data_index) + (frame_offset[i] >> 5)
 		bit[i] = frame_offset[i] % 32
 
 	return location, bit

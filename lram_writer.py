@@ -18,7 +18,7 @@ def set_lram_value_in_partial_bit_file(lram_x, lram_y, lram_l, lram_width, lram_
 			word = bytearray(partial_file.read(4))
 
 			# Get the byte we need to modify
-			byte_offset = (3 - int(lram_b[i * lram_width + j] / 8))
+			byte_offset = (3 - (lram_b[i * lram_width + j] >> 3))
 			byte = word[byte_offset]
 
 			# Bit manipulate that byte
@@ -94,7 +94,7 @@ def set_named_lram_value_in_partial_bit_file(lram_name, lram_value, partial_file
 		word = bytearray(partial_file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(lut_b[i] / 8))
+		byte_offset = (3 - (lut_b[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte
@@ -171,7 +171,7 @@ def set_named_lram_value_in_bit_file(lram_name, lram_value, file, start_byte, lu
 		word = bytearray(file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(lut_b[i] / 8))
+		byte_offset = (3 - (lut_b[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte

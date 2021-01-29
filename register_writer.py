@@ -50,7 +50,7 @@ def set_register_value_in_partial_bit_file(register_name, register_width, value,
 		word = bytearray(partial_file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(bit_offset / 8))
+		byte_offset = (3 - (bit_offset >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate (inverted) that byte
@@ -85,7 +85,7 @@ def set_register_value_in_bit_file(register_name, register_width, value, file, s
 		word = bytearray(file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(bit_offset / 8))
+		byte_offset = (3 - (bit_offset >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate (inverted) that byte

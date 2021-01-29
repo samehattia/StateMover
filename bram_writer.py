@@ -30,7 +30,7 @@ def set_bram_value_in_partial_bit_file(bram_x, bram_y, bram_p, bram_width, bram_
 			word = bytearray(partial_file.read(4))
 
 			# Get the byte we need to modify
-			byte_offset = (3 - int(bram_b[i * bram_width + j] / 8))
+			byte_offset = (3 - (bram_b[i * bram_width + j] >> 3))
 			byte = word[byte_offset]
 
 			# Bit manipulate that byte
@@ -76,7 +76,7 @@ def set_named_bram_value_in_bit_file(bram_name, bram_value, file, start_byte, bl
 		word = bytearray(file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(bram_b[i] / 8))
+		byte_offset = (3 - (bram_b[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte
@@ -125,7 +125,7 @@ def set_named_bram_reg_value_in_bit_file(bram_reg_name, bram_reg_value, file, st
 		word = bytearray(file.read(4))
 
 		# Get the byte we need to modify
-		byte_offset = (3 - int(bram_reg_b[i] / 8))
+		byte_offset = (3 - (bram_reg_b[i] >> 3))
 		byte = word[byte_offset]
 
 		# Bit manipulate that byte

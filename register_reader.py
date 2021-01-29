@@ -34,7 +34,7 @@ def print_register_info(register_name, registers):
 def get_register_location_in_frame_data(register_name, registers):
 	bit_offset, frame_address, frame_offset = get_register_info(register_name, registers)
 
-	location = int(bit_offset / 32)
+	location = bit_offset >> 5
 	bit = bit_offset % 32
 
 	return location, bit
@@ -54,7 +54,7 @@ def get_register_location_in_partial_frame_data(register_name, start_frame_addre
 	s_accumulated_frame_count = sum(XCKU040_frame_count[0:s_column])	
 	s_full_frame_data_index =  (s_minor + s_accumulated_frame_count + frames_per_row * s_row) * FRAME_LENGTH
 
-	location = (full_frame_data_index - s_full_frame_data_index) + int(frame_offset / 32)
+	location = (full_frame_data_index - s_full_frame_data_index) + (frame_offset >> 5)
 	bit = frame_offset % 32
 
 	return location, bit
