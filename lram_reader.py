@@ -7,17 +7,11 @@ Each LUTRAM consists of 8 LUTs [A-H], each of them is 64 bits
 def get_lram_info(lutrams, lram_x, lram_y, lram_l):
 
 	lram_id = 'X' + str(lram_x) + 'Y' + str(lram_y) + 'L' + lram_l
-	lram_loc_info = lutrams[lram_id]
-
-	bit_offset = lram_loc_info.bit_offset
-	frame_address = lram_loc_info.frame_address
-	frame_offset =  lram_loc_info.frame_offset
-
-	return bit_offset, frame_address, frame_offset
+	return lutrams[lram_id].bit_offset
 
 def get_lram_location_in_frame_data(lutrams, lram_x, lram_y, lram_l, start_word_index=0):
 
-	bit_offset, frame_address, frame_offset = get_lram_info(lutrams, lram_x, lram_y, lram_l)
+	bit_offset = get_lram_info(lutrams, lram_x, lram_y, lram_l)
 
 	word_index = [0] * 64
 	bit_index = [0] * 64

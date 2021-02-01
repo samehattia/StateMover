@@ -29,17 +29,11 @@ def get_bram_info(blockrams, bram_x, bram_y, bram_p):
 		bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y) + 'P'
 	else:
 		bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y)
-	bram_loc_info = blockrams[bram_id]
-
-	bit_offset = bram_loc_info.bit_offset
-	frame_address = bram_loc_info.frame_address
-	frame_offset =  bram_loc_info.frame_offset
-
-	return bit_offset, frame_address, frame_offset
+	return blockrams[bram_id].bit_offset
 
 def get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_word_index=0, clb_words=0):
 
-	bit_offset, frame_address, frame_offset = get_bram_info(blockrams, bram_x, bram_y, bram_p)
+	bit_offset = get_bram_info(blockrams, bram_x, bram_y, bram_p)
 
 	word_index = [0] * len(bit_offset)
 	bit_index = [0] * len(bit_offset)

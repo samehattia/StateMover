@@ -1,15 +1,11 @@
 
 def get_register_info(registers, register_name):
 
-	reg_loc_info = registers[register_name]
-	bit_offset = reg_loc_info.bit_offset
-	frame_address = reg_loc_info.frame_address
-	frame_offset =  reg_loc_info.frame_offset
-	return bit_offset, frame_address, frame_offset
+	return registers[register_name].bit_offset
 
 def get_register_location_in_frame_data(registers, register_name, start_word_index=0):
 
-	bit_offset, frame_address, frame_offset = get_register_info(registers, register_name)
+	bit_offset = get_register_info(registers, register_name)
 
 	word_index = (bit_offset >> 5) - start_word_index
 	bit_index = bit_offset % 32

@@ -10,6 +10,20 @@ from frame_parser import parse_binary_configuration_information
 from logic_location import parse_logic_location_file
 from ram_location import parse_ram_location_file
 
+class RegSimpleLocationInfo:
+	"""Defines a location info"""
+	bit_offset = 0
+
+	def __init__(self, reg_bit_offset):
+		self.bit_offset = reg_bit_offset
+
+class RamSimpleLocationInfo:
+	"""Defines a location info"""
+	bit_offset = []
+
+	def __init__(self, ram_bit_offset):
+		self.bit_offset = ram_bit_offset
+
 FRAME_LENGTH = 123
 MAX_FRAMES = 32530
 CLB_FRAMES = 26120
@@ -275,14 +289,14 @@ def parse_msk_file(msk_file, mask_data):
 		# Parse frame data
 		parse_binary_frame_data(msk_file, start_address, word_count, mask_data)
 
-def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
+def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, force=False):
 
 	registers_file = 'registers.pickle'
 	blockrams_file = 'blockrams.pickle'
 	lutrams_file = 'lutrams.pickle'
 	rams_file = 'rams.pickle'
 
-	if os.path.isfile(rams_file):
+	if os.path.isfile(rams_file) and not force:
 		# Load the parser output from pickle files
 		infile = open(rams_file,'rb')
 		rams = pickle.load(infile)
@@ -306,7 +320,7 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
 	if not rams:
 		bram_enable = False
 
-	if os.path.isfile(registers_file) and os.path.isfile(blockrams_file) and os.path.isfile(lutrams_file):
+	if os.path.isfile(registers_file) and os.path.isfile(blockrams_file) and os.path.isfile(lutrams_file) and not force:
 		# Load the parser output from pickle files
 		infile = open(registers_file,'rb')
 		registers = pickle.load(infile)
@@ -338,17 +352,28 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name):
 
 			blockrams = blockrams_filtered
 
+		# Simplify location info
+		registers_simplified = {}
+		for name in registers:
+			registers_simplified[name] = RegSimpleLocationInfo(registers[name].bit_offset)
+		blockrams_simplified = {}
+		for name in blockrams:
+			blockrams_simplified[name] = RamSimpleLocationInfo(blockrams[name].bit_offset)
+		lutrams_simplified = {}
+		for name in lutrams:
+			lutrams_simplified[name] = RamSimpleLocationInfo(lutrams[name].bit_offset)
+
 		# Save the parser output to pickle files
 		outfile = open(registers_file,'wb')
-		pickle.dump(registers,outfile)
+		pickle.dump(registers_simplified,outfile)
 		outfile.close()
 
 		outfile = open(blockrams_file,'wb')
-		pickle.dump(blockrams,outfile)
+		pickle.dump(blockrams_simplified,outfile)
 		outfile.close()
 
 		outfile = open(lutrams_file,'wb')
-		pickle.dump(lutrams,outfile)
+		pickle.dump(lutrams_simplified,outfile)
 		outfile.close()
 
 	return registers, blockrams, lutrams, rams

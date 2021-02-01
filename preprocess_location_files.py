@@ -47,7 +47,7 @@ if '-no_bram' in opts:
 	bram_enable = False
 
 # Parse logic location and ram location files
-registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name)
+registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, True)
 
 # Calculate start address and frame count for CLB partial readback
 min_frame_address = min(registers.values(), key=lambda x: x.frame_address).frame_address
