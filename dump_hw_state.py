@@ -8,12 +8,9 @@ from timeit import default_timer as timer
 from file_parser import parse_location_files
 
 # Fast means that the frame data is in string format (not converted to int)
-from file_parser import parse_rdbk_file_fast
-from file_parser import parse_rdbk_file_reverse_fast
-from file_parser import parse_partial_rdbk_file_fast
-from file_parser import parse_partial_rdbk_file_reverse_fast
-
 from file_parser import parse_rdbk_file
+from file_parser import parse_partial_rdbk_file
+
 from file_parser import parse_bit_file
 
 from register_reader import get_register_value_from_frame_data
@@ -69,23 +66,26 @@ registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file
 frame_data = []
 
 if not BITFILE:
-	FAST = True
-
 	if not PARTIAL:
+		FAST = True
+
 		# Parse the readback file
 		with open(rdbk_file_name, 'r') as rdbk_file:
-			parse_rdbk_file_fast(rdbk_file, frame_data)
+			parse_rdbk_file(rdbk_file, frame_data, FAST)
 
 	elif PARTIAL:
+		FAST = False
+		REVERSE = True
+
 		if bram_enable:
 			# Parse the partial readback file and the partial bram readback file
 			with open(rdbk_file_name, 'r') as rdbk_file:
 				with open(bram_rdbk_file_name, 'r') as bram_rdbk_file:
-					frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16), bram_rdbk_file, int(bram_start_address, 16))
+					frame_data = parse_partial_rdbk_file(rdbk_file, int(start_address, 16), bram_rdbk_file, int(bram_start_address, 16), REVERSE, FAST)
 		else:
 			# Parse the partial readback file
 			with open(rdbk_file_name, 'r') as rdbk_file:
-				frame_data = parse_partial_rdbk_file_reverse_fast(rdbk_file, int(start_address, 16))
+				frame_data = parse_partial_rdbk_file(rdbk_file, int(start_address, 16), 0, 0, REVERSE, FAST)
 
 elif BITFILE:
 	FAST = False
