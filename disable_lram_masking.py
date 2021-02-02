@@ -5,8 +5,7 @@ import os.path
 import re
 from collections import defaultdict
 
-from logic_location import parse_logic_location_file
-from ram_location import parse_ram_location_file
+from file_parser import parse_location_files
 
 from file_parser import parse_bit_file
 from file_parser import parse_rbt_file
@@ -16,56 +15,34 @@ from lram_reader import get_lram_location_in_frame_data
 from lram_reader import get_lram_info
 from frame_parser import parse_frame_address
 
-# Information collected from the .ll file
-reg_name = {}
-reg_bit_offset = []
-reg_frame_address = [] 
-reg_frame_offset = []
-reg_slice_xy = []
-
-bram_bit_offset = []
-bram_frame_address = []
-bram_frame_offset = []
-bram_xy = defaultdict(list)
-bram_bit = []
-
-lram_bit_offset = []
-lram_frame_address = []
-lram_frame_offset = []
-lram_xy = defaultdict(list)
-lram_bit = []
-
-# Information collected from the .rl file
-ram_name = [] 
-ram_type = [] 
-ram_xy = [] 
-ram_bel = []
-
 start_byte = []
-
 bit_frame_data = []
 
+# Parse command line arguments into program arguments and options
+opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
+args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
+
 # First argument: logic location file, Second argument: bitstream file
-if len(sys.argv) == 3:
-	ll_file_name = sys.argv[1]
-	rl_file_name = 0
-	bit_file_name = sys.argv[2]
-elif len(sys.argv) > 3:
-	ll_file_name = sys.argv[1]
-	rl_file_name = sys.argv[2]
-	bit_file_name = sys.argv[3]
+if len(args) == 3:
+	ll_file_name = args[0]
+	rl_file_name = args[1]
+	bit_file_name = args[2]
+	task_name = ''
+elif len(args) == 4:
+	ll_file_name = args[0]
+	rl_file_name = args[1]
+	bit_file_name = args[2]
+	task_name = args[3]
 else:
-	print("Expects at least three arguments: logic location file, [ram location file], bitstream file and dump file")
+	print("Expects at least three arguments: logic location file, ram location file, bitstream file and [task_name]")
 	exit()
 
-# Parse the logic location file
-with open(ll_file_name, 'r') as ll_file:
-	parse_logic_location_file(ll_file, reg_name, reg_bit_offset, reg_frame_address, reg_frame_offset, reg_slice_xy, bram_bit_offset, bram_frame_address, bram_frame_offset, bram_xy, bram_bit, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+# Expected options: -partial_bitstream
+bram_enable = True
+if '-no_bram' in opts:
+	bram_enable = False
 
-# Parse the ram location file
-if rl_file_name:
-	with open(rl_file_name, 'r') as rl_file:
-		parse_ram_location_file(rl_file, ram_name, ram_type, ram_xy, ram_bel)
+registers, blockrams, lutrams, rams = parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, True)
 
 # Parse the bit file
 with open(bit_file_name, 'rb') as bit_file:
@@ -73,16 +50,32 @@ with open(bit_file_name, 'rb') as bit_file:
 
 # Open the binary bitstream .bit file for reading and writing to unset the masking bit
 with open(bit_file_name, 'r+b') as bit_file:
-	for i in range(len(ram_xy)):
-		print(ram_xy[i] + ' ' + ram_bel[i])
-		x = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[0])
-		y = int(re.split("Y", ram_xy[i].lstrip('X'), 0)[1])
-		if ram_type[i] == 'RAM64M8' or ram_type[i] == 'RAM64M' or ram_type[i] == 'RAM32M16' or ram_type[i] == 'RAM32M':
+	for name, ram_info in rams.items():
+		ram_type = ram_info.ram_type
+		ram_xy = ram_info.ram_xy
+		ram_bel = ram_info.ram_bel
+
+		if ram_type == 'RAMB36E2' or ram_type == 'RAMB18E2':
+			continue
+
+		x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+		y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
+
+		if ram_type == 'RAM64M8' or ram_type == 'RAM64M' or ram_type == 'RAM32M16':
 			l = 'A'
+		elif ram_type == 'RAM32M':
+			if ram_bel[0] == 'H':
+				l = 'E'
+			else:
+				l = 'A'
 		else:
-			l = ram_bel[i][0]
-		lram_location, lram_b = get_lram_location_in_frame_data(x, y, l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
-		bit_offset, frame_address, frame_offset = get_lram_info(x, y, l, lram_bit_offset, lram_frame_address, lram_frame_offset, lram_xy, lram_bit)
+			l = ram_bel[0]
+
+		lram_location, lram_b = get_lram_location_in_frame_data(lutrams, x, y, l)
+		
+		lram_id = 'X' + str(x) + 'Y' + str(y) + 'L' + l
+		frame_address = lutrams[lram_id].frame_address
+
 		block, row, column, minor = parse_frame_address(min(frame_address))
 		print('minor= ' + str(minor))
 
