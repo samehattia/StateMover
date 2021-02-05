@@ -13,6 +13,7 @@ from register_writer import set_register_value_in_bit_file
 from lram_writer import set_named_lram_value_in_bit_file
 from lram_reader import get_lram_location_in_frame_data
 from lram_reader import get_lram_info
+from bram_reader import get_bram_reg_location_in_frame_data
 from frame_parser import parse_frame_address
 
 start_byte = []
@@ -56,55 +57,88 @@ with open(bit_file_name, 'r+b') as bit_file:
 		ram_bel = ram_info.ram_bel
 
 		if ram_type == 'RAMB36E2' or ram_type == 'RAMB18E2':
-			continue
 
-		x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
-		y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
+			x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+			y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
 
-		if ram_type == 'RAM64M8' or ram_type == 'RAM64M' or ram_type == 'RAM32M16':
-			l = 'A'
-		elif ram_type == 'RAM32M':
-			if ram_bel[0] == 'H':
-				l = 'E'
-			else:
-				l = 'A'
+			bram_location, bram_b = get_bram_reg_location_in_frame_data(x, y, False, ram_bel, 'a')
+			bram_min_location = min(bram_location)
+
+			# Calculate the word offset inside the file in bytes (skipping the header bytes)
+			# It is 5 words after the BRAM register location
+			word_offset = (start_byte[0]) + ((bram_min_location + 5) * 4)
+
+			# If the BRAM is the BRAM18 and at the top, the calculated bram reg location is 20 words after that of the bottom BRAM 
+			if 'RAMB18' in ram_bel and ram_bel[-1] != 'L':
+					word_offset = word_offset - 20
+
+			# Jump to this word and read it
+			bit_file.seek(word_offset)
+			word = bytearray(bit_file.read(4))
+
+			# Get the byte we need to modify (Bit 29)
+			byte_offset = (3 - int(29 / 8))
+			byte = word[byte_offset]
+			print(byte)
+
+			# Bit manipulate that byte (Bit 29)
+			byte = byte & ~(1 << 4)
+			word[byte_offset] = byte
+			print(byte)
+
+			# Overwrite the word after the modification
+			bit_file.seek(word_offset)
+			bit_file.write(bytes(word))
+
 		else:
-			l = ram_bel[0]
 
-		lram_location, lram_b = get_lram_location_in_frame_data(lutrams, x, y, l)
-		
-		lram_id = 'X' + str(x) + 'Y' + str(y) + 'L' + l
-		frame_address = lutrams[lram_id].frame_address
+			x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+			y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
 
-		block, row, column, minor = parse_frame_address(min(frame_address))
-		print('minor= ' + str(minor))
+			if ram_type == 'RAM64M8' or ram_type == 'RAM64M' or ram_type == 'RAM32M16':
+				l = 'A'
+			elif ram_type == 'RAM32M':
+				if ram_bel[0] == 'H':
+					l = 'E'
+				else:
+					l = 'A'
+			else:
+				l = ram_bel[0]
 
-		lram_min_location = min(lram_location)
+			lram_location, lram_b = get_lram_location_in_frame_data(lutrams, x, y, l)
+			
+			lram_id = 'X' + str(x) + 'Y' + str(y) + 'L' + l
+			frame_address = lutrams[lram_id].frame_address
 
-		# Calculate the word offset inside the file in bytes (skipping the header bytes) (should be minor 7)
-		word_offset = (start_byte[0]) + ((lram_min_location + (7 - minor) * 123) * 4)
-		# The contents of LUTRAM located in bel E-H is in the second word of the two words that contain LUTRAM contents
-		# The bit we want to turn off is offseted from the first word, so subtract one word
-		if l > 'D':
-			word_offset = word_offset - 4 
+			block, row, column, minor = parse_frame_address(min(frame_address))
+			print('minor= ' + str(minor))
 
-		# Jump to this word and read it
-		bit_file.seek(word_offset)
-		word = bytearray(bit_file.read(4))
+			lram_min_location = min(lram_location)
 
-		# Get the byte we need to modify
-		byte_offset = (3 - int(12 / 8))
-		byte = word[byte_offset]
-		print(byte)
+			# Calculate the word offset inside the file in bytes (skipping the header bytes) (should be minor 7)
+			word_offset = (start_byte[0]) + ((lram_min_location + (7 - minor) * 123) * 4)
+			# The contents of LUTRAM located in bel E-H is in the second word of the two words that contain LUTRAM contents
+			# The bit we want to turn off is offseted from the first word, so subtract one word
+			if l > 'D':
+				word_offset = word_offset - 4 
 
-		# Bit manipulate that byte
-		byte = byte & ~(1 << 4)
-		word[byte_offset] = byte
-		print(byte)
+			# Jump to this word and read it
+			bit_file.seek(word_offset)
+			word = bytearray(bit_file.read(4))
 
-		# Overwrite the word after the modification
-		bit_file.seek(word_offset)
-		bit_file.write(bytes(word))
+			# Get the byte we need to modify
+			byte_offset = (3 - int(12 / 8))
+			byte = word[byte_offset]
+			print(byte)
+
+			# Bit manipulate that byte
+			byte = byte & ~(1 << 4)
+			word[byte_offset] = byte
+			print(byte)
+
+			# Overwrite the word after the modification
+			bit_file.seek(word_offset)
+			bit_file.write(bytes(word))
 
 '''
 # Open the binary partial bitstream .bit file for reading and writing to unset the masking bit
