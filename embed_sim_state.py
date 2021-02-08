@@ -87,7 +87,7 @@ if not PARTIAL:
 						set_named_bram_reg_value_in_bit_file(blockrams, rams, words[0], int(words[1], 16), bit_file, start_byte[0])
 
 				elif len(words[1]) > 64:
-					set_named_bram_value_in_bit_file(blockrams, rams, words[0], int(words[1], 16), bit_file, start_byte[0])
+					set_named_bram_value_in_bit_file(blockrams, rams, words[0], words[1], bit_file, start_byte[0])
 
 				elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
 					set_named_bram_reg_value_in_bit_file(blockrams, rams, words[0], int(words[1], 16), bit_file, start_byte[0])
@@ -145,7 +145,7 @@ elif PARTIAL:
 						BRAM_REG = True
 
 				elif len(words[1]) > 64:
-					set_named_bram_value_in_bit_file(blockrams, rams, words[0], int(words[1], 16), bit_partial_file, bram_start_byte, bram_start_word_index, clb_words)
+					set_named_bram_value_in_bit_file(blockrams, rams, words[0], words[1], bit_partial_file, bram_start_byte, bram_start_word_index, clb_words)
 
 				elif (len(words[1]) == 8 or len(words[1]) == 4) and ('mem_b_lat' in words[0] or 'mem_a_lat' in words[0]):
 					BRAM_REG = True
