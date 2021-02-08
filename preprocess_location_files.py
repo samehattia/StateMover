@@ -20,6 +20,9 @@ XCKU040_frame_count = [84, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 4, 12, 58, 1
 	58, 4, 12, 12, 58, 66, 0, 0, 12, 12, 58, 12, 58, 4, 12, 12, 58, 12, 12, 58, 12, 12, 58, 12, 12, 
 	58, 12, 12, 58, 14]
 
+# Which frame column has BRAM configuration (not BRAM contents)
+XCKU040_bram_columns = [7, 19, 43, 55, 67, 91, 119, 146, 170, 182]
+
 # Parse command line arguments into program arguments and options
 opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
 args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
@@ -63,6 +66,27 @@ if lutrams:
 	if max_lram_frame_address > max_frame_address:
 		max_frame_address = max_lram_frame_address
 
+if blockrams:
+	min_bram_frame_address = min(min(blockrams.values(), key=lambda x: x.frame_address).frame_address)
+	block, row, column, minor = parse_frame_address(min_bram_frame_address)
+	min_bram_reg_column = XCKU040_bram_columns[column]
+	min_bram_reg_row = row
+
+	max_bram_frame_address = max(max(blockrams.values(), key=lambda x: x.frame_address).frame_address)
+	block, row, column, minor = parse_frame_address(max_bram_frame_address)
+	max_bram_reg_column = XCKU040_bram_columns[column]
+	max_bram_reg_row = row
+
+	minor = 3
+
+	min_bram_reg_frame_address = (min_bram_reg_row << 17) | (min_bram_reg_column << 7) | minor
+	max_bram_reg_frame_address = (max_bram_reg_row << 17) | (max_bram_reg_column << 7) | minor
+
+	if min_bram_reg_frame_address < min_frame_address:
+		min_frame_address = min_bram_reg_frame_address
+	
+	if max_bram_reg_frame_address > max_frame_address:
+		max_frame_address = max_bram_reg_frame_address
 
 # Convert frame address into frame index
 frames_per_row = sum(XCKU040_frame_count)
