@@ -352,6 +352,37 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, for
 
 			blockrams = blockrams_filtered
 
+		# Filter lutrams to only include lutrams in the ram location file
+		if lutrams:
+			lutrams_filtered = {}
+			for name, ram_info in rams.items():
+				ram_type = ram_info.ram_type
+				ram_xy = ram_info.ram_xy
+				ram_bel = ram_info.ram_bel
+
+				# These LUTRAMs occupy 8 LUTs
+				if ram_type == 'RAM64M8' or ram_type == 'RAM64M' or ram_type == 'RAM32M16':
+					for j in range(8):
+						lram_id = ram_xy + 'L' + chr(ord('A') + j)
+						lutrams_filtered[lram_id] = lutrams[lram_id]
+
+				# This lUTRAM occupies 4 LUTs
+				elif ram_type == 'RAM32M':
+					for j in range(4):
+						if ram_bel[0] == 'H':
+							top = 4
+						else:
+							top = 0
+						lram_id = ram_xy + 'L' + chr(ord('A') + j + top)
+						lutrams_filtered[lram_id] = lutrams[lram_id]
+
+				# All other LUTRAMs occupy 1 LUT
+				elif ram_type != 'RAMB36E2' and ram_type != 'RAMB18E2':
+					lram_id = ram_xy + 'L' + ram_bel[0]
+					lutrams_filtered[lram_id] = lutrams[lram_id]
+					
+			lutrams = lutrams_filtered
+
 		# Simplify location info
 		registers_simplified = {}
 		for name in registers:
