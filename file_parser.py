@@ -1,5 +1,6 @@
 import pickle
 import os.path
+import re
 
 from frame_parser import parse_frame_address
 from frame_parser import parse_frame_data
@@ -346,9 +347,30 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, for
 				ram_type = ram_info.ram_type
 				ram_xy = ram_info.ram_xy
 
-				if ram_type == 'RAMB36E2' or ram_type == 'RAMB18E2':
+				if ram_type == 'RAMB36E2':
 					blockrams_filtered[ram_xy] = blockrams[ram_xy]
 					blockrams_filtered[ram_xy + 'P'] = blockrams[ram_xy + 'P']
+
+				elif ram_type == 'RAMB18E2':
+					bram_id = ram_xy + 'H'
+					
+					if bram_id in blockrams:
+						blockrams_filtered[bram_id] = blockrams[bram_id]
+						blockrams_filtered[bram_id + 'P'] = blockrams[bram_id + 'P']
+
+					# If there is no info about this RAMB18, get the info of the equivalent RAMB36
+					else:
+						x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
+						y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
+						blockrams_filtered[bram_id] = blockrams['X' + str(x) + 'Y' + str(y >> 1)]
+						blockrams_filtered[bram_id + 'P'] = blockrams['X' + str(x) + 'Y' + str(y >> 1) + 'P']
+						# Take the relevant info from the RAMB36
+						if (y % 2) == 0:
+							blockrams_filtered[bram_id].bit_offset = blockrams_filtered[bram_id].bit_offset[0:16384]
+							blockrams_filtered[bram_id + 'P'].bit_offset = blockrams_filtered[bram_id + 'P'].bit_offset[0:2048]
+						else:
+							blockrams_filtered[bram_id].bit_offset = blockrams_filtered[bram_id].bit_offset[16384:32768]
+							blockrams_filtered[bram_id + 'P'].bit_offset = blockrams_filtered[bram_id + 'P'].bit_offset[2048:4096]
 
 			blockrams = blockrams_filtered
 

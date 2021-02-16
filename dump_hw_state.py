@@ -165,10 +165,10 @@ with open("hw_state.dump", 'w') as output_file:
 		# Check if the RAM is a blockRAM
 		elif ram_type == 'RAMB36E2':
 			if bram_enable:
-				value = get_bram_value_from_frame_data(blockrams, x, y, False, 32768, frame_data, 0, 0, FAST)
+				value = get_bram_value_from_frame_data(blockrams, x, y, False, False, 32768, frame_data, 0, 0, FAST)
 				output_file.write(name + '/mem' + ' ' + "{:08192x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_value_from_frame_data(blockrams, x, y, True, 4096, frame_data, 0, 0, FAST)
+				value = get_bram_value_from_frame_data(blockrams, x, y, False, True, 4096, frame_data, 0, 0, FAST)
 				output_file.write(name + '/memp' + ' ' + "{:01024x}".format(value[0], 'x') + '\n')
 
 			value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'a', frame_data, FAST)
@@ -185,10 +185,10 @@ with open("hw_state.dump", 'w') as output_file:
 
 		elif ram_type == 'RAMB18E2':
 			if bram_enable:
-				value = get_bram_value_from_frame_data(blockrams, x, y, False, 16384, frame_data, 0, 0, FAST)
+				value = get_bram_value_from_frame_data(blockrams, x, y, True, False, 16384, frame_data, 0, 0, FAST)
 				output_file.write(name + '/mem' + ' ' + "{:04096x}".format(value[0], 'x') + '\n')
 
-				value = get_bram_value_from_frame_data(blockrams, x, y, True, 2048, frame_data, 0, 0, FAST)
+				value = get_bram_value_from_frame_data(blockrams, x, y, True, True, 2048, frame_data, 0, 0, FAST)
 				output_file.write(name + '/memp' + ' ' + "{:0512x}".format(value[0], 'x') + '\n')
 
 			value = get_bram_reg_value_from_frame_data(x, y, False, ram_bel, 'a', frame_data, FAST)

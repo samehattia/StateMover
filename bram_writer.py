@@ -3,9 +3,9 @@ from bram_reader import get_bram_location_in_frame_data
 from bram_reader import get_bram_reg_location_in_frame_data
 import re
 
-def set_bram_value_in_bit_file(blockrams, bram_x, bram_y, bram_p, bram_width, bram_value, bit_file, start_byte, start_word_index=0, clb_words=0):
+def set_bram_value_in_bit_file(blockrams, bram_x, bram_y, bram_18, bram_p, bram_width, bram_value, bit_file, start_byte, start_word_index=0, clb_words=0):
 
-	word_index, bit_index = get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_word_index, clb_words)
+	word_index, bit_index = get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_18, bram_p, start_word_index, clb_words)
 
 	# Loop on the bits of the bram
 	for i in range(int(len(word_index)/bram_width)):
@@ -48,12 +48,16 @@ def set_named_bram_value_in_bit_file(blockrams, rams, bram_name, bram_value, bit
 	bram_type = ram_info.ram_type
 	xy = ram_info.ram_xy
 	bram_bel = ram_info.ram_bel
+	if bram_type == 'RAMB18E2':
+		bram_18 = True
+	else:
+		bram_18 = False
 
 	# Get the location of this bram in the bitstream file
 	x = int(re.split("Y", xy.lstrip('X'), 0)[0])
 	y = int(re.split("Y", xy.lstrip('X'), 0)[1])
 
-	word_index, bit_index = get_bram_location_in_frame_data(blockrams, x, y, bram_p, start_word_index, clb_words)
+	word_index, bit_index = get_bram_location_in_frame_data(blockrams, x, y, bram_18, bram_p, start_word_index, clb_words)
 
 	# Instead of editing in place of each BRAM bit, we read, modify and then write back the entire region that contains BRAM data
 	min_word_index = min(word_index)

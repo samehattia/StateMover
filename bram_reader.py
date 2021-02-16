@@ -23,17 +23,21 @@ XCKU040_bram_columns = [7, 19, 43, 55, 67, 91, 119, 146, 170, 182]
 for a certain BRAM, return a location array which contains the word number
 for each bit in this BRAM, and the bit offest in this word
 '''
-def get_bram_info(blockrams, bram_x, bram_y, bram_p):
+def get_bram_info(blockrams, bram_x, bram_y, bram_18, bram_p):
+
+	bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y)
+
+	if bram_18:
+		bram_id = bram_id + 'H'
 
 	if bram_p:
-		bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y) + 'P'
-	else:
-		bram_id = 'X' + str(bram_x) + 'Y' + str(bram_y)
+		bram_id = bram_id + 'P'
+
 	return blockrams[bram_id].bit_offset
 
-def get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_word_index=0, clb_words=0):
+def get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_18, bram_p, start_word_index=0, clb_words=0):
 
-	bit_offset = get_bram_info(blockrams, bram_x, bram_y, bram_p)
+	bit_offset = get_bram_info(blockrams, bram_x, bram_y, bram_18, bram_p)
 
 	word_index = [0] * len(bit_offset)
 	bit_index = [0] * len(bit_offset)
@@ -54,10 +58,10 @@ def get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_wor
 
 	return word_index, bit_index
 
-def get_bram_value_from_frame_data(blockrams, bram_x, bram_y, bram_p, bram_width, frame_data, start_word_index=0, clb_words=0, fast=False):	
+def get_bram_value_from_frame_data(blockrams, bram_x, bram_y, bram_18, bram_p, bram_width, frame_data, start_word_index=0, clb_words=0, fast=False):	
 
 	bram_value = []
-	bram_word_index, bram_bit_index = get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_p, start_word_index, clb_words)
+	bram_word_index, bram_bit_index = get_bram_location_in_frame_data(blockrams, bram_x, bram_y, bram_18, bram_p, start_word_index, clb_words)
 	
 	for i in range(int(len(bram_word_index)/bram_width)):
 		value = 0

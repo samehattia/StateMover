@@ -212,21 +212,20 @@ def parse_logic_location_file(ll_file, bram_enable=False, task_name=''):
 				blockrams[bram_id].frame_address[bram_bit] = bram_frame_address
 				blockrams[bram_id].frame_offset[bram_bit] = bram_frame_offset
 			
-			# FIXME: RAM18 XY can collide with RAM36 XY	
 			elif line[48] == '1': # Block=RAMB(1)8'
 				bram_bit_offset = int(words[1])
 				bram_frame_address = int(words[2].lstrip('0x'), 16)
 				bram_frame_offset = int(words[3])
 
 				if words[7][6] == 'P': # RAM=B:(P)ARBIT
-					bram_id = words[6].lstrip('Block=RAMB18_') + 'P' # X_Y_P
+					bram_id = words[6].lstrip('Block=RAMB18_') + 'HP' # X_Y_HP
 					bram_bit = int(words[7].lstrip('RAM=B:PARBIT'))
 
 					# Check if the blockram doesn't exist and create it
 					if not bram_id in blockrams:
 						blockrams[bram_id] = RamLocationInfo([0] * 2048, [0] * 2048, [0] * 2048)
 				else:
-					bram_id = words[6].lstrip('Block=RAMB18_') # X_Y_
+					bram_id = words[6].lstrip('Block=RAMB18_') + 'H' # X_Y_H
 					bram_bit = int(words[7].lstrip('RAM=B:BIT'))
 
 					# Check if the blockram doesn't exist and create it
