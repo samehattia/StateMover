@@ -18,11 +18,11 @@ CFLAGS = -c -g -I$(MODELSIM)/include -fPIC
 LFLAGS = -shared -Bsymbolic
 
 all: csr_sim.cpp
-	g++ $(CFLAGS) csr_sim.cpp state_element.cpp state_access.cpp
-	g++ $(LFLAGS) -o csr_sim.sl csr_sim.o state_element.o state_access.o
+	g++ $(CFLAGS) vlog_startup.cpp csr_sim.cpp state_element.cpp state_access.cpp
+	g++ $(LFLAGS) -o csr_sim.sl vlog_startup.o csr_sim.o state_element.o state_access.o
 
 clean: 
-	rm -rf csr_sim.sl csr_sim.o state_element.o state_access.o
+	rm -rf csr_sim.sl vlog_startup.o csr_sim.o state_element.o state_access.o
 
 
 

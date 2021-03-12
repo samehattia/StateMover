@@ -80,7 +80,7 @@ void traverse (vpiHandle  mod_handle) {
 /**
  * Context Saving and Restoring Simulator
  */
-void csr_sim( void )
+PLI_INT32 csr_sim(p_cb_data cb_data)
 {
 	fstream fs;
 	vpiHandle module_handle;
@@ -171,14 +171,21 @@ void csr_sim( void )
 #endif
 
 	vpi_printf( (char*)"\n======================================\n" );
+
+	return 0;
 }
 
+void csr_sim_register(void) {
+	s_cb_data cb_data_s;
+	vpiHandle callback_handle;
 
-/**
- * Required structure for initializing VPI routines.
- */
-void (*vlog_startup_routines[])() = {
-	csr_sim,
-	0
-};
+	cb_data_s.reason = cbEndOfCompile;
+	cb_data_s.cb_rtn = csr_sim;
+	cb_data_s.obj = NULL;
+	cb_data_s.time = NULL;
+	cb_data_s.value = NULL;
+	cb_data_s.user_data = NULL;
+	callback_handle = vpi_register_cb(&cb_data_s);
+	vpi_free_object(callback_handle);
+}
 
