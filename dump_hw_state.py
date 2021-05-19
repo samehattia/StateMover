@@ -46,6 +46,7 @@ else:
 bram_enable = True
 PARTIAL = False
 BITFILE = False
+CAPTURE_REGISTERS = False
 if '-no_bram' in opts:
 	bram_enable = False
 if '-partial_readback' in opts:
@@ -58,6 +59,8 @@ if '-partial_readback' in opts:
 		start_address = args[-1]
 if '-bit_file' in opts:
 	BITFILE = True
+if '-capture_registers' in opts:
+	CAPTURE_REGISTERS = True
 
 start = timer()
 
@@ -102,6 +105,8 @@ elif BITFILE:
 with open("hw_state.dump", 'w') as output_file:
 	# Dump register values
 	for name in registers:
+		if CAPTURE_REGISTERS and not ('replay_' in name):
+			continue
 		value = get_register_value_from_frame_data(registers, name, 1, frame_data, 0, FAST)
 		output_file.write(name + ' ' + str(value) + '\n')
 
@@ -110,6 +115,8 @@ with open("hw_state.dump", 'w') as output_file:
 		ram_type = ram_info.ram_type
 		ram_xy = ram_info.ram_xy
 		ram_bel = ram_info.ram_bel
+		if CAPTURE_REGISTERS and not ('replay_' in name) and ((not bram_enable) or (ram_type != 'RAMB36E2' and ram_type != 'RAMB18E2')):
+			continue
 
 		x = int(re.split("Y", ram_xy.lstrip('X'), 0)[0])
 		y = int(re.split("Y", ram_xy.lstrip('X'), 0)[1])
