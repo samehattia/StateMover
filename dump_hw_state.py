@@ -153,7 +153,7 @@ with open("hw_state.dump", 'w') as output_file:
 				lutram_value = int(lutram_value_bin, 2)
 				output_file.write(name + '/mem_' + chr(ord('a') + j) + ' ' + "{:016x}".format(lutram_value, 'x') + '\n')
 
-		# Check if the RAM is an SRL
+		# Check if the RAM is an SRL16
 		elif ram_type == 'SRL16E':
 			lut = ram_bel[0]
 			value = get_lram_value_from_frame_data(lutrams, x, y, lut, 64, frame_data, 0, FAST)
@@ -168,6 +168,18 @@ with open("hw_state.dump", 'w') as output_file:
 			odd_bits_bin = lut_value_bin[-32] + lut_value_bin[-30] + lut_value_bin[-28] + lut_value_bin[-26] + lut_value_bin[-24] + lut_value_bin[-22] + lut_value_bin[-20] + lut_value_bin[-18] + lut_value_bin[-16] + lut_value_bin[-14]+ lut_value_bin[-12] + lut_value_bin[-10] + lut_value_bin[-8] + lut_value_bin[-6] + lut_value_bin[-4] + lut_value_bin[-2]
 			srl_value = int(odd_bits_bin, 2)
 			output_file.write(name + '/data' + ' ' + "{:04x}".format(srl_value, 'x') + '\n')
+
+		# Check if the RAM is an SRL16
+		elif ram_type == 'SRLC32E':
+			lut = ram_bel[0]
+			value = get_lram_value_from_frame_data(lutrams, x, y, lut, 64, frame_data, 0, FAST)
+			# The value of an SRLC32E is in the odd bits of LUT6 64 bits
+			lut_value = value[0] 	
+			# Get the odd bits
+			lut_value_bin = "{:64b}".format(lut_value, 'b')
+			odd_bits_bin = lut_value_bin[-64] + lut_value_bin[-62] + lut_value_bin[-60] + lut_value_bin[-58] + lut_value_bin[-56] + lut_value_bin[-54] + lut_value_bin[-52] + lut_value_bin[-50] + lut_value_bin[-48] + lut_value_bin[-46]+ lut_value_bin[-44] + lut_value_bin[-42] + lut_value_bin[-40] + lut_value_bin[-38] + lut_value_bin[-36] + lut_value_bin[-34] + lut_value_bin[-32] + lut_value_bin[-30] + lut_value_bin[-28] + lut_value_bin[-26] + lut_value_bin[-24] + lut_value_bin[-22] + lut_value_bin[-20] + lut_value_bin[-18] + lut_value_bin[-16] + lut_value_bin[-14]+ lut_value_bin[-12] + lut_value_bin[-10] + lut_value_bin[-8] + lut_value_bin[-6] + lut_value_bin[-4] + lut_value_bin[-2]
+			srl_value = int(odd_bits_bin, 2)
+			output_file.write(name + '/data' + ' ' + "{:08x}".format(srl_value, 'x') + '\n')
 
 		# Check if the RAM is a blockRAM
 		elif ram_type == 'RAMB36E2':

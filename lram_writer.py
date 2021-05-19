@@ -79,6 +79,12 @@ def set_named_lram_value_in_bit_file(lutrams, rams, lram_name, lram_value, bit_f
 		lut_value_bin = lram_value_bin[-16] + '0' + lram_value_bin[-15] + '0' + lram_value_bin[-14] + '0' + lram_value_bin[-13] + '0' + lram_value_bin[-12] + '0' + lram_value_bin[-11] + '0' + lram_value_bin[-10] + '0' + lram_value_bin[-9] + '0' + lram_value_bin[-8] + '0' + lram_value_bin[-7] + '0' + lram_value_bin[-6] + '0' + lram_value_bin[-5] + '0' + lram_value_bin[-4] + '0' + lram_value_bin[-3] + '0' + lram_value_bin[-2] + '0' + lram_value_bin[-1] + '0'
 		lut_value = int(lut_value_bin, 2)
 
+	# The value of an SRLC32E is constructed from the odd bits of LUT6 64 bits
+	elif lram_type == 'SRLC32E':
+		lram_value_bin = "{:032b}".format(lram_value, 'b')
+		lut_value_bin = lram_value_bin[-32] + '0' + lram_value_bin[-31] + '0' + lram_value_bin[-30] + '0' + lram_value_bin[-29] + '0' + lram_value_bin[-28] + '0' + lram_value_bin[-27] + '0' + lram_value_bin[-26] + '0' + lram_value_bin[-25] + '0' + lram_value_bin[-24] + '0' + lram_value_bin[-23] + '0' + lram_value_bin[-22] + '0' + lram_value_bin[-21] + '0' + lram_value_bin[-20] + '0' + lram_value_bin[-19] + '0' + lram_value_bin[-18] + '0' + lram_value_bin[-17] + '0' + lram_value_bin[-16] + '0' + lram_value_bin[-15] + '0' + lram_value_bin[-14] + '0' + lram_value_bin[-13] + '0' + lram_value_bin[-12] + '0' + lram_value_bin[-11] + '0' + lram_value_bin[-10] + '0' + lram_value_bin[-9] + '0' + lram_value_bin[-8] + '0' + lram_value_bin[-7] + '0' + lram_value_bin[-6] + '0' + lram_value_bin[-5] + '0' + lram_value_bin[-4] + '0' + lram_value_bin[-3] + '0' + lram_value_bin[-2] + '0' + lram_value_bin[-1] + '0'
+		lut_value = int(lut_value_bin, 2)
+
 	else:
 		lut_value = lram_value
 
