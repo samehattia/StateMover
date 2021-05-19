@@ -191,11 +191,15 @@ PLI_INT32 restore_hardware_state(p_cb_data cb_data)
 		size_t pos = module_name.find("/", module_name.find("/") + 1); // 2nd / position
 		register_name = module_name.substr(0, pos+1) + register_name;
 
-		// Get the state_element whose name is register_name
-		state_element se = state_element_map.at(register_name);
-
 		// Get the register value from the dump value
 		fs >> register_value;
+
+		// Get the state_element whose name is register_name
+		if (state_element_map.find(register_name) == state_element_map.end()) {
+			vpi_printf( (char*)"  Warning: State Element %s does not exist\n", register_name.c_str());
+			continue;
+		}
+		state_element se = state_element_map.at(register_name);
 
 		// Overwrite the register value with the value in the dump file
 		if (vpi_get(vpiType, se.elem_handle) == vpiReg) {

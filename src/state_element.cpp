@@ -124,7 +124,7 @@ static void add_state_element(state_element se, vpiHandle mod_handle) {
 
 	// Check if the state element is a SRL in the synthesized netlist
 	// Xilinx: LUTRAM module is named SRL16E and the actual memory is data
-	else if (module_name == "SRL16E" && register_name == "data") {
+	else if ((module_name == "SRL16E" || module_name == "SRLC32E") && register_name == "data") {
 
 		// Add the state element to the state element map
 		string register_full_name = vpi_get_str(vpiFullName, se.elem_handle);
