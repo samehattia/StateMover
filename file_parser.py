@@ -327,9 +327,12 @@ def parse_location_files(ll_file_name, rl_file_name, bram_enable, task_name, for
 		registers = pickle.load(infile)
 		infile.close()
 
-		infile = open(blockrams_file,'rb')
-		blockrams = pickle.load(infile)
-		infile.close()
+		if bram_enable:
+			infile = open(blockrams_file,'rb')
+			blockrams = pickle.load(infile)
+			infile.close()
+		else:
+			blockrams = {}
 
 		infile = open(lutrams_file,'rb')
 		lutrams = pickle.load(infile)
