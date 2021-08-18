@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "############################################"
+echo "Starting StateMover Console                 "
+echo "############################################"
+
+vivado -mode tcl -nolog -nojournal -source `dirname "$0"`/StateMover.tcl -quiet

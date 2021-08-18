@@ -1,0 +1,59 @@
+### default setting
+set Project     ProjDRAMMoverEth
+set Solution    SolutionX
+set Device      "xcku040-ffva1156-2-e"
+set Flow        ""
+set Clock       3.3
+set DefaultFlag 1
+
+#### main part
+
+# Project settings
+open_project $Project -reset
+
+# Add the file for synthesis
+add_files dram_mover_eth.cpp
+
+# Add testbench files for co-simulation
+#add_files -tb dram_mover_eth_test.cpp
+
+# Set top module of the design
+set_top dram_mover_eth
+
+# Solution settings
+open_solution -reset $Solution
+
+# Add library
+set_part $Device
+
+# Set the target clock period
+create_clock -period $Clock
+set_clock_uncertainty 0.3ns
+
+###############
+## Directives #
+##############
+
+#################
+# C SIMULATION
+#################
+#csim_design
+
+#############
+# SYNTHESIS #
+#############
+csynth_design
+
+#################
+# CO-SIMULATION #
+#################
+#cosim_design -rtl verilog -trace_level port
+#cosim_design -rtl verilog -tool modelsim -trace_level port
+
+##################
+# IMPLEMENTATION #
+##################
+export_design -flow impl -rtl verilog -format ip_catalog
+
+exit
+
