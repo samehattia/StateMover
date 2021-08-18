@@ -1,4 +1,0 @@
-compile_simlib -simulator modelsim -simulator_exec_path {...modelsim/bin} -family all -language all -library all -dir {/home/sameh/Xilinx/compile_simlib}
-
-To enerate netlist 
-write_verilog -mode funcsim netlist.v

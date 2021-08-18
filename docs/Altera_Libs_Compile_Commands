@@ -1,3 +1,0 @@
-quartus_sh --simlib_comp -tool modelsim -language verilog -tool_path /home/sameh/intelFPGA/17.1/modelsim_ase/bin/vsim -directory /home/sameh/intelFPGA/libraries -rtl_only
-quartus_sh --simlib_comp -tool modelsim -language verilog -tool_path /home/sameh/intelFPGA/17.1/modelsim_ase/bin/vsim -directory /home/sameh/intelFPGA/libraries -family arria10
-
