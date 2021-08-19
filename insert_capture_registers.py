@@ -7,7 +7,6 @@ import bram_capture
 import dsp_capture
 
 # https://github.com/PyHDI/Pyverilog
-sys.path.insert(0, "/home/sameh/Dropbox/UofT/Research/Work/Scripts/pyverilog-1.2.0/")
 from pyverilog.vparser.parser import parse
 
 # First argument: structural Netlist
@@ -23,8 +22,12 @@ else:
 	print("Expects at least one argument: Structural Netlist")
 	exit()
 
+# Create a simplified netlist that does not contain syntax not supported by the Pyverilog parser
+netlist_file_name_simple = netlist_file_name + '.1'
+netlist_parser.remove_unsupported_syntax(netlist_file_name, netlist_file_name_simple)
+
 # Use Pyverilog parser to parse the structural netlist
-ast, directives = parse([netlist_file_name])
+ast, directives = parse([netlist_file_name_simple])
 
 # Parse the AST returned from Pyverilog
 modules = netlist_parser.parse_ast(ast)

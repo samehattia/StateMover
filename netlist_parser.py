@@ -65,6 +65,52 @@ def create_task_module_list (modules, task_name):
 	task_modules = []
 	return create_task_module_list__(modules, task_modules, task_module)
 
+def remove_unsupported_syntax (netlist_file_name, netlist_file_name_simple):
+	""" Pyverilog does not currently support the dot operator in the module header """
+	""" It also does not skip over encrypted modules """
+	""" This function creates a simplifed netlist that does not contain these unsported syntax """
+	""" The simplified netlist is only used for construsting the AST, the original netlist is used elsewhere """
+	""" To be able to do that, this function must keep the line numbers of original and simplifed netlists the same (no added or removed lines) """
+
+	in_module_header_flag = False
+
+	# Read the netlist file
+	with open(netlist_file_name, 'r') as netlist_file:
+		with open(netlist_file_name_simple, 'w') as netlist_file_simple:
+
+			# read line by line
+			for line in netlist_file:
+
+				if not in_module_header_flag:
+					# Comment out protected modules
+					if "`pragma protect begin_protected" in line:
+						line = line.replace("`pragma", "/*`pragma")
+					elif "`pragma protect end_protected" in line:
+						line = line.replace("end_protected", "end_protected*/")
+					
+					netlist_file_simple.write(line)
+
+					# Search for the start of a module header
+					if line.startswith('module '):
+						in_module_header_flag = True
+				else:
+					# Check for dot operators in module header
+					if ' .' in line or '(.' in line:
+						dot_loc = line.find('.')
+						open_bracket_loc = line.find('(', dot_loc)
+						close_bracket_loc = line.find(')', open_bracket_loc)
+
+						global_port_name = line[dot_loc+1:open_bracket_loc]
+						local_port_name = line[open_bracket_loc+1:close_bracket_loc]
+
+						line = line.replace('.' + global_port_name + '(' + local_port_name + ')', global_port_name)
+
+					netlist_file_simple.write(line)
+
+					# Search for the end of a module header
+					if ');' in line:
+						in_module_header_flag = False
+
 def parse_netlist (netlist_file):
 	"""Our own parser. NOT completed"""
 	line_no = 1
