@@ -2,11 +2,15 @@
 
 from utils import *
 
-def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
+def insert_bram_capture_registers(modules, netlist, added_lines, top_name, task_modules):
 
 	bram_id = 0
 	# Search for modules that contain BRAMs
 	for module in modules:
+		# Check if the module is part of the task
+		if not module in task_modules:
+			continue
+			
 		for instance in module.module_instances:
 			if instance.module_name == 'RAMB36E2' or instance.module_name == 'RAMB18E2':
 				# instance = a BRAM instance, module = a module in which the BRAM is instantiated
@@ -15,6 +19,11 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 				print('\tInstance: %s' % instance.instance_name)
 				print('\tType: %s' % instance.module_name)
 
+				# Remove escaped characters from instance name
+				instance_name = instance.instance_name.replace('\\', '')
+				instance_name = instance_name.replace('.', '')
+				instance_name = instance_name.replace('^', '')
+
 				# The code to be added needs to know the following bram parameters: DOA_REG, DOB_REG, READ_WIDTH_A, READ_WIDTH_B
 				outa_registered = int(instance.instance_paramters['DOA_REG'][0])
 				outb_registered = int(instance.instance_paramters['DOB_REG'][0])
@@ -22,6 +31,12 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 				outb_width = int(instance.instance_paramters['READ_WIDTH_B'][0])
 				ina_width = int(instance.instance_paramters['WRITE_WIDTH_A'][0])
 				inb_width = int(instance.instance_paramters['WRITE_WIDTH_B'][0])
+
+				# Check if DOUTADOUT and DOUTBDOUT ports exist
+				if not ('DOUTBDOUT' in instance.instance_ports):
+					outb_registered = 0
+				if not ('DOUTADOUT' in instance.instance_ports):
+					outa_registered = 0
 
 				# Check if the BRAM is used as SDP
 				# When RAMB36E2 used as SDP, either the read or write port is a fixed width of x64 or x72
@@ -83,26 +98,26 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 						outa_width = 64
 
 					# Generate the added code for capture registers
-					added_code = generate_bram_capture_rtl_code(instance.instance_name, clk, rst, '{%s , %s}' % (concat_signal_to_string(outb), concat_signal_to_string(outa)), outa_width, ena, 1, bram_id, ROM)
+					added_code = generate_bram_capture_rtl_code(instance_name, clk, rst, '{%s , %s}' % (concat_signal_to_string(outb), concat_signal_to_string(outa)), outa_width, ena, 1, bram_id, ROM)
 
 					# Add the generated code to the file. 
 					add_generated_code(netlist, added_lines, module, added_code)
 
 					# Rename the signal connected to DOUTADOUT to [instance_name]_out[outa_width/2-1:0]
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTADOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out[%d-1:0]' % (instance.instance_name, outa_width/2))
+					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out[%d-1:0]' % (instance_name, outa_width/2))
 
 					# Rename the signal connected to DOUTBDOUT to [instance_name]_out[outa_width-1:outa_width/2]
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTBDOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out[%d-1:%d]' % (instance.instance_name, outa_width, outa_width/2))
+					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out[%d-1:%d]' % (instance_name, outa_width, outa_width/2))
 
 					if not ROM:
 						# Rename the signal connected to ENBWREN to [instance_name]_we
 						lineno = get_lineno(added_lines, instance.instance_ports['ENBWREN'][1])
-						connect_signal_port(netlist, lineno, 'ENBWREN', '%s_we' % instance.instance_name)
+						connect_signal_port(netlist, lineno, 'ENBWREN', '%s_we' % instance_name)
 
 						# Propagate signal [instance_name]_write_disable up to the top module and connect it to signal break
-						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance.instance_name, bram_id), top_name, 'break')
+						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance_name, bram_id), top_name, 'break')
 
 				# Check if DOUTBDOUT is registered
 				elif outb_registered and not outa_registered and not SDP:
@@ -123,22 +138,22 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 						outb_width = 32
 
 					# Generate the added code for capture registers
-					added_code = generate_bram_capture_rtl_code(instance.instance_name, clk, rst, out, outb_width, ena, 1, bram_id, ROM)
+					added_code = generate_bram_capture_rtl_code(instance_name, clk, rst, out, outb_width, ena, 1, bram_id, ROM)
 
 					# Add the generated code to the file. 
 					add_generated_code(netlist, added_lines, module, added_code)
 
 					# Rename the signal connected to DOUTBDOUT to [instance_name]_out
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTBDOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out' % instance.instance_name)
+					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out' % instance_name)
 
 					if not ROM:
 						# Rename the signal connected to ENARDEN to [instance_name]_we
 						lineno = get_lineno(added_lines, instance.instance_ports['ENARDEN'][1])
-						connect_signal_port(netlist, lineno, 'ENARDEN', '%s_we' % instance.instance_name)
+						connect_signal_port(netlist, lineno, 'ENARDEN', '%s_we' % instance_name)
 
 						# Propagate signal [instance_name]_write_disable up to the top module and connect it to signal break
-						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance.instance_name, bram_id), top_name, 'break')
+						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance_name, bram_id), top_name, 'break')
 
 				# Check if DOUTADOUT is registered
 				elif outa_registered and not outb_registered and not SDP:
@@ -166,22 +181,22 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 						wea_width = 4
 
 					# Generate the added code for capture registers
-					added_code = generate_bram_capture_rtl_code(instance.instance_name, clk, rst, out, outa_width, wea, wea_width, bram_id, ROM)
+					added_code = generate_bram_capture_rtl_code(instance_name, clk, rst, out, outa_width, wea, wea_width, bram_id, ROM)
 
 					# Add the generated code to the file. 
 					add_generated_code(netlist, added_lines, module, added_code)
 
 					# Rename the signal connected to DOUTADOUT to [instance_name]_out
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTADOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out' % instance.instance_name)
+					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out' % instance_name)
 
 					if not ROM:
 						# Rename the signal connected to WEA to [instance_name]_we
 						lineno = get_lineno(added_lines, instance.instance_ports['WEA'][1])
-						connect_signal_port(netlist, lineno, 'WEA', '%s_we' % instance.instance_name)
+						connect_signal_port(netlist, lineno, 'WEA', '%s_we' % instance_name)
 
 						# Propagate signal [instance_name]_write_disable up to the top module and connect it to signal break
-						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance.instance_name, bram_id), top_name, 'break')
+						propagate_input_signal_up(modules, netlist, added_lines, module, '%s_write_disable_%d' % (instance_name, bram_id), top_name, 'break')
 
 				elif outa_registered and outb_registered and not SDP:
 					print('\tRregistered A&B output')
@@ -237,28 +252,28 @@ def insert_bram_capture_registers(modules, netlist, added_lines, top_name):
 					out_width = outpb_width + outpa_width + outb_width + outa_width
 
 					# Generate the added code for capture registers
-					added_code = generate_bram_capture_rtl_code(instance.instance_name, clk, rst, out, out_width, ena, 1, bram_id, ROM)
+					added_code = generate_bram_capture_rtl_code(instance_name, clk, rst, out, out_width, ena, 1, bram_id, ROM)
 
 					# Add the generated code to the file. 
 					add_generated_code(netlist, added_lines, module, added_code)
 
 					# Rename the signal connected to DOUTADOUT to [instance_name]_out[outa_width/2-1:0]
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTADOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out[%d-1:0]' % (instance.instance_name, outa_width))
+					connect_signal_port(netlist, lineno, 'DOUTADOUT', '%s_out[%d-1:0]' % (instance_name, outa_width))
 
 					# Rename the signal connected to DOUTBDOUT to [instance_name]_out[outa_width-1:outa_width/2]
 					lineno = get_lineno(added_lines, instance.instance_ports['DOUTBDOUT'][1])
-					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out[%d-1:%d]' % (instance.instance_name, outa_width + outb_width, outa_width))
+					connect_signal_port(netlist, lineno, 'DOUTBDOUT', '%s_out[%d-1:%d]' % (instance_name, outa_width + outb_width, outa_width))
 
 					if 'DOUTPADOUTP' in instance.instance_ports:
 						# Rename the signal connected to DOUTPADOUTP to [instance_name]_out[]
 						lineno = get_lineno(added_lines, instance.instance_ports['DOUTPADOUTP'][1])
-						connect_signal_port(netlist, lineno, 'DOUTPADOUTP', '%s_out[%d-1:%d]' % (instance.instance_name, outa_width + outb_width + outpa_width, outa_width + outb_width))
+						connect_signal_port(netlist, lineno, 'DOUTPADOUTP', '%s_out[%d-1:%d]' % (instance_name, outa_width + outb_width + outpa_width, outa_width + outb_width))
 
 					if 'DOUTPBDOUTP' in instance.instance_ports:
 						# Rename the signal connected to DOUTPBDOUTP to [instance_name]_out[]
 						lineno = get_lineno(added_lines, instance.instance_ports['DOUTPBDOUTP'][1])
-						connect_signal_port(netlist, lineno, 'DOUTPBDOUTP', '%s_out[%d-1:%d]' % (instance.instance_name, outa_width + outb_width + outpa_width + outpb_width, outa_width + outb_width + outpa_width))
+						connect_signal_port(netlist, lineno, 'DOUTPBDOUTP', '%s_out[%d-1:%d]' % (instance_name, outa_width + outb_width + outpa_width + outpb_width, outa_width + outb_width + outpa_width))
 
 				# Check if the parity output port is used or not
 				if not (outa_registered and outb_registered and not SDP) and ('DOUTPADOUTP' in instance.instance_ports or 'DOUTPBDOUTP' in instance.instance_ports):

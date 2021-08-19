@@ -31,6 +31,40 @@ class InstanceClass:
 		self.instance_paramters = {}
 		self.instance_ports = {}
 
+def create_task_module_list__ (modules, task_modules, task_module):
+
+	task_modules.append(task_module)
+	
+	for instance in task_module.module_instances:
+		for module in modules:
+			if instance.module_name == module.module_name:
+				task_modules = create_task_module_list__(modules, task_modules, module)
+				break
+
+	return task_modules
+
+def create_task_module_list (modules, task_name):
+	""" Create a list of modules that are part of the module named task_name """
+	
+	# If the task_name is not specified, return all the modules
+	if task_name == '':
+		return modules
+
+	# Get the task module
+	task_module = ''
+	for module in modules:
+		if module.module_name == task_name:
+			task_module = module
+			break
+
+	# It the task_name is specified but not found, exit
+	if task_module == '':
+		print("Error: No module named " + task_name)
+		exit()
+
+	task_modules = []
+	return create_task_module_list__(modules, task_modules, task_module)
+
 def parse_netlist (netlist_file):
 	"""Our own parser. NOT completed"""
 	line_no = 1
@@ -77,7 +111,10 @@ def parse_ast (ast):
 							for p in i.children():
 
 								if p.__class__.__name__ == 'ParamArg':
-									instance.instance_paramters[p.paramname] = [p.argname.value, p.lineno]
+									if p.argname.__class__.__name__ == 'Identifier':
+										instance.instance_paramters[p.paramname] = [str(p.argname), p.lineno]
+									else:
+										instance.instance_paramters[p.paramname] = [p.argname.value, p.lineno]
 
 								elif p.__class__.__name__ == 'PortArg':
 

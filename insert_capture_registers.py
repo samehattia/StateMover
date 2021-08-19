@@ -15,6 +15,10 @@ if len(sys.argv) == 2:
 	netlist_file_name = sys.argv[1]
 	top_name = 'top'
 	task_name = ''
+elif len(sys.argv) == 3:
+	netlist_file_name = sys.argv[1]
+	top_name = 'top'
+	task_name = sys.argv[2]
 else:
 	print("Expects at least one argument: Structural Netlist")
 	exit()
@@ -26,16 +30,20 @@ ast, directives = parse([netlist_file_name])
 modules = netlist_parser.parse_ast(ast)
 print('Number of modules: %d' % len(modules))
 
+# Create a subset list of modules inside the task
+task_modules = netlist_parser.create_task_module_list(modules, task_name)
+print('Number of task modules: %d' % len(task_modules))
+
 # Read the netlist file
 with open(netlist_file_name, 'r') as netlist_file:
 	netlist_lines = netlist_file.readlines()
 
 added_lines = []
 # Add capture registers for BRAMs
-bram_capture.insert_bram_capture_registers(modules, netlist_lines, added_lines, top_name)
+bram_capture.insert_bram_capture_registers(modules, netlist_lines, added_lines, top_name, task_modules)
 
 # Add capture registers for DSPs
-dsp_capture.insert_dsp_capture_registers(modules, netlist_lines, added_lines, top_name)
+dsp_capture.insert_dsp_capture_registers(modules, netlist_lines, added_lines, top_name, task_modules)
 
 # Write the new netlist
 with open(netlist_file_name.rstrip('.v') + '_new.v', 'w') as netlist_new_file:

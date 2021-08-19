@@ -2,11 +2,15 @@
 
 from utils import *
 
-def insert_dsp_capture_registers(modules, netlist, added_lines, top_name):
+def insert_dsp_capture_registers(modules, netlist, added_lines, top_name, task_modules):
 
 	dsp_id = 0
 	# Search for modules that contain DSPs
 	for module in modules:
+		# Check if the module is part of the task
+		if not module in task_modules:
+			continue
+
 		for instance in module.module_instances:
 			if instance.module_name == 'DSP48E2':
 				# instance = a DSP instance, module = a module in which the DSP is instantiated
