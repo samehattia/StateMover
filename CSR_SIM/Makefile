@@ -1,6 +1,7 @@
 
-# Modelsim installation path
-MODELSIM = /home/sameh/modelsim.10.5c/modeltech
+# Modelsim include directory: ~/modelsim.xx.xx/modeltech/include
+MODELSIM_BIN_DIR = $(shell dirname `which vsim`)
+MODELSIM_INCLUDE_DIR = $(MODELSIM_BIN_DIR)/../include
 
 # 32-bit GCC/G++ compilation flags
 #CFLAGS = -c -g -I$(MODELSIM)/include -m32
@@ -12,7 +13,7 @@ MODELSIM = /home/sameh/modelsim.10.5c/modeltech
 #LFLAGS = -shared -E -melf_i386
 
 # 64-bit GCC/G++ compilation flags
-CFLAGS = -c -g -I$(MODELSIM)/include -fPIC
+CFLAGS = -c -g -I$(MODELSIM_INCLUDE_DIR) -fPIC
 
 # 64-bit G++ linking flags
 LFLAGS = -shared -Bsymbolic

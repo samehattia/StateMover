@@ -1,3 +1,6 @@
+# DISCLAIMER: This file is adopted from the readback_capture.tcl file provided with the XAPP1230 application note 
+# from Xilinx (https://www.xilinx.com/support/documentation/application_notes/xapp1230-configuration-readback-capture.pdf).
+
 #---------------------------------------------------------------------------------------------------------------------
 # Sample script to program and to perform readback capture on the XCKU040 - KCU105 Development Board
 #
@@ -9,16 +12,18 @@
 #
 # 1. Start vivado in tcl mode (vivado -mode tcl)
 # 2. open_hw
-# 2. Connect to the hw_server (connect_hw_server)  
-# 3. Open hardware target in jtag mode (open_hw_target -jtag_mode 1)
-# 4. Source this file
-# 5. To readback, run rdbk_jtag  
+# 3. Connect to the hw_server (connect_hw_server)  
+# 4. Open hardware target in jtag mode (open_hw_target -jtag_mode 1)
+# 5. Source this file
+# 6. To readback, run rdbk_jtag  
 #    - for xcku040 example: 
-#         rdbk_jtag c:/XAPP1230/LED_Count.rdbk 32530 00000000 1
+#         rdbk_jtag c:/XAPP1230/LED_Count.rdbk 32530 00000000 1 0
 #          where 
 #          LED_Count.rdbk is file to dump readback capture data
 #          32530: number of frames to read
+#          00000000: frame start address
 #          1: overwrite option, will overwrite file if exists (1=yes, 0=no)
+#          0: skip post-processing option, will skip the post processing step (reversing and formatting the readback data)
 #      
 #---------------------------------------------------------------------------------------------------------------------
 # Defines for readback capture routine

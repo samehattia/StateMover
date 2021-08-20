@@ -51,12 +51,13 @@ set READBACK_BRAM_START_ADDRESS 00000000
 set READBACK_BRAM_FRAME_COUNT 0
 
 # User-defined Parameters (Overwrite the default parameters)
-source SM_Param.tcl
+if [file exist SM_Param.tcl] {
+	source SM_Param.tcl
+}
 
 # StateMover Scripts
 set STATEMOVER_PATH [file dirname [file normalize [info script]]]
 set STATECONFIG_PATH "$STATEMOVER_PATH/../StateConfig"
-set STATELINK_PATH "$STATEMOVER_PATH/../StateLink"
 
 set DUMP_HW_STATE_SCRIPT "$STATECONFIG_PATH/dump_hw_state.py"
 set EMBED_SIM_STATE_SCRIPT "$STATECONFIG_PATH/embed_sim_state.py"
@@ -64,12 +65,9 @@ set PREPROCESS_SCRIPT "$STATECONFIG_PATH/preprocess_location_files.py"
 set UNMASK_SCRIPT "$STATECONFIG_PATH/disable_ram_masking.py"
 
 set DRAM_MOVER_ETH_SCRIPT "$STATEMOVER_PATH/dram_mover_eth.py"
-set PARTIAL_READBACK_SCRIPT "$STATEMOVER_PATH/readback_capture.tcl"
-
-set STATELINK_SCRIPT "$STATELINK_PATH/HW/StateLink.tcl"
+set PARTIAL_READBACK_SCRIPT "$STATEMOVER_PATH/partial_readback.tcl"
 
 source $PARTIAL_READBACK_SCRIPT
-source $STATELINK_SCRIPT
 
 proc initialize {} {
 	global DEVICE_NAME FULL_BITSTREAM FULL_LOCAL_BITSTREAM FULL_PROBES PREPROCESS_SCRIPT LOGIC_LOCATION_FILE RAM_LOCATION_FILE TASK_NAME READBACK_START_ADDRESS READBACK_FRAME_COUNT READBACK_BRAM_START_ADDRESS READBACK_BRAM_FRAME_COUNT
