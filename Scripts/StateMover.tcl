@@ -109,7 +109,7 @@ proc run {} {
 }
 
 proc stop {} {
-	global DEVICE_NAME VIO_INSTANCE CE_VIO_SIGNAL
+	global DEVICE_NAME CE_VIO_INSTANCE CE_VIO_SIGNAL
 
 	set_property OUTPUT_VALUE 0 [get_hw_probes $CE_VIO_SIGNAL -of_objects [get_hw_vios -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~$CE_VIO_INSTANCE"]]
 	commit_hw_vio [get_hw_probes $CE_VIO_SIGNAL -of_objects [get_hw_vios -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~$CE_VIO_INSTANCE"]]
