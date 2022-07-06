@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+echo "############################################"
+echo "Starting StateLink                          "
+echo "############################################"
+
+if [[ $# -eq 1 && $1 == "-jtag" ]]
+then
+	vivado -mode tcl -nolog -nojournal -source `dirname "$0"`/HW/StateLink_Init.tcl -quiet
+
+elif [[ $# -eq 1 && $1 == "-ethernet" ]]
+then
+	sudo `dirname "$0"`/HW/StateLink.py
+
+else
+	echo "Incorrect Arguments! Please specify the connection type to the FPGA board"
+	echo "Use -jtag for a JTAG connection"
+	echo "Use -ethernet for an ethernet connection"
+fi

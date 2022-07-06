@@ -1,0 +1,6 @@
+# objects
+*.o
+*.sl
+
+# Python Files
+HW/__pycache__
