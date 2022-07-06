@@ -1,0 +1,2 @@
+# StateLink
+StateLink is a debugging framework for FPGAs that allows a design-under-test to run with full visibility in a simulator and to interact with on-board I/Os and other system parts that run on an FPGA.
