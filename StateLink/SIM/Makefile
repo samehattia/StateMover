@@ -3,7 +3,7 @@
 StateMover = enable
 
 # StateMover directory (https://github.com/samehattia/StateMover)
-STATEMOVER_DIR = ~/Research/Work/StateMover
+STATEMOVER_DIR = ../..
 
 # Modelsim include directory: ~/modelsim.xx.xx/modeltech/include
 MODELSIM_BIN_DIR = $(shell dirname `which vsim`)

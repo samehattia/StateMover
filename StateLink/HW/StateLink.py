@@ -33,10 +33,6 @@ ETH_DST_ADDR = b"\x00\x0A\x35\x00\x01\x02"
 # Ethernet type for ethernet_axi transactions
 ETH_TYPE = b"\x7A\x00"
 
-# TODO parse the SM_Param.tcl to Overwrite the default parameters
-# User-defined Parameters (Overwrite the default parameters)
-# source SM_Param.tcl
-
 class transaction_counters:
 
 	AXI_WRITE_COMMAND_COUNTER = 0
@@ -44,7 +40,36 @@ class transaction_counters:
 	AXIS_WRITE_COMMAND_COUNTER = 0
 	AXIS_READ_COMMAND_COUNTER = 0
 
+# FIXME: parse the SM_Param.tcl to overwrite the default parameters
+def parse_param_file ():
+	global AXI_LINK, AXIS_TX_LINK, AXIS_RX_LINK
+
+	with open("SM_Param.tcl", 'r') as param_file:
+		
+		# Read the file
+		for line in param_file:
+
+			words = line.split()
+			
+			# Skip commented-out line
+			if len(words) == 0 or words[0][0] == '#':
+				continue
+
+			# Overwrite AXI_LINK, AXIS_TX_LINK, and AXIS_RX_LINK
+			if words[0] == "set":
+				
+				if words[1] == "AXI_LINK":
+					AXI_LINK = int(words[2].rstrip('"').lstrip('"'))
+
+				elif words[1] == "AXIS_TX_LINK":
+					AXIS_TX_LINK = int(words[2].rstrip('"').lstrip('"'))
+
+				elif words[1] == "AXIS_RX_LINK":
+					AXIS_RX_LINK = int(words[2].rstrip('"').lstrip('"'))
+
 def StateLink ():
+
+	parse_param_file()
 
 	loop = asyncio.get_event_loop()
 	counters = transaction_counters()
