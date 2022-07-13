@@ -1,5 +1,6 @@
 set AXI_LINK 1
-set AXIS_LINK 1
+set AXIS_TX_LINK 1
+set AXIS_RX_LINK 1
 
 set AXI_JTAG_AXI_INSTANCE {"*/StateLink_AXI_0/jtag_axi_0" "*/StateLink_AXI_1/jtag_axi_0"}
 set AXIS_JTAG_AXI_INSTANCE {"*/StateLink_AXIS_0/jtag_axi_1" "*/StateLink_AXIS_1/jtag_axi_1"}
@@ -48,18 +49,23 @@ proc StateLink {} {
 		setup_axi_link $axi_sim_to_hw_pipename $axi_hw_to_sim_pipename $axi_jtag_axi
 	}
 
-	for {set i 0} {$i < $AXIS_LINK} {incr i} {
+	for {set i 0} {$i < $AXIS_TX_LINK} {incr i} {
 		set axis_jtag_axi [get_hw_axis -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_JTAG_AXI_INSTANCE $i]"]
 		set axis_jtag_axi_lite [get_hw_axis -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_JTAG_AXI_LITE_INSTANCE $i]"]
-		set axis_vio [get_hw_vios -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_VIO_INSTANCE $i]"]
 
 		set axis_tx_sim_to_hw_pipename ${AXIS_TX_SIM_TO_HW_PIPENAME}_$i
 		set axis_tx_hw_to_sim_pipename ${AXIS_TX_HW_TO_SIM_PIPENAME}_$i
 
+		setup_axis_tx_link $axis_tx_sim_to_hw_pipename $axis_tx_hw_to_sim_pipename $axis_jtag_axi $axis_jtag_axi_lite
+	}
+
+	for {set i 0} {$i < $AXIS_RX_LINK} {incr i} {
+		set axis_jtag_axi [get_hw_axis -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_JTAG_AXI_INSTANCE $i]"]
+		set axis_jtag_axi_lite [get_hw_axis -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_JTAG_AXI_LITE_INSTANCE $i]"]
+		set axis_vio [get_hw_vios -of_objects [get_hw_devices $DEVICE_NAME] -filter "CELL_NAME=~[lindex $AXIS_VIO_INSTANCE $i]"]
+
 		set axis_rx_sim_to_hw_pipename ${AXIS_RX_SIM_TO_HW_PIPENAME}_$i
 		set axis_rx_hw_to_sim_pipename ${AXIS_RX_HW_TO_SIM_PIPENAME}_$i
-
-		setup_axis_tx_link $axis_tx_sim_to_hw_pipename $axis_tx_hw_to_sim_pipename $axis_jtag_axi $axis_jtag_axi_lite
 
 		start_axis_rx_process $axis_rx_sim_to_hw_pipename $axis_rx_hw_to_sim_pipename $axis_jtag_axi $axis_jtag_axi_lite $axis_vio
 	}
@@ -72,7 +78,7 @@ proc StateLink {} {
 		puts "$AXI_READ_COMMAND_COUNTER AXI Read Transactions"	
 	}
 
-	if { $AXIS_LINK ne 0 } {
+	if { $AXIS_TX_LINK ne 0 } {
 		puts "$AXIS_WRITE_COMMAND_COUNTER AXIS Send Transactions"	
 	}
 }
