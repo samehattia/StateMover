@@ -22,7 +22,8 @@ module interruption_logic #(
 	(* dont_touch = "true" *) output clk_4,*/
 	output reg [NUM_TI_WRAPPERS-1:0] stop_req,
 	input [NUM_TI_WRAPPERS-1:0] stop_ack,
-	output reg decouple
+	output reg decouple,
+	input user_signal
 );
 
 	reg [31:0] counter;
@@ -95,7 +96,8 @@ module interruption_logic #(
 			end
 			else
 			begin
-				counter <= counter + 1;
+				if (user_signal)
+					counter <= counter + 1;
 				break <= 1'b0;
 			end
 		end
