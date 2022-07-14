@@ -53,7 +53,7 @@ csynth_design
 ##################
 # IMPLEMENTATION #
 ##################
-export_design -flow impl -rtl verilog -format ip_catalog
+export_design -rtl verilog -format ip_catalog
 
 exit
 

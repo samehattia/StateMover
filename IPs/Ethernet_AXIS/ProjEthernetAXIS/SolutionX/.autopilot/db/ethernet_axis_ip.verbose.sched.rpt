@@ -1,0 +1,392 @@
+
+
+================================================================
+== Vivado HLS Report for 'ethernet_axis_ip'
+================================================================
+* Date:           Thu Jul 14 17:22:16 2022
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        ProjEthernetAXIS
+* Solution:       SolutionX
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   2.00|     3.120|        0.30|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.12>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%fsm_state_V_load = load i2* @fsm_state_V, align 1" [ethernet_axis.cpp:66]   --->   Operation 5 'load' 'fsm_state_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%rx_len_V_load = load i16* @rx_len_V, align 2" [ethernet_axis.cpp:256]   --->   Operation 6 'load' 'rx_len_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%rx_ready_V_load = load i1* @rx_ready_V, align 1" [ethernet_axis.cpp:74]   --->   Operation 7 'load' 'rx_ready_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_Val2_2 = load i48* @dest_address_V, align 8" [ethernet_axis.cpp:178]   --->   Operation 8 'load' 'p_Val2_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%p_Val2_1 = load i48* @src_address_V, align 8" [ethernet_axis.cpp:92]   --->   Operation 9 'load' 'p_Val2_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_Val2_3 = load i16* @mac_type_V, align 2" [ethernet_axis.cpp:187]   --->   Operation 10 'load' 'p_Val2_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%ethernet_axi_id_V_lo = load i8* @ethernet_axi_id_V, align 1" [ethernet_axis.cpp:188]   --->   Operation 11 'load' 'ethernet_axi_id_V_lo' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.90ns)   --->   "switch i2 %fsm_state_V_load, label %ethernet_axis_ip.exit [
+    i2 0, label %0
+    i2 1, label %2
+    i2 -2, label %11
+    i2 -1, label %15
+  ]" [ethernet_axis.cpp:66]   --->   Operation 12 'switch' <Predicate = true> <Delay = 0.90>
+ST_1 : Operation 13 [1/1] (0.83ns)   --->   "store i1 false, i1* @rx_ready_V, align 1" [ethernet_axis.cpp:222]   --->   Operation 13 'store' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.83>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%t_V_2 = load i2* @send_rx_word_count_V, align 1" [ethernet_axis.cpp:224]   --->   Operation 14 'load' 't_V_2' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.90ns)   --->   "switch i2 %t_V_2, label %45 [
+    i2 0, label %16
+    i2 1, label %17
+    i2 -2, label %18
+  ]" [ethernet_axis.cpp:224]   --->   Operation 15 'switch' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.90>
+ST_1 : Operation 16 [1/1] (0.69ns)   --->   "%empty_15 = call { i64, i8, i1 } @_ssdm_op_Read.ap_fifo.volatile.i64P.i8P.i1P(i64* @rx_fifo_V_data_V, i8* @rx_fifo_V_keep_V, i1* @rx_fifo_V_last_V)" [ethernet_axis.cpp:249]   --->   Operation 16 'read' 'empty_15' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.69> <Core = "FIFO_LUTRAM">   --->   Core 35 'FIFO_LUTRAM' <Latency = 0> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tmp_data_V_4 = extractvalue { i64, i8, i1 } %empty_15, 0" [ethernet_axis.cpp:249]   --->   Operation 17 'extractvalue' 'tmp_data_V_4' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%tmp_keep_V = extractvalue { i64, i8, i1 } %empty_15, 1" [ethernet_axis.cpp:249]   --->   Operation 18 'extractvalue' 'tmp_keep_V' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_last_V = extractvalue { i64, i8, i1 } %empty_15, 2" [ethernet_axis.cpp:249]   --->   Operation 19 'extractvalue' 'tmp_last_V' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "br i1 %tmp_last_V, label %19, label %42" [ethernet_axis.cpp:254]   --->   Operation 20 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (1.41ns)   --->   "%tmp_5_i = add i16 %rx_len_V_load, 8" [ethernet_axis.cpp:273]   --->   Operation 21 'add' 'tmp_5_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & !tmp_last_V)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (1.26ns)   --->   "store i16 %tmp_5_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:273]   --->   Operation 22 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & !tmp_last_V)> <Delay = 1.26>
+ST_1 : Operation 23 [1/1] (0.78ns)   --->   "%tmp_4_i = icmp eq i8 %tmp_keep_V, -1" [ethernet_axis.cpp:255]   --->   Operation 23 'icmp' 'tmp_4_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "br i1 %tmp_4_i, label %20, label %21" [ethernet_axis.cpp:255]   --->   Operation 24 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.78ns)   --->   "%tmp_10_i = icmp eq i8 %tmp_keep_V, 127" [ethernet_axis.cpp:257]   --->   Operation 25 'icmp' 'tmp_10_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "br i1 %tmp_10_i, label %22, label %23" [ethernet_axis.cpp:257]   --->   Operation 26 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.78ns)   --->   "%tmp_14_i = icmp eq i8 %tmp_keep_V, 63" [ethernet_axis.cpp:259]   --->   Operation 27 'icmp' 'tmp_14_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "br i1 %tmp_14_i, label %24, label %25" [ethernet_axis.cpp:259]   --->   Operation 28 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i)> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.78ns)   --->   "%tmp_17_i = icmp eq i8 %tmp_keep_V, 31" [ethernet_axis.cpp:261]   --->   Operation 29 'icmp' 'tmp_17_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "br i1 %tmp_17_i, label %26, label %27" [ethernet_axis.cpp:261]   --->   Operation 30 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.78ns)   --->   "%tmp_20_i = icmp eq i8 %tmp_keep_V, 15" [ethernet_axis.cpp:263]   --->   Operation 31 'icmp' 'tmp_20_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "br i1 %tmp_20_i, label %28, label %29" [ethernet_axis.cpp:263]   --->   Operation 32 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i)> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.78ns)   --->   "%tmp_23_i = icmp eq i8 %tmp_keep_V, 7" [ethernet_axis.cpp:265]   --->   Operation 33 'icmp' 'tmp_23_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "br i1 %tmp_23_i, label %30, label %31" [ethernet_axis.cpp:265]   --->   Operation 34 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i)> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.78ns)   --->   "%tmp_26_i = icmp eq i8 %tmp_keep_V, 3" [ethernet_axis.cpp:267]   --->   Operation 35 'icmp' 'tmp_26_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "br i1 %tmp_26_i, label %32, label %33" [ethernet_axis.cpp:267]   --->   Operation 36 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i)> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.78ns)   --->   "%tmp_29_i = icmp eq i8 %tmp_keep_V, 1" [ethernet_axis.cpp:269]   --->   Operation 37 'icmp' 'tmp_29_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "br i1 %tmp_29_i, label %34, label %._crit_edge1372.i" [ethernet_axis.cpp:269]   --->   Operation 38 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i)> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (1.41ns)   --->   "%tmp_31_i = add i16 %rx_len_V_load, 1" [ethernet_axis.cpp:270]   --->   Operation 39 'add' 'tmp_31_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i & tmp_29_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 40 [1/1] (1.26ns)   --->   "store i16 %tmp_31_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:270]   --->   Operation 40 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i & tmp_29_i)> <Delay = 1.26>
+ST_1 : Operation 41 [1/1] (1.41ns)   --->   "%tmp_28_i = add i16 %rx_len_V_load, 2" [ethernet_axis.cpp:268]   --->   Operation 41 'add' 'tmp_28_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & tmp_26_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 42 [1/1] (1.26ns)   --->   "store i16 %tmp_28_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:268]   --->   Operation 42 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & tmp_26_i)> <Delay = 1.26>
+ST_1 : Operation 43 [1/1] (1.41ns)   --->   "%tmp_25_i = add i16 %rx_len_V_load, 3" [ethernet_axis.cpp:266]   --->   Operation 43 'add' 'tmp_25_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & tmp_23_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 44 [1/1] (1.26ns)   --->   "store i16 %tmp_25_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:266]   --->   Operation 44 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & tmp_23_i)> <Delay = 1.26>
+ST_1 : Operation 45 [1/1] (1.41ns)   --->   "%tmp_22_i = add i16 %rx_len_V_load, 4" [ethernet_axis.cpp:264]   --->   Operation 45 'add' 'tmp_22_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & tmp_20_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 46 [1/1] (1.26ns)   --->   "store i16 %tmp_22_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:264]   --->   Operation 46 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & tmp_20_i)> <Delay = 1.26>
+ST_1 : Operation 47 [1/1] (1.41ns)   --->   "%tmp_19_i = add i16 %rx_len_V_load, 5" [ethernet_axis.cpp:262]   --->   Operation 47 'add' 'tmp_19_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & tmp_17_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 48 [1/1] (1.26ns)   --->   "store i16 %tmp_19_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:262]   --->   Operation 48 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & tmp_17_i)> <Delay = 1.26>
+ST_1 : Operation 49 [1/1] (1.41ns)   --->   "%tmp_16_i = add i16 %rx_len_V_load, 6" [ethernet_axis.cpp:260]   --->   Operation 49 'add' 'tmp_16_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & tmp_14_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 50 [1/1] (1.26ns)   --->   "store i16 %tmp_16_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:260]   --->   Operation 50 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & tmp_14_i)> <Delay = 1.26>
+ST_1 : Operation 51 [1/1] (1.41ns)   --->   "%tmp_13_i = add i16 %rx_len_V_load, 7" [ethernet_axis.cpp:258]   --->   Operation 51 'add' 'tmp_13_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & tmp_10_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 52 [1/1] (1.26ns)   --->   "store i16 %tmp_13_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:258]   --->   Operation 52 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & tmp_10_i)> <Delay = 1.26>
+ST_1 : Operation 53 [1/1] (1.41ns)   --->   "%tmp_7_i = add i16 %rx_len_V_load, 8" [ethernet_axis.cpp:256]   --->   Operation 53 'add' 'tmp_7_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & tmp_4_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 54 [1/1] (1.26ns)   --->   "store i16 %tmp_7_i, i16* @rx_len_V, align 2" [ethernet_axis.cpp:256]   --->   Operation 54 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & tmp_4_i)> <Delay = 1.26>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "br i1 %tmp_last_V, label %44, label %._crit_edge1373.i" [ethernet_axis.cpp:275]   --->   Operation 55 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (1.00ns)   --->   "store i2 -1, i2* @send_rx_word_count_V, align 1" [ethernet_axis.cpp:276]   --->   Operation 56 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V)> <Delay = 1.00>
+ST_1 : Operation 57 [1/1] (1.00ns)   --->   "br label %46" [ethernet_axis.cpp:277]   --->   Operation 57 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2)> <Delay = 1.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%p_Result_16_i = call i32 @_ssdm_op_PartSelect.i32.i48.i32.i32(i48 %p_Val2_2, i32 16, i32 47)" [ethernet_axis.cpp:236]   --->   Operation 58 'partselect' 'p_Result_16_i' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 1)> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_7 = trunc i16 %p_Val2_3 to i8" [ethernet_axis.cpp:238]   --->   Operation 59 'trunc' 'tmp_7' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 1)> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%p_Result_12 = call i64 @_ssdm_op_BitConcatenate.i64.i8.i8.i8.i8.i32(i8 82, i8 %ethernet_axi_id_V_lo, i8 %ethernet_axi_id_V_lo, i8 %tmp_7, i32 %p_Result_16_i)" [ethernet_axis.cpp:241]   --->   Operation 60 'bitconcatenate' 'p_Result_12' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 1)> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (1.00ns)   --->   "store i2 -2, i2* @send_rx_word_count_V, align 1" [ethernet_axis.cpp:244]   --->   Operation 61 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 1)> <Delay = 1.00>
+ST_1 : Operation 62 [1/1] (1.00ns)   --->   "br label %46" [ethernet_axis.cpp:245]   --->   Operation 62 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 1)> <Delay = 1.00>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%tmp_6 = trunc i48 %p_Val2_2 to i16" [ethernet_axis.cpp:228]   --->   Operation 63 'trunc' 'tmp_6' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 0)> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%p_Result_11 = call i64 @_ssdm_op_BitConcatenate.i64.i16.i48(i16 %tmp_6, i48 %p_Val2_1)" [ethernet_axis.cpp:228]   --->   Operation 64 'bitconcatenate' 'p_Result_11' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 0)> <Delay = 0.00>
+ST_1 : Operation 65 [1/1] (1.00ns)   --->   "store i2 1, i2* @send_rx_word_count_V, align 1" [ethernet_axis.cpp:231]   --->   Operation 65 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 0)> <Delay = 1.00>
+ST_1 : Operation 66 [1/1] (1.00ns)   --->   "br label %46" [ethernet_axis.cpp:232]   --->   Operation 66 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 0)> <Delay = 1.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%p_Result_13 = call i64 @_ssdm_op_BitConcatenate.i64.i48.i16(i48 -36637162668032, i16 %rx_len_V_load)" [ethernet_axis.cpp:283]   --->   Operation 67 'bitconcatenate' 'p_Result_13' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 3)> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (1.00ns)   --->   "store i2 0, i2* @send_rx_word_count_V, align 1" [ethernet_axis.cpp:287]   --->   Operation 68 'store' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 3)> <Delay = 1.00>
+ST_1 : Operation 69 [1/1] (1.00ns)   --->   "br label %46" [ethernet_axis.cpp:288]   --->   Operation 69 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 3)> <Delay = 1.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%tmp_last_V_3 = phi i1 [ true, %45 ], [ false, %._crit_edge1373.i ], [ false, %17 ], [ false, %16 ]"   --->   Operation 70 'phi' 'tmp_last_V_3' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns) (grouped into LUT with out node storemerge_cast_i)   --->   "%not_tmp_last_V_9_i = xor i1 %tmp_last_V_3, true" [ethernet_axis.cpp:291]   --->   Operation 71 'xor' 'not_tmp_last_V_9_i' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 72 [1/1] (0.41ns) (out node of the LUT)   --->   "%storemerge_cast_i = select i1 %not_tmp_last_V_9_i, i2 -1, i2 0" [ethernet_axis.cpp:291]   --->   Operation 72 'select' 'storemerge_cast_i' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 73 [1/1] (1.00ns)   --->   "store i2 %storemerge_cast_i, i2* @fsm_state_V, align 1" [ethernet_axis.cpp:292]   --->   Operation 73 'store' <Predicate = (fsm_state_V_load == 3)> <Delay = 1.00>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%t_V_1 = load i2* @send_tx_word_count_V, align 1" [ethernet_axis.cpp:174]   --->   Operation 74 'load' 't_V_1' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00>
+ST_1 : Operation 75 [1/1] (0.91ns)   --->   "switch i2 %t_V_1, label %._crit_edge1371.i [
+    i2 0, label %12
+    i2 1, label %13
+    i2 -2, label %14
+  ]" [ethernet_axis.cpp:174]   --->   Operation 75 'switch' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.91>
+ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%axis_len_V_load = load i16* @axis_len_V, align 2" [ethernet_axis.cpp:197]   --->   Operation 76 'load' 'axis_len_V_load' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 2)> <Delay = 0.00>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%p_Result_10 = call i64 @_ssdm_op_BitConcatenate.i64.i48.i16(i48 -36637162668032, i16 %axis_len_V_load)" [ethernet_axis.cpp:199]   --->   Operation 77 'bitconcatenate' 'p_Result_10' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 2)> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.91ns)   --->   "store i2 0, i2* @send_tx_word_count_V, align 1" [ethernet_axis.cpp:203]   --->   Operation 78 'store' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 2)> <Delay = 0.91>
+ST_1 : Operation 79 [1/1] (0.91ns)   --->   "br label %._crit_edge1371.i" [ethernet_axis.cpp:204]   --->   Operation 79 'br' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 2)> <Delay = 0.91>
+ST_1 : Operation 80 [1/1] (0.00ns)   --->   "%p_Result_10_i = call i32 @_ssdm_op_PartSelect.i32.i48.i32.i32(i48 %p_Val2_2, i32 16, i32 47)" [ethernet_axis.cpp:186]   --->   Operation 80 'partselect' 'p_Result_10_i' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 1)> <Delay = 0.00>
+ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%p_Result_9 = call i64 @_ssdm_op_BitConcatenate.i64.i8.i8.i16.i32(i8 87, i8 %ethernet_axi_id_V_lo, i16 %p_Val2_3, i32 %p_Result_10_i)" [ethernet_axis.cpp:189]   --->   Operation 81 'bitconcatenate' 'p_Result_9' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 1)> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.91ns)   --->   "store i2 -2, i2* @send_tx_word_count_V, align 1" [ethernet_axis.cpp:192]   --->   Operation 82 'store' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 1)> <Delay = 0.91>
+ST_1 : Operation 83 [1/1] (0.91ns)   --->   "br label %._crit_edge1371.i" [ethernet_axis.cpp:193]   --->   Operation 83 'br' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 1)> <Delay = 0.91>
+ST_1 : Operation 84 [1/1] (0.00ns)   --->   "%tmp_5 = trunc i48 %p_Val2_2 to i16" [ethernet_axis.cpp:178]   --->   Operation 84 'trunc' 'tmp_5' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 0)> <Delay = 0.00>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%p_Result_8 = call i64 @_ssdm_op_BitConcatenate.i64.i16.i48(i16 %tmp_5, i48 %p_Val2_1)" [ethernet_axis.cpp:178]   --->   Operation 85 'bitconcatenate' 'p_Result_8' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 0)> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.91ns)   --->   "store i2 1, i2* @send_tx_word_count_V, align 1" [ethernet_axis.cpp:181]   --->   Operation 86 'store' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 0)> <Delay = 0.91>
+ST_1 : Operation 87 [1/1] (0.91ns)   --->   "br label %._crit_edge1371.i" [ethernet_axis.cpp:182]   --->   Operation 87 'br' <Predicate = (fsm_state_V_load == 2 & t_V_1 == 0)> <Delay = 0.91>
+ST_1 : Operation 88 [1/1] (0.00ns)   --->   "%tmp_last_V_1 = phi i1 [ undef, %11 ], [ true, %14 ], [ false, %13 ], [ false, %12 ]"   --->   Operation 88 'phi' 'tmp_last_V_1' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00>
+ST_1 : Operation 89 [1/1] (0.41ns)   --->   "%storemerge1_i = select i1 %tmp_last_V_1, i2 0, i2 -2" [ethernet_axis.cpp:207]   --->   Operation 89 'select' 'storemerge1_i' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 90 [1/1] (1.00ns)   --->   "store i2 %storemerge1_i, i2* @fsm_state_V, align 1" [ethernet_axis.cpp:208]   --->   Operation 90 'store' <Predicate = (fsm_state_V_load == 2)> <Delay = 1.00>
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "%empty = call { i64, i8, i1 } @_ssdm_op_Read.axis.volatile.i64P.i8P.i1P(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V)" [ethernet_axis.cpp:86]   --->   Operation 91 'read' 'empty' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 92 [1/1] (0.00ns)   --->   "%tmp_data_V_2 = extractvalue { i64, i8, i1 } %empty, 0" [ethernet_axis.cpp:86]   --->   Operation 92 'extractvalue' 'tmp_data_V_2' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "%tmp_keep_V_1 = extractvalue { i64, i8, i1 } %empty, 1" [ethernet_axis.cpp:86]   --->   Operation 93 'extractvalue' 'tmp_keep_V_1' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%tmp_last_V_2 = extractvalue { i64, i8, i1 } %empty, 2" [ethernet_axis.cpp:86]   --->   Operation 94 'extractvalue' 'tmp_last_V_2' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 95 [1/1] (0.00ns)   --->   "%t_V = load i2* @word_count_V, align 1" [ethernet_axis.cpp:88]   --->   Operation 95 'load' 't_V' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 96 [1/1] (0.00ns)   --->   "%axi_command_V_load = load i8* @axi_command_V, align 1" [ethernet_axis.cpp:113]   --->   Operation 96 'load' 'axi_command_V_load' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%tx_len_V_load = load i16* @tx_len_V, align 2" [ethernet_axis.cpp:121]   --->   Operation 97 'load' 'tx_len_V_load' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 98 [1/1] (0.90ns)   --->   "switch i2 %t_V, label %7 [
+    i2 0, label %3
+    i2 1, label %4
+    i2 -2, label %5
+  ]" [ethernet_axis.cpp:88]   --->   Operation 98 'switch' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.90>
+ST_1 : Operation 99 [1/1] (0.00ns)   --->   "%tmp_4 = trunc i64 %tmp_data_V_2 to i16" [ethernet_axis.cpp:109]   --->   Operation 99 'trunc' 'tmp_4' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.00>
+ST_1 : Operation 100 [1/1] (0.00ns)   --->   "store i16 %tmp_4, i16* @axis_len_V, align 2" [ethernet_axis.cpp:109]   --->   Operation 100 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.00>
+ST_1 : Operation 101 [1/1] (0.83ns)   --->   "store i16 %tmp_4, i16* @tx_len_V, align 2" [ethernet_axis.cpp:111]   --->   Operation 101 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.83>
+ST_1 : Operation 102 [1/1] (0.78ns)   --->   "%tmp_8_i = icmp eq i8 %axi_command_V_load, 82" [ethernet_axis.cpp:113]   --->   Operation 102 'icmp' 'tmp_8_i' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 103 [1/1] (0.00ns)   --->   "br i1 %tmp_8_i, label %6, label %._crit_edge1359.i" [ethernet_axis.cpp:113]   --->   Operation 103 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.00>
+ST_1 : Operation 104 [1/1] (0.83ns)   --->   "store i1 true, i1* @rx_ready_V, align 1" [ethernet_axis.cpp:114]   --->   Operation 104 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 2 & tmp_8_i)> <Delay = 0.83>
+ST_1 : Operation 105 [1/1] (0.91ns)   --->   "br label %_ifconv" [ethernet_axis.cpp:117]   --->   Operation 105 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 2)> <Delay = 0.91>
+ST_1 : Operation 106 [1/1] (0.00ns)   --->   "%tmp_3 = trunc i64 %tmp_data_V_2 to i32" [ethernet_axis.cpp:99]   --->   Operation 106 'trunc' 'tmp_3' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 107 [1/1] (0.00ns)   --->   "%p_Result_1 = call i48 @llvm.part.set.i48.i32(i48 %p_Val2_1, i32 %tmp_3, i32 16, i32 47)" [ethernet_axis.cpp:99]   --->   Operation 107 'partset' 'p_Result_1' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 108 [1/1] (0.83ns)   --->   "store i48 %p_Result_1, i48* @src_address_V, align 8" [ethernet_axis.cpp:99]   --->   Operation 108 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.83>
+ST_1 : Operation 109 [1/1] (0.00ns)   --->   "%p_Result_4_i = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %tmp_data_V_2, i32 32, i32 47)" [ethernet_axis.cpp:100]   --->   Operation 109 'partselect' 'p_Result_4_i' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 110 [1/1] (0.00ns)   --->   "store i16 %p_Result_4_i, i16* @mac_type_V, align 2" [ethernet_axis.cpp:100]   --->   Operation 110 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 111 [1/1] (0.00ns)   --->   "%p_Result_5_i = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp_data_V_2, i32 48, i32 55)" [ethernet_axis.cpp:101]   --->   Operation 111 'partselect' 'p_Result_5_i' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 112 [1/1] (0.00ns)   --->   "store i8 %p_Result_5_i, i8* @ethernet_axi_id_V, align 1" [ethernet_axis.cpp:101]   --->   Operation 112 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 113 [1/1] (0.00ns)   --->   "%p_Result_6_i = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp_data_V_2, i32 56, i32 63)" [ethernet_axis.cpp:102]   --->   Operation 113 'partselect' 'p_Result_6_i' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 114 [1/1] (0.00ns)   --->   "store i8 %p_Result_6_i, i8* @axi_command_V, align 1" [ethernet_axis.cpp:102]   --->   Operation 114 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 115 [1/1] (0.91ns)   --->   "br label %_ifconv" [ethernet_axis.cpp:105]   --->   Operation 115 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 1)> <Delay = 0.91>
+ST_1 : Operation 116 [1/1] (0.00ns)   --->   "%tmp_2 = trunc i64 %tmp_data_V_2 to i48" [ethernet_axis.cpp:91]   --->   Operation 116 'trunc' 'tmp_2' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.00>
+ST_1 : Operation 117 [1/1] (0.00ns)   --->   "store i48 %tmp_2, i48* @dest_address_V, align 8" [ethernet_axis.cpp:91]   --->   Operation 117 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.00>
+ST_1 : Operation 118 [1/1] (0.00ns)   --->   "%p_Result_1_i = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %tmp_data_V_2, i32 48, i32 63)" [ethernet_axis.cpp:92]   --->   Operation 118 'partselect' 'p_Result_1_i' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.00>
+ST_1 : Operation 119 [1/1] (0.00ns)   --->   "%p_Result_s = call i48 @llvm.part.set.i48.i16(i48 %p_Val2_1, i16 %p_Result_1_i, i32 0, i32 15)" [ethernet_axis.cpp:92]   --->   Operation 119 'partset' 'p_Result_s' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.00>
+ST_1 : Operation 120 [1/1] (0.83ns)   --->   "store i48 %p_Result_s, i48* @src_address_V, align 8" [ethernet_axis.cpp:92]   --->   Operation 120 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.83>
+ST_1 : Operation 121 [1/1] (0.91ns)   --->   "br label %_ifconv" [ethernet_axis.cpp:95]   --->   Operation 121 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 0)> <Delay = 0.91>
+ST_1 : Operation 122 [1/1] (0.78ns)   --->   "%tmp_9_i = icmp ne i8 %axi_command_V_load, 87" [ethernet_axis.cpp:121]   --->   Operation 122 'icmp' 'tmp_9_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 123 [1/1] (1.09ns)   --->   "%tmp_i = icmp eq i16 %tx_len_V_load, 0" [ethernet_axis.cpp:121]   --->   Operation 123 'icmp' 'tmp_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 124 [1/1] (0.33ns)   --->   "%or_cond_i = or i1 %tmp_9_i, %tmp_i" [ethernet_axis.cpp:121]   --->   Operation 124 'or' 'or_cond_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 125 [1/1] (0.00ns)   --->   "br i1 %or_cond_i, label %._crit_edge1360.i, label %8" [ethernet_axis.cpp:121]   --->   Operation 125 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3)> <Delay = 0.00>
+ST_1 : Operation 126 [1/1] (1.09ns)   --->   "%tmp_6_i = icmp ugt i16 %tx_len_V_load, 8" [ethernet_axis.cpp:122]   --->   Operation 126 'icmp' 'tmp_6_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 127 [1/1] (0.00ns)   --->   "br i1 %tmp_6_i, label %9, label %_ifconv1" [ethernet_axis.cpp:122]   --->   Operation 127 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i)> <Delay = 0.00>
+ST_1 : Operation 128 [1/1] (1.09ns)   --->   "%tmp_12_i = icmp eq i16 %tx_len_V_load, 8" [ethernet_axis.cpp:134]   --->   Operation 128 'icmp' 'tmp_12_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 129 [1/1] (1.09ns)   --->   "%tmp_15_i = icmp eq i16 %tx_len_V_load, 7" [ethernet_axis.cpp:136]   --->   Operation 129 'icmp' 'tmp_15_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 130 [1/1] (1.09ns)   --->   "%tmp_18_i = icmp eq i16 %tx_len_V_load, 6" [ethernet_axis.cpp:138]   --->   Operation 130 'icmp' 'tmp_18_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 131 [1/1] (1.09ns)   --->   "%tmp_21_i = icmp eq i16 %tx_len_V_load, 5" [ethernet_axis.cpp:140]   --->   Operation 131 'icmp' 'tmp_21_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 132 [1/1] (1.09ns)   --->   "%tmp_24_i = icmp eq i16 %tx_len_V_load, 4" [ethernet_axis.cpp:142]   --->   Operation 132 'icmp' 'tmp_24_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 133 [1/1] (1.09ns)   --->   "%tmp_27_i = icmp eq i16 %tx_len_V_load, 3" [ethernet_axis.cpp:144]   --->   Operation 133 'icmp' 'tmp_27_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 134 [1/1] (1.09ns)   --->   "%tmp_30_i = icmp eq i16 %tx_len_V_load, 2" [ethernet_axis.cpp:146]   --->   Operation 134 'icmp' 'tmp_30_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 135 [1/1] (0.83ns)   --->   "br label %10"   --->   Operation 135 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.83>
+ST_1 : Operation 136 [1/1] (1.41ns)   --->   "%tmp_11_i = add i16 %tx_len_V_load, -8" [ethernet_axis.cpp:128]   --->   Operation 136 'add' 'tmp_11_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & tmp_6_i)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 137 [1/1] (0.83ns)   --->   "br label %10" [ethernet_axis.cpp:129]   --->   Operation 137 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & tmp_6_i)> <Delay = 0.83>
+ST_1 : Operation 138 [1/1] (0.00ns)   --->   "%storemerge3_i = phi i16 [ 0, %_ifconv1 ], [ %tmp_11_i, %9 ]" [ethernet_axis.cpp:128]   --->   Operation 138 'phi' 'storemerge3_i' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i)> <Delay = 0.00>
+ST_1 : Operation 139 [1/1] (0.83ns)   --->   "store i16 %storemerge3_i, i16* @tx_len_V, align 2" [ethernet_axis.cpp:128]   --->   Operation 139 'store' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i)> <Delay = 0.83>
+ST_1 : Operation 140 [1/1] (0.91ns)   --->   "br label %_ifconv" [ethernet_axis.cpp:155]   --->   Operation 140 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3)> <Delay = 0.91>
+ST_1 : Operation 141 [1/1] (0.00ns) (grouped into LUT with out node word_count_V_flag_1_s)   --->   "%word_count_V_flag_i = phi i1 [ false, %._crit_edge1360.i ], [ true, %._crit_edge1359.i ], [ true, %4 ], [ true, %3 ]"   --->   Operation 141 'phi' 'word_count_V_flag_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 142 [1/1] (0.00ns) (grouped into LUT with out node word_count_V_new_1_i)   --->   "%word_count_V_new_i = phi i2 [ undef, %._crit_edge1360.i ], [ -1, %._crit_edge1359.i ], [ -2, %4 ], [ 1, %3 ]"   --->   Operation 142 'phi' 'word_count_V_new_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 143 [1/1] (0.00ns)   --->   "%axi_command_V_loc_i = phi i8 [ %axi_command_V_load, %._crit_edge1360.i ], [ %axi_command_V_load, %._crit_edge1359.i ], [ %p_Result_6_i, %4 ], [ %axi_command_V_load, %3 ]" [ethernet_axis.cpp:113]   --->   Operation 143 'phi' 'axi_command_V_loc_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 144 [1/1] (0.78ns)   --->   "%tmp_32_i = icmp eq i8 %axi_command_V_loc_i, 87" [ethernet_axis.cpp:165]   --->   Operation 144 'icmp' 'tmp_32_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 145 [1/1] (0.00ns) (grouped into LUT with out node storemerge5_i)   --->   "%storemerge4_i = select i1 %tmp_32_i, i2 -2, i2 0" [ethernet_axis.cpp:165]   --->   Operation 145 'select' 'storemerge4_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 146 [1/1] (0.33ns) (out node of the LUT)   --->   "%word_count_V_flag_1_s = or i1 %tmp_last_V_2, %word_count_V_flag_i" [ethernet_axis.cpp:86]   --->   Operation 146 'or' 'word_count_V_flag_1_s' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 147 [1/1] (0.41ns) (out node of the LUT)   --->   "%word_count_V_new_1_i = select i1 %tmp_last_V_2, i2 0, i2 %word_count_V_new_i" [ethernet_axis.cpp:86]   --->   Operation 147 'select' 'word_count_V_new_1_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 148 [1/1] (0.41ns) (out node of the LUT)   --->   "%storemerge5_i = select i1 %tmp_last_V_2, i2 %storemerge4_i, i2 1" [ethernet_axis.cpp:86]   --->   Operation 148 'select' 'storemerge5_i' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 149 [1/1] (1.00ns)   --->   "store i2 %storemerge5_i, i2* @fsm_state_V, align 1" [ethernet_axis.cpp:164]   --->   Operation 149 'store' <Predicate = (fsm_state_V_load == 1)> <Delay = 1.00>
+ST_1 : Operation 150 [1/1] (0.00ns)   --->   "br i1 %word_count_V_flag_1_s, label %mergeST.i, label %._crit_edge1370.critedge.new.i" [ethernet_axis.cpp:86]   --->   Operation 150 'br' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_1 : Operation 151 [1/1] (0.00ns)   --->   "store i2 %word_count_V_new_1_i, i2* @word_count_V, align 1" [ethernet_axis.cpp:94]   --->   Operation 151 'store' <Predicate = (fsm_state_V_load == 1 & word_count_V_flag_1_s)> <Delay = 0.00>
+ST_1 : Operation 152 [1/1] (1.26ns)   --->   "store i16 0, i16* @rx_len_V, align 2" [ethernet_axis.cpp:69]   --->   Operation 152 'store' <Predicate = (fsm_state_V_load == 0)> <Delay = 1.26>
+ST_1 : Operation 153 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.axis.i64P.i8P.i1P(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, i32 1)" [ethernet_axis.cpp:71]   --->   Operation 153 'nbreadreq' 'tmp' <Predicate = (fsm_state_V_load == 0)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 154 [1/1] (0.83ns)   --->   "br i1 %tmp, label %._crit_edge1355.i, label %1" [ethernet_axis.cpp:71]   --->   Operation 154 'br' <Predicate = (fsm_state_V_load == 0)> <Delay = 0.83>
+ST_1 : Operation 155 [1/1] (0.00ns)   --->   "%tmp_1 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i64P.i8P.i1P(i64* @rx_fifo_V_data_V, i8* @rx_fifo_V_keep_V, i1* @rx_fifo_V_last_V, i32 1)" [ethernet_axis.cpp:74]   --->   Operation 155 'nbreadreq' 'tmp_1' <Predicate = (fsm_state_V_load == 0 & !tmp)> <Delay = 0.00> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 0> <FIFO>
+ST_1 : Operation 156 [1/1] (0.00ns) (grouped into LUT with out node p_4_cast_i)   --->   "%brmerge_demorgan_i = and i1 %rx_ready_V_load, %tmp_1" [ethernet_axis.cpp:74]   --->   Operation 156 'and' 'brmerge_demorgan_i' <Predicate = (fsm_state_V_load == 0 & !tmp)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 157 [1/1] (0.41ns) (out node of the LUT)   --->   "%p_4_cast_i = select i1 %brmerge_demorgan_i, i2 -1, i2 0" [ethernet_axis.cpp:74]   --->   Operation 157 'select' 'p_4_cast_i' <Predicate = (fsm_state_V_load == 0 & !tmp)> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 158 [1/1] (0.83ns)   --->   "br label %._crit_edge1355.i" [ethernet_axis.cpp:74]   --->   Operation 158 'br' <Predicate = (fsm_state_V_load == 0 & !tmp)> <Delay = 0.83>
+ST_1 : Operation 159 [1/1] (0.00ns)   --->   "%storemerge2_i = phi i2 [ 1, %0 ], [ %p_4_cast_i, %1 ]" [ethernet_axis.cpp:74]   --->   Operation 159 'phi' 'storemerge2_i' <Predicate = (fsm_state_V_load == 0)> <Delay = 0.00>
+ST_1 : Operation 160 [1/1] (1.00ns)   --->   "store i2 %storemerge2_i, i2* @fsm_state_V, align 1" [ethernet_axis.cpp:72]   --->   Operation 160 'store' <Predicate = (fsm_state_V_load == 0)> <Delay = 1.00>
+
+State 2 <SV = 1> <Delay = 1.68>
+ST_2 : Operation 161 [1/1] (0.00ns)   --->   "%tmp_data_V_3 = phi i64 [ %p_Result_13, %45 ], [ %tmp_data_V_4, %._crit_edge1373.i ], [ %p_Result_12, %17 ], [ %p_Result_11, %16 ]"   --->   Operation 161 'phi' 'tmp_data_V_3' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00>
+ST_2 : Operation 162 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64 %tmp_data_V_3, i8 -1, i1 %tmp_last_V_3)" [ethernet_axis.cpp:298]   --->   Operation 162 'write' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 163 [1/1] (0.00ns)   --->   "%tmp_data_V = phi i64 [ undef, %11 ], [ %p_Result_10, %14 ], [ %p_Result_9, %13 ], [ %p_Result_8, %12 ]"   --->   Operation 163 'phi' 'tmp_data_V' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00>
+ST_2 : Operation 164 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64 %tmp_data_V, i8 -1, i1 %tmp_last_V_1)" [ethernet_axis.cpp:214]   --->   Operation 164 'write' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 165 [1/1] (0.33ns)   --->   "%sel_tmp7_demorgan = or i1 %tmp_12_i, %tmp_15_i" [ethernet_axis.cpp:136]   --->   Operation 165 'or' 'sel_tmp7_demorgan' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 166 [1/1] (0.33ns)   --->   "%sel_tmp14_demorgan = or i1 %sel_tmp7_demorgan, %tmp_18_i" [ethernet_axis.cpp:138]   --->   Operation 166 'or' 'sel_tmp14_demorgan' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 167 [1/1] (0.00ns) (grouped into LUT with out node sel_tmp1)   --->   "%sel_tmp = xor i1 %sel_tmp14_demorgan, true" [ethernet_axis.cpp:138]   --->   Operation 167 'xor' 'sel_tmp' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 168 [1/1] (0.33ns) (out node of the LUT)   --->   "%sel_tmp1 = and i1 %tmp_21_i, %sel_tmp" [ethernet_axis.cpp:140]   --->   Operation 168 'and' 'sel_tmp1' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 169 [1/1] (0.33ns)   --->   "%sel_tmp23_demorgan = or i1 %sel_tmp14_demorgan, %tmp_21_i" [ethernet_axis.cpp:140]   --->   Operation 169 'or' 'sel_tmp23_demorgan' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 170 [1/1] (0.00ns) (grouped into LUT with out node or_cond)   --->   "%sel_tmp4 = xor i1 %sel_tmp23_demorgan, true" [ethernet_axis.cpp:140]   --->   Operation 170 'xor' 'sel_tmp4' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 171 [1/1] (0.00ns) (grouped into LUT with out node or_cond)   --->   "%sel_tmp5 = and i1 %tmp_24_i, %sel_tmp4" [ethernet_axis.cpp:142]   --->   Operation 171 'and' 'sel_tmp5' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 172 [1/1] (0.00ns) (grouped into LUT with out node sel_tmp9)   --->   "%sel_tmp34_demorgan = or i1 %sel_tmp23_demorgan, %tmp_24_i" [ethernet_axis.cpp:142]   --->   Operation 172 'or' 'sel_tmp34_demorgan' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 173 [1/1] (0.00ns) (grouped into LUT with out node sel_tmp9)   --->   "%sel_tmp6 = xor i1 %sel_tmp34_demorgan, true" [ethernet_axis.cpp:142]   --->   Operation 173 'xor' 'sel_tmp6' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 174 [1/1] (0.33ns) (out node of the LUT)   --->   "%sel_tmp9 = and i1 %tmp_27_i, %sel_tmp6" [ethernet_axis.cpp:144]   --->   Operation 174 'and' 'sel_tmp9' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 175 [1/1] (0.33ns) (out node of the LUT)   --->   "%or_cond = or i1 %sel_tmp9, %sel_tmp5" [ethernet_axis.cpp:146]   --->   Operation 175 'or' 'or_cond' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 0.97>
+ST_3 : Operation 176 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64 %tmp_data_V_3, i8 -1, i1 %tmp_last_V_3)" [ethernet_axis.cpp:298]   --->   Operation 176 'write' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_3 : Operation 177 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64 %tmp_data_V, i8 -1, i1 %tmp_last_V_1)" [ethernet_axis.cpp:214]   --->   Operation 177 'write' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_3 : Operation 178 [1/1] (0.00ns) (grouped into LUT with out node sel_tmp3)   --->   "%sel_tmp2 = xor i1 %tmp_12_i, true" [ethernet_axis.cpp:134]   --->   Operation 178 'xor' 'sel_tmp2' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 179 [1/1] (0.33ns) (out node of the LUT)   --->   "%sel_tmp3 = and i1 %tmp_15_i, %sel_tmp2" [ethernet_axis.cpp:136]   --->   Operation 179 'and' 'sel_tmp3' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 180 [1/1] (0.00ns) (grouped into LUT with out node or_cond8)   --->   "%sel_tmp7 = xor i1 %sel_tmp7_demorgan, true" [ethernet_axis.cpp:136]   --->   Operation 180 'xor' 'sel_tmp7' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 181 [1/1] (0.00ns) (grouped into LUT with out node or_cond8)   --->   "%sel_tmp8 = and i1 %tmp_18_i, %sel_tmp7" [ethernet_axis.cpp:138]   --->   Operation 181 'and' 'sel_tmp8' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 182 [1/1] (0.00ns) (grouped into LUT with out node tmp_keep_V_2)   --->   "%newSel_cast_cast = select i1 %sel_tmp9, i6 7, i6 15" [ethernet_axis.cpp:146]   --->   Operation 182 'select' 'newSel_cast_cast' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i & or_cond)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 183 [1/1] (0.00ns) (grouped into LUT with out node tmp_keep_V_2)   --->   "%newSel1 = select i1 %sel_tmp1, i6 31, i6 -1" [ethernet_axis.cpp:146]   --->   Operation 183 'select' 'newSel1' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i & !or_cond)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 184 [1/1] (0.00ns) (grouped into LUT with out node or_cond8)   --->   "%or_cond2 = or i1 %sel_tmp1, %sel_tmp8" [ethernet_axis.cpp:146]   --->   Operation 184 'or' 'or_cond2' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 185 [1/1] (0.00ns) (grouped into LUT with out node newSel9)   --->   "%newSel3 = select i1 %sel_tmp3, i8 127, i8 -1" [ethernet_axis.cpp:146]   --->   Operation 185 'select' 'newSel3' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 186 [1/1] (0.00ns) (grouped into LUT with out node newSel9)   --->   "%or_cond4 = or i1 %sel_tmp3, %tmp_12_i" [ethernet_axis.cpp:146]   --->   Operation 186 'or' 'or_cond4' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 187 [1/1] (0.00ns) (grouped into LUT with out node newSel9)   --->   "%newSel5_cast_cast = select i1 %tmp_30_i, i8 3, i8 1" [ethernet_axis.cpp:146]   --->   Operation 187 'select' 'newSel5_cast_cast' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 188 [1/1] (0.00ns) (grouped into LUT with out node tmp_keep_V_2)   --->   "%newSel7 = select i1 %or_cond, i6 %newSel_cast_cast, i6 %newSel1" [ethernet_axis.cpp:146]   --->   Operation 188 'select' 'newSel7' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 189 [1/1] (0.00ns) (grouped into LUT with out node tmp_keep_V_2)   --->   "%newSel7_cast = zext i6 %newSel7 to i8" [ethernet_axis.cpp:146]   --->   Operation 189 'zext' 'newSel7_cast' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00>
+ST_3 : Operation 190 [1/1] (0.33ns) (out node of the LUT)   --->   "%or_cond8 = or i1 %or_cond, %or_cond2" [ethernet_axis.cpp:146]   --->   Operation 190 'or' 'or_cond8' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 191 [1/1] (0.33ns) (out node of the LUT)   --->   "%newSel9 = select i1 %or_cond4, i8 %newSel3, i8 %newSel5_cast_cast" [ethernet_axis.cpp:146]   --->   Operation 191 'select' 'newSel9' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.33> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 192 [1/1] (0.29ns) (out node of the LUT)   --->   "%tmp_keep_V_2 = select i1 %or_cond8, i8 %newSel7_cast, i8 %newSel9" [ethernet_axis.cpp:146]   --->   Operation 192 'select' 'tmp_keep_V_2' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 193 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %tx_fifo_V_data_V, i8* %tx_fifo_V_keep_V, i1* %tx_fifo_V_last_V, i64 %tmp_data_V_2, i8 %tmp_keep_V_2, i1 true)" [ethernet_axis.cpp:151]   --->   Operation 193 'write' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_3 : Operation 194 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %tx_fifo_V_data_V, i8* %tx_fifo_V_keep_V, i1* %tx_fifo_V_last_V, i64 %tmp_data_V_2, i8 %tmp_keep_V_1, i1 %tmp_last_V_2)" [ethernet_axis.cpp:127]   --->   Operation 194 'write' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & tmp_6_i)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 195 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* @rx_fifo_V_data_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 195 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 196 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* @rx_fifo_V_keep_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 196 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 197 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1* @rx_fifo_V_last_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 197 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 198 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %tx_fifo_V_data_V, i8* %tx_fifo_V_keep_V, i1* %tx_fifo_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 198 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 199 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 199 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 200 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 200 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 201 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:40]   --->   Operation 201 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 202 [1/1] (0.00ns)   --->   "br label %43"   --->   Operation 202 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & !tmp_last_V)> <Delay = 0.00>
+ST_4 : Operation 203 [1/1] (0.00ns)   --->   "br label %._crit_edge1372.i" [ethernet_axis.cpp:270]   --->   Operation 203 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i & tmp_29_i)> <Delay = 0.00>
+ST_4 : Operation 204 [1/1] (0.00ns)   --->   "br label %35"   --->   Operation 204 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & !tmp_26_i)> <Delay = 0.00>
+ST_4 : Operation 205 [1/1] (0.00ns)   --->   "br label %35" [ethernet_axis.cpp:268]   --->   Operation 205 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i & tmp_26_i)> <Delay = 0.00>
+ST_4 : Operation 206 [1/1] (0.00ns)   --->   "br label %36"   --->   Operation 206 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & !tmp_23_i)> <Delay = 0.00>
+ST_4 : Operation 207 [1/1] (0.00ns)   --->   "br label %36" [ethernet_axis.cpp:266]   --->   Operation 207 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i & tmp_23_i)> <Delay = 0.00>
+ST_4 : Operation 208 [1/1] (0.00ns)   --->   "br label %37"   --->   Operation 208 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & !tmp_20_i)> <Delay = 0.00>
+ST_4 : Operation 209 [1/1] (0.00ns)   --->   "br label %37" [ethernet_axis.cpp:264]   --->   Operation 209 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i & tmp_20_i)> <Delay = 0.00>
+ST_4 : Operation 210 [1/1] (0.00ns)   --->   "br label %38"   --->   Operation 210 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & !tmp_17_i)> <Delay = 0.00>
+ST_4 : Operation 211 [1/1] (0.00ns)   --->   "br label %38" [ethernet_axis.cpp:262]   --->   Operation 211 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i & tmp_17_i)> <Delay = 0.00>
+ST_4 : Operation 212 [1/1] (0.00ns)   --->   "br label %39"   --->   Operation 212 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & !tmp_14_i)> <Delay = 0.00>
+ST_4 : Operation 213 [1/1] (0.00ns)   --->   "br label %39" [ethernet_axis.cpp:260]   --->   Operation 213 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i & tmp_14_i)> <Delay = 0.00>
+ST_4 : Operation 214 [1/1] (0.00ns)   --->   "br label %40"   --->   Operation 214 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & !tmp_10_i)> <Delay = 0.00>
+ST_4 : Operation 215 [1/1] (0.00ns)   --->   "br label %40" [ethernet_axis.cpp:258]   --->   Operation 215 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i & tmp_10_i)> <Delay = 0.00>
+ST_4 : Operation 216 [1/1] (0.00ns)   --->   "br label %41"   --->   Operation 216 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & !tmp_4_i)> <Delay = 0.00>
+ST_4 : Operation 217 [1/1] (0.00ns)   --->   "br label %41" [ethernet_axis.cpp:256]   --->   Operation 217 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V & tmp_4_i)> <Delay = 0.00>
+ST_4 : Operation 218 [1/1] (0.00ns)   --->   "br label %43" [ethernet_axis.cpp:271]   --->   Operation 218 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V)> <Delay = 0.00>
+ST_4 : Operation 219 [1/1] (0.00ns)   --->   "br label %._crit_edge1373.i" [ethernet_axis.cpp:276]   --->   Operation 219 'br' <Predicate = (fsm_state_V_load == 3 & t_V_2 == 2 & tmp_last_V)> <Delay = 0.00>
+ST_4 : Operation 220 [1/1] (0.00ns)   --->   "br label %ethernet_axis_ip.exit" [ethernet_axis.cpp:300]   --->   Operation 220 'br' <Predicate = (fsm_state_V_load == 3)> <Delay = 0.00>
+ST_4 : Operation 221 [1/1] (0.00ns)   --->   "br label %ethernet_axis_ip.exit" [ethernet_axis.cpp:216]   --->   Operation 221 'br' <Predicate = (fsm_state_V_load == 2)> <Delay = 0.00>
+ST_4 : Operation 222 [1/1] (0.00ns)   --->   "br label %._crit_edge1359.i" [ethernet_axis.cpp:114]   --->   Operation 222 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 2 & tmp_8_i)> <Delay = 0.00>
+ST_4 : Operation 223 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %tx_fifo_V_data_V, i8* %tx_fifo_V_keep_V, i1* %tx_fifo_V_last_V, i64 %tmp_data_V_2, i8 %tmp_keep_V_2, i1 true)" [ethernet_axis.cpp:151]   --->   Operation 223 'write' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & !tmp_6_i)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_4 : Operation 224 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i1P(i64* %tx_fifo_V_data_V, i8* %tx_fifo_V_keep_V, i1* %tx_fifo_V_last_V, i64 %tmp_data_V_2, i8 %tmp_keep_V_1, i1 %tmp_last_V_2)" [ethernet_axis.cpp:127]   --->   Operation 224 'write' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i & tmp_6_i)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_4 : Operation 225 [1/1] (0.00ns)   --->   "br label %._crit_edge1360.i" [ethernet_axis.cpp:154]   --->   Operation 225 'br' <Predicate = (fsm_state_V_load == 1 & t_V == 3 & !or_cond_i)> <Delay = 0.00>
+ST_4 : Operation 226 [1/1] (0.00ns)   --->   "br label %._crit_edge1370.critedge.new.i"   --->   Operation 226 'br' <Predicate = (fsm_state_V_load == 1 & word_count_V_flag_1_s)> <Delay = 0.00>
+ST_4 : Operation 227 [1/1] (0.00ns)   --->   "br label %ethernet_axis_ip.exit" [ethernet_axis.cpp:170]   --->   Operation 227 'br' <Predicate = (fsm_state_V_load == 1)> <Delay = 0.00>
+ST_4 : Operation 228 [1/1] (0.00ns)   --->   "br label %ethernet_axis_ip.exit" [ethernet_axis.cpp:81]   --->   Operation 228 'br' <Predicate = (fsm_state_V_load == 0)> <Delay = 0.00>
+ST_4 : Operation 229 [1/1] (0.00ns)   --->   "ret void"   --->   Operation 229 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 2ns, clock uncertainty: 0.3ns.
+
+ <State 1>: 3.12ns
+The critical path consists of the following:
+	axis read on port 'data_in_V_data_V' (ethernet_axis.cpp:86) [183]  (0 ns)
+	multiplexor before 'phi' operation ('axi_command_V_loc_i', ethernet_axis.cpp:113) with incoming values : ('axi_command_V_load', ethernet_axis.cpp:113) ('p_Result_6_i', ethernet_axis.cpp:102) [277]  (0.918 ns)
+	'phi' operation ('axi_command_V_loc_i', ethernet_axis.cpp:113) with incoming values : ('axi_command_V_load', ethernet_axis.cpp:113) ('p_Result_6_i', ethernet_axis.cpp:102) [277]  (0 ns)
+	'icmp' operation ('tmp_32_i', ethernet_axis.cpp:165) [278]  (0.782 ns)
+	'select' operation ('storemerge4_i', ethernet_axis.cpp:165) [279]  (0 ns)
+	'select' operation ('storemerge5_i', ethernet_axis.cpp:86) [282]  (0.418 ns)
+	'store' operation (ethernet_axis.cpp:164) of variable 'storemerge5_i', ethernet_axis.cpp:86 on static variable 'fsm_state_V' [283]  (1 ns)
+
+ <State 2>: 1.69ns
+The critical path consists of the following:
+	'or' operation ('sel_tmp7_demorgan', ethernet_axis.cpp:136) [238]  (0.337 ns)
+	'or' operation ('sel_tmp14_demorgan', ethernet_axis.cpp:138) [241]  (0.337 ns)
+	'or' operation ('sel_tmp23_demorgan', ethernet_axis.cpp:140) [244]  (0.337 ns)
+	'or' operation ('sel_tmp34_demorgan', ethernet_axis.cpp:142) [247]  (0 ns)
+	'xor' operation ('sel_tmp6', ethernet_axis.cpp:142) [248]  (0 ns)
+	'and' operation ('sel_tmp9', ethernet_axis.cpp:144) [249]  (0.337 ns)
+	'or' operation ('or_cond', ethernet_axis.cpp:146) [251]  (0.337 ns)
+
+ <State 3>: 0.97ns
+The critical path consists of the following:
+	'xor' operation ('sel_tmp2', ethernet_axis.cpp:134) [236]  (0 ns)
+	'and' operation ('sel_tmp3', ethernet_axis.cpp:136) [237]  (0.337 ns)
+	'select' operation ('newSel3', ethernet_axis.cpp:146) [254]  (0 ns)
+	'select' operation ('newSel9', ethernet_axis.cpp:146) [260]  (0.337 ns)
+	'select' operation ('tmp.keep.V', ethernet_axis.cpp:146) [261]  (0.296 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

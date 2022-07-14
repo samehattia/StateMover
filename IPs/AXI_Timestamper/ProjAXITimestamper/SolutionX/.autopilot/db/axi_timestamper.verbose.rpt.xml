@@ -1,0 +1,147 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'axi_timestamper'" level="0">
+<item name = "Date">Thu Jul 14 17:17:43 2022
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">ProjAXITimestamper</item>
+<item name = "Solution">SolutionX</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.30, 2.405, 0.30</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">0, 0, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 88</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">0, -, 106, 168</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 60</column>
+<column name="Register">-, -, 131, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="axi_timestamper_timestamp_s_axi_U">axi_timestamper_timestamp_s_axi, 0, 0, 106, 168</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="read_latency_counter_1_fu_189_p2">+, 0, 0, 39, 32, 1</column>
+<column name="tmp_4_fu_253_p2">+, 0, 0, 39, 32, 1</column>
+<column name="ret_V_1_fu_208_p2">and, 0, 0, 2, 1, 1</column>
+<column name="ret_V_2_fu_238_p2">and, 0, 0, 2, 1, 1</column>
+<column name="ret_V_3_fu_272_p2">and, 0, 0, 2, 1, 1</column>
+<column name="ret_V_fu_174_p2">and, 0, 0, 2, 1, 1</column>
+<column name="tmp_fu_232_p2">and, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_phi_mux_read_latency_counter_2_phi_fu_143_p6">21, 4, 32, 128</column>
+<column name="ap_phi_mux_write_latency_counte_1_phi_fu_155_p6">21, 4, 32, 128</column>
+<column name="read_latency_counter">9, 2, 32, 64</column>
+<column name="write_latency_counte">9, 2, 32, 64</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+<column name="local_read_timestamp">32, 0, 32, 0</column>
+<column name="local_write_timestam">32, 0, 32, 0</column>
+<column name="read_count_flag_V">1, 0, 1, 0</column>
+<column name="read_latency_counter">32, 0, 32, 0</column>
+<column name="write_count_flag_V">1, 0, 1, 0</column>
+<column name="write_latency_counte">32, 0, 32, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="s_axi_timestamp_AWVALID">in, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_AWREADY">out, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_AWADDR">in, 32, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_WVALID">in, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_WREADY">out, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_WDATA">in, 32, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_WSTRB">in, 4, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_ARVALID">in, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_ARREADY">out, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_ARADDR">in, 32, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_RVALID">out, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_RREADY">in, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_RDATA">out, 32, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_RRESP">out, 2, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_BVALID">out, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_BREADY">in, 1, s_axi, timestamp, pointer</column>
+<column name="s_axi_timestamp_BRESP">out, 2, s_axi, timestamp, pointer</column>
+<column name="ap_clk">in, 1, ap_ctrl_none, axi_timestamper, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, axi_timestamper, return value</column>
+<column name="arvalid_V">in, 1, ap_none, arvalid_V, scalar</column>
+<column name="arready_V">in, 1, ap_none, arready_V, scalar</column>
+<column name="rvalid_V">in, 1, ap_none, rvalid_V, scalar</column>
+<column name="rready_V">in, 1, ap_none, rready_V, scalar</column>
+<column name="wvalid_V">in, 1, ap_none, wvalid_V, scalar</column>
+<column name="wready_V">in, 1, ap_none, wready_V, scalar</column>
+<column name="wlast_V">in, 1, ap_none, wlast_V, scalar</column>
+<column name="bvalid_V">in, 1, ap_none, bvalid_V, scalar</column>
+<column name="bready_V">in, 1, ap_none, bready_V, scalar</column>
+</table>
+</item>
+</section>
+</profile>

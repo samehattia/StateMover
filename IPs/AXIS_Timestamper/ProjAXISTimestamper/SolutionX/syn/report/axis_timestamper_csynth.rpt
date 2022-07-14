@@ -1,0 +1,143 @@
+
+
+================================================================
+== Vivado HLS Report for 'axis_timestamper'
+================================================================
+* Date:           Thu Jul 14 17:19:48 2022
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        ProjAXISTimestamper
+* Solution:       SolutionX
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   3.30|     2.030|        0.30|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|     149|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|      63|
+|Register         |        -|      -|      66|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|      66|     212|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |tmp_fu_123_p2                   |     +    |      0|  0|  71|          64|           1|
+    |ap_block_state1                 |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_125                |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_87                 |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op26_read_state1   |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op35_write_state1  |    and   |      0|  0|   2|           1|           1|
+    |tmp_1_nbreadreq_fu_70_p5        |    and   |      0|  0|   2|           1|           0|
+    |ap_block_state1_io              |    or    |      0|  0|   2|           1|           1|
+    |out_word_data_V_fu_129_p3       |  select  |      0|  0|  64|           1|          64|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |Total                           |          |      0|  0| 149|          72|          71|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------+----+-----------+-----+-----------+
+    |         Name         | LUT| Input Size| Bits| Total Bits|
+    +----------------------+----+-----------+-----+-----------+
+    |data_in_TDATA_blk_n   |   9|          2|    1|          2|
+    |data_out_TDATA        |  15|          3|   64|        192|
+    |data_out_TDATA_blk_n  |   9|          2|    1|          2|
+    |data_out_TKEEP        |  15|          3|    8|         24|
+    |data_out_TLAST        |  15|          3|    1|          3|
+    +----------------------+----+-----------+-----+-----------+
+    |Total                 |  63|         13|   75|        223|
+    +----------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------+----+----+-----+-----------+
+    |       Name       | FF | LUT| Bits| Const Bits|
+    +------------------+----+----+-----+-----------+
+    |ap_CS_fsm         |   1|   0|    1|          0|
+    |timestamp_V       |  64|   0|   64|          0|
+    |timestamp_flag_V  |   1|   0|    1|          0|
+    +------------------+----+----+-----+-----------+
+    |Total             |  66|   0|   66|          0|
+    +------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+--------------+-------------------+--------------+
+|    RTL Ports    | Dir | Bits|   Protocol   |   Source Object   |    C Type    |
++-----------------+-----+-----+--------------+-------------------+--------------+
+|ap_clk           |  in |    1| ap_ctrl_none |  axis_timestamper | return value |
+|ap_rst_n         |  in |    1| ap_ctrl_none |  axis_timestamper | return value |
+|data_in_TDATA    |  in |   64|     axis     |  data_in_V_data_V |    pointer   |
+|data_in_TVALID   |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TREADY   | out |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TLAST    |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TKEEP    |  in |    8|     axis     |  data_in_V_keep_V |    pointer   |
+|data_out_TDATA   | out |   64|     axis     | data_out_V_data_V |    pointer   |
+|data_out_TVALID  | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TREADY  |  in |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TLAST   | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TKEEP   | out |    8|     axis     | data_out_V_keep_V |    pointer   |
+|start_V          |  in |    1|    ap_none   |      start_V      |    scalar    |
++-----------------+-----+-----+--------------+-------------------+--------------+
+

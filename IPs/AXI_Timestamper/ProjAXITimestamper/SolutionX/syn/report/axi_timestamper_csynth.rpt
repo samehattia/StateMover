@@ -1,0 +1,165 @@
+
+
+================================================================
+== Vivado HLS Report for 'axi_timestamper'
+================================================================
+* Date:           Thu Jul 14 17:17:43 2022
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        ProjAXITimestamper
+* Solution:       SolutionX
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   3.30|     2.405|        0.30|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|      88|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        0|      -|     106|     168|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|      60|
+|Register         |        -|      -|     131|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|     237|     316|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------+---------------------------------+---------+-------+-----+-----+
+    |              Instance             |              Module             | BRAM_18K| DSP48E|  FF | LUT |
+    +-----------------------------------+---------------------------------+---------+-------+-----+-----+
+    |axi_timestamper_timestamp_s_axi_U  |axi_timestamper_timestamp_s_axi  |        0|      0|  106|  168|
+    +-----------------------------------+---------------------------------+---------+-------+-----+-----+
+    |Total                              |                                 |        0|      0|  106|  168|
+    +-----------------------------------+---------------------------------+---------+-------+-----+-----+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |read_latency_counter_1_fu_189_p2  |     +    |      0|  0|  39|          32|           1|
+    |tmp_4_fu_253_p2                   |     +    |      0|  0|  39|          32|           1|
+    |ret_V_1_fu_208_p2                 |    and   |      0|  0|   2|           1|           1|
+    |ret_V_2_fu_238_p2                 |    and   |      0|  0|   2|           1|           1|
+    |ret_V_3_fu_272_p2                 |    and   |      0|  0|   2|           1|           1|
+    |ret_V_fu_174_p2                   |    and   |      0|  0|   2|           1|           1|
+    |tmp_fu_232_p2                     |    and   |      0|  0|   2|           1|           1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0|  88|          69|           7|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------------------+----+-----------+-----+-----------+
+    |                       Name                      | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------------------+----+-----------+-----+-----------+
+    |ap_phi_mux_read_latency_counter_2_phi_fu_143_p6  |  21|          4|   32|        128|
+    |ap_phi_mux_write_latency_counte_1_phi_fu_155_p6  |  21|          4|   32|        128|
+    |read_latency_counter                             |   9|          2|   32|         64|
+    |write_latency_counte                             |   9|          2|   32|         64|
+    +-------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                            |  60|         12|  128|        384|
+    +-------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------+----+----+-----+-----------+
+    |         Name         | FF | LUT| Bits| Const Bits|
+    +----------------------+----+----+-----+-----------+
+    |ap_CS_fsm             |   1|   0|    1|          0|
+    |local_read_timestamp  |  32|   0|   32|          0|
+    |local_write_timestam  |  32|   0|   32|          0|
+    |read_count_flag_V     |   1|   0|    1|          0|
+    |read_latency_counter  |  32|   0|   32|          0|
+    |write_count_flag_V    |   1|   0|    1|          0|
+    |write_latency_counte  |  32|   0|   32|          0|
+    +----------------------+----+----+-----+-----------+
+    |Total                 | 131|   0|  131|          0|
+    +----------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+--------------+-----------------+--------------+
+|        RTL Ports        | Dir | Bits|   Protocol   |  Source Object  |    C Type    |
++-------------------------+-----+-----+--------------+-----------------+--------------+
+|s_axi_timestamp_AWVALID  |  in |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_AWREADY  | out |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_AWADDR   |  in |   32|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_WVALID   |  in |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_WREADY   | out |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_WDATA    |  in |   32|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_WSTRB    |  in |    4|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_ARVALID  |  in |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_ARREADY  | out |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_ARADDR   |  in |   32|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_RVALID   | out |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_RREADY   |  in |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_RDATA    | out |   32|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_RRESP    | out |    2|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_BVALID   | out |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_BREADY   |  in |    1|     s_axi    |    timestamp    |    pointer   |
+|s_axi_timestamp_BRESP    | out |    2|     s_axi    |    timestamp    |    pointer   |
+|ap_clk                   |  in |    1| ap_ctrl_none | axi_timestamper | return value |
+|ap_rst_n                 |  in |    1| ap_ctrl_none | axi_timestamper | return value |
+|arvalid_V                |  in |    1|    ap_none   |    arvalid_V    |    scalar    |
+|arready_V                |  in |    1|    ap_none   |    arready_V    |    scalar    |
+|rvalid_V                 |  in |    1|    ap_none   |     rvalid_V    |    scalar    |
+|rready_V                 |  in |    1|    ap_none   |     rready_V    |    scalar    |
+|wvalid_V                 |  in |    1|    ap_none   |     wvalid_V    |    scalar    |
+|wready_V                 |  in |    1|    ap_none   |     wready_V    |    scalar    |
+|wlast_V                  |  in |    1|    ap_none   |     wlast_V     |    scalar    |
+|bvalid_V                 |  in |    1|    ap_none   |     bvalid_V    |    scalar    |
+|bready_V                 |  in |    1|    ap_none   |     bready_V    |    scalar    |
++-------------------------+-----+-----+--------------+-----------------+--------------+
+

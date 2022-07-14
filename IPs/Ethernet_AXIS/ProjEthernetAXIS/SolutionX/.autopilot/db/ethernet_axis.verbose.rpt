@@ -1,0 +1,988 @@
+
+
+================================================================
+== Vivado HLS Report for 'ethernet_axis'
+================================================================
+* Date:           Thu Jul 14 17:22:17 2022
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        ProjEthernetAXIS
+* Solution:       SolutionX
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   2.00|     3.120|        0.30|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    5|    5|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+        |                     |                  |  Latency  |  Interval | Pipeline |
+        |       Instance      |      Module      | min | max | min | max |   Type   |
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+        |ethernet_axis_ip_U0  |ethernet_axis_ip  |    3|    3|    1|    1| function |
+        |rx_fifo_ip_U0        |rx_fifo_ip        |    1|    1|    1|    1| function |
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        5|      -|     481|     488|
+|Instance         |        2|      -|     791|    1284|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        7|      0|    1272|    1772|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |    ~0   |      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +---------------------+------------------+---------+-------+-----+------+
+    |       Instance      |      Module      | BRAM_18K| DSP48E|  FF |  LUT |
+    +---------------------+------------------+---------+-------+-----+------+
+    |ethernet_axis_ip_U0  |ethernet_axis_ip  |        2|      0|  714|  1227|
+    |rx_fifo_ip_U0        |rx_fifo_ip        |        0|      0|   77|    57|
+    +---------------------+------------------+---------+-------+-----+------+
+    |Total                |                  |        2|      0|  791|  1284|
+    +---------------------+------------------+---------+-------+-----+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |        Name        | BRAM_18K|  FF | LUT | Depth| Bits| Size:D*B|
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |rx_fifo_V_data_V_U  |        4|   93|   99|   512|   64|    32768|
+    |rx_fifo_V_keep_V_U  |        1|   36|   50|   512|    8|     4096|
+    |rx_fifo_V_last_V_U  |        0|  352|  339|   512|    1|      512|
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |Total               |        5|  481|  488|  1536|   73|    37376|
+    +--------------------+---------+-----+-----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+--------------+-------------------+--------------+
+|    RTL Ports    | Dir | Bits|   Protocol   |   Source Object   |    C Type    |
++-----------------+-----+-----+--------------+-------------------+--------------+
+|data_in_TDATA    |  in |   64|     axis     |  data_in_V_data_V |    pointer   |
+|data_in_TKEEP    |  in |    8|     axis     |  data_in_V_keep_V |    pointer   |
+|data_in_TLAST    |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TVALID   |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TREADY   | out |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_out_TDATA   | out |   64|     axis     | data_out_V_data_V |    pointer   |
+|data_out_TKEEP   | out |    8|     axis     | data_out_V_keep_V |    pointer   |
+|data_out_TLAST   | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TVALID  | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TREADY  |  in |    1|     axis     | data_out_V_last_V |    pointer   |
+|fifo_in_TDATA    |  in |   64|     axis     |  fifo_in_V_data_V |    pointer   |
+|fifo_in_TKEEP    |  in |    8|     axis     |  fifo_in_V_keep_V |    pointer   |
+|fifo_in_TLAST    |  in |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_in_TVALID   |  in |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_in_TREADY   | out |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_out_TDATA   | out |   64|     axis     | fifo_out_V_data_V |    pointer   |
+|fifo_out_TKEEP   | out |    8|     axis     | fifo_out_V_keep_V |    pointer   |
+|fifo_out_TLAST   | out |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|fifo_out_TVALID  | out |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|fifo_out_TREADY  |  in |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|ap_clk           |  in |    1| ap_ctrl_none |   ethernet_axis   | return value |
+|ap_rst_n         |  in |    1| ap_ctrl_none |   ethernet_axis   | return value |
++-----------------+-----+-----+--------------+-------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 2
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 7, States = { 1 2 3 4 5 6 7 }
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 8 [2/2] (0.00ns)   --->   "call fastcc void @rx_fifo_ip(i64* %fifo_in_V_data_V, i8* %fifo_in_V_keep_V, i1* %fifo_in_V_last_V)" [ethernet_axis.cpp:319]   --->   Operation 8 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 9 [1/2] (0.00ns)   --->   "call fastcc void @rx_fifo_ip(i64* %fifo_in_V_data_V, i8* %fifo_in_V_keep_V, i1* %fifo_in_V_last_V)" [ethernet_axis.cpp:319]   --->   Operation 9 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 1.70>
+ST_3 : Operation 10 [4/4] (1.70ns)   --->   "call fastcc void @ethernet_axis_ip(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64* %fifo_out_V_data_V, i8* %fifo_out_V_keep_V, i1* %fifo_out_V_last_V)" [ethernet_axis.cpp:321]   --->   Operation 10 'call' <Predicate = true> <Delay = 1.70> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 1.70>
+ST_4 : Operation 11 [3/4] (1.70ns)   --->   "call fastcc void @ethernet_axis_ip(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64* %fifo_out_V_data_V, i8* %fifo_out_V_keep_V, i1* %fifo_out_V_last_V)" [ethernet_axis.cpp:321]   --->   Operation 11 'call' <Predicate = true> <Delay = 1.70> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 1.70>
+ST_5 : Operation 12 [2/4] (1.70ns)   --->   "call fastcc void @ethernet_axis_ip(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64* %fifo_out_V_data_V, i8* %fifo_out_V_keep_V, i1* %fifo_out_V_last_V)" [ethernet_axis.cpp:321]   --->   Operation 12 'call' <Predicate = true> <Delay = 1.70> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 13 [1/4] (0.00ns)   --->   "call fastcc void @ethernet_axis_ip(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, i64* %fifo_out_V_data_V, i8* %fifo_out_V_keep_V, i1* %fifo_out_V_last_V)" [ethernet_axis.cpp:321]   --->   Operation 13 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecDataflowPipeline(i32 -1, i32 0, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:307]   --->   Operation 14 'specdataflowpipeline' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 15 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecChannel([17 x i8]* @rx_fifo_OC_V_OC_data, i32 1, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 512, i32 512, i64* @rx_fifo_V_data_V, i64* @rx_fifo_V_data_V)"   --->   Operation 15 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* @rx_fifo_V_data_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 16 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 17 [1/1] (0.00ns)   --->   "%empty_16 = call i32 (...)* @_ssdm_op_SpecChannel([17 x i8]* @rx_fifo_OC_V_OC_keep, i32 1, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 512, i32 512, i8* @rx_fifo_V_keep_V, i8* @rx_fifo_V_keep_V)"   --->   Operation 17 'specchannel' 'empty_16' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* @rx_fifo_V_keep_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 18 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 19 [1/1] (0.00ns)   --->   "%empty_17 = call i32 (...)* @_ssdm_op_SpecChannel([17 x i8]* @rx_fifo_OC_V_OC_last, i32 1, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 512, i32 512, i1* @rx_fifo_V_last_V, i1* @rx_fifo_V_last_V)"   --->   Operation 19 'specchannel' 'empty_17' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1* @rx_fifo_V_last_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i64* %data_in_V_data_V), !map !122"   --->   Operation 21 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %data_in_V_keep_V), !map !126"   --->   Operation 22 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %data_in_V_last_V), !map !130"   --->   Operation 23 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i64* %data_out_V_data_V), !map !134"   --->   Operation 24 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 25 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %data_out_V_keep_V), !map !138"   --->   Operation 25 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 26 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %data_out_V_last_V), !map !142"   --->   Operation 26 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 27 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i64* %fifo_in_V_data_V), !map !146"   --->   Operation 27 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 28 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %fifo_in_V_keep_V), !map !150"   --->   Operation 28 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 29 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %fifo_in_V_last_V), !map !154"   --->   Operation 29 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 30 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i64* %fifo_out_V_data_V), !map !158"   --->   Operation 30 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 31 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %fifo_out_V_keep_V), !map !162"   --->   Operation 31 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 32 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %fifo_out_V_last_V), !map !166"   --->   Operation 32 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 33 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([14 x i8]* @ethernet_axis_str) nounwind"   --->   Operation 33 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 34 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:308]   --->   Operation 34 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 35 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %data_in_V_data_V, i8* %data_in_V_keep_V, i1* %data_in_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:310]   --->   Operation 35 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 36 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %data_out_V_data_V, i8* %data_out_V_keep_V, i1* %data_out_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:311]   --->   Operation 36 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 37 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %fifo_in_V_data_V, i8* %fifo_in_V_keep_V, i1* %fifo_in_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:313]   --->   Operation 37 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 38 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %fifo_out_V_data_V, i8* %fifo_out_V_keep_V, i1* %fifo_out_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [ethernet_axis.cpp:314]   --->   Operation 38 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 39 [1/1] (0.00ns)   --->   "ret void" [ethernet_axis.cpp:322]   --->   Operation 39 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_none:ce=0
+Port [ data_in_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ data_in_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ data_in_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ data_out_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ data_out_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ data_out_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_in_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_in_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_in_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_out_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_out_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ fifo_out_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ rx_fifo_V_data_V]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_fifo:ce=0
+Port [ rx_fifo_V_keep_V]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_fifo:ce=0
+Port [ rx_fifo_V_last_V]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_fifo:ce=0
+Port [ fsm_state_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ rx_len_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ rx_ready_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ dest_address_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ src_address_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ mac_type_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ ethernet_axi_id_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ word_count_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ axi_command_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ tx_len_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ axis_len_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ send_tx_word_count_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ send_rx_word_count_V]:  wired=0; compound=0; hidden=1; nouse=1; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=0; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+StgValue_9  (call                ) [ 00000000]
+StgValue_13 (call                ) [ 00000000]
+StgValue_14 (specdataflowpipeline) [ 00000000]
+empty       (specchannel         ) [ 00000000]
+StgValue_16 (specinterface       ) [ 00000000]
+empty_16    (specchannel         ) [ 00000000]
+StgValue_18 (specinterface       ) [ 00000000]
+empty_17    (specchannel         ) [ 00000000]
+StgValue_20 (specinterface       ) [ 00000000]
+StgValue_21 (specbitsmap         ) [ 00000000]
+StgValue_22 (specbitsmap         ) [ 00000000]
+StgValue_23 (specbitsmap         ) [ 00000000]
+StgValue_24 (specbitsmap         ) [ 00000000]
+StgValue_25 (specbitsmap         ) [ 00000000]
+StgValue_26 (specbitsmap         ) [ 00000000]
+StgValue_27 (specbitsmap         ) [ 00000000]
+StgValue_28 (specbitsmap         ) [ 00000000]
+StgValue_29 (specbitsmap         ) [ 00000000]
+StgValue_30 (specbitsmap         ) [ 00000000]
+StgValue_31 (specbitsmap         ) [ 00000000]
+StgValue_32 (specbitsmap         ) [ 00000000]
+StgValue_33 (spectopmodule       ) [ 00000000]
+StgValue_34 (specinterface       ) [ 00000000]
+StgValue_35 (specinterface       ) [ 00000000]
+StgValue_36 (specinterface       ) [ 00000000]
+StgValue_37 (specinterface       ) [ 00000000]
+StgValue_38 (specinterface       ) [ 00000000]
+StgValue_39 (ret                 ) [ 00000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="data_in_V_data_V">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_in_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="data_in_V_keep_V">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_in_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="data_in_V_last_V">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_in_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="data_out_V_data_V">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_out_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="data_out_V_keep_V">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_out_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="data_out_V_last_V">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="data_out_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="fifo_in_V_data_V">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_in_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="fifo_in_V_keep_V">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_in_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="fifo_in_V_last_V">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_in_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1000" name="fifo_out_V_data_V">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_out_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1000" name="fifo_out_V_keep_V">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_out_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1000" name="fifo_out_V_last_V">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fifo_out_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1000" name="rx_fifo_V_data_V">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1000" name="rx_fifo_V_keep_V">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1000" name="rx_fifo_V_last_V">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1000" name="fsm_state_V">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="fsm_state_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1000" name="rx_len_V">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_len_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1000" name="rx_ready_V">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_ready_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1000" name="dest_address_V">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="dest_address_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1000" name="src_address_V">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="src_address_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1000" name="mac_type_V">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mac_type_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1000" name="ethernet_axi_id_V">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ethernet_axi_id_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1000" name="word_count_V">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="word_count_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1000" name="axi_command_V">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="axi_command_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1000" name="tx_len_V">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tx_len_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1000" name="axis_len_V">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="axis_len_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1000" name="send_tx_word_count_V">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="send_tx_word_count_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1000" name="send_rx_word_count_V">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="send_rx_word_count_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_ip"/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ethernet_axis_ip"/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecDataflowPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1001" name="const_62">
+<pin_list>
+<pin id="63" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="64" class="1001" name="const_64">
+<pin_list>
+<pin id="65" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="66" class="1001" name="const_66">
+<pin_list>
+<pin id="67" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="68" class="1001" name="const_68">
+<pin_list>
+<pin id="69" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecChannel"/></StgValue>
+</bind>
+</comp>
+
+<comp id="70" class="1001" name="const_70">
+<pin_list>
+<pin id="71" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_OC_V_OC_data"/></StgValue>
+</bind>
+</comp>
+
+<comp id="72" class="1001" name="const_72">
+<pin_list>
+<pin id="73" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="74" class="1001" name="const_74">
+<pin_list>
+<pin id="75" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="76" class="1001" name="const_76">
+<pin_list>
+<pin id="77" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="78" class="1001" name="const_78">
+<pin_list>
+<pin id="79" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="80" class="1001" name="const_80">
+<pin_list>
+<pin id="81" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="82" class="1001" name="const_82">
+<pin_list>
+<pin id="83" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="84" class="1001" name="const_84">
+<pin_list>
+<pin id="85" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_OC_V_OC_keep"/></StgValue>
+</bind>
+</comp>
+
+<comp id="86" class="1001" name="const_86">
+<pin_list>
+<pin id="87" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="rx_fifo_OC_V_OC_last"/></StgValue>
+</bind>
+</comp>
+
+<comp id="88" class="1001" name="const_88">
+<pin_list>
+<pin id="89" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="90" class="1001" name="const_90">
+<pin_list>
+<pin id="91" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="92" class="1001" name="const_92">
+<pin_list>
+<pin id="93" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ethernet_axis_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="94" class="1001" name="const_94">
+<pin_list>
+<pin id="95" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="96" class="1001" name="const_96">
+<pin_list>
+<pin id="97" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="98" class="1001" name="const_98">
+<pin_list>
+<pin id="99" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str3"/></StgValue>
+</bind>
+</comp>
+
+<comp id="100" class="1004" name="grp_ethernet_axis_ip_fu_100">
+<pin_list>
+<pin id="101" dir="0" index="0" bw="0" slack="0"/>
+<pin id="102" dir="0" index="1" bw="64" slack="0"/>
+<pin id="103" dir="0" index="2" bw="8" slack="0"/>
+<pin id="104" dir="0" index="3" bw="1" slack="0"/>
+<pin id="105" dir="0" index="4" bw="64" slack="0"/>
+<pin id="106" dir="0" index="5" bw="8" slack="0"/>
+<pin id="107" dir="0" index="6" bw="1" slack="0"/>
+<pin id="108" dir="0" index="7" bw="64" slack="0"/>
+<pin id="109" dir="0" index="8" bw="8" slack="0"/>
+<pin id="110" dir="0" index="9" bw="1" slack="0"/>
+<pin id="111" dir="0" index="10" bw="2" slack="0"/>
+<pin id="112" dir="0" index="11" bw="16" slack="0"/>
+<pin id="113" dir="0" index="12" bw="1" slack="0"/>
+<pin id="114" dir="0" index="13" bw="48" slack="0"/>
+<pin id="115" dir="0" index="14" bw="48" slack="0"/>
+<pin id="116" dir="0" index="15" bw="16" slack="0"/>
+<pin id="117" dir="0" index="16" bw="8" slack="0"/>
+<pin id="118" dir="0" index="17" bw="64" slack="0"/>
+<pin id="119" dir="0" index="18" bw="8" slack="0"/>
+<pin id="120" dir="0" index="19" bw="1" slack="0"/>
+<pin id="121" dir="0" index="20" bw="2" slack="0"/>
+<pin id="122" dir="0" index="21" bw="8" slack="0"/>
+<pin id="123" dir="0" index="22" bw="16" slack="0"/>
+<pin id="124" dir="0" index="23" bw="16" slack="0"/>
+<pin id="125" dir="0" index="24" bw="2" slack="0"/>
+<pin id="126" dir="0" index="25" bw="2" slack="0"/>
+<pin id="127" dir="1" index="26" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_10/3 "/>
+</bind>
+</comp>
+
+<comp id="154" class="1004" name="grp_rx_fifo_ip_fu_154">
+<pin_list>
+<pin id="155" dir="0" index="0" bw="0" slack="0"/>
+<pin id="156" dir="0" index="1" bw="64" slack="0"/>
+<pin id="157" dir="0" index="2" bw="8" slack="0"/>
+<pin id="158" dir="0" index="3" bw="1" slack="0"/>
+<pin id="159" dir="0" index="4" bw="64" slack="0"/>
+<pin id="160" dir="0" index="5" bw="8" slack="0"/>
+<pin id="161" dir="0" index="6" bw="1" slack="0"/>
+<pin id="162" dir="1" index="7" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_8/1 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="128"><net_src comp="58" pin="0"/><net_sink comp="100" pin=0"/></net>
+
+<net id="129"><net_src comp="0" pin="0"/><net_sink comp="100" pin=1"/></net>
+
+<net id="130"><net_src comp="2" pin="0"/><net_sink comp="100" pin=2"/></net>
+
+<net id="131"><net_src comp="4" pin="0"/><net_sink comp="100" pin=3"/></net>
+
+<net id="132"><net_src comp="6" pin="0"/><net_sink comp="100" pin=4"/></net>
+
+<net id="133"><net_src comp="8" pin="0"/><net_sink comp="100" pin=5"/></net>
+
+<net id="134"><net_src comp="10" pin="0"/><net_sink comp="100" pin=6"/></net>
+
+<net id="135"><net_src comp="18" pin="0"/><net_sink comp="100" pin=7"/></net>
+
+<net id="136"><net_src comp="20" pin="0"/><net_sink comp="100" pin=8"/></net>
+
+<net id="137"><net_src comp="22" pin="0"/><net_sink comp="100" pin=9"/></net>
+
+<net id="138"><net_src comp="30" pin="0"/><net_sink comp="100" pin=10"/></net>
+
+<net id="139"><net_src comp="32" pin="0"/><net_sink comp="100" pin=11"/></net>
+
+<net id="140"><net_src comp="34" pin="0"/><net_sink comp="100" pin=12"/></net>
+
+<net id="141"><net_src comp="36" pin="0"/><net_sink comp="100" pin=13"/></net>
+
+<net id="142"><net_src comp="38" pin="0"/><net_sink comp="100" pin=14"/></net>
+
+<net id="143"><net_src comp="40" pin="0"/><net_sink comp="100" pin=15"/></net>
+
+<net id="144"><net_src comp="42" pin="0"/><net_sink comp="100" pin=16"/></net>
+
+<net id="145"><net_src comp="24" pin="0"/><net_sink comp="100" pin=17"/></net>
+
+<net id="146"><net_src comp="26" pin="0"/><net_sink comp="100" pin=18"/></net>
+
+<net id="147"><net_src comp="28" pin="0"/><net_sink comp="100" pin=19"/></net>
+
+<net id="148"><net_src comp="44" pin="0"/><net_sink comp="100" pin=20"/></net>
+
+<net id="149"><net_src comp="46" pin="0"/><net_sink comp="100" pin=21"/></net>
+
+<net id="150"><net_src comp="48" pin="0"/><net_sink comp="100" pin=22"/></net>
+
+<net id="151"><net_src comp="50" pin="0"/><net_sink comp="100" pin=23"/></net>
+
+<net id="152"><net_src comp="52" pin="0"/><net_sink comp="100" pin=24"/></net>
+
+<net id="153"><net_src comp="54" pin="0"/><net_sink comp="100" pin=25"/></net>
+
+<net id="163"><net_src comp="56" pin="0"/><net_sink comp="154" pin=0"/></net>
+
+<net id="164"><net_src comp="12" pin="0"/><net_sink comp="154" pin=1"/></net>
+
+<net id="165"><net_src comp="14" pin="0"/><net_sink comp="154" pin=2"/></net>
+
+<net id="166"><net_src comp="16" pin="0"/><net_sink comp="154" pin=3"/></net>
+
+<net id="167"><net_src comp="24" pin="0"/><net_sink comp="154" pin=4"/></net>
+
+<net id="168"><net_src comp="26" pin="0"/><net_sink comp="154" pin=5"/></net>
+
+<net id="169"><net_src comp="28" pin="0"/><net_sink comp="154" pin=6"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: data_out_V_data_V | {5 }
+	Port: data_out_V_keep_V | {5 }
+	Port: data_out_V_last_V | {5 }
+	Port: fifo_out_V_data_V | {6 }
+	Port: fifo_out_V_keep_V | {6 }
+	Port: fifo_out_V_last_V | {6 }
+	Port: rx_fifo_V_data_V | {2 }
+	Port: rx_fifo_V_keep_V | {2 }
+	Port: rx_fifo_V_last_V | {2 }
+	Port: fsm_state_V | {3 }
+	Port: rx_len_V | {3 }
+	Port: rx_ready_V | {3 }
+	Port: dest_address_V | {3 }
+	Port: src_address_V | {3 }
+	Port: mac_type_V | {3 }
+	Port: ethernet_axi_id_V | {3 }
+	Port: word_count_V | {3 }
+	Port: axi_command_V | {3 }
+	Port: tx_len_V | {3 }
+	Port: axis_len_V | {3 }
+	Port: send_tx_word_count_V | {3 }
+	Port: send_rx_word_count_V | {3 }
+ - Input state : 
+	Port: ethernet_axis : data_in_V_data_V | {3 }
+	Port: ethernet_axis : data_in_V_keep_V | {3 }
+	Port: ethernet_axis : data_in_V_last_V | {3 }
+	Port: ethernet_axis : fifo_in_V_data_V | {1 }
+	Port: ethernet_axis : fifo_in_V_keep_V | {1 }
+	Port: ethernet_axis : fifo_in_V_last_V | {1 }
+	Port: ethernet_axis : rx_fifo_V_data_V | {3 }
+	Port: ethernet_axis : rx_fifo_V_keep_V | {3 }
+	Port: ethernet_axis : rx_fifo_V_last_V | {3 }
+	Port: ethernet_axis : fsm_state_V | {3 }
+	Port: ethernet_axis : rx_len_V | {3 }
+	Port: ethernet_axis : rx_ready_V | {3 }
+	Port: ethernet_axis : dest_address_V | {3 }
+	Port: ethernet_axis : src_address_V | {3 }
+	Port: ethernet_axis : mac_type_V | {3 }
+	Port: ethernet_axis : ethernet_axi_id_V | {3 }
+	Port: ethernet_axis : word_count_V | {3 }
+	Port: ethernet_axis : axi_command_V | {3 }
+	Port: ethernet_axis : tx_len_V | {3 }
+	Port: ethernet_axis : axis_len_V | {3 }
+	Port: ethernet_axis : send_tx_word_count_V | {3 }
+	Port: ethernet_axis : send_rx_word_count_V | {3 }
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-----------------------------|---------|---------|---------|
+| Operation|       Functional Unit       |  Delay  |    FF   |   LUT   |
+|----------|-----------------------------|---------|---------|---------|
+|   call   | grp_ethernet_axis_ip_fu_100 |  4.4255 |   718   |   614   |
+|          |    grp_rx_fifo_ip_fu_154    |    0    |    74   |    0    |
+|----------|-----------------------------|---------|---------|---------|
+|   Total  |                             |  4.4255 |   792   |   614   |
+|----------|-----------------------------|---------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
+N/A
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+
+|           |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+
+|  Function |    4   |   792  |   614  |
+|   Memory  |    -   |    -   |    -   |
+|Multiplexer|    -   |    -   |    -   |
+|  Register |    -   |    -   |    -   |
++-----------+--------+--------+--------+
+|   Total   |    4   |   792  |   614  |
++-----------+--------+--------+--------+

@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"ethernet_axi_splitter": {
+			"proto_instances": {
+			}
+		}
+	}
+}
