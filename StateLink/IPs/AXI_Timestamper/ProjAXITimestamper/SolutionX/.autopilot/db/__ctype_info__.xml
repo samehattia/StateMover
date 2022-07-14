@@ -1,0 +1,113 @@
+<InterfaceSummary>
+<RtlPorts>
+<name>arvalid_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>arready_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>rvalid_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>rready_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>wvalid_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>wready_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>wlast_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>bvalid_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>bready_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>write_timestamp_V</name>
+<CType>
+<TypeName>ap_uint 32</TypeName>
+<TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>read_timestamp_V</name>
+<CType>
+<TypeName>ap_uint 32</TypeName>
+<TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+</InterfaceSummary>
+

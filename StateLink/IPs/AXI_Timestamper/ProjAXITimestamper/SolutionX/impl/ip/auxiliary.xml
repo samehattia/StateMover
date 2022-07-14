@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="axi_timestamper" xd:componentRef="axi_timestamper" xd:initiationInterval="1" xd:clockPeriod="3.300" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="arvalid" xd:originalName="arvalid" xd:direction="in" xd:interfaceRef="arvalid_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="arready" xd:originalName="arready" xd:direction="in" xd:interfaceRef="arready_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="rvalid" xd:originalName="rvalid" xd:direction="in" xd:interfaceRef="rvalid_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="rready" xd:originalName="rready" xd:direction="in" xd:interfaceRef="rready_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="wvalid" xd:originalName="wvalid" xd:direction="in" xd:interfaceRef="wvalid_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="wready" xd:originalName="wready" xd:direction="in" xd:interfaceRef="wready_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="wlast" xd:originalName="wlast" xd:direction="in" xd:interfaceRef="wlast_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="bvalid" xd:originalName="bvalid" xd:direction="in" xd:interfaceRef="bvalid_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="bready" xd:originalName="bready" xd:direction="in" xd:interfaceRef="bready_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(write_timestamp)" xd:originalName="write_timestamp" xd:direction="out" xd:interfaceRef="s_axi_timestamp" xd:busTypeRef="axilite" xd:dataWidth="32" xd:offset="0x80000000" xd:handshakeRef="ap_vld" xd:statusOffset="0x80000004"/>
+  <xd:arg xd:name="*(read_timestamp)" xd:originalName="read_timestamp" xd:direction="out" xd:interfaceRef="s_axi_timestamp" xd:busTypeRef="axilite" xd:dataWidth="32" xd:offset="0x80000010" xd:handshakeRef="ap_vld" xd:statusOffset="0x80000014"/>
+  <xd:latencyEstimates xd:best-case="0" xd:worst-case="0" xd:average-case="0"/>
+  <xd:resourceEstimates xd:LUT="316" xd:FF="237" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

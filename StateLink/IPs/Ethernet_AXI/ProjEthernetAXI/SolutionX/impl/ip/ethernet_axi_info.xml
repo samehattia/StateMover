@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <core name="" type="" target="">
+    <kernel name="ethernet_axi" language="c" vlnv="xilinx.com:hls:ethernet_axi:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" interrupt="true">
+      <port name="M_AXI_MEM_V" mode="master" range="0xFFFFFFFF" dataWidth="64" portType="addressable" base="0x00000000"/>
+      <compileWorkGroupSize x="1" y="1" z="1"/>
+    </kernel>
+  </core>
+</project>

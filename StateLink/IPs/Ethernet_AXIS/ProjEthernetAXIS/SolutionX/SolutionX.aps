@@ -1,0 +1,27 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="SolutionX"/>
+    </name>
+    <project>
+        <value string="ProjEthernetAXIS"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcku040:-ffva1156:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock default="false" name="default" uncertainty="0.3ns" period="2"/>
+    </clockList>
+    <config>
+        <config_compile blackbox=""/>
+        <schedule model="ethernet_axis"/>
+        <config_export format="ip_catalog" rtl="verilog"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="" driver_input_dir="" display_name="" taxonomy=""/>
+    </ExportDesign>
+</AutoPilot:solution>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="ethernet_axis" xd:componentRef="ethernet_axis" xd:initiationInterval="6" xd:clockPeriod="2.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="data_in.data" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_in.keep" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_in.last" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="data_out.data" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_out.keep" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_out.last" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="fifo_in.data" xd:originalName="fifo_in" xd:direction="in" xd:interfaceRef="fifo_in" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="fifo_in.keep" xd:originalName="fifo_in" xd:direction="in" xd:interfaceRef="fifo_in" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="fifo_in.last" xd:originalName="fifo_in" xd:direction="in" xd:interfaceRef="fifo_in" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="fifo_out.data" xd:originalName="fifo_out" xd:direction="out" xd:interfaceRef="fifo_out" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="fifo_out.keep" xd:originalName="fifo_out" xd:direction="out" xd:interfaceRef="fifo_out" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="fifo_out.last" xd:originalName="fifo_out" xd:direction="out" xd:interfaceRef="fifo_out" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="5" xd:worst-case="5" xd:average-case="5"/>
+  <xd:resourceEstimates xd:LUT="1772" xd:FF="1272" xd:BRAM="7" xd:DSP="0"/>
+</xd:acceleratorMap>

@@ -1,0 +1,6 @@
+fifo_w64_d512_A
+fifo_w8_d512_A
+fifo_w1_d512_A
+rx_fifo_ip
+ethernet_axis_ip
+ethernet_axis

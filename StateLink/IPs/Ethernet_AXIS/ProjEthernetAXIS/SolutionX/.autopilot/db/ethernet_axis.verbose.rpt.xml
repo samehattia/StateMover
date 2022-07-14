@@ -1,0 +1,129 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'ethernet_axis'" level="0">
+<item name = "Date">Thu Jul 14 17:22:17 2022
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">ProjEthernetAXIS</item>
+<item name = "Solution">SolutionX</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">2.00, 3.120, 0.30</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">5, 5, 1, 1, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="ethernet_axis_ip_U0">ethernet_axis_ip, 3, 3, 1, 1, function</column>
+<column name="rx_fifo_ip_U0">rx_fifo_ip, 1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, -, -</column>
+<column name="FIFO">5, -, 481, 488</column>
+<column name="Instance">2, -, 791, 1284</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, -</column>
+<column name="Register">-, -, -, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">~0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="ethernet_axis_ip_U0">ethernet_axis_ip, 2, 0, 714, 1227</column>
+<column name="rx_fifo_ip_U0">rx_fifo_ip, 0, 0, 77, 57</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+<column name="rx_fifo_V_data_V_U">4, 93, 99, 512, 64, 32768</column>
+<column name="rx_fifo_V_keep_V_U">1, 36, 50, 512, 8, 4096</column>
+<column name="rx_fifo_V_last_V_U">0, 352, 339, 512, 1, 512</column>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="data_in_TDATA">in, 64, axis, data_in_V_data_V, pointer</column>
+<column name="data_in_TKEEP">in, 8, axis, data_in_V_keep_V, pointer</column>
+<column name="data_in_TLAST">in, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_in_TVALID">in, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_in_TREADY">out, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_out_TDATA">out, 64, axis, data_out_V_data_V, pointer</column>
+<column name="data_out_TKEEP">out, 8, axis, data_out_V_keep_V, pointer</column>
+<column name="data_out_TLAST">out, 1, axis, data_out_V_last_V, pointer</column>
+<column name="data_out_TVALID">out, 1, axis, data_out_V_last_V, pointer</column>
+<column name="data_out_TREADY">in, 1, axis, data_out_V_last_V, pointer</column>
+<column name="fifo_in_TDATA">in, 64, axis, fifo_in_V_data_V, pointer</column>
+<column name="fifo_in_TKEEP">in, 8, axis, fifo_in_V_keep_V, pointer</column>
+<column name="fifo_in_TLAST">in, 1, axis, fifo_in_V_last_V, pointer</column>
+<column name="fifo_in_TVALID">in, 1, axis, fifo_in_V_last_V, pointer</column>
+<column name="fifo_in_TREADY">out, 1, axis, fifo_in_V_last_V, pointer</column>
+<column name="fifo_out_TDATA">out, 64, axis, fifo_out_V_data_V, pointer</column>
+<column name="fifo_out_TKEEP">out, 8, axis, fifo_out_V_keep_V, pointer</column>
+<column name="fifo_out_TLAST">out, 1, axis, fifo_out_V_last_V, pointer</column>
+<column name="fifo_out_TVALID">out, 1, axis, fifo_out_V_last_V, pointer</column>
+<column name="fifo_out_TREADY">in, 1, axis, fifo_out_V_last_V, pointer</column>
+<column name="ap_clk">in, 1, ap_ctrl_none, ethernet_axis, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, ethernet_axis, return value</column>
+</table>
+</item>
+</section>
+</profile>

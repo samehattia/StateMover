@@ -1,0 +1,141 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'axis_timestamper'" level="0">
+<item name = "Date">Thu Jul 14 17:19:48 2022
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">ProjAXISTimestamper</item>
+<item name = "Solution">SolutionX</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Target clock period (ns)">3.30</item>
+<item name = "Clock uncertainty (ns)">0.30</item>
+<item name = "Target initiation interval">4294967295</item>
+<item name = "Estimated clock period (ns)">2.030</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">0, 0, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 149</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 63</column>
+<column name="Register">-, -, 66, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="tmp_fu_123_p2">+, 0, 0, 71, 64, 1</column>
+<column name="ap_block_state1">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_125">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_87">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op26_read_state1">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op35_write_state1">and, 0, 0, 2, 1, 1</column>
+<column name="tmp_1_nbreadreq_fu_70_p5">and, 0, 0, 2, 1, 0</column>
+<column name="ap_block_state1_io">or, 0, 0, 2, 1, 1</column>
+<column name="out_word_data_V_fu_129_p3">select, 0, 0, 64, 1, 64</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="data_in_TDATA_blk_n">9, 2, 1, 2</column>
+<column name="data_out_TDATA">15, 3, 64, 192</column>
+<column name="data_out_TDATA_blk_n">9, 2, 1, 2</column>
+<column name="data_out_TKEEP">15, 3, 8, 24</column>
+<column name="data_out_TLAST">15, 3, 1, 3</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+<column name="timestamp_V">64, 0, 64, 0</column>
+<column name="timestamp_flag_V">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_none, axis_timestamper, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, axis_timestamper, return value</column>
+<column name="data_in_TDATA">in, 64, axis, data_in_V_data_V, pointer</column>
+<column name="data_in_TVALID">in, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_in_TREADY">out, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_in_TLAST">in, 1, axis, data_in_V_last_V, pointer</column>
+<column name="data_in_TKEEP">in, 8, axis, data_in_V_keep_V, pointer</column>
+<column name="data_out_TDATA">out, 64, axis, data_out_V_data_V, pointer</column>
+<column name="data_out_TVALID">out, 1, axis, data_out_V_last_V, pointer</column>
+<column name="data_out_TREADY">in, 1, axis, data_out_V_last_V, pointer</column>
+<column name="data_out_TLAST">out, 1, axis, data_out_V_last_V, pointer</column>
+<column name="data_out_TKEEP">out, 8, axis, data_out_V_keep_V, pointer</column>
+<column name="start_V">in, 1, ap_none, start_V, scalar</column>
+</table>
+</item>
+</section>
+
+<section name = "Critical Path" level="0">
+<item name = "Max Delay">2.03</item>
+<item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
+<keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
+<column name="'t.V', axis_timestamper.cpp:36">load, 0.00, 0.00, -, -, -, -, -, -, -, -, &apos;timestamp_V&apos;, -, -</column>
+<column name="'tmp', axis_timestamper.cpp:36">add, 1.57, 1.57, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="'out_word.data.V', axis_timestamper.cpp:36">select, 0.46, 2.03, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="axis_timestamper.cpp:45">write, 0.00, 2.03, -, -, -, axis, write, &apos;data_out_V_data_V&apos;, -, -, -, -, -</column>
+</table>
+</item>
+</section>
+</profile>

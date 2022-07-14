@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="ethernet_axi_splitter" xd:componentRef="ethernet_axi_splitter" xd:initiationInterval="1" xd:clockPeriod="3.300" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="data_in.data" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_in.keep" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_in.last" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_0.data" xd:originalName="ethernet_axi_0" xd:direction="out" xd:interfaceRef="ethernet_axi_0" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_0.keep" xd:originalName="ethernet_axi_0" xd:direction="out" xd:interfaceRef="ethernet_axi_0" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_0.last" xd:originalName="ethernet_axi_0" xd:direction="out" xd:interfaceRef="ethernet_axi_0" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_1.data" xd:originalName="ethernet_axi_1" xd:direction="out" xd:interfaceRef="ethernet_axi_1" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_1.keep" xd:originalName="ethernet_axi_1" xd:direction="out" xd:interfaceRef="ethernet_axi_1" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_1.last" xd:originalName="ethernet_axi_1" xd:direction="out" xd:interfaceRef="ethernet_axi_1" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_2.data" xd:originalName="ethernet_axi_2" xd:direction="out" xd:interfaceRef="ethernet_axi_2" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_2.keep" xd:originalName="ethernet_axi_2" xd:direction="out" xd:interfaceRef="ethernet_axi_2" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_2.last" xd:originalName="ethernet_axi_2" xd:direction="out" xd:interfaceRef="ethernet_axi_2" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_3.data" xd:originalName="ethernet_axi_3" xd:direction="out" xd:interfaceRef="ethernet_axi_3" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_3.keep" xd:originalName="ethernet_axi_3" xd:direction="out" xd:interfaceRef="ethernet_axi_3" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_3.last" xd:originalName="ethernet_axi_3" xd:direction="out" xd:interfaceRef="ethernet_axi_3" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_4.data" xd:originalName="ethernet_axi_4" xd:direction="out" xd:interfaceRef="ethernet_axi_4" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_4.keep" xd:originalName="ethernet_axi_4" xd:direction="out" xd:interfaceRef="ethernet_axi_4" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_4.last" xd:originalName="ethernet_axi_4" xd:direction="out" xd:interfaceRef="ethernet_axi_4" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_5.data" xd:originalName="ethernet_axi_5" xd:direction="out" xd:interfaceRef="ethernet_axi_5" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_5.keep" xd:originalName="ethernet_axi_5" xd:direction="out" xd:interfaceRef="ethernet_axi_5" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_5.last" xd:originalName="ethernet_axi_5" xd:direction="out" xd:interfaceRef="ethernet_axi_5" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_6.data" xd:originalName="ethernet_axi_6" xd:direction="out" xd:interfaceRef="ethernet_axi_6" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_6.keep" xd:originalName="ethernet_axi_6" xd:direction="out" xd:interfaceRef="ethernet_axi_6" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_6.last" xd:originalName="ethernet_axi_6" xd:direction="out" xd:interfaceRef="ethernet_axi_6" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="ethernet_axi_7.data" xd:originalName="ethernet_axi_7" xd:direction="out" xd:interfaceRef="ethernet_axi_7" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="ethernet_axi_7.keep" xd:originalName="ethernet_axi_7" xd:direction="out" xd:interfaceRef="ethernet_axi_7" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="ethernet_axi_7.last" xd:originalName="ethernet_axi_7" xd:direction="out" xd:interfaceRef="ethernet_axi_7" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="data_out.data" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_out.keep" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_out.last" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="my_mac_address" xd:originalName="my_mac_address" xd:direction="in" xd:interfaceRef="my_mac_address_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="48" xd:firstOut="2"/>
+  <xd:latencyEstimates xd:best-case="3" xd:worst-case="3" xd:average-case="3"/>
+  <xd:resourceEstimates xd:LUT="1622" xd:FF="1772" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

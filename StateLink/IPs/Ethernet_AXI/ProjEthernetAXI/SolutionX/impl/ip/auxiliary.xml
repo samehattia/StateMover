@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="ethernet_axi" xd:componentRef="ethernet_axi" xd:initiationInterval="1" xd:clockPeriod="2.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="data_in.data" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_in.keep" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_in.last" xd:originalName="data_in" xd:direction="in" xd:interfaceRef="data_in" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="data_out.data" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="data_out.keep" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="data_out.last" xd:originalName="data_out" xd:direction="out" xd:interfaceRef="data_out" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(mem)" xd:originalName="mem" xd:direction="inout" xd:interfaceRef="m_axi_mem_V" xd:busTypeRef="aximm" xd:arraySize="65536" xd:dataWidth="64" xd:bufferDirection="inout"/>
+  <xd:latencyEstimates xd:best-case="14" xd:worst-case="14" xd:average-case="14"/>
+  <xd:resourceEstimates xd:LUT="1605" xd:FF="3782" xd:BRAM="4" xd:DSP="0"/>
+</xd:acceleratorMap>

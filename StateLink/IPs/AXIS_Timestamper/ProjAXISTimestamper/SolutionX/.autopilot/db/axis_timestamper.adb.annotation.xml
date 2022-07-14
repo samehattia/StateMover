@@ -1,0 +1,4 @@
+<annotationInfo>
+<item  id="25" filename="axis_timestamper.cpp" linenumber="36" name="tmp" contextFuncName="axis_timestamper" moduleName="axis_timestamper" rtlName="tmp_fu_123_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="71" fileDirectory="/home/sameh/StateMover/StateLink/IPs/AXIS_Timestamper"><\/item>
+<item  id="26" filename="axis_timestamper.cpp" linenumber="36" name="out_word_data_V" contextFuncName="axis_timestamper" moduleName="axis_timestamper" rtlName="out_word_data_V_fu_129_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="64" fileDirectory="/home/sameh/StateMover/StateLink/IPs/AXIS_Timestamper"><\/item>
+</annotationInfo>

@@ -1,0 +1,141 @@
+
+
+================================================================
+== Vivado HLS Report for 'ethernet_axis'
+================================================================
+* Date:           Thu Jul 14 17:22:17 2022
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        ProjEthernetAXIS
+* Solution:       SolutionX
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   2.00|     3.120|        0.30|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    5|    5|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+        |                     |                  |  Latency  |  Interval | Pipeline |
+        |       Instance      |      Module      | min | max | min | max |   Type   |
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+        |ethernet_axis_ip_U0  |ethernet_axis_ip  |    3|    3|    1|    1| function |
+        |rx_fifo_ip_U0        |rx_fifo_ip        |    1|    1|    1|    1| function |
+        +---------------------+------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        5|      -|     481|     488|
+|Instance         |        2|      -|     791|    1284|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        7|      0|    1272|    1772|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |    ~0   |      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +---------------------+------------------+---------+-------+-----+------+
+    |       Instance      |      Module      | BRAM_18K| DSP48E|  FF |  LUT |
+    +---------------------+------------------+---------+-------+-----+------+
+    |ethernet_axis_ip_U0  |ethernet_axis_ip  |        2|      0|  714|  1227|
+    |rx_fifo_ip_U0        |rx_fifo_ip        |        0|      0|   77|    57|
+    +---------------------+------------------+---------+-------+-----+------+
+    |Total                |                  |        2|      0|  791|  1284|
+    +---------------------+------------------+---------+-------+-----+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |        Name        | BRAM_18K|  FF | LUT | Depth| Bits| Size:D*B|
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |rx_fifo_V_data_V_U  |        4|   93|   99|   512|   64|    32768|
+    |rx_fifo_V_keep_V_U  |        1|   36|   50|   512|    8|     4096|
+    |rx_fifo_V_last_V_U  |        0|  352|  339|   512|    1|      512|
+    +--------------------+---------+-----+-----+------+-----+---------+
+    |Total               |        5|  481|  488|  1536|   73|    37376|
+    +--------------------+---------+-----+-----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+--------------+-------------------+--------------+
+|    RTL Ports    | Dir | Bits|   Protocol   |   Source Object   |    C Type    |
++-----------------+-----+-----+--------------+-------------------+--------------+
+|data_in_TDATA    |  in |   64|     axis     |  data_in_V_data_V |    pointer   |
+|data_in_TKEEP    |  in |    8|     axis     |  data_in_V_keep_V |    pointer   |
+|data_in_TLAST    |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TVALID   |  in |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_in_TREADY   | out |    1|     axis     |  data_in_V_last_V |    pointer   |
+|data_out_TDATA   | out |   64|     axis     | data_out_V_data_V |    pointer   |
+|data_out_TKEEP   | out |    8|     axis     | data_out_V_keep_V |    pointer   |
+|data_out_TLAST   | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TVALID  | out |    1|     axis     | data_out_V_last_V |    pointer   |
+|data_out_TREADY  |  in |    1|     axis     | data_out_V_last_V |    pointer   |
+|fifo_in_TDATA    |  in |   64|     axis     |  fifo_in_V_data_V |    pointer   |
+|fifo_in_TKEEP    |  in |    8|     axis     |  fifo_in_V_keep_V |    pointer   |
+|fifo_in_TLAST    |  in |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_in_TVALID   |  in |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_in_TREADY   | out |    1|     axis     |  fifo_in_V_last_V |    pointer   |
+|fifo_out_TDATA   | out |   64|     axis     | fifo_out_V_data_V |    pointer   |
+|fifo_out_TKEEP   | out |    8|     axis     | fifo_out_V_keep_V |    pointer   |
+|fifo_out_TLAST   | out |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|fifo_out_TVALID  | out |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|fifo_out_TREADY  |  in |    1|     axis     | fifo_out_V_last_V |    pointer   |
+|ap_clk           |  in |    1| ap_ctrl_none |   ethernet_axis   | return value |
+|ap_rst_n         |  in |    1| ap_ctrl_none |   ethernet_axis   | return value |
++-----------------+-----+-----+--------------+-------------------+--------------+
+
