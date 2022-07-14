@@ -1,0 +1,177 @@
+
+
+================================================================
+== Vivado HLS Report for 'flashMemAccess'
+================================================================
+* Date:           Wed Oct 14 13:19:00 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        flashModel_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     3.183|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    2|    2|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|     100|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |      228|      -|       0|       0|
+|Multiplexer      |        -|      -|       -|     123|
+|Register         |        -|      -|     189|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |      228|      0|     189|     223|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |       19|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    +--------------+---------------------------+---------+---+----+-------+-----+------+-------------+
+    |    Memory    |           Module          | BRAM_18K| FF| LUT| Words | Bits| Banks| W*Bits*Banks|
+    +--------------+---------------------------+---------+---+----+-------+-----+------+-------------+
+    |memArray_V_U  |flashMemAccess_memArray_V  |      228|  0|   0|  65536|   64|     1|      4194304|
+    +--------------+---------------------------+---------+---+----+-------+-----+------+-------------+
+    |Total         |                           |      228|  0|   0|  65536|   64|     1|      4194304|
+    +--------------+---------------------------+---------+---+----+-------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |grp_fu_139_p2                     |     +    |      0|  0|  20|          13|           2|
+    |grp_fu_150_p2                     |     +    |      0|  0|  39|          32|           1|
+    |ap_block_state2_io                |    and   |      0|  0|   2|           1|           1|
+    |ap_block_state3_io                |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_364                  |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op11_read_state1     |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op35_read_state1     |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op46_write_state2    |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op56_write_state3    |    and   |      0|  0|   2|           1|           1|
+    |rdDataOut_V_V_1_load_A            |    and   |      0|  0|   2|           1|           1|
+    |rdDataOut_V_V_1_load_B            |    and   |      0|  0|   2|           1|           1|
+    |grp_fu_134_p2                     |   icmp   |      0|  0|  13|          13|           1|
+    |rdDataOut_V_V_1_state_cmp_full    |   icmp   |      0|  0|   8|           2|           1|
+    |ap_block_state1_pp0_stage0_iter0  |    or    |      0|  0|   2|           1|           1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0| 100|          70|          15|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_NS_iter1_fsm               |  15|          3|    2|          6|
+    |ap_NS_iter2_fsm               |  15|          3|    2|          6|
+    |ap_done                       |   9|          2|    1|          2|
+    |flashAggregateMemCmd_1_blk_n  |   9|          2|    1|          2|
+    |inputWord_address_V           |   9|          2|   32|         64|
+    |inputWord_count_V             |   9|          2|   13|         26|
+    |memArray_V_address0           |  15|          3|   16|         48|
+    |rdDataOut_V_V_1_data_out      |   9|          2|   64|        128|
+    |rdDataOut_V_V_1_state         |  15|          3|    2|          6|
+    |rdDataOut_V_V_TDATA_blk_n     |   9|          2|    1|          2|
+    |wrDataIn_V_V_TDATA_blk_n      |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         | 123|         26|  135|        292|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------+----+----+-----+-----------+
+    |                    Name                    | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------+----+----+-----+-----------+
+    |ap_CS_iter0_fsm                             |   1|   0|    1|          0|
+    |ap_CS_iter1_fsm                             |   2|   0|    2|          0|
+    |ap_CS_iter2_fsm                             |   2|   0|    2|          0|
+    |ap_done_reg                                 |   1|   0|    1|          0|
+    |inputWord_address_V                         |  32|   0|   32|          0|
+    |inputWord_count_V                           |  13|   0|   13|          0|
+    |inputWord_rdOrWr_V                          |   1|   0|    1|          0|
+    |inputWord_rdOrWr_V_l_reg_254                |   1|   0|    1|          0|
+    |inputWord_rdOrWr_V_l_reg_254_pp0_iter1_reg  |   1|   0|    1|          0|
+    |memState                                    |   1|   0|    1|          0|
+    |memState_load_reg_250                       |   1|   0|    1|          0|
+    |memState_load_reg_250_pp0_iter1_reg         |   1|   0|    1|          0|
+    |rdDataOut_V_V_1_payload_A                   |  64|   0|   64|          0|
+    |rdDataOut_V_V_1_payload_B                   |  64|   0|   64|          0|
+    |rdDataOut_V_V_1_sel_rd                      |   1|   0|    1|          0|
+    |rdDataOut_V_V_1_sel_wr                      |   1|   0|    1|          0|
+    |rdDataOut_V_V_1_state                       |   2|   0|    2|          0|
+    +--------------------------------------------+----+----+-----+-----------+
+    |Total                                       | 189|   0|  189|          0|
+    +--------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+-----+------------+------------------------+--------------+
+|            RTL Ports           | Dir | Bits|  Protocol  |      Source Object     |    C Type    |
++--------------------------------+-----+-----+------------+------------------------+--------------+
+|ap_clk                          |  in |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_rst                          |  in |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_start                        |  in |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_done                         | out |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_continue                     |  in |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_idle                         | out |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|ap_ready                        | out |    1| ap_ctrl_hs |     flashMemAccess     | return value |
+|flashAggregateMemCmd_1_dout     |  in |   46|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
+|flashAggregateMemCmd_1_empty_n  |  in |    1|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
+|flashAggregateMemCmd_1_read     | out |    1|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
+|wrDataIn_V_V_TVALID             |  in |    1|    axis    |      wrDataIn_V_V      |    pointer   |
+|wrDataIn_V_V_TDATA              |  in |   64|    axis    |      wrDataIn_V_V      |    pointer   |
+|wrDataIn_V_V_TREADY             | out |    1|    axis    |      wrDataIn_V_V      |    pointer   |
+|rdDataOut_V_V_TREADY            |  in |    1|    axis    |      rdDataOut_V_V     |    pointer   |
+|rdDataOut_V_V_TDATA             | out |   64|    axis    |      rdDataOut_V_V     |    pointer   |
+|rdDataOut_V_V_TVALID            | out |    1|    axis    |      rdDataOut_V_V     |    pointer   |
++--------------------------------+-----+-----+------------+------------------------+--------------+
+

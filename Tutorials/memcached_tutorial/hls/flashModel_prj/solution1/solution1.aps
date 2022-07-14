@@ -1,0 +1,27 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="flashModel_prj"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcku040:-ffva1156:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="6.4" default="false"/>
+    </clockList>
+    <config>
+        <config_compile blackbox=""/>
+        <schedule model="flashModel"/>
+        <config_export description="A BRAM Value Store imitating the I/F of the SSD one." display_name="Flash Model for the KVS Pipeline" format="ip_catalog" vendor="xilinx.labs" version="1.0"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="A BRAM Value Store imitating the I/F of the SSD one." vendor="xilinx.labs" library="" ipname="" version="1.0" driver_input_dir="" display_name="Flash Model for the KVS Pipeline" taxonomy=""/>
+    </ExportDesign>
+</AutoPilot:solution>
+

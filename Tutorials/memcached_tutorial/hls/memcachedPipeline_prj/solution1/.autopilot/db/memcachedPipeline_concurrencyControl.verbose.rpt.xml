@@ -1,0 +1,305 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'memcachedPipeline_concurrencyControl'" level="0">
+<item name = "Date">Wed Oct 21 12:18:46 2020
+</item>
+<item name = "Version">2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)</item>
+<item name = "Project">memcachedPipeline_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="default">6.66, 10.89, 0.83</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="Expression">-, -, 0, 256</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 319</column>
+<column name="Register">-, -, 493, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="grp_fu_418_p2">+, 0, 0, 8, 8, 1</column>
+<column name="grp_fu_437_p2">+, 0, 0, 8, 8, 2</column>
+<column name="tmp_311_fu_1005_p2">+, 0, 0, 8, 8, 1</column>
+<column name="tmp_312_fu_1025_p2">+, 0, 0, 4, 4, 1</column>
+<column name="grp_fu_423_p3">Select, 0, 0, 8, 1, 1</column>
+<column name="p_tmp_4_fu_1011_p3">Select, 0, 0, 8, 1, 1</column>
+<column name="storemerge44_cast_cast_cast_fu_1621_p3">Select, 0, 0, 2, 1, 1</column>
+<column name="storemerge_cast_cast_cast_fu_1041_p3">Select, 0, 0, 2, 1, 1</column>
+<column name="ap_sig_bdd_132">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_2217">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_81">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_492_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_512_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_532_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_552_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_572_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_592_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_612_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_632_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond10_fu_1097_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond11_fu_1115_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond12_fu_1133_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond13_fu_1151_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond14_fu_1169_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond15_fu_1187_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond1_fu_1351_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond2_fu_1363_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond3_fu_1375_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond4_fu_1079_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond5_fu_1061_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond6_fu_1303_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond7_fu_1315_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond8_fu_1327_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond9_fu_1339_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond_fu_1291_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp16_fu_1381_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp18_fu_1387_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp19_fu_1393_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp21_fu_1399_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp22_fu_1405_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp24_fu_1411_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp25_fu_1417_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp27_fu_1423_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp28_fu_1429_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp30_fu_1435_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp31_fu_1441_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp33_fu_1447_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp34_fu_1453_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp36_fu_1459_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp37_fu_1465_p2">and, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp39_fu_1471_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_413_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_482_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_487_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_497_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_502_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_507_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_517_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_522_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_527_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_537_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_542_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_547_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_557_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_562_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_567_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_577_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_582_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_587_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_597_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_602_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_607_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_617_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_622_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_627_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_637_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="grp_fu_642_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="icmp_fu_841_p2">icmp, 0, 0, 2, 5, 1</column>
+<column name="tmp_301_fu_1055_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_302_fu_1285_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_310_fu_999_p2">icmp, 0, 0, 3, 8, 3</column>
+<column name="tmp_667_1_fu_1073_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_2_fu_1091_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_3_fu_1109_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_4_fu_1127_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_5_fu_1145_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_6_fu_1163_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_667_7_fu_1181_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_1_fu_1297_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_2_fu_1309_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_3_fu_1321_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_4_fu_1333_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_5_fu_1345_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_6_fu_1357_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="tmp_671_7_fu_1369_p2">icmp, 0, 0, 3, 6, 6</column>
+<column name="ap_sig_bdd_119">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_98">or, 0, 0, 1, 1, 1</column>
+<column name="sel_tmp40_fu_1615_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp65_fu_1537_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp66_fu_1501_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp67_fu_1483_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp68_fu_1477_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp69_fu_1495_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp70_fu_1489_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp71_fu_1531_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp72_fu_1513_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp73_fu_1507_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp74_fu_1525_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp75_fu_1519_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp76_fu_1609_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp77_fu_1567_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp78_fu_1549_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp79_fu_1543_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp80_fu_1561_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp81_fu_1555_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp82_fu_1603_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp83_fu_1579_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp84_fu_1573_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp85_fu_1597_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp86_fu_1585_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp87_fu_1591_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_416_fu_1067_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_419_fu_1085_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_422_fu_1103_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_425_fu_1121_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_428_fu_1139_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_431_fu_1157_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_434_fu_1175_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp_437_fu_1193_p2">or, 0, 0, 1, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm1">2, 3, 2, 6</column>
+<column name="cc2memRead_V_din">130, 3, 130, 390</column>
+<column name="ccInputWord_data_V">128, 2, 128, 256</column>
+<column name="ccState">3, 7, 3, 21</column>
+<column name="hashFilter_filterEntries_addre">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_1">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_2">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_3">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_4">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_5">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_6">6, 2, 6, 12</column>
+<column name="hashFilter_filterEntries_addre_7">6, 2, 6, 12</column>
+<column name="hashFilter_level">8, 2, 8, 16</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm0">1, 0, 1, 0</column>
+<column name="ap_CS_fsm1">2, 0, 2, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ccCompareElement_address_V">6, 0, 6, 0</column>
+<column name="ccCompareElement_operation_V">8, 0, 8, 0</column>
+<column name="ccInputWordMd_keyLength_V">8, 0, 8, 0</column>
+<column name="ccInputWordMd_metadata_V">32, 0, 32, 0</column>
+<column name="ccInputWordMd_operation_V">8, 0, 8, 0</column>
+<column name="ccInputWordMd_valueLength_V">16, 0, 16, 0</column>
+<column name="ccInputWord_EOP_V">1, 0, 1, 0</column>
+<column name="ccInputWord_SOP_V">1, 0, 1, 0</column>
+<column name="ccInputWord_data_V">128, 0, 128, 0</column>
+<column name="ccState">3, 0, 3, 0</column>
+<column name="ccState_load_reg_1688">3, 0, 3, 0</column>
+<column name="hashFilter_filterEntries_addre">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_1">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_2">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_3">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_4">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_5">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_6">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_addre_7">6, 0, 6, 0</column>
+<column name="hashFilter_filterEntries_opera">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_1">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_2">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_3">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_4">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_5">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_6">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_opera_7">8, 0, 8, 0</column>
+<column name="hashFilter_filterEntries_statu">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_1">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_2">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_3">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_4">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_5">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_6">1, 0, 1, 0</column>
+<column name="hashFilter_filterEntries_statu_7">1, 0, 1, 0</column>
+<column name="hashFilter_level">8, 0, 8, 0</column>
+<column name="hashFilter_rdPtr">8, 0, 8, 0</column>
+<column name="hashFilter_wrPtr">8, 0, 8, 0</column>
+<column name="tmp_4_reg_1713">130, 0, 130, 0</column>
+<column name="tmp_EOP_V_16_reg_1692">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, memcachedPipeline_concurrencyControl, return value</column>
+<column name="dec2cc_V_V_dout">in, 1, ap_fifo, dec2cc_V_V, pointer</column>
+<column name="dec2cc_V_V_empty_n">in, 1, ap_fifo, dec2cc_V_V, pointer</column>
+<column name="dec2cc_V_V_read">out, 1, ap_fifo, dec2cc_V_V, pointer</column>
+<column name="in2cc_V_dout">in, 130, ap_fifo, in2cc_V, pointer</column>
+<column name="in2cc_V_empty_n">in, 1, ap_fifo, in2cc_V, pointer</column>
+<column name="in2cc_V_read">out, 1, ap_fifo, in2cc_V, pointer</column>
+<column name="in2ccMd_V_dout">in, 64, ap_fifo, in2ccMd_V, pointer</column>
+<column name="in2ccMd_V_empty_n">in, 1, ap_fifo, in2ccMd_V, pointer</column>
+<column name="in2ccMd_V_read">out, 1, ap_fifo, in2ccMd_V, pointer</column>
+<column name="hash2cc_V_V_dout">in, 32, ap_fifo, hash2cc_V_V, pointer</column>
+<column name="hash2cc_V_V_empty_n">in, 1, ap_fifo, hash2cc_V_V, pointer</column>
+<column name="hash2cc_V_V_read">out, 1, ap_fifo, hash2cc_V_V, pointer</column>
+<column name="cc2memRead_V_din">out, 130, ap_fifo, cc2memRead_V, pointer</column>
+<column name="cc2memRead_V_full_n">in, 1, ap_fifo, cc2memRead_V, pointer</column>
+<column name="cc2memRead_V_write">out, 1, ap_fifo, cc2memRead_V, pointer</column>
+<column name="cc2memReadMd_V_din">out, 64, ap_fifo, cc2memReadMd_V, pointer</column>
+<column name="cc2memReadMd_V_full_n">in, 1, ap_fifo, cc2memReadMd_V, pointer</column>
+<column name="cc2memReadMd_V_write">out, 1, ap_fifo, cc2memReadMd_V, pointer</column>
+</table>
+</item>
+</section>
+</profile>

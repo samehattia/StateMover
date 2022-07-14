@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1776" tag="" content="Exporting RTL as a Vivado IP."/>
+	<Message severity="WARNING" prefix="[IMPL 213-402]" key="IMPL_402_1768" tag="" content="The data fields of packed port &apos;dmRdCmd_V&apos; are mapped to TDATA by default. Please use the &apos;port_map&apos; option of the resource directive to specify mapping to individual AXI4-Stream ports."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmRdData_V.data&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmRdData_V.keep&apos; is mapped to &apos;TKEEP&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmRdData_V.last&apos; is mapped to &apos;TLAST&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmRdStatus_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="WARNING" prefix="[IMPL 213-402]" key="IMPL_402_1768" tag="" content="The data fields of packed port &apos;dmWrCmd_V&apos; are mapped to TDATA by default. Please use the &apos;port_map&apos; option of the resource directive to specify mapping to individual AXI4-Stream ports."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmWrData_V.data&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmWrData_V.keep&apos; is mapped to &apos;TKEEP&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmWrData_V.last&apos; is mapped to &apos;TLAST&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;dmWrStatus_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="WARNING" prefix="[IMPL 213-402]" key="IMPL_402_1768" tag="" content="The data fields of packed port &apos;memRdCmd_V&apos; are mapped to TDATA by default. Please use the &apos;port_map&apos; option of the resource directive to specify mapping to individual AXI4-Stream ports."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;memRdData_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="WARNING" prefix="[IMPL 213-402]" key="IMPL_402_1768" tag="" content="The data fields of packed port &apos;memWrCmd_V&apos; are mapped to TDATA by default. Please use the &apos;port_map&apos; option of the resource directive to specify mapping to individual AXI4-Stream ports."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;memWrData_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[HLS 200-112]" key="HLS_112_964" tag="" content="Total elapsed time: 25.58 seconds; peak allocated memory: 98.804 MB."/>
+	<Message severity="INFO" prefix="[Common 17-206]" key="Common 17-206" tag="" content="Exiting vivado_hls at Thu Aug 26 19:01:07 2021..."/>
+</Messages>

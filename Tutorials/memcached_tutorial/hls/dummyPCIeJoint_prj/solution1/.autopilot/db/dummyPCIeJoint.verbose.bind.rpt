@@ -1,0 +1,2669 @@
+
+
+================================================================
+== Vivado HLS Report for 'dummyPCIeJoint'
+================================================================
+* Date:           Wed Oct 14 13:17:35 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        dummyPCIeJoint_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     5.929|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 5 [2/2] (0.00ns)   --->   "%flushDone_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushDone_V)"   --->   Operation 5 'read' 'flushDone_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [2/2] (0.00ns)   --->   "%flushReq_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushReq_V)"   --->   Operation 6 'read' 'flushReq_V_read' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 5.92>
+ST_2 : Operation 7 [1/2] (0.00ns)   --->   "%flushDone_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushDone_V)"   --->   Operation 7 'read' 'flushDone_V_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/2] (0.00ns)   --->   "%flushReq_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushReq_V)"   --->   Operation 8 'read' 'flushReq_V_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%pcieState_load = load i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:63]   --->   Operation 9 'load' 'pcieState_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%streamInitializedFla_1 = load i1* @streamInitializedFla, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:65]   --->   Operation 10 'load' 'streamInitializedFla_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%elementCounterDram_V_1 = load i6* @elementCounterDram_V, align 1"   --->   Operation 11 'load' 'elementCounterDram_V_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%elementCounterFlash_1 = load i6* @elementCounterFlash_s, align 1"   --->   Operation 12 'load' 'elementCounterFlash_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%flushFlag_load = load i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:94]   --->   Operation 13 'load' 'flushFlag_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%tmp_V_1 = load i32* @inputAddress_V, align 4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:112]   --->   Operation 14 'load' 'tmp_V_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.87ns)   --->   "switch i4 %pcieState_load, label %._crit_edge288 [
+    i4 0, label %0
+    i4 1, label %14
+    i4 2, label %18
+    i4 3, label %23
+    i4 5, label %28
+    i4 4, label %29
+    i4 6, label %30
+    i4 7, label %31
+    i4 -8, label %32
+    i4 -7, label %36
+    i4 -6, label %40
+  ]" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:63]   --->   Operation 15 'switch' <Predicate = true> <Delay = 0.87>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "br i1 %flushDone_V_read, label %41, label %._crit_edge298" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:145]   --->   Operation 16 'br' <Predicate = (pcieState_load == 10)> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:146]   --->   Operation 17 'store' <Predicate = (pcieState_load == 10 & flushDone_V_read)> <Delay = 1.28>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:147]   --->   Operation 18 'br' <Predicate = (pcieState_load == 10)> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_3 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:134]   --->   Operation 19 'nbreadreq' 'tmp_3' <Predicate = (pcieState_load == 9)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 20 [1/1] (0.83ns)   --->   "store i6 0, i6* @elementCounterDram_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:137]   --->   Operation 20 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 21 [1/1] (0.83ns)   --->   "store i6 0, i6* @elementCounterFlash_s, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:138]   --->   Operation 21 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 22 [1/1] (0.83ns)   --->   "store i1 true, i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:139]   --->   Operation 22 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 23 [1/1] (0.83ns)   --->   "store i1 true, i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:140]   --->   Operation 23 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 24 [1/1] (1.28ns)   --->   "store i4 1, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:141]   --->   Operation 24 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 1.28>
+ST_2 : Operation 25 [1/1] (2.17ns)   --->   "%tmp_V_9_0 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:135]   --->   Operation 25 'read' 'tmp_V_9_0' <Predicate = (pcieState_load == 9 & tmp_3)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:143]   --->   Operation 26 'br' <Predicate = (pcieState_load == 9)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:128]   --->   Operation 27 'nbreadreq' 'tmp' <Predicate = (pcieState_load == 8)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 28 [1/1] (1.28ns)   --->   "store i4 -7, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:131]   --->   Operation 28 'store' <Predicate = (pcieState_load == 8 & !tmp)> <Delay = 1.28>
+ST_2 : Operation 29 [1/1] (2.17ns)   --->   "%tmp_V_8_0 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:129]   --->   Operation 29 'read' 'tmp_V_8_0' <Predicate = (pcieState_load == 8 & tmp)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:132]   --->   Operation 30 'br' <Predicate = (pcieState_load == 8)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (2.17ns)   --->   "%tmp_V_3 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:124]   --->   Operation 31 'read' 'tmp_V_3' <Predicate = (pcieState_load == 7)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %outDataDram_V_V, i32 %tmp_V_3)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:124]   --->   Operation 32 'write' <Predicate = (pcieState_load == 7)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 33 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:125]   --->   Operation 33 'store' <Predicate = (pcieState_load == 7)> <Delay = 1.28>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:126]   --->   Operation 34 'br' <Predicate = (pcieState_load == 7)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (2.17ns)   --->   "%tmp_V_2 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:120]   --->   Operation 35 'read' 'tmp_V_2' <Predicate = (pcieState_load == 6)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 36 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %outDataFlash_V_V, i32 %tmp_V_2)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:120]   --->   Operation 36 'write' <Predicate = (pcieState_load == 6)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 37 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:121]   --->   Operation 37 'store' <Predicate = (pcieState_load == 6)> <Delay = 1.28>
+ST_2 : Operation 38 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:122]   --->   Operation 38 'br' <Predicate = (pcieState_load == 6)> <Delay = 0.00>
+ST_2 : Operation 39 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1, i32 %tmp_V_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:116]   --->   Operation 39 'write' <Predicate = (pcieState_load == 4)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 40 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:117]   --->   Operation 40 'store' <Predicate = (pcieState_load == 4)> <Delay = 1.28>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:118]   --->   Operation 41 'br' <Predicate = (pcieState_load == 4)> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1, i32 %tmp_V_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:112]   --->   Operation 42 'write' <Predicate = (pcieState_load == 5)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 43 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:113]   --->   Operation 43 'store' <Predicate = (pcieState_load == 5)> <Delay = 1.28>
+ST_2 : Operation 44 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:114]   --->   Operation 44 'br' <Predicate = (pcieState_load == 5)> <Delay = 0.00>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%tmp_V = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* %inData_V_V)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:104]   --->   Operation 45 'read' 'tmp_V' <Predicate = (pcieState_load == 3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 46 [1/1] (0.00ns)   --->   "store i32 %tmp_V, i32* @inputAddress_V, align 4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:104]   --->   Operation 46 'store' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_4 = call i20 @_ssdm_op_PartSelect.i20.i32.i32.i32(i32 %tmp_V, i32 12, i32 31)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 47 'partselect' 'tmp_4' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 48 [1/1] (1.10ns)   --->   "%icmp = icmp eq i20 %tmp_4, 0" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 48 'icmp' 'icmp' <Predicate = (pcieState_load == 3)> <Delay = 1.10> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.10> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "br i1 %icmp, label %24, label %._crit_edge295" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 49 'br' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_5 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 50 'nbwritereq' 'tmp_5' <Predicate = (pcieState_load == 3 & icmp)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_8 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:107]   --->   Operation 51 'nbwritereq' 'tmp_8' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 52 [1/1] (1.28ns)   --->   "store i4 4, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:108]   --->   Operation 52 'store' <Predicate = (pcieState_load == 3 & !tmp_5 & tmp_8) | (pcieState_load == 3 & !icmp & tmp_8)> <Delay = 1.28>
+ST_2 : Operation 53 [1/1] (1.28ns)   --->   "store i4 5, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:106]   --->   Operation 53 'store' <Predicate = (pcieState_load == 3 & icmp & tmp_5)> <Delay = 1.28>
+ST_2 : Operation 54 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:110]   --->   Operation 54 'br' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 55 [1/1] (0.00ns)   --->   "%tmp_2 = call i1 @_ssdm_op_BitSelect.i1.i6.i32(i6 %elementCounterFlash_1, i32 5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:88]   --->   Operation 55 'bitselect' 'tmp_2' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "br i1 %tmp_2, label %20, label %19" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:88]   --->   Operation 56 'br' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%tmp_8_cast = zext i6 %elementCounterFlash_1 to i18" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 57 'zext' 'tmp_8_cast' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_2 : Operation 58 [1/1] (1.11ns) (grouped into DSP with root node tmp_V_6)   --->   "%tmp_9 = mul i18 %tmp_8_cast, 7942" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 58 'mul' 'tmp_9' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 1.11> <Core = "DSP48">   --->   Core 65 'DSP48' <Latency = 0> <II = 1> <Delay = 3.75> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 59 [1/1] (2.64ns) (root node of the DSP)   --->   "%tmp_V_6 = add i18 %tmp_9, 4096" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 59 'add' 'tmp_V_6' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 2.64> <Core = "DSP48">   --->   Core 65 'DSP48' <Latency = 0> <II = 1> <Delay = 3.75> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "%tmp_V_7 = zext i18 %tmp_V_6 to i32" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 60 'zext' 'tmp_V_7' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_2 : Operation 61 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1, i32 %tmp_V_7)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 61 'write' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 62 [1/1] (1.11ns)   --->   "%tmp_6 = add i6 %elementCounterFlash_1, 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:90]   --->   Operation 62 'add' 'tmp_6' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 1.11> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.11> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 63 [1/1] (0.83ns)   --->   "store i6 %tmp_6, i6* @elementCounterFlash_s, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:90]   --->   Operation 63 'store' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.83>
+ST_2 : Operation 64 [1/1] (0.00ns)   --->   "store i1 true, i1* @streamInitializedFla, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:93]   --->   Operation 64 'store' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_2 : Operation 65 [1/1] (0.83ns)   --->   "br i1 %flushFlag_load, label %21, label %._crit_edge294" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:94]   --->   Operation 65 'br' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.83>
+ST_2 : Operation 66 [1/1] (0.83ns)   --->   "store i1 false, i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:95]   --->   Operation 66 'store' <Predicate = (pcieState_load == 2 & tmp_2 & flushFlag_load)> <Delay = 0.83>
+ST_2 : Operation 67 [1/1] (0.83ns)   --->   "br label %._crit_edge294" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:97]   --->   Operation 67 'br' <Predicate = (pcieState_load == 2 & tmp_2 & flushFlag_load)> <Delay = 0.83>
+ST_2 : Operation 68 [1/1] (0.00ns)   --->   "%storemerge = phi i4 [ -6, %21 ], [ 0, %20 ]"   --->   Operation 68 'phi' 'storemerge' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_2 : Operation 69 [1/1] (1.28ns)   --->   "store i4 %storemerge, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:96]   --->   Operation 69 'store' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 1.28>
+ST_2 : Operation 70 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:101]   --->   Operation 70 'br' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 71 [1/1] (0.83ns)   --->   "store i1 false, i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:79]   --->   Operation 71 'store' <Predicate = (pcieState_load == 1)> <Delay = 0.83>
+ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%tmp_1 = call i1 @_ssdm_op_BitSelect.i1.i6.i32(i6 %elementCounterDram_V_1, i32 5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:80]   --->   Operation 72 'bitselect' 'tmp_1' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 73 [1/1] (0.00ns)   --->   "br i1 %tmp_1, label %16, label %15" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:80]   --->   Operation 73 'br' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%tmp_10 = trunc i6 %elementCounterDram_V_1 to i5"   --->   Operation 74 'trunc' 'tmp_10' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_V_4 = call i12 @_ssdm_op_BitConcatenate.i12.i5.i7(i5 %tmp_10, i7 0)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 75 'bitconcatenate' 'tmp_V_4' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 76 [1/1] (0.00ns)   --->   "%tmp_V_5 = zext i12 %tmp_V_4 to i32" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 76 'zext' 'tmp_V_5' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 77 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1, i32 %tmp_V_5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 77 'write' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 78 [1/1] (1.11ns)   --->   "%tmp_7 = add i6 1, %elementCounterDram_V_1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:82]   --->   Operation 78 'add' 'tmp_7' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 1.11> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.11> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 79 [1/1] (0.83ns)   --->   "store i6 %tmp_7, i6* @elementCounterDram_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:82]   --->   Operation 79 'store' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.83>
+ST_2 : Operation 80 [1/1] (1.28ns)   --->   "store i4 2, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:85]   --->   Operation 80 'store' <Predicate = (pcieState_load == 1 & tmp_1)> <Delay = 1.28>
+ST_2 : Operation 81 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:86]   --->   Operation 81 'br' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 82 [1/1] (0.00ns)   --->   "br i1 %streamInitializedFla_1, label %2, label %1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:65]   --->   Operation 82 'br' <Predicate = (pcieState_load == 0)> <Delay = 0.00>
+ST_2 : Operation 83 [1/1] (1.28ns)   --->   "store i4 1, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:66]   --->   Operation 83 'store' <Predicate = (pcieState_load == 0 & !streamInitializedFla_1)> <Delay = 1.28>
+ST_2 : Operation 84 [1/1] (0.00ns)   --->   "br i1 %flushReq_V_read, label %3, label %4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:67]   --->   Operation 84 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1)> <Delay = 0.00>
+ST_2 : Operation 85 [1/1] (0.00ns)   --->   "%tmp_11 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* %outDataFlash_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 85 'nbwritereq' 'tmp_11' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 86 [1/1] (0.00ns)   --->   "%tmp_12 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 86 'nbreadreq' 'tmp_12' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 87 [1/1] (0.00ns)   --->   "%tmp_13 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* %outDataDram_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 87 'nbwritereq' 'tmp_13' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 88 [1/1] (0.00ns)   --->   "%tmp_14 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 88 'nbreadreq' 'tmp_14' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 89 [1/1] (0.00ns)   --->   "%tmp_15 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* %inData_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:74]   --->   Operation 89 'nbreadreq' 'tmp_15' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 90 [1/1] (1.28ns)   --->   "store i4 3, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:75]   --->   Operation 90 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13 & tmp_15)> <Delay = 1.28>
+ST_2 : Operation 91 [1/1] (1.28ns)   --->   "store i4 7, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:73]   --->   Operation 91 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13 & tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13 & tmp_14)> <Delay = 1.28>
+ST_2 : Operation 92 [1/1] (1.28ns)   --->   "store i4 6, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:71]   --->   Operation 92 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11 & tmp_12)> <Delay = 1.28>
+ST_2 : Operation 93 [1/1] (1.28ns)   --->   "store i4 -8, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:68]   --->   Operation 93 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & flushReq_V_read)> <Delay = 1.28>
+ST_2 : Operation 94 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:77]   --->   Operation 94 'br' <Predicate = (pcieState_load == 0)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "br i1 %tmp_3, label %37, label %38" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:134]   --->   Operation 95 'br' <Predicate = (pcieState_load == 9)> <Delay = 0.00>
+ST_3 : Operation 96 [1/1] (0.00ns)   --->   "br i1 %tmp, label %33, label %34" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:128]   --->   Operation 96 'br' <Predicate = (pcieState_load == 8)> <Delay = 0.00>
+ST_3 : Operation 97 [1/1] (0.00ns)   --->   "br i1 %tmp_5, label %25, label %._crit_edge295" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 97 'br' <Predicate = (pcieState_load == 3 & icmp)> <Delay = 0.00>
+ST_3 : Operation 98 [1/1] (0.00ns)   --->   "br i1 %tmp_8, label %26, label %._crit_edge297" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:107]   --->   Operation 98 'br' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00>
+ST_3 : Operation 99 [1/1] (0.00ns)   --->   "br i1 %tmp_11, label %5, label %._crit_edge289" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 99 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00>
+ST_3 : Operation 100 [1/1] (0.00ns)   --->   "br i1 %tmp_12, label %6, label %._crit_edge289" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 100 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11)> <Delay = 0.00>
+ST_3 : Operation 101 [1/1] (0.00ns)   --->   "br i1 %tmp_13, label %7, label %._crit_edge291" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 101 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00>
+ST_3 : Operation 102 [1/1] (0.00ns)   --->   "br i1 %tmp_14, label %8, label %._crit_edge291" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 102 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13)> <Delay = 0.00>
+ST_3 : Operation 103 [1/1] (0.00ns)   --->   "br i1 %tmp_15, label %9, label %._crit_edge293" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:74]   --->   Operation 103 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00>
+ST_3 : Operation 104 [1/1] (0.00ns)   --->   "%pcie_flushAck_V_load = load i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 104 'load' 'pcie_flushAck_V_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 105 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_none.i1P(i1* %flushAck_V, i1 %pcie_flushAck_V_load)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 105 'write' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 106 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecChannel([25 x i8]* @freeAddressArrayDram, i32 1, [1 x i8]* @p_str65, [1 x i8]* @p_str65, i32 64, i32 64, i32* @freeAddressArrayDram_1, i32* @freeAddressArrayDram_1)"   --->   Operation 106 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 107 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @freeAddressArrayDram_1, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str66, i32 0, i32 0, [1 x i8]* @p_str67, [1 x i8]* @p_str68, [1 x i8]* @p_str69, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str70, [1 x i8]* @p_str71)"   --->   Operation 107 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 108 [1/1] (0.00ns)   --->   "%empty_5 = call i32 (...)* @_ssdm_op_SpecChannel([26 x i8]* @freeAddressArrayFlas, i32 1, [1 x i8]* @p_str58, [1 x i8]* @p_str58, i32 32, i32 32, i32* @freeAddressArrayFlas_1, i32* @freeAddressArrayFlas_1)"   --->   Operation 108 'specchannel' 'empty_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 109 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @freeAddressArrayFlas_1, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str59, i32 0, i32 0, [1 x i8]* @p_str60, [1 x i8]* @p_str61, [1 x i8]* @p_str62, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str63, [1 x i8]* @p_str64)"   --->   Operation 109 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 110 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %outDataDram_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str52, i32 0, i32 0, [1 x i8]* @p_str53, [1 x i8]* @p_str54, [1 x i8]* @p_str55, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str56, [1 x i8]* @p_str57)"   --->   Operation 110 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 111 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %outDataFlash_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str46, i32 0, i32 0, [1 x i8]* @p_str47, [1 x i8]* @p_str48, [1 x i8]* @p_str49, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str50, [1 x i8]* @p_str51)"   --->   Operation 111 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 112 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %inData_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str40, i32 0, i32 0, [1 x i8]* @p_str41, [1 x i8]* @p_str42, [1 x i8]* @p_str43, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str44, [1 x i8]* @p_str45)"   --->   Operation 112 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 113 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %inData_V_V), !map !72"   --->   Operation 113 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 114 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %outDataFlash_V_V), !map !78"   --->   Operation 114 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 115 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %outDataDram_V_V), !map !82"   --->   Operation 115 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 116 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %flushReq_V), !map !86"   --->   Operation 116 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 117 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %flushAck_V), !map !92"   --->   Operation 117 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 118 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %flushDone_V), !map !96"   --->   Operation 118 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 119 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([15 x i8]* @dummyPCIeJoint_str) nounwind"   --->   Operation 119 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 120 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:34]   --->   Operation 120 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 121 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %flushReq_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:35]   --->   Operation 121 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 122 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1* %flushAck_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:36]   --->   Operation 122 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 123 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %flushDone_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:37]   --->   Operation 123 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 124 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:38]   --->   Operation 124 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 125 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %inData_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:44]   --->   Operation 125 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 126 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %outDataFlash_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:45]   --->   Operation 126 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 127 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %outDataDram_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:46]   --->   Operation 127 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 128 [1/1] (0.00ns)   --->   "br label %._crit_edge298" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:146]   --->   Operation 128 'br' <Predicate = (pcieState_load == 10 & flushDone_V_read)> <Delay = 0.00>
+ST_4 : Operation 129 [1/1] (0.00ns)   --->   "br label %39"   --->   Operation 129 'br' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.00>
+ST_4 : Operation 130 [1/1] (0.00ns)   --->   "br label %39" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:135]   --->   Operation 130 'br' <Predicate = (pcieState_load == 9 & tmp_3)> <Delay = 0.00>
+ST_4 : Operation 131 [1/1] (0.00ns)   --->   "br label %35"   --->   Operation 131 'br' <Predicate = (pcieState_load == 8 & !tmp)> <Delay = 0.00>
+ST_4 : Operation 132 [1/1] (0.00ns)   --->   "br label %35" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:129]   --->   Operation 132 'br' <Predicate = (pcieState_load == 8 & tmp)> <Delay = 0.00>
+ST_4 : Operation 133 [1/1] (0.00ns)   --->   "br label %._crit_edge297" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:108]   --->   Operation 133 'br' <Predicate = (pcieState_load == 3 & !tmp_5 & tmp_8) | (pcieState_load == 3 & !icmp & tmp_8)> <Delay = 0.00>
+ST_4 : Operation 134 [1/1] (0.00ns)   --->   "br label %27"   --->   Operation 134 'br' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00>
+ST_4 : Operation 135 [1/1] (0.00ns)   --->   "br label %27" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:106]   --->   Operation 135 'br' <Predicate = (pcieState_load == 3 & icmp & tmp_5)> <Delay = 0.00>
+ST_4 : Operation 136 [1/1] (0.00ns)   --->   "br label %22" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:91]   --->   Operation 136 'br' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_4 : Operation 137 [1/1] (0.00ns)   --->   "br label %22"   --->   Operation 137 'br' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_4 : Operation 138 [1/1] (0.00ns)   --->   "br label %17" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:83]   --->   Operation 138 'br' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_4 : Operation 139 [1/1] (0.00ns)   --->   "br label %17"   --->   Operation 139 'br' <Predicate = (pcieState_load == 1 & tmp_1)> <Delay = 0.00>
+ST_4 : Operation 140 [1/1] (0.00ns)   --->   "br label %13" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:66]   --->   Operation 140 'br' <Predicate = (pcieState_load == 0 & !streamInitializedFla_1)> <Delay = 0.00>
+ST_4 : Operation 141 [1/1] (0.00ns)   --->   "br label %._crit_edge293" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:75]   --->   Operation 141 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13 & tmp_15)> <Delay = 0.00>
+ST_4 : Operation 142 [1/1] (0.00ns)   --->   "br label %10"   --->   Operation 142 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00>
+ST_4 : Operation 143 [1/1] (0.00ns)   --->   "br label %10" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:73]   --->   Operation 143 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13 & tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13 & tmp_14)> <Delay = 0.00>
+ST_4 : Operation 144 [1/1] (0.00ns)   --->   "br label %11"   --->   Operation 144 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00>
+ST_4 : Operation 145 [1/1] (0.00ns)   --->   "br label %11" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:71]   --->   Operation 145 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11 & tmp_12)> <Delay = 0.00>
+ST_4 : Operation 146 [1/1] (0.00ns)   --->   "br label %12"   --->   Operation 146 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00>
+ST_4 : Operation 147 [1/1] (0.00ns)   --->   "br label %12" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:68]   --->   Operation 147 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & flushReq_V_read)> <Delay = 0.00>
+ST_4 : Operation 148 [1/1] (0.00ns)   --->   "br label %13"   --->   Operation 148 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1)> <Delay = 0.00>
+ST_4 : Operation 149 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_none.i1P(i1* %flushAck_V, i1 %pcie_flushAck_V_load)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 149 'write' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 150 [1/1] (0.00ns)   --->   "ret void" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:150]   --->   Operation 150 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 1
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_none:ce=0
+Port [ inData_V_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ outDataFlash_V_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ outDataDram_V_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ flushReq_V]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ flushAck_V]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ flushDone_V]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ pcieState]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ streamInitializedFla]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ elementCounterDram_V]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ elementCounterFlash_s]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ flushFlag]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ inputAddress_V]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+Port [ freeAddressArrayFlas_1]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_fifo:ce=0
+Port [ freeAddressArrayDram_1]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=3; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_fifo:ce=0
+Port [ pcie_flushAck_V]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; linkage=7; visibility=0; IO mode=ap_ovld:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+flushDone_V_read       (read          ) [ 01111]
+flushReq_V_read        (read          ) [ 01111]
+pcieState_load         (load          ) [ 01111]
+streamInitializedFla_1 (load          ) [ 01111]
+elementCounterDram_V_1 (load          ) [ 00000]
+elementCounterFlash_1  (load          ) [ 00000]
+flushFlag_load         (load          ) [ 01100]
+tmp_V_1                (load          ) [ 00000]
+StgValue_15            (switch        ) [ 00000]
+StgValue_16            (br            ) [ 00000]
+StgValue_17            (store         ) [ 00000]
+StgValue_18            (br            ) [ 00000]
+tmp_3                  (nbreadreq     ) [ 01111]
+StgValue_20            (store         ) [ 00000]
+StgValue_21            (store         ) [ 00000]
+StgValue_22            (store         ) [ 00000]
+StgValue_23            (store         ) [ 00000]
+StgValue_24            (store         ) [ 00000]
+tmp_V_9_0              (read          ) [ 00000]
+StgValue_26            (br            ) [ 00000]
+tmp                    (nbreadreq     ) [ 01111]
+StgValue_28            (store         ) [ 00000]
+tmp_V_8_0              (read          ) [ 00000]
+StgValue_30            (br            ) [ 00000]
+tmp_V_3                (read          ) [ 00000]
+StgValue_32            (write         ) [ 00000]
+StgValue_33            (store         ) [ 00000]
+StgValue_34            (br            ) [ 00000]
+tmp_V_2                (read          ) [ 00000]
+StgValue_36            (write         ) [ 00000]
+StgValue_37            (store         ) [ 00000]
+StgValue_38            (br            ) [ 00000]
+StgValue_39            (write         ) [ 00000]
+StgValue_40            (store         ) [ 00000]
+StgValue_41            (br            ) [ 00000]
+StgValue_42            (write         ) [ 00000]
+StgValue_43            (store         ) [ 00000]
+StgValue_44            (br            ) [ 00000]
+tmp_V                  (read          ) [ 00000]
+StgValue_46            (store         ) [ 00000]
+tmp_4                  (partselect    ) [ 00000]
+icmp                   (icmp          ) [ 01111]
+StgValue_49            (br            ) [ 00000]
+tmp_5                  (nbwritereq    ) [ 01111]
+tmp_8                  (nbwritereq    ) [ 01111]
+StgValue_52            (store         ) [ 00000]
+StgValue_53            (store         ) [ 00000]
+StgValue_54            (br            ) [ 00000]
+tmp_2                  (bitselect     ) [ 01111]
+StgValue_56            (br            ) [ 00000]
+tmp_8_cast             (zext          ) [ 00000]
+tmp_9                  (mul           ) [ 00000]
+tmp_V_6                (add           ) [ 00000]
+tmp_V_7                (zext          ) [ 00000]
+StgValue_61            (write         ) [ 00000]
+tmp_6                  (add           ) [ 00000]
+StgValue_63            (store         ) [ 00000]
+StgValue_64            (store         ) [ 00000]
+StgValue_65            (br            ) [ 00000]
+StgValue_66            (store         ) [ 00000]
+StgValue_67            (br            ) [ 00000]
+storemerge             (phi           ) [ 00000]
+StgValue_69            (store         ) [ 00000]
+StgValue_70            (br            ) [ 00000]
+StgValue_71            (store         ) [ 00000]
+tmp_1                  (bitselect     ) [ 01111]
+StgValue_73            (br            ) [ 00000]
+tmp_10                 (trunc         ) [ 00000]
+tmp_V_4                (bitconcatenate) [ 00000]
+tmp_V_5                (zext          ) [ 00000]
+StgValue_77            (write         ) [ 00000]
+tmp_7                  (add           ) [ 00000]
+StgValue_79            (store         ) [ 00000]
+StgValue_80            (store         ) [ 00000]
+StgValue_81            (br            ) [ 00000]
+StgValue_82            (br            ) [ 00000]
+StgValue_83            (store         ) [ 00000]
+StgValue_84            (br            ) [ 00000]
+tmp_11                 (nbwritereq    ) [ 01111]
+tmp_12                 (nbreadreq     ) [ 01111]
+tmp_13                 (nbwritereq    ) [ 01111]
+tmp_14                 (nbreadreq     ) [ 01111]
+tmp_15                 (nbreadreq     ) [ 01111]
+StgValue_90            (store         ) [ 00000]
+StgValue_91            (store         ) [ 00000]
+StgValue_92            (store         ) [ 00000]
+StgValue_93            (store         ) [ 00000]
+StgValue_94            (br            ) [ 00000]
+StgValue_95            (br            ) [ 00000]
+StgValue_96            (br            ) [ 00000]
+StgValue_97            (br            ) [ 00000]
+StgValue_98            (br            ) [ 00000]
+StgValue_99            (br            ) [ 00000]
+StgValue_100           (br            ) [ 00000]
+StgValue_101           (br            ) [ 00000]
+StgValue_102           (br            ) [ 00000]
+StgValue_103           (br            ) [ 00000]
+pcie_flushAck_V_load   (load          ) [ 01001]
+empty                  (specchannel   ) [ 00000]
+StgValue_107           (specinterface ) [ 00000]
+empty_5                (specchannel   ) [ 00000]
+StgValue_109           (specinterface ) [ 00000]
+StgValue_110           (specinterface ) [ 00000]
+StgValue_111           (specinterface ) [ 00000]
+StgValue_112           (specinterface ) [ 00000]
+StgValue_113           (specbitsmap   ) [ 00000]
+StgValue_114           (specbitsmap   ) [ 00000]
+StgValue_115           (specbitsmap   ) [ 00000]
+StgValue_116           (specbitsmap   ) [ 00000]
+StgValue_117           (specbitsmap   ) [ 00000]
+StgValue_118           (specbitsmap   ) [ 00000]
+StgValue_119           (spectopmodule ) [ 00000]
+StgValue_120           (specinterface ) [ 00000]
+StgValue_121           (specinterface ) [ 00000]
+StgValue_122           (specinterface ) [ 00000]
+StgValue_123           (specinterface ) [ 00000]
+StgValue_124           (specpipeline  ) [ 00000]
+StgValue_125           (specifcore    ) [ 00000]
+StgValue_126           (specifcore    ) [ 00000]
+StgValue_127           (specifcore    ) [ 00000]
+StgValue_128           (br            ) [ 00000]
+StgValue_129           (br            ) [ 00000]
+StgValue_130           (br            ) [ 00000]
+StgValue_131           (br            ) [ 00000]
+StgValue_132           (br            ) [ 00000]
+StgValue_133           (br            ) [ 00000]
+StgValue_134           (br            ) [ 00000]
+StgValue_135           (br            ) [ 00000]
+StgValue_136           (br            ) [ 00000]
+StgValue_137           (br            ) [ 00000]
+StgValue_138           (br            ) [ 00000]
+StgValue_139           (br            ) [ 00000]
+StgValue_140           (br            ) [ 00000]
+StgValue_141           (br            ) [ 00000]
+StgValue_142           (br            ) [ 00000]
+StgValue_143           (br            ) [ 00000]
+StgValue_144           (br            ) [ 00000]
+StgValue_145           (br            ) [ 00000]
+StgValue_146           (br            ) [ 00000]
+StgValue_147           (br            ) [ 00000]
+StgValue_148           (br            ) [ 00000]
+StgValue_149           (write         ) [ 00000]
+StgValue_150           (ret           ) [ 00000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="inData_V_V">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="inData_V_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="outDataFlash_V_V">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="outDataFlash_V_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="outDataDram_V_V">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="outDataDram_V_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="flushReq_V">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="flushReq_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="flushAck_V">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="flushAck_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="flushDone_V">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="flushDone_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="pcieState">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="pcieState"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="streamInitializedFla">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="streamInitializedFla"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="elementCounterDram_V">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="elementCounterDram_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1000" name="elementCounterFlash_s">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="elementCounterFlash_s"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1000" name="flushFlag">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="flushFlag"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1000" name="inputAddress_V">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="inputAddress_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1000" name="freeAddressArrayFlas_1">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="freeAddressArrayFlas_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1000" name="freeAddressArrayDram_1">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="freeAddressArrayDram_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1000" name="pcie_flushAck_V">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="pcie_flushAck_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_none.i1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_NbReadReq.ap_fifo.i32P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1001" name="const_62">
+<pin_list>
+<pin id="63" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_fifo.volatile.i32P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="64" class="1001" name="const_64">
+<pin_list>
+<pin id="65" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Write.ap_fifo.volatile.i32P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="66" class="1001" name="const_66">
+<pin_list>
+<pin id="67" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_PartSelect.i20.i32.i32.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="68" class="1001" name="const_68">
+<pin_list>
+<pin id="69" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="70" class="1001" name="const_70">
+<pin_list>
+<pin id="71" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="72" class="1001" name="const_72">
+<pin_list>
+<pin id="73" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="74" class="1001" name="const_74">
+<pin_list>
+<pin id="75" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_NbWriteReq.ap_fifo.i32P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="76" class="1001" name="const_76">
+<pin_list>
+<pin id="77" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_BitSelect.i1.i6.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="78" class="1001" name="const_78">
+<pin_list>
+<pin id="79" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="80" class="1001" name="const_80">
+<pin_list>
+<pin id="81" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="82" class="1001" name="const_82">
+<pin_list>
+<pin id="83" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="84" class="1001" name="const_84">
+<pin_list>
+<pin id="85" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="86" class="1001" name="const_86">
+<pin_list>
+<pin id="87" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="88" class="1001" name="const_88">
+<pin_list>
+<pin id="89" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_BitConcatenate.i12.i5.i7"/></StgValue>
+</bind>
+</comp>
+
+<comp id="90" class="1001" name="const_90">
+<pin_list>
+<pin id="91" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="92" class="1001" name="const_92">
+<pin_list>
+<pin id="93" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Write.ap_none.i1P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="94" class="1001" name="const_94">
+<pin_list>
+<pin id="95" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecChannel"/></StgValue>
+</bind>
+</comp>
+
+<comp id="96" class="1001" name="const_96">
+<pin_list>
+<pin id="97" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="freeAddressArrayDram"/></StgValue>
+</bind>
+</comp>
+
+<comp id="98" class="1001" name="const_98">
+<pin_list>
+<pin id="99" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str65"/></StgValue>
+</bind>
+</comp>
+
+<comp id="100" class="1001" name="const_100">
+<pin_list>
+<pin id="101" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="102" class="1001" name="const_102">
+<pin_list>
+<pin id="103" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="104" class="1001" name="const_104">
+<pin_list>
+<pin id="105" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="106" class="1001" name="const_106">
+<pin_list>
+<pin id="107" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="108" class="1001" name="const_108">
+<pin_list>
+<pin id="109" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str66"/></StgValue>
+</bind>
+</comp>
+
+<comp id="110" class="1001" name="const_110">
+<pin_list>
+<pin id="111" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str67"/></StgValue>
+</bind>
+</comp>
+
+<comp id="112" class="1001" name="const_112">
+<pin_list>
+<pin id="113" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str68"/></StgValue>
+</bind>
+</comp>
+
+<comp id="114" class="1001" name="const_114">
+<pin_list>
+<pin id="115" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str69"/></StgValue>
+</bind>
+</comp>
+
+<comp id="116" class="1001" name="const_116">
+<pin_list>
+<pin id="117" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="118" class="1001" name="const_118">
+<pin_list>
+<pin id="119" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="120" class="1001" name="const_120">
+<pin_list>
+<pin id="121" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str70"/></StgValue>
+</bind>
+</comp>
+
+<comp id="122" class="1001" name="const_122">
+<pin_list>
+<pin id="123" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str71"/></StgValue>
+</bind>
+</comp>
+
+<comp id="124" class="1001" name="const_124">
+<pin_list>
+<pin id="125" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="freeAddressArrayFlas"/></StgValue>
+</bind>
+</comp>
+
+<comp id="126" class="1001" name="const_126">
+<pin_list>
+<pin id="127" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str58"/></StgValue>
+</bind>
+</comp>
+
+<comp id="128" class="1001" name="const_128">
+<pin_list>
+<pin id="129" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="130" class="1001" name="const_130">
+<pin_list>
+<pin id="131" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str59"/></StgValue>
+</bind>
+</comp>
+
+<comp id="132" class="1001" name="const_132">
+<pin_list>
+<pin id="133" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str60"/></StgValue>
+</bind>
+</comp>
+
+<comp id="134" class="1001" name="const_134">
+<pin_list>
+<pin id="135" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str61"/></StgValue>
+</bind>
+</comp>
+
+<comp id="136" class="1001" name="const_136">
+<pin_list>
+<pin id="137" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str62"/></StgValue>
+</bind>
+</comp>
+
+<comp id="138" class="1001" name="const_138">
+<pin_list>
+<pin id="139" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str63"/></StgValue>
+</bind>
+</comp>
+
+<comp id="140" class="1001" name="const_140">
+<pin_list>
+<pin id="141" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str64"/></StgValue>
+</bind>
+</comp>
+
+<comp id="142" class="1001" name="const_142">
+<pin_list>
+<pin id="143" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str52"/></StgValue>
+</bind>
+</comp>
+
+<comp id="144" class="1001" name="const_144">
+<pin_list>
+<pin id="145" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str53"/></StgValue>
+</bind>
+</comp>
+
+<comp id="146" class="1001" name="const_146">
+<pin_list>
+<pin id="147" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str54"/></StgValue>
+</bind>
+</comp>
+
+<comp id="148" class="1001" name="const_148">
+<pin_list>
+<pin id="149" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str55"/></StgValue>
+</bind>
+</comp>
+
+<comp id="150" class="1001" name="const_150">
+<pin_list>
+<pin id="151" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str56"/></StgValue>
+</bind>
+</comp>
+
+<comp id="152" class="1001" name="const_152">
+<pin_list>
+<pin id="153" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str57"/></StgValue>
+</bind>
+</comp>
+
+<comp id="154" class="1001" name="const_154">
+<pin_list>
+<pin id="155" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str46"/></StgValue>
+</bind>
+</comp>
+
+<comp id="156" class="1001" name="const_156">
+<pin_list>
+<pin id="157" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str47"/></StgValue>
+</bind>
+</comp>
+
+<comp id="158" class="1001" name="const_158">
+<pin_list>
+<pin id="159" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str48"/></StgValue>
+</bind>
+</comp>
+
+<comp id="160" class="1001" name="const_160">
+<pin_list>
+<pin id="161" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str49"/></StgValue>
+</bind>
+</comp>
+
+<comp id="162" class="1001" name="const_162">
+<pin_list>
+<pin id="163" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str50"/></StgValue>
+</bind>
+</comp>
+
+<comp id="164" class="1001" name="const_164">
+<pin_list>
+<pin id="165" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str51"/></StgValue>
+</bind>
+</comp>
+
+<comp id="166" class="1001" name="const_166">
+<pin_list>
+<pin id="167" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str40"/></StgValue>
+</bind>
+</comp>
+
+<comp id="168" class="1001" name="const_168">
+<pin_list>
+<pin id="169" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str41"/></StgValue>
+</bind>
+</comp>
+
+<comp id="170" class="1001" name="const_170">
+<pin_list>
+<pin id="171" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str42"/></StgValue>
+</bind>
+</comp>
+
+<comp id="172" class="1001" name="const_172">
+<pin_list>
+<pin id="173" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str43"/></StgValue>
+</bind>
+</comp>
+
+<comp id="174" class="1001" name="const_174">
+<pin_list>
+<pin id="175" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str44"/></StgValue>
+</bind>
+</comp>
+
+<comp id="176" class="1001" name="const_176">
+<pin_list>
+<pin id="177" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str45"/></StgValue>
+</bind>
+</comp>
+
+<comp id="178" class="1001" name="const_178">
+<pin_list>
+<pin id="179" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="180" class="1001" name="const_180">
+<pin_list>
+<pin id="181" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="182" class="1001" name="const_182">
+<pin_list>
+<pin id="183" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="dummyPCIeJoint_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="184" class="1001" name="const_184">
+<pin_list>
+<pin id="185" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="186" class="1001" name="const_186">
+<pin_list>
+<pin id="187" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="188" class="1001" name="const_188">
+<pin_list>
+<pin id="189" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="190" class="1001" name="const_190">
+<pin_list>
+<pin id="191" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="192" class="1001" name="const_192">
+<pin_list>
+<pin id="193" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecIFCore"/></StgValue>
+</bind>
+</comp>
+
+<comp id="194" class="1001" name="const_194">
+<pin_list>
+<pin id="195" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str3"/></StgValue>
+</bind>
+</comp>
+
+<comp id="196" class="1001" name="const_196">
+<pin_list>
+<pin id="197" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="198" class="1004" name="grp_read_fu_198">
+<pin_list>
+<pin id="199" dir="0" index="0" bw="1" slack="0"/>
+<pin id="200" dir="0" index="1" bw="1" slack="0"/>
+<pin id="201" dir="1" index="2" bw="1" slack="2"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="flushDone_V_read/1 "/>
+</bind>
+</comp>
+
+<comp id="204" class="1004" name="grp_read_fu_204">
+<pin_list>
+<pin id="205" dir="0" index="0" bw="1" slack="0"/>
+<pin id="206" dir="0" index="1" bw="1" slack="0"/>
+<pin id="207" dir="1" index="2" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="flushReq_V_read/1 "/>
+</bind>
+</comp>
+
+<comp id="210" class="1004" name="grp_nbreadreq_fu_210">
+<pin_list>
+<pin id="211" dir="0" index="0" bw="1" slack="0"/>
+<pin id="212" dir="0" index="1" bw="32" slack="0"/>
+<pin id="213" dir="0" index="2" bw="1" slack="0"/>
+<pin id="214" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbreadreq(1156) " fcode="nbreadreq"/>
+<opset="tmp_3/2 tmp_12/2 "/>
+</bind>
+</comp>
+
+<comp id="218" class="1004" name="grp_read_fu_218">
+<pin_list>
+<pin id="219" dir="0" index="0" bw="32" slack="0"/>
+<pin id="220" dir="0" index="1" bw="32" slack="0"/>
+<pin id="221" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="tmp_V_9_0/2 tmp_V_2/2 "/>
+</bind>
+</comp>
+
+<comp id="224" class="1004" name="grp_nbreadreq_fu_224">
+<pin_list>
+<pin id="225" dir="0" index="0" bw="1" slack="0"/>
+<pin id="226" dir="0" index="1" bw="32" slack="0"/>
+<pin id="227" dir="0" index="2" bw="1" slack="0"/>
+<pin id="228" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbreadreq(1156) " fcode="nbreadreq"/>
+<opset="tmp/2 tmp_14/2 "/>
+</bind>
+</comp>
+
+<comp id="232" class="1004" name="grp_read_fu_232">
+<pin_list>
+<pin id="233" dir="0" index="0" bw="32" slack="0"/>
+<pin id="234" dir="0" index="1" bw="32" slack="0"/>
+<pin id="235" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="tmp_V_8_0/2 tmp_V_3/2 "/>
+</bind>
+</comp>
+
+<comp id="238" class="1004" name="StgValue_32_write_fu_238">
+<pin_list>
+<pin id="239" dir="0" index="0" bw="0" slack="0"/>
+<pin id="240" dir="0" index="1" bw="32" slack="0"/>
+<pin id="241" dir="0" index="2" bw="32" slack="0"/>
+<pin id="242" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="StgValue_32/2 "/>
+</bind>
+</comp>
+
+<comp id="246" class="1004" name="StgValue_36_write_fu_246">
+<pin_list>
+<pin id="247" dir="0" index="0" bw="0" slack="0"/>
+<pin id="248" dir="0" index="1" bw="32" slack="0"/>
+<pin id="249" dir="0" index="2" bw="32" slack="0"/>
+<pin id="250" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="StgValue_36/2 "/>
+</bind>
+</comp>
+
+<comp id="254" class="1004" name="grp_write_fu_254">
+<pin_list>
+<pin id="255" dir="0" index="0" bw="0" slack="0"/>
+<pin id="256" dir="0" index="1" bw="32" slack="0"/>
+<pin id="257" dir="0" index="2" bw="32" slack="0"/>
+<pin id="258" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="StgValue_39/2 StgValue_61/2 "/>
+</bind>
+</comp>
+
+<comp id="261" class="1004" name="grp_write_fu_261">
+<pin_list>
+<pin id="262" dir="0" index="0" bw="0" slack="0"/>
+<pin id="263" dir="0" index="1" bw="32" slack="0"/>
+<pin id="264" dir="0" index="2" bw="32" slack="0"/>
+<pin id="265" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="StgValue_42/2 StgValue_77/2 "/>
+</bind>
+</comp>
+
+<comp id="268" class="1004" name="tmp_V_read_fu_268">
+<pin_list>
+<pin id="269" dir="0" index="0" bw="32" slack="0"/>
+<pin id="270" dir="0" index="1" bw="32" slack="0"/>
+<pin id="271" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="tmp_V/2 "/>
+</bind>
+</comp>
+
+<comp id="274" class="1004" name="tmp_5_nbwritereq_fu_274">
+<pin_list>
+<pin id="275" dir="0" index="0" bw="1" slack="0"/>
+<pin id="276" dir="0" index="1" bw="32" slack="0"/>
+<pin id="277" dir="0" index="2" bw="1" slack="0"/>
+<pin id="278" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbwritereq(1157) " fcode="nbwritereq"/>
+<opset="tmp_5/2 "/>
+</bind>
+</comp>
+
+<comp id="282" class="1004" name="tmp_8_nbwritereq_fu_282">
+<pin_list>
+<pin id="283" dir="0" index="0" bw="1" slack="0"/>
+<pin id="284" dir="0" index="1" bw="32" slack="0"/>
+<pin id="285" dir="0" index="2" bw="1" slack="0"/>
+<pin id="286" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbwritereq(1157) " fcode="nbwritereq"/>
+<opset="tmp_8/2 "/>
+</bind>
+</comp>
+
+<comp id="290" class="1004" name="tmp_11_nbwritereq_fu_290">
+<pin_list>
+<pin id="291" dir="0" index="0" bw="1" slack="0"/>
+<pin id="292" dir="0" index="1" bw="32" slack="0"/>
+<pin id="293" dir="0" index="2" bw="1" slack="0"/>
+<pin id="294" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbwritereq(1157) " fcode="nbwritereq"/>
+<opset="tmp_11/2 "/>
+</bind>
+</comp>
+
+<comp id="298" class="1004" name="tmp_13_nbwritereq_fu_298">
+<pin_list>
+<pin id="299" dir="0" index="0" bw="1" slack="0"/>
+<pin id="300" dir="0" index="1" bw="32" slack="0"/>
+<pin id="301" dir="0" index="2" bw="1" slack="0"/>
+<pin id="302" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbwritereq(1157) " fcode="nbwritereq"/>
+<opset="tmp_13/2 "/>
+</bind>
+</comp>
+
+<comp id="306" class="1004" name="tmp_15_nbreadreq_fu_306">
+<pin_list>
+<pin id="307" dir="0" index="0" bw="1" slack="0"/>
+<pin id="308" dir="0" index="1" bw="32" slack="0"/>
+<pin id="309" dir="0" index="2" bw="1" slack="0"/>
+<pin id="310" dir="1" index="3" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="nbreadreq(1156) " fcode="nbreadreq"/>
+<opset="tmp_15/2 "/>
+</bind>
+</comp>
+
+<comp id="314" class="1004" name="grp_write_fu_314">
+<pin_list>
+<pin id="315" dir="0" index="0" bw="0" slack="0"/>
+<pin id="316" dir="0" index="1" bw="1" slack="0"/>
+<pin id="317" dir="0" index="2" bw="1" slack="0"/>
+<pin id="318" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="StgValue_105/3 "/>
+</bind>
+</comp>
+
+<comp id="321" class="1005" name="storemerge_reg_321">
+<pin_list>
+<pin id="322" dir="0" index="0" bw="4" slack="2147483647"/>
+<pin id="323" dir="1" index="1" bw="4" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="storemerge (phireg) "/>
+</bind>
+</comp>
+
+<comp id="324" class="1004" name="storemerge_phi_fu_324">
+<pin_list>
+<pin id="325" dir="0" index="0" bw="4" slack="0"/>
+<pin id="326" dir="0" index="1" bw="0" slack="2147483647"/>
+<pin id="327" dir="0" index="2" bw="1" slack="0"/>
+<pin id="328" dir="0" index="3" bw="0" slack="2147483647"/>
+<pin id="329" dir="1" index="4" bw="4" slack="0"/>
+</pin_list>
+<bind>
+<opcode="phi(47) " fcode="phi"/>
+<opset="storemerge/2 "/>
+</bind>
+</comp>
+
+<comp id="332" class="1004" name="grp_store_fu_332">
+<pin_list>
+<pin id="333" dir="0" index="0" bw="1" slack="0"/>
+<pin id="334" dir="0" index="1" bw="4" slack="0"/>
+<pin id="335" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_17/2 StgValue_33/2 StgValue_37/2 StgValue_40/2 StgValue_43/2 "/>
+</bind>
+</comp>
+
+<comp id="338" class="1004" name="grp_store_fu_338">
+<pin_list>
+<pin id="339" dir="0" index="0" bw="1" slack="0"/>
+<pin id="340" dir="0" index="1" bw="4" slack="0"/>
+<pin id="341" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_24/2 StgValue_83/2 "/>
+</bind>
+</comp>
+
+<comp id="344" class="1004" name="pcieState_load_load_fu_344">
+<pin_list>
+<pin id="345" dir="0" index="0" bw="4" slack="0"/>
+<pin id="346" dir="1" index="1" bw="4" slack="1"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="pcieState_load/2 "/>
+</bind>
+</comp>
+
+<comp id="348" class="1004" name="streamInitializedFla_1_load_fu_348">
+<pin_list>
+<pin id="349" dir="0" index="0" bw="1" slack="0"/>
+<pin id="350" dir="1" index="1" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="streamInitializedFla_1/2 "/>
+</bind>
+</comp>
+
+<comp id="352" class="1004" name="elementCounterDram_V_1_load_fu_352">
+<pin_list>
+<pin id="353" dir="0" index="0" bw="6" slack="0"/>
+<pin id="354" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="elementCounterDram_V_1/2 "/>
+</bind>
+</comp>
+
+<comp id="356" class="1004" name="elementCounterFlash_1_load_fu_356">
+<pin_list>
+<pin id="357" dir="0" index="0" bw="6" slack="0"/>
+<pin id="358" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="elementCounterFlash_1/2 "/>
+</bind>
+</comp>
+
+<comp id="360" class="1004" name="flushFlag_load_load_fu_360">
+<pin_list>
+<pin id="361" dir="0" index="0" bw="1" slack="0"/>
+<pin id="362" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="flushFlag_load/2 "/>
+</bind>
+</comp>
+
+<comp id="364" class="1004" name="tmp_V_1_load_fu_364">
+<pin_list>
+<pin id="365" dir="0" index="0" bw="32" slack="0"/>
+<pin id="366" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="tmp_V_1/2 "/>
+</bind>
+</comp>
+
+<comp id="370" class="1004" name="StgValue_20_store_fu_370">
+<pin_list>
+<pin id="371" dir="0" index="0" bw="1" slack="0"/>
+<pin id="372" dir="0" index="1" bw="6" slack="0"/>
+<pin id="373" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_20/2 "/>
+</bind>
+</comp>
+
+<comp id="376" class="1004" name="StgValue_21_store_fu_376">
+<pin_list>
+<pin id="377" dir="0" index="0" bw="1" slack="0"/>
+<pin id="378" dir="0" index="1" bw="6" slack="0"/>
+<pin id="379" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_21/2 "/>
+</bind>
+</comp>
+
+<comp id="382" class="1004" name="StgValue_22_store_fu_382">
+<pin_list>
+<pin id="383" dir="0" index="0" bw="1" slack="0"/>
+<pin id="384" dir="0" index="1" bw="1" slack="0"/>
+<pin id="385" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_22/2 "/>
+</bind>
+</comp>
+
+<comp id="388" class="1004" name="StgValue_23_store_fu_388">
+<pin_list>
+<pin id="389" dir="0" index="0" bw="1" slack="0"/>
+<pin id="390" dir="0" index="1" bw="1" slack="0"/>
+<pin id="391" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_23/2 "/>
+</bind>
+</comp>
+
+<comp id="394" class="1004" name="StgValue_28_store_fu_394">
+<pin_list>
+<pin id="395" dir="0" index="0" bw="4" slack="0"/>
+<pin id="396" dir="0" index="1" bw="4" slack="0"/>
+<pin id="397" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_28/2 "/>
+</bind>
+</comp>
+
+<comp id="400" class="1004" name="StgValue_46_store_fu_400">
+<pin_list>
+<pin id="401" dir="0" index="0" bw="32" slack="0"/>
+<pin id="402" dir="0" index="1" bw="32" slack="0"/>
+<pin id="403" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_46/2 "/>
+</bind>
+</comp>
+
+<comp id="406" class="1004" name="tmp_4_fu_406">
+<pin_list>
+<pin id="407" dir="0" index="0" bw="20" slack="0"/>
+<pin id="408" dir="0" index="1" bw="32" slack="0"/>
+<pin id="409" dir="0" index="2" bw="5" slack="0"/>
+<pin id="410" dir="0" index="3" bw="6" slack="0"/>
+<pin id="411" dir="1" index="4" bw="20" slack="0"/>
+</pin_list>
+<bind>
+<opcode="partselect(1002) " fcode="partselect"/>
+<opset="tmp_4/2 "/>
+</bind>
+</comp>
+
+<comp id="416" class="1004" name="icmp_fu_416">
+<pin_list>
+<pin id="417" dir="0" index="0" bw="20" slack="0"/>
+<pin id="418" dir="0" index="1" bw="1" slack="0"/>
+<pin id="419" dir="1" index="2" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opcode="icmp(45) " fcode="icmp"/>
+<opset="icmp/2 "/>
+</bind>
+</comp>
+
+<comp id="422" class="1004" name="StgValue_52_store_fu_422">
+<pin_list>
+<pin id="423" dir="0" index="0" bw="4" slack="0"/>
+<pin id="424" dir="0" index="1" bw="4" slack="0"/>
+<pin id="425" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_52/2 "/>
+</bind>
+</comp>
+
+<comp id="428" class="1004" name="StgValue_53_store_fu_428">
+<pin_list>
+<pin id="429" dir="0" index="0" bw="4" slack="0"/>
+<pin id="430" dir="0" index="1" bw="4" slack="0"/>
+<pin id="431" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_53/2 "/>
+</bind>
+</comp>
+
+<comp id="434" class="1004" name="tmp_2_fu_434">
+<pin_list>
+<pin id="435" dir="0" index="0" bw="1" slack="0"/>
+<pin id="436" dir="0" index="1" bw="6" slack="0"/>
+<pin id="437" dir="0" index="2" bw="4" slack="0"/>
+<pin id="438" dir="1" index="3" bw="1" slack="2"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_2/2 "/>
+</bind>
+</comp>
+
+<comp id="442" class="1004" name="tmp_8_cast_fu_442">
+<pin_list>
+<pin id="443" dir="0" index="0" bw="6" slack="0"/>
+<pin id="444" dir="1" index="1" bw="18" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="tmp_8_cast/2 "/>
+</bind>
+</comp>
+
+<comp id="446" class="1004" name="tmp_V_7_fu_446">
+<pin_list>
+<pin id="447" dir="0" index="0" bw="18" slack="0"/>
+<pin id="448" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="tmp_V_7/2 "/>
+</bind>
+</comp>
+
+<comp id="450" class="1004" name="tmp_6_fu_450">
+<pin_list>
+<pin id="451" dir="0" index="0" bw="6" slack="0"/>
+<pin id="452" dir="0" index="1" bw="1" slack="0"/>
+<pin id="453" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="tmp_6/2 "/>
+</bind>
+</comp>
+
+<comp id="456" class="1004" name="StgValue_63_store_fu_456">
+<pin_list>
+<pin id="457" dir="0" index="0" bw="6" slack="0"/>
+<pin id="458" dir="0" index="1" bw="6" slack="0"/>
+<pin id="459" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_63/2 "/>
+</bind>
+</comp>
+
+<comp id="462" class="1004" name="StgValue_64_store_fu_462">
+<pin_list>
+<pin id="463" dir="0" index="0" bw="1" slack="0"/>
+<pin id="464" dir="0" index="1" bw="1" slack="0"/>
+<pin id="465" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_64/2 "/>
+</bind>
+</comp>
+
+<comp id="468" class="1004" name="StgValue_66_store_fu_468">
+<pin_list>
+<pin id="469" dir="0" index="0" bw="1" slack="0"/>
+<pin id="470" dir="0" index="1" bw="1" slack="0"/>
+<pin id="471" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_66/2 "/>
+</bind>
+</comp>
+
+<comp id="474" class="1004" name="StgValue_69_store_fu_474">
+<pin_list>
+<pin id="475" dir="0" index="0" bw="4" slack="0"/>
+<pin id="476" dir="0" index="1" bw="4" slack="0"/>
+<pin id="477" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_69/2 "/>
+</bind>
+</comp>
+
+<comp id="480" class="1004" name="StgValue_71_store_fu_480">
+<pin_list>
+<pin id="481" dir="0" index="0" bw="1" slack="0"/>
+<pin id="482" dir="0" index="1" bw="1" slack="0"/>
+<pin id="483" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_71/2 "/>
+</bind>
+</comp>
+
+<comp id="486" class="1004" name="tmp_1_fu_486">
+<pin_list>
+<pin id="487" dir="0" index="0" bw="1" slack="0"/>
+<pin id="488" dir="0" index="1" bw="6" slack="0"/>
+<pin id="489" dir="0" index="2" bw="4" slack="0"/>
+<pin id="490" dir="1" index="3" bw="1" slack="2"/>
+</pin_list>
+<bind>
+<opcode="bitselect(1000) " fcode="bitselect"/>
+<opset="tmp_1/2 "/>
+</bind>
+</comp>
+
+<comp id="494" class="1004" name="tmp_10_fu_494">
+<pin_list>
+<pin id="495" dir="0" index="0" bw="6" slack="0"/>
+<pin id="496" dir="1" index="1" bw="5" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="tmp_10/2 "/>
+</bind>
+</comp>
+
+<comp id="498" class="1004" name="tmp_V_4_fu_498">
+<pin_list>
+<pin id="499" dir="0" index="0" bw="12" slack="0"/>
+<pin id="500" dir="0" index="1" bw="5" slack="0"/>
+<pin id="501" dir="0" index="2" bw="1" slack="0"/>
+<pin id="502" dir="1" index="3" bw="12" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitconcatenate(1004) " fcode="bitconcatenate"/>
+<opset="tmp_V_4/2 "/>
+</bind>
+</comp>
+
+<comp id="506" class="1004" name="tmp_V_5_fu_506">
+<pin_list>
+<pin id="507" dir="0" index="0" bw="12" slack="0"/>
+<pin id="508" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="tmp_V_5/2 "/>
+</bind>
+</comp>
+
+<comp id="511" class="1004" name="tmp_7_fu_511">
+<pin_list>
+<pin id="512" dir="0" index="0" bw="1" slack="0"/>
+<pin id="513" dir="0" index="1" bw="6" slack="0"/>
+<pin id="514" dir="1" index="2" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="tmp_7/2 "/>
+</bind>
+</comp>
+
+<comp id="517" class="1004" name="StgValue_79_store_fu_517">
+<pin_list>
+<pin id="518" dir="0" index="0" bw="6" slack="0"/>
+<pin id="519" dir="0" index="1" bw="6" slack="0"/>
+<pin id="520" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_79/2 "/>
+</bind>
+</comp>
+
+<comp id="523" class="1004" name="StgValue_80_store_fu_523">
+<pin_list>
+<pin id="524" dir="0" index="0" bw="3" slack="0"/>
+<pin id="525" dir="0" index="1" bw="4" slack="0"/>
+<pin id="526" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_80/2 "/>
+</bind>
+</comp>
+
+<comp id="529" class="1004" name="StgValue_90_store_fu_529">
+<pin_list>
+<pin id="530" dir="0" index="0" bw="3" slack="0"/>
+<pin id="531" dir="0" index="1" bw="4" slack="0"/>
+<pin id="532" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_90/2 "/>
+</bind>
+</comp>
+
+<comp id="535" class="1004" name="StgValue_91_store_fu_535">
+<pin_list>
+<pin id="536" dir="0" index="0" bw="4" slack="0"/>
+<pin id="537" dir="0" index="1" bw="4" slack="0"/>
+<pin id="538" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_91/2 "/>
+</bind>
+</comp>
+
+<comp id="541" class="1004" name="StgValue_92_store_fu_541">
+<pin_list>
+<pin id="542" dir="0" index="0" bw="4" slack="0"/>
+<pin id="543" dir="0" index="1" bw="4" slack="0"/>
+<pin id="544" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_92/2 "/>
+</bind>
+</comp>
+
+<comp id="547" class="1004" name="StgValue_93_store_fu_547">
+<pin_list>
+<pin id="548" dir="0" index="0" bw="4" slack="0"/>
+<pin id="549" dir="0" index="1" bw="4" slack="0"/>
+<pin id="550" dir="1" index="2" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="store(28) " fcode="store"/>
+<opset="StgValue_93/2 "/>
+</bind>
+</comp>
+
+<comp id="553" class="1004" name="pcie_flushAck_V_load_load_fu_553">
+<pin_list>
+<pin id="554" dir="0" index="0" bw="1" slack="0"/>
+<pin id="555" dir="1" index="1" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="pcie_flushAck_V_load/3 "/>
+</bind>
+</comp>
+
+<comp id="558" class="1007" name="grp_fu_558">
+<pin_list>
+<pin id="559" dir="0" index="0" bw="6" slack="0"/>
+<pin id="560" dir="0" index="1" bw="18" slack="0"/>
+<pin id="561" dir="0" index="2" bw="18" slack="0"/>
+<pin id="562" dir="1" index="3" bw="18" slack="0"/>
+</pin_list>
+<bind>
+<opcode="muladd(1172) " fcode="muladd"/>
+<opset="tmp_9/2 tmp_V_6/2 "/>
+</bind>
+</comp>
+
+<comp id="567" class="1005" name="flushDone_V_read_reg_567">
+<pin_list>
+<pin id="568" dir="0" index="0" bw="1" slack="2"/>
+<pin id="569" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="flushDone_V_read "/>
+</bind>
+</comp>
+
+<comp id="571" class="1005" name="flushReq_V_read_reg_571">
+<pin_list>
+<pin id="572" dir="0" index="0" bw="1" slack="1"/>
+<pin id="573" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="flushReq_V_read "/>
+</bind>
+</comp>
+
+<comp id="575" class="1005" name="pcieState_load_reg_575">
+<pin_list>
+<pin id="576" dir="0" index="0" bw="4" slack="1"/>
+<pin id="577" dir="1" index="1" bw="4" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="pcieState_load "/>
+</bind>
+</comp>
+
+<comp id="579" class="1005" name="streamInitializedFla_1_reg_579">
+<pin_list>
+<pin id="580" dir="0" index="0" bw="1" slack="1"/>
+<pin id="581" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="streamInitializedFla_1 "/>
+</bind>
+</comp>
+
+<comp id="586" class="1005" name="tmp_3_reg_586">
+<pin_list>
+<pin id="587" dir="0" index="0" bw="1" slack="1"/>
+<pin id="588" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_3 "/>
+</bind>
+</comp>
+
+<comp id="590" class="1005" name="tmp_reg_590">
+<pin_list>
+<pin id="591" dir="0" index="0" bw="1" slack="1"/>
+<pin id="592" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp "/>
+</bind>
+</comp>
+
+<comp id="594" class="1005" name="icmp_reg_594">
+<pin_list>
+<pin id="595" dir="0" index="0" bw="1" slack="1"/>
+<pin id="596" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="icmp "/>
+</bind>
+</comp>
+
+<comp id="598" class="1005" name="tmp_5_reg_598">
+<pin_list>
+<pin id="599" dir="0" index="0" bw="1" slack="1"/>
+<pin id="600" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_5 "/>
+</bind>
+</comp>
+
+<comp id="602" class="1005" name="tmp_8_reg_602">
+<pin_list>
+<pin id="603" dir="0" index="0" bw="1" slack="1"/>
+<pin id="604" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_8 "/>
+</bind>
+</comp>
+
+<comp id="606" class="1005" name="tmp_2_reg_606">
+<pin_list>
+<pin id="607" dir="0" index="0" bw="1" slack="2"/>
+<pin id="608" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_2 "/>
+</bind>
+</comp>
+
+<comp id="610" class="1005" name="tmp_1_reg_610">
+<pin_list>
+<pin id="611" dir="0" index="0" bw="1" slack="2"/>
+<pin id="612" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_1 "/>
+</bind>
+</comp>
+
+<comp id="614" class="1005" name="tmp_11_reg_614">
+<pin_list>
+<pin id="615" dir="0" index="0" bw="1" slack="1"/>
+<pin id="616" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_11 "/>
+</bind>
+</comp>
+
+<comp id="618" class="1005" name="tmp_12_reg_618">
+<pin_list>
+<pin id="619" dir="0" index="0" bw="1" slack="1"/>
+<pin id="620" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_12 "/>
+</bind>
+</comp>
+
+<comp id="622" class="1005" name="tmp_13_reg_622">
+<pin_list>
+<pin id="623" dir="0" index="0" bw="1" slack="1"/>
+<pin id="624" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_13 "/>
+</bind>
+</comp>
+
+<comp id="626" class="1005" name="tmp_14_reg_626">
+<pin_list>
+<pin id="627" dir="0" index="0" bw="1" slack="1"/>
+<pin id="628" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_14 "/>
+</bind>
+</comp>
+
+<comp id="630" class="1005" name="tmp_15_reg_630">
+<pin_list>
+<pin id="631" dir="0" index="0" bw="1" slack="1"/>
+<pin id="632" dir="1" index="1" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<opset="tmp_15 "/>
+</bind>
+</comp>
+
+<comp id="634" class="1005" name="pcie_flushAck_V_load_reg_634">
+<pin_list>
+<pin id="635" dir="0" index="0" bw="1" slack="1"/>
+<pin id="636" dir="1" index="1" bw="1" slack="1"/>
+</pin_list>
+<bind>
+<opset="pcie_flushAck_V_load "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="202"><net_src comp="30" pin="0"/><net_sink comp="198" pin=0"/></net>
+
+<net id="203"><net_src comp="10" pin="0"/><net_sink comp="198" pin=1"/></net>
+
+<net id="208"><net_src comp="30" pin="0"/><net_sink comp="204" pin=0"/></net>
+
+<net id="209"><net_src comp="6" pin="0"/><net_sink comp="204" pin=1"/></net>
+
+<net id="215"><net_src comp="54" pin="0"/><net_sink comp="210" pin=0"/></net>
+
+<net id="216"><net_src comp="24" pin="0"/><net_sink comp="210" pin=1"/></net>
+
+<net id="217"><net_src comp="56" pin="0"/><net_sink comp="210" pin=2"/></net>
+
+<net id="222"><net_src comp="62" pin="0"/><net_sink comp="218" pin=0"/></net>
+
+<net id="223"><net_src comp="24" pin="0"/><net_sink comp="218" pin=1"/></net>
+
+<net id="229"><net_src comp="54" pin="0"/><net_sink comp="224" pin=0"/></net>
+
+<net id="230"><net_src comp="26" pin="0"/><net_sink comp="224" pin=1"/></net>
+
+<net id="231"><net_src comp="56" pin="0"/><net_sink comp="224" pin=2"/></net>
+
+<net id="236"><net_src comp="62" pin="0"/><net_sink comp="232" pin=0"/></net>
+
+<net id="237"><net_src comp="26" pin="0"/><net_sink comp="232" pin=1"/></net>
+
+<net id="243"><net_src comp="64" pin="0"/><net_sink comp="238" pin=0"/></net>
+
+<net id="244"><net_src comp="4" pin="0"/><net_sink comp="238" pin=1"/></net>
+
+<net id="245"><net_src comp="232" pin="2"/><net_sink comp="238" pin=2"/></net>
+
+<net id="251"><net_src comp="64" pin="0"/><net_sink comp="246" pin=0"/></net>
+
+<net id="252"><net_src comp="2" pin="0"/><net_sink comp="246" pin=1"/></net>
+
+<net id="253"><net_src comp="218" pin="2"/><net_sink comp="246" pin=2"/></net>
+
+<net id="259"><net_src comp="64" pin="0"/><net_sink comp="254" pin=0"/></net>
+
+<net id="260"><net_src comp="24" pin="0"/><net_sink comp="254" pin=1"/></net>
+
+<net id="266"><net_src comp="64" pin="0"/><net_sink comp="261" pin=0"/></net>
+
+<net id="267"><net_src comp="26" pin="0"/><net_sink comp="261" pin=1"/></net>
+
+<net id="272"><net_src comp="62" pin="0"/><net_sink comp="268" pin=0"/></net>
+
+<net id="273"><net_src comp="0" pin="0"/><net_sink comp="268" pin=1"/></net>
+
+<net id="279"><net_src comp="74" pin="0"/><net_sink comp="274" pin=0"/></net>
+
+<net id="280"><net_src comp="26" pin="0"/><net_sink comp="274" pin=1"/></net>
+
+<net id="281"><net_src comp="56" pin="0"/><net_sink comp="274" pin=2"/></net>
+
+<net id="287"><net_src comp="74" pin="0"/><net_sink comp="282" pin=0"/></net>
+
+<net id="288"><net_src comp="24" pin="0"/><net_sink comp="282" pin=1"/></net>
+
+<net id="289"><net_src comp="56" pin="0"/><net_sink comp="282" pin=2"/></net>
+
+<net id="295"><net_src comp="74" pin="0"/><net_sink comp="290" pin=0"/></net>
+
+<net id="296"><net_src comp="2" pin="0"/><net_sink comp="290" pin=1"/></net>
+
+<net id="297"><net_src comp="56" pin="0"/><net_sink comp="290" pin=2"/></net>
+
+<net id="303"><net_src comp="74" pin="0"/><net_sink comp="298" pin=0"/></net>
+
+<net id="304"><net_src comp="4" pin="0"/><net_sink comp="298" pin=1"/></net>
+
+<net id="305"><net_src comp="56" pin="0"/><net_sink comp="298" pin=2"/></net>
+
+<net id="311"><net_src comp="54" pin="0"/><net_sink comp="306" pin=0"/></net>
+
+<net id="312"><net_src comp="0" pin="0"/><net_sink comp="306" pin=1"/></net>
+
+<net id="313"><net_src comp="56" pin="0"/><net_sink comp="306" pin=2"/></net>
+
+<net id="319"><net_src comp="92" pin="0"/><net_sink comp="314" pin=0"/></net>
+
+<net id="320"><net_src comp="8" pin="0"/><net_sink comp="314" pin=1"/></net>
+
+<net id="330"><net_src comp="52" pin="0"/><net_sink comp="324" pin=0"/></net>
+
+<net id="331"><net_src comp="32" pin="0"/><net_sink comp="324" pin=2"/></net>
+
+<net id="336"><net_src comp="32" pin="0"/><net_sink comp="332" pin=0"/></net>
+
+<net id="337"><net_src comp="12" pin="0"/><net_sink comp="332" pin=1"/></net>
+
+<net id="342"><net_src comp="34" pin="0"/><net_sink comp="338" pin=0"/></net>
+
+<net id="343"><net_src comp="12" pin="0"/><net_sink comp="338" pin=1"/></net>
+
+<net id="347"><net_src comp="12" pin="0"/><net_sink comp="344" pin=0"/></net>
+
+<net id="351"><net_src comp="14" pin="0"/><net_sink comp="348" pin=0"/></net>
+
+<net id="355"><net_src comp="16" pin="0"/><net_sink comp="352" pin=0"/></net>
+
+<net id="359"><net_src comp="18" pin="0"/><net_sink comp="356" pin=0"/></net>
+
+<net id="363"><net_src comp="20" pin="0"/><net_sink comp="360" pin=0"/></net>
+
+<net id="367"><net_src comp="22" pin="0"/><net_sink comp="364" pin=0"/></net>
+
+<net id="368"><net_src comp="364" pin="1"/><net_sink comp="254" pin=2"/></net>
+
+<net id="369"><net_src comp="364" pin="1"/><net_sink comp="261" pin=2"/></net>
+
+<net id="374"><net_src comp="58" pin="0"/><net_sink comp="370" pin=0"/></net>
+
+<net id="375"><net_src comp="16" pin="0"/><net_sink comp="370" pin=1"/></net>
+
+<net id="380"><net_src comp="58" pin="0"/><net_sink comp="376" pin=0"/></net>
+
+<net id="381"><net_src comp="18" pin="0"/><net_sink comp="376" pin=1"/></net>
+
+<net id="386"><net_src comp="60" pin="0"/><net_sink comp="382" pin=0"/></net>
+
+<net id="387"><net_src comp="28" pin="0"/><net_sink comp="382" pin=1"/></net>
+
+<net id="392"><net_src comp="60" pin="0"/><net_sink comp="388" pin=0"/></net>
+
+<net id="393"><net_src comp="20" pin="0"/><net_sink comp="388" pin=1"/></net>
+
+<net id="398"><net_src comp="50" pin="0"/><net_sink comp="394" pin=0"/></net>
+
+<net id="399"><net_src comp="12" pin="0"/><net_sink comp="394" pin=1"/></net>
+
+<net id="404"><net_src comp="268" pin="2"/><net_sink comp="400" pin=0"/></net>
+
+<net id="405"><net_src comp="22" pin="0"/><net_sink comp="400" pin=1"/></net>
+
+<net id="412"><net_src comp="66" pin="0"/><net_sink comp="406" pin=0"/></net>
+
+<net id="413"><net_src comp="268" pin="2"/><net_sink comp="406" pin=1"/></net>
+
+<net id="414"><net_src comp="68" pin="0"/><net_sink comp="406" pin=2"/></net>
+
+<net id="415"><net_src comp="70" pin="0"/><net_sink comp="406" pin=3"/></net>
+
+<net id="420"><net_src comp="406" pin="4"/><net_sink comp="416" pin=0"/></net>
+
+<net id="421"><net_src comp="72" pin="0"/><net_sink comp="416" pin=1"/></net>
+
+<net id="426"><net_src comp="42" pin="0"/><net_sink comp="422" pin=0"/></net>
+
+<net id="427"><net_src comp="12" pin="0"/><net_sink comp="422" pin=1"/></net>
+
+<net id="432"><net_src comp="40" pin="0"/><net_sink comp="428" pin=0"/></net>
+
+<net id="433"><net_src comp="12" pin="0"/><net_sink comp="428" pin=1"/></net>
+
+<net id="439"><net_src comp="76" pin="0"/><net_sink comp="434" pin=0"/></net>
+
+<net id="440"><net_src comp="356" pin="1"/><net_sink comp="434" pin=1"/></net>
+
+<net id="441"><net_src comp="78" pin="0"/><net_sink comp="434" pin=2"/></net>
+
+<net id="445"><net_src comp="356" pin="1"/><net_sink comp="442" pin=0"/></net>
+
+<net id="449"><net_src comp="446" pin="1"/><net_sink comp="254" pin=2"/></net>
+
+<net id="454"><net_src comp="356" pin="1"/><net_sink comp="450" pin=0"/></net>
+
+<net id="455"><net_src comp="84" pin="0"/><net_sink comp="450" pin=1"/></net>
+
+<net id="460"><net_src comp="450" pin="2"/><net_sink comp="456" pin=0"/></net>
+
+<net id="461"><net_src comp="18" pin="0"/><net_sink comp="456" pin=1"/></net>
+
+<net id="466"><net_src comp="60" pin="0"/><net_sink comp="462" pin=0"/></net>
+
+<net id="467"><net_src comp="14" pin="0"/><net_sink comp="462" pin=1"/></net>
+
+<net id="472"><net_src comp="86" pin="0"/><net_sink comp="468" pin=0"/></net>
+
+<net id="473"><net_src comp="20" pin="0"/><net_sink comp="468" pin=1"/></net>
+
+<net id="478"><net_src comp="324" pin="4"/><net_sink comp="474" pin=0"/></net>
+
+<net id="479"><net_src comp="12" pin="0"/><net_sink comp="474" pin=1"/></net>
+
+<net id="484"><net_src comp="86" pin="0"/><net_sink comp="480" pin=0"/></net>
+
+<net id="485"><net_src comp="28" pin="0"/><net_sink comp="480" pin=1"/></net>
+
+<net id="491"><net_src comp="76" pin="0"/><net_sink comp="486" pin=0"/></net>
+
+<net id="492"><net_src comp="352" pin="1"/><net_sink comp="486" pin=1"/></net>
+
+<net id="493"><net_src comp="78" pin="0"/><net_sink comp="486" pin=2"/></net>
+
+<net id="497"><net_src comp="352" pin="1"/><net_sink comp="494" pin=0"/></net>
+
+<net id="503"><net_src comp="88" pin="0"/><net_sink comp="498" pin=0"/></net>
+
+<net id="504"><net_src comp="494" pin="1"/><net_sink comp="498" pin=1"/></net>
+
+<net id="505"><net_src comp="90" pin="0"/><net_sink comp="498" pin=2"/></net>
+
+<net id="509"><net_src comp="498" pin="3"/><net_sink comp="506" pin=0"/></net>
+
+<net id="510"><net_src comp="506" pin="1"/><net_sink comp="261" pin=2"/></net>
+
+<net id="515"><net_src comp="84" pin="0"/><net_sink comp="511" pin=0"/></net>
+
+<net id="516"><net_src comp="352" pin="1"/><net_sink comp="511" pin=1"/></net>
+
+<net id="521"><net_src comp="511" pin="2"/><net_sink comp="517" pin=0"/></net>
+
+<net id="522"><net_src comp="16" pin="0"/><net_sink comp="517" pin=1"/></net>
+
+<net id="527"><net_src comp="36" pin="0"/><net_sink comp="523" pin=0"/></net>
+
+<net id="528"><net_src comp="12" pin="0"/><net_sink comp="523" pin=1"/></net>
+
+<net id="533"><net_src comp="38" pin="0"/><net_sink comp="529" pin=0"/></net>
+
+<net id="534"><net_src comp="12" pin="0"/><net_sink comp="529" pin=1"/></net>
+
+<net id="539"><net_src comp="46" pin="0"/><net_sink comp="535" pin=0"/></net>
+
+<net id="540"><net_src comp="12" pin="0"/><net_sink comp="535" pin=1"/></net>
+
+<net id="545"><net_src comp="44" pin="0"/><net_sink comp="541" pin=0"/></net>
+
+<net id="546"><net_src comp="12" pin="0"/><net_sink comp="541" pin=1"/></net>
+
+<net id="551"><net_src comp="48" pin="0"/><net_sink comp="547" pin=0"/></net>
+
+<net id="552"><net_src comp="12" pin="0"/><net_sink comp="547" pin=1"/></net>
+
+<net id="556"><net_src comp="28" pin="0"/><net_sink comp="553" pin=0"/></net>
+
+<net id="557"><net_src comp="553" pin="1"/><net_sink comp="314" pin=2"/></net>
+
+<net id="563"><net_src comp="442" pin="1"/><net_sink comp="558" pin=0"/></net>
+
+<net id="564"><net_src comp="80" pin="0"/><net_sink comp="558" pin=1"/></net>
+
+<net id="565"><net_src comp="82" pin="0"/><net_sink comp="558" pin=2"/></net>
+
+<net id="566"><net_src comp="558" pin="3"/><net_sink comp="446" pin=0"/></net>
+
+<net id="570"><net_src comp="198" pin="2"/><net_sink comp="567" pin=0"/></net>
+
+<net id="574"><net_src comp="204" pin="2"/><net_sink comp="571" pin=0"/></net>
+
+<net id="578"><net_src comp="344" pin="1"/><net_sink comp="575" pin=0"/></net>
+
+<net id="582"><net_src comp="348" pin="1"/><net_sink comp="579" pin=0"/></net>
+
+<net id="589"><net_src comp="210" pin="3"/><net_sink comp="586" pin=0"/></net>
+
+<net id="593"><net_src comp="224" pin="3"/><net_sink comp="590" pin=0"/></net>
+
+<net id="597"><net_src comp="416" pin="2"/><net_sink comp="594" pin=0"/></net>
+
+<net id="601"><net_src comp="274" pin="3"/><net_sink comp="598" pin=0"/></net>
+
+<net id="605"><net_src comp="282" pin="3"/><net_sink comp="602" pin=0"/></net>
+
+<net id="609"><net_src comp="434" pin="3"/><net_sink comp="606" pin=0"/></net>
+
+<net id="613"><net_src comp="486" pin="3"/><net_sink comp="610" pin=0"/></net>
+
+<net id="617"><net_src comp="290" pin="3"/><net_sink comp="614" pin=0"/></net>
+
+<net id="621"><net_src comp="210" pin="3"/><net_sink comp="618" pin=0"/></net>
+
+<net id="625"><net_src comp="298" pin="3"/><net_sink comp="622" pin=0"/></net>
+
+<net id="629"><net_src comp="224" pin="3"/><net_sink comp="626" pin=0"/></net>
+
+<net id="633"><net_src comp="306" pin="3"/><net_sink comp="630" pin=0"/></net>
+
+<net id="637"><net_src comp="553" pin="1"/><net_sink comp="634" pin=0"/></net>
+
+<net id="638"><net_src comp="634" pin="1"/><net_sink comp="314" pin=2"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: outDataFlash_V_V | {2 }
+	Port: outDataDram_V_V | {2 }
+	Port: flushAck_V | {4 }
+	Port: pcieState | {2 }
+	Port: streamInitializedFla | {2 }
+	Port: elementCounterDram_V | {2 }
+	Port: elementCounterFlash_s | {2 }
+	Port: flushFlag | {2 }
+	Port: inputAddress_V | {2 }
+	Port: freeAddressArrayFlas_1 | {2 }
+	Port: freeAddressArrayDram_1 | {2 }
+	Port: pcie_flushAck_V | {2 }
+ - Input state : 
+	Port: dummyPCIeJoint : inData_V_V | {2 }
+	Port: dummyPCIeJoint : flushReq_V | {1 }
+	Port: dummyPCIeJoint : flushDone_V | {1 }
+	Port: dummyPCIeJoint : pcieState | {2 }
+	Port: dummyPCIeJoint : streamInitializedFla | {2 }
+	Port: dummyPCIeJoint : elementCounterDram_V | {2 }
+	Port: dummyPCIeJoint : elementCounterFlash_s | {2 }
+	Port: dummyPCIeJoint : flushFlag | {2 }
+	Port: dummyPCIeJoint : inputAddress_V | {2 }
+	Port: dummyPCIeJoint : freeAddressArrayFlas_1 | {2 }
+	Port: dummyPCIeJoint : freeAddressArrayDram_1 | {2 }
+	Port: dummyPCIeJoint : pcie_flushAck_V | {3 }
+  - Chain level:
+	State 1
+	State 2
+		StgValue_15 : 1
+		StgValue_39 : 1
+		StgValue_42 : 1
+		icmp : 1
+		StgValue_49 : 2
+		tmp_2 : 1
+		StgValue_56 : 2
+		tmp_8_cast : 1
+		tmp_9 : 2
+		tmp_V_6 : 3
+		tmp_V_7 : 4
+		StgValue_61 : 5
+		tmp_6 : 1
+		StgValue_63 : 2
+		StgValue_65 : 1
+		storemerge : 2
+		StgValue_69 : 3
+		tmp_1 : 1
+		StgValue_73 : 2
+		tmp_10 : 1
+		tmp_V_4 : 2
+		tmp_V_5 : 3
+		StgValue_77 : 4
+		tmp_7 : 1
+		StgValue_79 : 2
+		StgValue_82 : 1
+	State 3
+		StgValue_105 : 1
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|--------------------------|---------|---------|---------|
+| Operation|      Functional Unit     |  DSP48E |    FF   |   LUT   |
+|----------|--------------------------|---------|---------|---------|
+|    add   |       tmp_6_fu_450       |    0    |    0    |    15   |
+|          |       tmp_7_fu_511       |    0    |    0    |    15   |
+|----------|--------------------------|---------|---------|---------|
+|   icmp   |        icmp_fu_416       |    0    |    0    |    20   |
+|----------|--------------------------|---------|---------|---------|
+|  muladd  |        grp_fu_558        |    1    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|          |      grp_read_fu_198     |    0    |    0    |    0    |
+|          |      grp_read_fu_204     |    0    |    0    |    0    |
+|   read   |      grp_read_fu_218     |    0    |    0    |    0    |
+|          |      grp_read_fu_232     |    0    |    0    |    0    |
+|          |     tmp_V_read_fu_268    |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|          |   grp_nbreadreq_fu_210   |    0    |    0    |    0    |
+| nbreadreq|   grp_nbreadreq_fu_224   |    0    |    0    |    0    |
+|          |  tmp_15_nbreadreq_fu_306 |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|          | StgValue_32_write_fu_238 |    0    |    0    |    0    |
+|          | StgValue_36_write_fu_246 |    0    |    0    |    0    |
+|   write  |     grp_write_fu_254     |    0    |    0    |    0    |
+|          |     grp_write_fu_261     |    0    |    0    |    0    |
+|          |     grp_write_fu_314     |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|          |  tmp_5_nbwritereq_fu_274 |    0    |    0    |    0    |
+|nbwritereq|  tmp_8_nbwritereq_fu_282 |    0    |    0    |    0    |
+|          | tmp_11_nbwritereq_fu_290 |    0    |    0    |    0    |
+|          | tmp_13_nbwritereq_fu_298 |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|partselect|       tmp_4_fu_406       |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+| bitselect|       tmp_2_fu_434       |    0    |    0    |    0    |
+|          |       tmp_1_fu_486       |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|          |     tmp_8_cast_fu_442    |    0    |    0    |    0    |
+|   zext   |      tmp_V_7_fu_446      |    0    |    0    |    0    |
+|          |      tmp_V_5_fu_506      |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|   trunc  |       tmp_10_fu_494      |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|bitconcatenate|      tmp_V_4_fu_498      |    0    |    0    |    0    |
+|----------|--------------------------|---------|---------|---------|
+|   Total  |                          |    1    |    0    |    50   |
+|----------|--------------------------|---------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++------------------------------+--------+
+|                              |   FF   |
++------------------------------+--------+
+|   flushDone_V_read_reg_567   |    1   |
+|    flushReq_V_read_reg_571   |    1   |
+|         icmp_reg_594         |    1   |
+|    pcieState_load_reg_575    |    4   |
+| pcie_flushAck_V_load_reg_634 |    1   |
+|      storemerge_reg_321      |    4   |
+|streamInitializedFla_1_reg_579|    1   |
+|        tmp_11_reg_614        |    1   |
+|        tmp_12_reg_618        |    1   |
+|        tmp_13_reg_622        |    1   |
+|        tmp_14_reg_626        |    1   |
+|        tmp_15_reg_630        |    1   |
+|         tmp_1_reg_610        |    1   |
+|         tmp_2_reg_606        |    1   |
+|         tmp_3_reg_586        |    1   |
+|         tmp_5_reg_598        |    1   |
+|         tmp_8_reg_602        |    1   |
+|          tmp_reg_590         |    1   |
++------------------------------+--------+
+|             Total            |   24   |
++------------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|------------------|------|------|------|--------||---------||---------|
+|       Comp       |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|------------------|------|------|------|--------||---------||---------|
+| grp_write_fu_254 |  p2  |   2  |  32  |   64   ||    9    |
+| grp_write_fu_261 |  p2  |   2  |  32  |   64   ||    9    |
+| grp_write_fu_314 |  p2  |   2  |   1  |    2   ||    9    |
+|------------------|------|------|------|--------||---------||---------|
+|       Total      |      |      |      |   130  ||  2.505  ||    27   |
+|------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+
+|           | DSP48E |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+--------+
+|  Function |    1   |    -   |    0   |   50   |
+|   Memory  |    -   |    -   |    -   |    -   |
+|Multiplexer|    -   |    2   |    -   |   27   |
+|  Register |    -   |    -   |   24   |    -   |
++-----------+--------+--------+--------+--------+
+|   Total   |    1   |    2   |   24   |   77   |
++-----------+--------+--------+--------+--------+

@@ -1,0 +1,190 @@
+
+
+================================================================
+== Vivado HLS Report for 'axis_width_upsizer'
+================================================================
+* Date:           Tue Oct 20 12:45:17 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        axisWidthUpsizer_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.66|     1.671|        0.83|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    2|    2|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.67>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.axis.i8P.i1P(i8* %data_in_V_data_V, i1* %data_in_V_last_V, i32 1)" [src/axis_width_upsizer/axis_width_upsizer.cpp:41]   --->   Operation 4 'nbreadreq' 'tmp' <Predicate = true> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "br i1 %tmp, label %0, label %._crit_edge222" [src/axis_width_upsizer/axis_width_upsizer.cpp:41]   --->   Operation 5 'br' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%empty = call { i8, i1 } @_ssdm_op_Read.axis.volatile.i8P.i1P(i8* %data_in_V_data_V, i1* %data_in_V_last_V)" [src/axis_width_upsizer/axis_width_upsizer.cpp:43]   --->   Operation 6 'read' 'empty' <Predicate = (tmp)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%tmp_data_V = extractvalue { i8, i1 } %empty, 0" [src/axis_width_upsizer/axis_width_upsizer.cpp:43]   --->   Operation 7 'extractvalue' 'tmp_data_V' <Predicate = (tmp)> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%tmp_last_V = extractvalue { i8, i1 } %empty, 1" [src/axis_width_upsizer/axis_width_upsizer.cpp:43]   --->   Operation 8 'extractvalue' 'tmp_last_V' <Predicate = (tmp)> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%t_V = load i3* @counter_V, align 1" [src/axis_width_upsizer/axis_width_upsizer.cpp:45]   --->   Operation 9 'load' 't_V' <Predicate = (tmp)> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_Val2_s = load i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:47]   --->   Operation 10 'load' 'p_Val2_s' <Predicate = (tmp)> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.87ns)   --->   "switch i3 %t_V, label %8 [
+    i3 0, label %1
+    i3 1, label %2
+    i3 2, label %3
+    i3 3, label %4
+    i3 -4, label %5
+    i3 -3, label %6
+    i3 -2, label %7
+  ]" [src/axis_width_upsizer/axis_width_upsizer.cpp:45]   --->   Operation 11 'switch' <Predicate = (tmp)> <Delay = 0.87>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%p_Result_7 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 48, i32 55)" [src/axis_width_upsizer/axis_width_upsizer.cpp:77]   --->   Operation 12 'partset' 'p_Result_7' <Predicate = (tmp & t_V == 6)> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.21ns)   --->   "store i64 %p_Result_7, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:77]   --->   Operation 13 'store' <Predicate = (tmp & t_V == 6)> <Delay = 1.21>
+ST_1 : Operation 14 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:80]   --->   Operation 14 'br' <Predicate = (tmp & t_V == 6)> <Delay = 1.21>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%p_Result_6 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 40, i32 47)" [src/axis_width_upsizer/axis_width_upsizer.cpp:72]   --->   Operation 15 'partset' 'p_Result_6' <Predicate = (tmp & t_V == 5)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (1.21ns)   --->   "store i64 %p_Result_6, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:72]   --->   Operation 16 'store' <Predicate = (tmp & t_V == 5)> <Delay = 1.21>
+ST_1 : Operation 17 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:75]   --->   Operation 17 'br' <Predicate = (tmp & t_V == 5)> <Delay = 1.21>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%p_Result_5 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 32, i32 39)" [src/axis_width_upsizer/axis_width_upsizer.cpp:67]   --->   Operation 18 'partset' 'p_Result_5' <Predicate = (tmp & t_V == 4)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (1.21ns)   --->   "store i64 %p_Result_5, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:67]   --->   Operation 19 'store' <Predicate = (tmp & t_V == 4)> <Delay = 1.21>
+ST_1 : Operation 20 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:70]   --->   Operation 20 'br' <Predicate = (tmp & t_V == 4)> <Delay = 1.21>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%p_Result_4 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 24, i32 31)" [src/axis_width_upsizer/axis_width_upsizer.cpp:62]   --->   Operation 21 'partset' 'p_Result_4' <Predicate = (tmp & t_V == 3)> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (1.21ns)   --->   "store i64 %p_Result_4, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:62]   --->   Operation 22 'store' <Predicate = (tmp & t_V == 3)> <Delay = 1.21>
+ST_1 : Operation 23 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:65]   --->   Operation 23 'br' <Predicate = (tmp & t_V == 3)> <Delay = 1.21>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%p_Result_3 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 16, i32 23)" [src/axis_width_upsizer/axis_width_upsizer.cpp:57]   --->   Operation 24 'partset' 'p_Result_3' <Predicate = (tmp & t_V == 2)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (1.21ns)   --->   "store i64 %p_Result_3, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:57]   --->   Operation 25 'store' <Predicate = (tmp & t_V == 2)> <Delay = 1.21>
+ST_1 : Operation 26 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:60]   --->   Operation 26 'br' <Predicate = (tmp & t_V == 2)> <Delay = 1.21>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%p_Result_2 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 8, i32 15)" [src/axis_width_upsizer/axis_width_upsizer.cpp:52]   --->   Operation 27 'partset' 'p_Result_2' <Predicate = (tmp & t_V == 1)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (1.21ns)   --->   "store i64 %p_Result_2, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:52]   --->   Operation 28 'store' <Predicate = (tmp & t_V == 1)> <Delay = 1.21>
+ST_1 : Operation 29 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:55]   --->   Operation 29 'br' <Predicate = (tmp & t_V == 1)> <Delay = 1.21>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%p_Result_1 = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 0, i32 7)" [src/axis_width_upsizer/axis_width_upsizer.cpp:47]   --->   Operation 30 'partset' 'p_Result_1' <Predicate = (tmp & t_V == 0)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (1.21ns)   --->   "store i64 %p_Result_1, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:47]   --->   Operation 31 'store' <Predicate = (tmp & t_V == 0)> <Delay = 1.21>
+ST_1 : Operation 32 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:50]   --->   Operation 32 'br' <Predicate = (tmp & t_V == 0)> <Delay = 1.21>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%p_Result_s = call i64 @llvm.part.set.i64.i8(i64 %p_Val2_s, i8 %tmp_data_V, i32 56, i32 63)" [src/axis_width_upsizer/axis_width_upsizer.cpp:82]   --->   Operation 33 'partset' 'p_Result_s' <Predicate = (tmp & t_V == 7)> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (1.21ns)   --->   "store i64 %p_Result_s, i64* @send_word_data_V, align 8" [src/axis_width_upsizer/axis_width_upsizer.cpp:82]   --->   Operation 34 'store' <Predicate = (tmp & t_V == 7)> <Delay = 1.21>
+ST_1 : Operation 35 [1/1] (1.21ns)   --->   "br label %9" [src/axis_width_upsizer/axis_width_upsizer.cpp:85]   --->   Operation 35 'br' <Predicate = (tmp & t_V == 7)> <Delay = 1.21>
+ST_1 : Operation 36 [1/1] (0.72ns)   --->   "%tmp_5 = icmp eq i3 %t_V, -1" [src/axis_width_upsizer/axis_width_upsizer.cpp:88]   --->   Operation 36 'icmp' 'tmp_5' <Predicate = (tmp)> <Delay = 0.72> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 37 [1/1] (0.33ns)   --->   "%or_cond = or i1 %tmp_last_V, %tmp_5" [src/axis_width_upsizer/axis_width_upsizer.cpp:88]   --->   Operation 37 'or' 'or_cond' <Predicate = (tmp)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "br i1 %or_cond, label %._crit_edge223, label %10" [src/axis_width_upsizer/axis_width_upsizer.cpp:88]   --->   Operation 38 'br' <Predicate = (tmp)> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.83ns)   --->   "%tmp_7 = add i3 %t_V, 1" [src/axis_width_upsizer/axis_width_upsizer.cpp:95]   --->   Operation 39 'add' 'tmp_7' <Predicate = (tmp & !or_cond)> <Delay = 0.83> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.83> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 40 [1/1] (0.83ns)   --->   "store i3 %tmp_7, i3* @counter_V, align 1" [src/axis_width_upsizer/axis_width_upsizer.cpp:95]   --->   Operation 40 'store' <Predicate = (tmp & !or_cond)> <Delay = 0.83>
+ST_1 : Operation 41 [1/1] (0.83ns)   --->   "store i3 0, i3* @counter_V, align 1" [src/axis_width_upsizer/axis_width_upsizer.cpp:89]   --->   Operation 41 'store' <Predicate = (tmp & or_cond)> <Delay = 0.83>
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%tmp_keep_V = phi i8 [ -1, %8 ], [ 127, %7 ], [ 63, %6 ], [ 31, %5 ], [ 15, %4 ], [ 7, %3 ], [ 3, %2 ], [ 1, %1 ]"   --->   Operation 42 'phi' 'tmp_keep_V' <Predicate = (tmp)> <Delay = 0.00>
+ST_2 : Operation 43 [1/1] (0.00ns)   --->   "%tmp_data_V_1 = phi i64 [ %p_Result_s, %8 ], [ %p_Result_7, %7 ], [ %p_Result_6, %6 ], [ %p_Result_5, %5 ], [ %p_Result_4, %4 ], [ %p_Result_3, %3 ], [ %p_Result_2, %2 ], [ %p_Result_1, %1 ]"   --->   Operation 43 'phi' 'tmp_data_V_1' <Predicate = (tmp)> <Delay = 0.00>
+ST_2 : Operation 44 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i1P.i8P(i64* %data_out_V_data_V, i1* %data_out_V_last_V, i8* %data_out_V_keep_V, i64 %tmp_data_V_1, i1 %tmp_last_V, i8 %tmp_keep_V)" [src/axis_width_upsizer/axis_width_upsizer.cpp:92]   --->   Operation 44 'write' <Predicate = (tmp & or_cond)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %data_in_V_data_V), !map !67"   --->   Operation 45 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %data_in_V_last_V), !map !71"   --->   Operation 46 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i64* %data_out_V_data_V), !map !75"   --->   Operation 47 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %data_out_V_last_V), !map !79"   --->   Operation 48 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %data_out_V_keep_V), !map !83"   --->   Operation 49 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @axis_width_upsizer_s) nounwind"   --->   Operation 50 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str) nounwind" [src/axis_width_upsizer/axis_width_upsizer.cpp:30]   --->   Operation 51 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/axis_width_upsizer/axis_width_upsizer.cpp:31]   --->   Operation 52 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_in_V_data_V, i1* %data_in_V_last_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/axis_width_upsizer/axis_width_upsizer.cpp:33]   --->   Operation 53 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %data_out_V_data_V, i1* %data_out_V_last_V, i8* %data_out_V_keep_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/axis_width_upsizer/axis_width_upsizer.cpp:34]   --->   Operation 54 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "br label %11"   --->   Operation 55 'br' <Predicate = (tmp & !or_cond)> <Delay = 0.00>
+ST_3 : Operation 56 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i64P.i1P.i8P(i64* %data_out_V_data_V, i1* %data_out_V_last_V, i8* %data_out_V_keep_V, i64 %tmp_data_V_1, i1 %tmp_last_V, i8 %tmp_keep_V)" [src/axis_width_upsizer/axis_width_upsizer.cpp:92]   --->   Operation 56 'write' <Predicate = (tmp & or_cond)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "br label %11" [src/axis_width_upsizer/axis_width_upsizer.cpp:93]   --->   Operation 57 'br' <Predicate = (tmp & or_cond)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "br label %._crit_edge222" [src/axis_width_upsizer/axis_width_upsizer.cpp:97]   --->   Operation 58 'br' <Predicate = (tmp)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "ret void" [src/axis_width_upsizer/axis_width_upsizer.cpp:98]   --->   Operation 59 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.66ns, clock uncertainty: 0.832ns.
+
+ <State 1>: 1.67ns
+The critical path consists of the following:
+	'load' operation ('t.V', src/axis_width_upsizer/axis_width_upsizer.cpp:45) on static variable 'counter_V' [24]  (0 ns)
+	'add' operation ('tmp_7', src/axis_width_upsizer/axis_width_upsizer.cpp:95) [66]  (0.836 ns)
+	'store' operation (src/axis_width_upsizer/axis_width_upsizer.cpp:95) of variable 'tmp_7', src/axis_width_upsizer/axis_width_upsizer.cpp:95 on static variable 'counter_V' [67]  (0.835 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

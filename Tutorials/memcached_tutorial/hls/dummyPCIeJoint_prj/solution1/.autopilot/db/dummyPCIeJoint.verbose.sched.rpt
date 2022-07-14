@@ -1,0 +1,293 @@
+
+
+================================================================
+== Vivado HLS Report for 'dummyPCIeJoint'
+================================================================
+* Date:           Wed Oct 14 13:17:35 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        dummyPCIeJoint_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     5.929|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 5 [2/2] (0.00ns)   --->   "%flushDone_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushDone_V)"   --->   Operation 5 'read' 'flushDone_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [2/2] (0.00ns)   --->   "%flushReq_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushReq_V)"   --->   Operation 6 'read' 'flushReq_V_read' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 5.92>
+ST_2 : Operation 7 [1/2] (0.00ns)   --->   "%flushDone_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushDone_V)"   --->   Operation 7 'read' 'flushDone_V_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/2] (0.00ns)   --->   "%flushReq_V_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %flushReq_V)"   --->   Operation 8 'read' 'flushReq_V_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%pcieState_load = load i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:63]   --->   Operation 9 'load' 'pcieState_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%streamInitializedFla_1 = load i1* @streamInitializedFla, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:65]   --->   Operation 10 'load' 'streamInitializedFla_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%elementCounterDram_V_1 = load i6* @elementCounterDram_V, align 1"   --->   Operation 11 'load' 'elementCounterDram_V_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%elementCounterFlash_1 = load i6* @elementCounterFlash_s, align 1"   --->   Operation 12 'load' 'elementCounterFlash_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%flushFlag_load = load i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:94]   --->   Operation 13 'load' 'flushFlag_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%tmp_V_1 = load i32* @inputAddress_V, align 4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:112]   --->   Operation 14 'load' 'tmp_V_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.87ns)   --->   "switch i4 %pcieState_load, label %._crit_edge288 [
+    i4 0, label %0
+    i4 1, label %14
+    i4 2, label %18
+    i4 3, label %23
+    i4 5, label %28
+    i4 4, label %29
+    i4 6, label %30
+    i4 7, label %31
+    i4 -8, label %32
+    i4 -7, label %36
+    i4 -6, label %40
+  ]" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:63]   --->   Operation 15 'switch' <Predicate = true> <Delay = 0.87>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "br i1 %flushDone_V_read, label %41, label %._crit_edge298" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:145]   --->   Operation 16 'br' <Predicate = (pcieState_load == 10)> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:146]   --->   Operation 17 'store' <Predicate = (pcieState_load == 10 & flushDone_V_read)> <Delay = 1.28>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:147]   --->   Operation 18 'br' <Predicate = (pcieState_load == 10)> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_3 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:134]   --->   Operation 19 'nbreadreq' 'tmp_3' <Predicate = (pcieState_load == 9)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 20 [1/1] (0.83ns)   --->   "store i6 0, i6* @elementCounterDram_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:137]   --->   Operation 20 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 21 [1/1] (0.83ns)   --->   "store i6 0, i6* @elementCounterFlash_s, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:138]   --->   Operation 21 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 22 [1/1] (0.83ns)   --->   "store i1 true, i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:139]   --->   Operation 22 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 23 [1/1] (0.83ns)   --->   "store i1 true, i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:140]   --->   Operation 23 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.83>
+ST_2 : Operation 24 [1/1] (1.28ns)   --->   "store i4 1, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:141]   --->   Operation 24 'store' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 1.28>
+ST_2 : Operation 25 [1/1] (2.17ns)   --->   "%tmp_V_9_0 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:135]   --->   Operation 25 'read' 'tmp_V_9_0' <Predicate = (pcieState_load == 9 & tmp_3)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:143]   --->   Operation 26 'br' <Predicate = (pcieState_load == 9)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:128]   --->   Operation 27 'nbreadreq' 'tmp' <Predicate = (pcieState_load == 8)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 28 [1/1] (1.28ns)   --->   "store i4 -7, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:131]   --->   Operation 28 'store' <Predicate = (pcieState_load == 8 & !tmp)> <Delay = 1.28>
+ST_2 : Operation 29 [1/1] (2.17ns)   --->   "%tmp_V_8_0 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:129]   --->   Operation 29 'read' 'tmp_V_8_0' <Predicate = (pcieState_load == 8 & tmp)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:132]   --->   Operation 30 'br' <Predicate = (pcieState_load == 8)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (2.17ns)   --->   "%tmp_V_3 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:124]   --->   Operation 31 'read' 'tmp_V_3' <Predicate = (pcieState_load == 7)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %outDataDram_V_V, i32 %tmp_V_3)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:124]   --->   Operation 32 'write' <Predicate = (pcieState_load == 7)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 33 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:125]   --->   Operation 33 'store' <Predicate = (pcieState_load == 7)> <Delay = 1.28>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:126]   --->   Operation 34 'br' <Predicate = (pcieState_load == 7)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (2.17ns)   --->   "%tmp_V_2 = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:120]   --->   Operation 35 'read' 'tmp_V_2' <Predicate = (pcieState_load == 6)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 36 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %outDataFlash_V_V, i32 %tmp_V_2)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:120]   --->   Operation 36 'write' <Predicate = (pcieState_load == 6)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 37 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:121]   --->   Operation 37 'store' <Predicate = (pcieState_load == 6)> <Delay = 1.28>
+ST_2 : Operation 38 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:122]   --->   Operation 38 'br' <Predicate = (pcieState_load == 6)> <Delay = 0.00>
+ST_2 : Operation 39 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1, i32 %tmp_V_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:116]   --->   Operation 39 'write' <Predicate = (pcieState_load == 4)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 40 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:117]   --->   Operation 40 'store' <Predicate = (pcieState_load == 4)> <Delay = 1.28>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:118]   --->   Operation 41 'br' <Predicate = (pcieState_load == 4)> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1, i32 %tmp_V_1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:112]   --->   Operation 42 'write' <Predicate = (pcieState_load == 5)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 43 [1/1] (1.28ns)   --->   "store i4 0, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:113]   --->   Operation 43 'store' <Predicate = (pcieState_load == 5)> <Delay = 1.28>
+ST_2 : Operation 44 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:114]   --->   Operation 44 'br' <Predicate = (pcieState_load == 5)> <Delay = 0.00>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%tmp_V = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* %inData_V_V)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:104]   --->   Operation 45 'read' 'tmp_V' <Predicate = (pcieState_load == 3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 46 [1/1] (0.00ns)   --->   "store i32 %tmp_V, i32* @inputAddress_V, align 4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:104]   --->   Operation 46 'store' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_4 = call i20 @_ssdm_op_PartSelect.i20.i32.i32.i32(i32 %tmp_V, i32 12, i32 31)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 47 'partselect' 'tmp_4' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 48 [1/1] (1.10ns)   --->   "%icmp = icmp eq i20 %tmp_4, 0" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 48 'icmp' 'icmp' <Predicate = (pcieState_load == 3)> <Delay = 1.10> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.10> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "br i1 %icmp, label %24, label %._crit_edge295" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 49 'br' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_5 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 50 'nbwritereq' 'tmp_5' <Predicate = (pcieState_load == 3 & icmp)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_8 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:107]   --->   Operation 51 'nbwritereq' 'tmp_8' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 52 [1/1] (1.28ns)   --->   "store i4 4, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:108]   --->   Operation 52 'store' <Predicate = (pcieState_load == 3 & !tmp_5 & tmp_8) | (pcieState_load == 3 & !icmp & tmp_8)> <Delay = 1.28>
+ST_2 : Operation 53 [1/1] (1.28ns)   --->   "store i4 5, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:106]   --->   Operation 53 'store' <Predicate = (pcieState_load == 3 & icmp & tmp_5)> <Delay = 1.28>
+ST_2 : Operation 54 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:110]   --->   Operation 54 'br' <Predicate = (pcieState_load == 3)> <Delay = 0.00>
+ST_2 : Operation 55 [1/1] (0.00ns)   --->   "%tmp_2 = call i1 @_ssdm_op_BitSelect.i1.i6.i32(i6 %elementCounterFlash_1, i32 5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:88]   --->   Operation 55 'bitselect' 'tmp_2' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "br i1 %tmp_2, label %20, label %19" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:88]   --->   Operation 56 'br' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%tmp_8_cast = zext i6 %elementCounterFlash_1 to i18" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 57 'zext' 'tmp_8_cast' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_2 : Operation 58 [1/1] (1.11ns) (grouped into DSP with root node tmp_V_6)   --->   "%tmp_9 = mul i18 %tmp_8_cast, 7942" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 58 'mul' 'tmp_9' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 1.11> <Core = "DSP48">   --->   Core 65 'DSP48' <Latency = 0> <II = 1> <Delay = 3.75> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 59 [1/1] (2.64ns) (root node of the DSP)   --->   "%tmp_V_6 = add i18 %tmp_9, 4096" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 59 'add' 'tmp_V_6' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 2.64> <Core = "DSP48">   --->   Core 65 'DSP48' <Latency = 0> <II = 1> <Delay = 3.75> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "%tmp_V_7 = zext i18 %tmp_V_6 to i32" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 60 'zext' 'tmp_V_7' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_2 : Operation 61 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayFlas_1, i32 %tmp_V_7)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89]   --->   Operation 61 'write' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 62 [1/1] (1.11ns)   --->   "%tmp_6 = add i6 %elementCounterFlash_1, 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:90]   --->   Operation 62 'add' 'tmp_6' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 1.11> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.11> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 63 [1/1] (0.83ns)   --->   "store i6 %tmp_6, i6* @elementCounterFlash_s, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:90]   --->   Operation 63 'store' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.83>
+ST_2 : Operation 64 [1/1] (0.00ns)   --->   "store i1 true, i1* @streamInitializedFla, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:93]   --->   Operation 64 'store' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_2 : Operation 65 [1/1] (0.83ns)   --->   "br i1 %flushFlag_load, label %21, label %._crit_edge294" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:94]   --->   Operation 65 'br' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.83>
+ST_2 : Operation 66 [1/1] (0.83ns)   --->   "store i1 false, i1* @flushFlag, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:95]   --->   Operation 66 'store' <Predicate = (pcieState_load == 2 & tmp_2 & flushFlag_load)> <Delay = 0.83>
+ST_2 : Operation 67 [1/1] (0.83ns)   --->   "br label %._crit_edge294" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:97]   --->   Operation 67 'br' <Predicate = (pcieState_load == 2 & tmp_2 & flushFlag_load)> <Delay = 0.83>
+ST_2 : Operation 68 [1/1] (0.00ns)   --->   "%storemerge = phi i4 [ -6, %21 ], [ 0, %20 ]"   --->   Operation 68 'phi' 'storemerge' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_2 : Operation 69 [1/1] (1.28ns)   --->   "store i4 %storemerge, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:96]   --->   Operation 69 'store' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 1.28>
+ST_2 : Operation 70 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:101]   --->   Operation 70 'br' <Predicate = (pcieState_load == 2)> <Delay = 0.00>
+ST_2 : Operation 71 [1/1] (0.83ns)   --->   "store i1 false, i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:79]   --->   Operation 71 'store' <Predicate = (pcieState_load == 1)> <Delay = 0.83>
+ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%tmp_1 = call i1 @_ssdm_op_BitSelect.i1.i6.i32(i6 %elementCounterDram_V_1, i32 5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:80]   --->   Operation 72 'bitselect' 'tmp_1' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 73 [1/1] (0.00ns)   --->   "br i1 %tmp_1, label %16, label %15" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:80]   --->   Operation 73 'br' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%tmp_10 = trunc i6 %elementCounterDram_V_1 to i5"   --->   Operation 74 'trunc' 'tmp_10' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_V_4 = call i12 @_ssdm_op_BitConcatenate.i12.i5.i7(i5 %tmp_10, i7 0)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 75 'bitconcatenate' 'tmp_V_4' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 76 [1/1] (0.00ns)   --->   "%tmp_V_5 = zext i12 %tmp_V_4 to i32" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 76 'zext' 'tmp_V_5' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_2 : Operation 77 [1/1] (2.17ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* @freeAddressArrayDram_1, i32 %tmp_V_5)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:81]   --->   Operation 77 'write' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 2.17> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 78 [1/1] (1.11ns)   --->   "%tmp_7 = add i6 1, %elementCounterDram_V_1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:82]   --->   Operation 78 'add' 'tmp_7' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 1.11> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.11> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 79 [1/1] (0.83ns)   --->   "store i6 %tmp_7, i6* @elementCounterDram_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:82]   --->   Operation 79 'store' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.83>
+ST_2 : Operation 80 [1/1] (1.28ns)   --->   "store i4 2, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:85]   --->   Operation 80 'store' <Predicate = (pcieState_load == 1 & tmp_1)> <Delay = 1.28>
+ST_2 : Operation 81 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:86]   --->   Operation 81 'br' <Predicate = (pcieState_load == 1)> <Delay = 0.00>
+ST_2 : Operation 82 [1/1] (0.00ns)   --->   "br i1 %streamInitializedFla_1, label %2, label %1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:65]   --->   Operation 82 'br' <Predicate = (pcieState_load == 0)> <Delay = 0.00>
+ST_2 : Operation 83 [1/1] (1.28ns)   --->   "store i4 1, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:66]   --->   Operation 83 'store' <Predicate = (pcieState_load == 0 & !streamInitializedFla_1)> <Delay = 1.28>
+ST_2 : Operation 84 [1/1] (0.00ns)   --->   "br i1 %flushReq_V_read, label %3, label %4" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:67]   --->   Operation 84 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1)> <Delay = 0.00>
+ST_2 : Operation 85 [1/1] (0.00ns)   --->   "%tmp_11 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* %outDataFlash_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 85 'nbwritereq' 'tmp_11' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 86 [1/1] (0.00ns)   --->   "%tmp_12 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayFlas_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 86 'nbreadreq' 'tmp_12' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 87 [1/1] (0.00ns)   --->   "%tmp_13 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P(i32* %outDataDram_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 87 'nbwritereq' 'tmp_13' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 88 [1/1] (0.00ns)   --->   "%tmp_14 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @freeAddressArrayDram_1, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 88 'nbreadreq' 'tmp_14' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.17> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 32> <FIFO>
+ST_2 : Operation 89 [1/1] (0.00ns)   --->   "%tmp_15 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* %inData_V_V, i32 1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:74]   --->   Operation 89 'nbreadreq' 'tmp_15' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 90 [1/1] (1.28ns)   --->   "store i4 3, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:75]   --->   Operation 90 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13 & tmp_15)> <Delay = 1.28>
+ST_2 : Operation 91 [1/1] (1.28ns)   --->   "store i4 7, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:73]   --->   Operation 91 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13 & tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13 & tmp_14)> <Delay = 1.28>
+ST_2 : Operation 92 [1/1] (1.28ns)   --->   "store i4 6, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:71]   --->   Operation 92 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11 & tmp_12)> <Delay = 1.28>
+ST_2 : Operation 93 [1/1] (1.28ns)   --->   "store i4 -8, i4* @pcieState, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:68]   --->   Operation 93 'store' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & flushReq_V_read)> <Delay = 1.28>
+ST_2 : Operation 94 [1/1] (0.00ns)   --->   "br label %._crit_edge288" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:77]   --->   Operation 94 'br' <Predicate = (pcieState_load == 0)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "br i1 %tmp_3, label %37, label %38" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:134]   --->   Operation 95 'br' <Predicate = (pcieState_load == 9)> <Delay = 0.00>
+ST_3 : Operation 96 [1/1] (0.00ns)   --->   "br i1 %tmp, label %33, label %34" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:128]   --->   Operation 96 'br' <Predicate = (pcieState_load == 8)> <Delay = 0.00>
+ST_3 : Operation 97 [1/1] (0.00ns)   --->   "br i1 %tmp_5, label %25, label %._crit_edge295" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:105]   --->   Operation 97 'br' <Predicate = (pcieState_load == 3 & icmp)> <Delay = 0.00>
+ST_3 : Operation 98 [1/1] (0.00ns)   --->   "br i1 %tmp_8, label %26, label %._crit_edge297" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:107]   --->   Operation 98 'br' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00>
+ST_3 : Operation 99 [1/1] (0.00ns)   --->   "br i1 %tmp_11, label %5, label %._crit_edge289" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 99 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00>
+ST_3 : Operation 100 [1/1] (0.00ns)   --->   "br i1 %tmp_12, label %6, label %._crit_edge289" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:70]   --->   Operation 100 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11)> <Delay = 0.00>
+ST_3 : Operation 101 [1/1] (0.00ns)   --->   "br i1 %tmp_13, label %7, label %._crit_edge291" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 101 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00>
+ST_3 : Operation 102 [1/1] (0.00ns)   --->   "br i1 %tmp_14, label %8, label %._crit_edge291" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:72]   --->   Operation 102 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13)> <Delay = 0.00>
+ST_3 : Operation 103 [1/1] (0.00ns)   --->   "br i1 %tmp_15, label %9, label %._crit_edge293" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:74]   --->   Operation 103 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00>
+ST_3 : Operation 104 [1/1] (0.00ns)   --->   "%pcie_flushAck_V_load = load i1* @pcie_flushAck_V, align 1" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 104 'load' 'pcie_flushAck_V_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 105 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_none.i1P(i1* %flushAck_V, i1 %pcie_flushAck_V_load)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 105 'write' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 106 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecChannel([25 x i8]* @freeAddressArrayDram, i32 1, [1 x i8]* @p_str65, [1 x i8]* @p_str65, i32 64, i32 64, i32* @freeAddressArrayDram_1, i32* @freeAddressArrayDram_1)"   --->   Operation 106 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 107 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @freeAddressArrayDram_1, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str66, i32 0, i32 0, [1 x i8]* @p_str67, [1 x i8]* @p_str68, [1 x i8]* @p_str69, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str70, [1 x i8]* @p_str71)"   --->   Operation 107 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 108 [1/1] (0.00ns)   --->   "%empty_5 = call i32 (...)* @_ssdm_op_SpecChannel([26 x i8]* @freeAddressArrayFlas, i32 1, [1 x i8]* @p_str58, [1 x i8]* @p_str58, i32 32, i32 32, i32* @freeAddressArrayFlas_1, i32* @freeAddressArrayFlas_1)"   --->   Operation 108 'specchannel' 'empty_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 109 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @freeAddressArrayFlas_1, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str59, i32 0, i32 0, [1 x i8]* @p_str60, [1 x i8]* @p_str61, [1 x i8]* @p_str62, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str63, [1 x i8]* @p_str64)"   --->   Operation 109 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 110 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %outDataDram_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str52, i32 0, i32 0, [1 x i8]* @p_str53, [1 x i8]* @p_str54, [1 x i8]* @p_str55, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str56, [1 x i8]* @p_str57)"   --->   Operation 110 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 111 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %outDataFlash_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str46, i32 0, i32 0, [1 x i8]* @p_str47, [1 x i8]* @p_str48, [1 x i8]* @p_str49, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str50, [1 x i8]* @p_str51)"   --->   Operation 111 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 112 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %inData_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str40, i32 0, i32 0, [1 x i8]* @p_str41, [1 x i8]* @p_str42, [1 x i8]* @p_str43, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str44, [1 x i8]* @p_str45)"   --->   Operation 112 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 113 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %inData_V_V), !map !72"   --->   Operation 113 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 114 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %outDataFlash_V_V), !map !78"   --->   Operation 114 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 115 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %outDataDram_V_V), !map !82"   --->   Operation 115 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 116 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %flushReq_V), !map !86"   --->   Operation 116 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 117 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %flushAck_V), !map !92"   --->   Operation 117 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 118 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %flushDone_V), !map !96"   --->   Operation 118 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 119 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([15 x i8]* @dummyPCIeJoint_str) nounwind"   --->   Operation 119 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 120 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:34]   --->   Operation 120 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 121 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %flushReq_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:35]   --->   Operation 121 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 122 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1* %flushAck_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:36]   --->   Operation 122 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 123 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %flushDone_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:37]   --->   Operation 123 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 124 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:38]   --->   Operation 124 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 125 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %inData_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:44]   --->   Operation 125 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 126 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %outDataFlash_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:45]   --->   Operation 126 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 127 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i32* %outDataDram_V_V, [1 x i8]* @p_str1, [11 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:46]   --->   Operation 127 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 128 [1/1] (0.00ns)   --->   "br label %._crit_edge298" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:146]   --->   Operation 128 'br' <Predicate = (pcieState_load == 10 & flushDone_V_read)> <Delay = 0.00>
+ST_4 : Operation 129 [1/1] (0.00ns)   --->   "br label %39"   --->   Operation 129 'br' <Predicate = (pcieState_load == 9 & !tmp_3)> <Delay = 0.00>
+ST_4 : Operation 130 [1/1] (0.00ns)   --->   "br label %39" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:135]   --->   Operation 130 'br' <Predicate = (pcieState_load == 9 & tmp_3)> <Delay = 0.00>
+ST_4 : Operation 131 [1/1] (0.00ns)   --->   "br label %35"   --->   Operation 131 'br' <Predicate = (pcieState_load == 8 & !tmp)> <Delay = 0.00>
+ST_4 : Operation 132 [1/1] (0.00ns)   --->   "br label %35" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:129]   --->   Operation 132 'br' <Predicate = (pcieState_load == 8 & tmp)> <Delay = 0.00>
+ST_4 : Operation 133 [1/1] (0.00ns)   --->   "br label %._crit_edge297" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:108]   --->   Operation 133 'br' <Predicate = (pcieState_load == 3 & !tmp_5 & tmp_8) | (pcieState_load == 3 & !icmp & tmp_8)> <Delay = 0.00>
+ST_4 : Operation 134 [1/1] (0.00ns)   --->   "br label %27"   --->   Operation 134 'br' <Predicate = (pcieState_load == 3 & !tmp_5) | (pcieState_load == 3 & !icmp)> <Delay = 0.00>
+ST_4 : Operation 135 [1/1] (0.00ns)   --->   "br label %27" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:106]   --->   Operation 135 'br' <Predicate = (pcieState_load == 3 & icmp & tmp_5)> <Delay = 0.00>
+ST_4 : Operation 136 [1/1] (0.00ns)   --->   "br label %22" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:91]   --->   Operation 136 'br' <Predicate = (pcieState_load == 2 & !tmp_2)> <Delay = 0.00>
+ST_4 : Operation 137 [1/1] (0.00ns)   --->   "br label %22"   --->   Operation 137 'br' <Predicate = (pcieState_load == 2 & tmp_2)> <Delay = 0.00>
+ST_4 : Operation 138 [1/1] (0.00ns)   --->   "br label %17" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:83]   --->   Operation 138 'br' <Predicate = (pcieState_load == 1 & !tmp_1)> <Delay = 0.00>
+ST_4 : Operation 139 [1/1] (0.00ns)   --->   "br label %17"   --->   Operation 139 'br' <Predicate = (pcieState_load == 1 & tmp_1)> <Delay = 0.00>
+ST_4 : Operation 140 [1/1] (0.00ns)   --->   "br label %13" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:66]   --->   Operation 140 'br' <Predicate = (pcieState_load == 0 & !streamInitializedFla_1)> <Delay = 0.00>
+ST_4 : Operation 141 [1/1] (0.00ns)   --->   "br label %._crit_edge293" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:75]   --->   Operation 141 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14 & tmp_15) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13 & tmp_15)> <Delay = 0.00>
+ST_4 : Operation 142 [1/1] (0.00ns)   --->   "br label %10"   --->   Operation 142 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & !tmp_13) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & !tmp_13)> <Delay = 0.00>
+ST_4 : Operation 143 [1/1] (0.00ns)   --->   "br label %10" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:73]   --->   Operation 143 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12 & tmp_13 & tmp_14) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11 & tmp_13 & tmp_14)> <Delay = 0.00>
+ST_4 : Operation 144 [1/1] (0.00ns)   --->   "br label %11"   --->   Operation 144 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_12) | (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & !tmp_11)> <Delay = 0.00>
+ST_4 : Operation 145 [1/1] (0.00ns)   --->   "br label %11" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:71]   --->   Operation 145 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read & tmp_11 & tmp_12)> <Delay = 0.00>
+ST_4 : Operation 146 [1/1] (0.00ns)   --->   "br label %12"   --->   Operation 146 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & !flushReq_V_read)> <Delay = 0.00>
+ST_4 : Operation 147 [1/1] (0.00ns)   --->   "br label %12" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:68]   --->   Operation 147 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1 & flushReq_V_read)> <Delay = 0.00>
+ST_4 : Operation 148 [1/1] (0.00ns)   --->   "br label %13"   --->   Operation 148 'br' <Predicate = (pcieState_load == 0 & streamInitializedFla_1)> <Delay = 0.00>
+ST_4 : Operation 149 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_none.i1P(i1* %flushAck_V, i1 %pcie_flushAck_V_load)" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:149]   --->   Operation 149 'write' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 150 [1/1] (0.00ns)   --->   "ret void" [src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:150]   --->   Operation 150 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.4ns, clock uncertainty: 0.8ns.
+
+ <State 1>: 0ns
+The critical path consists of the following:
+
+ <State 2>: 5.93ns
+The critical path consists of the following:
+	'load' operation ('elementCounterFlash_1') on static variable 'elementCounterFlash_s' [43]  (0 ns)
+	'mul' operation of DSP[126] ('tmp_9', src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [125]  (1.11 ns)
+	'add' operation of DSP[126] ('tmp.V', src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [126]  (2.64 ns)
+	fifo write on port 'freeAddressArrayFlas_1' (src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [128]  (2.18 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

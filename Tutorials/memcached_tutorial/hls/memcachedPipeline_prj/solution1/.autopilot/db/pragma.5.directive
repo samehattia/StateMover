@@ -1,0 +1,234 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="accessControl" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="accessControl" label="">
+<pragma name="INLINE">
+<option name="region" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="accessControl" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="accessControl" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="filterSeq"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="demux" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="demux" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="demux" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPath" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPath" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPath" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPathNoFilter" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPathNoFilter" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="setPathNoFilter" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="dispatch" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="dispatch" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="receive" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="receive" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="receiveNoFilter" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="receiveNoFilter" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="getPath" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="getPath" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="disp2rec"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="getPathNoFilter" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="getPathNoFilter" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="disp2rec"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="remux" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="remux" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="remux" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="demux2setPathValue"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="demux2setPathMetadata"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="demux2getPath"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="metadataBuffer"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="accCtrl2demux"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="demux2setPathValue"/>
+<option name="depth" value="96"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="getPath2remux"/>
+<option name="depth" value="96"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="demux2setPathMetadata"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="demux2getPath"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="metadataBuffer"/>
+<option name="depth" value="24"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="keyBuffer"/>
+<option name="depth" value="48"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="filterPopGet"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="filterPopSet"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreDram" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="accCtrl2demux"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

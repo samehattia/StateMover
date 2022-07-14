@@ -1,0 +1,178 @@
+
+
+================================================================
+== Vivado HLS Report for 'dummyPCIeJoint'
+================================================================
+* Date:           Wed Oct 14 13:17:35 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        dummyPCIeJoint_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     5.929|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      1|       -|       -|
+|Expression       |        -|      -|       0|      72|
+|FIFO             |        4|      -|     100|     112|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|     140|
+|Register         |        -|      -|      58|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        4|      1|     158|     324|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |    ~0   |   ~0  |   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    +---------------------------------------------------+------------------------------------------------+--------------+
+    |                      Instance                     |                     Module                     |  Expression  |
+    +---------------------------------------------------+------------------------------------------------+--------------+
+    |dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1_U1  |dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1  | i0 * i1 + i2 |
+    +---------------------------------------------------+------------------------------------------------+--------------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +-------------------------------+---------+----+----+------+-----+---------+
+    |              Name             | BRAM_18K| FF | LUT| Depth| Bits| Size:D*B|
+    +-------------------------------+---------+----+----+------+-----+---------+
+    |freeAddressArrayDram_1_fifo_U  |        2|  51|  61|    64|   32|     2048|
+    |freeAddressArrayFlas_1_fifo_U  |        2|  49|  51|    32|   32|     1024|
+    +-------------------------------+---------+----+----+------+-----+---------+
+    |Total                          |        4| 100| 112|    96|   64|     3072|
+    +-------------------------------+---------+----+----+------+-----+---------+
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |tmp_6_fu_450_p2                   |     +    |      0|  0|  15|           6|           1|
+    |tmp_7_fu_511_p2                   |     +    |      0|  0|  15|           1|           6|
+    |ap_condition_235                  |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_335                  |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_353                  |    and   |      0|  0|   2|           1|           1|
+    |ap_condition_523                  |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op25_read_state2     |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op29_read_state2     |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op61_write_state2    |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op77_write_state2    |    and   |      0|  0|   2|           1|           1|
+    |icmp_fu_416_p2                    |   icmp   |      0|  0|  20|          20|           1|
+    |ap_block_pp0_stage0_01001         |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1  |    or    |      0|  0|   2|           1|           1|
+    |ap_enable_pp0                     |    xor   |      0|  0|   2|           1|           2|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0|  72|          38|          20|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------+----+-----------+-----+-----------+
+    |                 Name                | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------+----+-----------+-----+-----------+
+    |ap_phi_mux_storemerge_phi_fu_324_p4  |  15|          3|    4|         12|
+    |elementCounterDram_V                 |   9|          2|    6|         12|
+    |elementCounterFlash_s                |   9|          2|    6|         12|
+    |freeAddressArrayDram_1_din           |  15|          3|   32|         96|
+    |freeAddressArrayFlas_1_din           |  15|          3|   32|         96|
+    |inData_V_V_blk_n                     |   9|          2|    1|          2|
+    |outDataDram_V_V_blk_n                |   9|          2|    1|          2|
+    |outDataFlash_V_V_blk_n               |   9|          2|    1|          2|
+    |pcieState                            |  50|         11|    4|         44|
+    +-------------------------------------+----+-----------+-----+-----------+
+    |Total                                | 140|         30|   87|        278|
+    +-------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3  |   1|   0|    1|          0|
+    |elementCounterDram_V     |   6|   0|    6|          0|
+    |elementCounterFlash_s    |   6|   0|    6|          0|
+    |flushAck_V_1_data_reg    |   1|   0|    1|          0|
+    |flushAck_V_1_vld_reg     |   0|   0|    1|          1|
+    |flushDone_V_0_data_reg   |   1|   0|    1|          0|
+    |flushDone_V_0_vld_reg    |   0|   0|    1|          1|
+    |flushFlag                |   1|   0|    1|          0|
+    |flushReq_V_0_data_reg    |   1|   0|    1|          0|
+    |flushReq_V_0_vld_reg     |   0|   0|    1|          1|
+    |inputAddress_V           |  32|   0|   32|          0|
+    |pcieState                |   4|   0|    4|          0|
+    |pcie_flushAck_V          |   1|   0|    1|          0|
+    |streamInitializedFla     |   1|   0|    1|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  58|   0|   61|          3|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+--------------+------------------+--------------+
+|        RTL Ports        | Dir | Bits|   Protocol   |   Source Object  |    C Type    |
++-------------------------+-----+-----+--------------+------------------+--------------+
+|ap_clk                   |  in |    1| ap_ctrl_none |  dummyPCIeJoint  | return value |
+|ap_rst                   |  in |    1| ap_ctrl_none |  dummyPCIeJoint  | return value |
+|inData_V_V_dout          |  in |   32|    ap_fifo   |    inData_V_V    |    pointer   |
+|inData_V_V_empty_n       |  in |    1|    ap_fifo   |    inData_V_V    |    pointer   |
+|inData_V_V_read          | out |    1|    ap_fifo   |    inData_V_V    |    pointer   |
+|outDataFlash_V_V_din     | out |   32|    ap_fifo   | outDataFlash_V_V |    pointer   |
+|outDataFlash_V_V_full_n  |  in |    1|    ap_fifo   | outDataFlash_V_V |    pointer   |
+|outDataFlash_V_V_write   | out |    1|    ap_fifo   | outDataFlash_V_V |    pointer   |
+|outDataDram_V_V_din      | out |   32|    ap_fifo   |  outDataDram_V_V |    pointer   |
+|outDataDram_V_V_full_n   |  in |    1|    ap_fifo   |  outDataDram_V_V |    pointer   |
+|outDataDram_V_V_write    | out |    1|    ap_fifo   |  outDataDram_V_V |    pointer   |
+|flushReq_V               |  in |    1|    ap_none   |    flushReq_V    |    scalar    |
+|flushAck_V               | out |    1|    ap_none   |    flushAck_V    |    pointer   |
+|flushDone_V              |  in |    1|    ap_none   |    flushDone_V   |    scalar    |
++-------------------------+-----+-----+--------------+------------------+--------------+
+

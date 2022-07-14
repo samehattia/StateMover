@@ -1,0 +1,142 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_flashDispatch'
+================================================================
+* Date:           Wed Oct 21 12:18:56 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      2.91|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|      36|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       3|
+|Register         |        -|      -|      67|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|      67|      39|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |         Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |tmp_99_fu_125_p2               |     +    |      0|  0|  13|           1|          13|
+    |getCtrlWord_count_V_fu_130_p3  |  Select  |      0|  0|  13|           1|          13|
+    |ap_sig_bdd_178                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_179                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_63                  |    and   |      0|  0|   1|           1|           1|
+    |tmp_77_fu_120_p2               |   icmp   |      0|  0|   6|          16|          16|
+    |ap_sig_bdd_52                  |    or    |      0|  0|   1|           1|           1|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |Total                          |          |      0|  0|  36|          22|          46|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm1                        |   2|          3|    2|          6|
+    |ap_sig_ioackin_memRdCmd_V_TREADY  |   1|          2|    1|          2|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |   3|          5|    3|          8|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm0                        |   1|   0|    1|          0|
+    |ap_CS_fsm1                        |   2|   0|    2|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_reg_ioackin_memRdCmd_V_TREADY  |   1|   0|    1|          0|
+    |getCtrlWord_address_V_reg_153     |  32|   0|   32|          0|
+    |tmp19_reg_149                     |   1|   0|    1|          0|
+    |tmp_100_reg_164                   |  13|   0|   13|          0|
+    |tmp_V_reg_158                     |  16|   0|   16|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  67|   0|   67|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+---------------------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |          Source Object          |    C Type    |
++------------------------------+-----+-----+------------+---------------------------------+--------------+
+|ap_clk                        |  in |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_rst                        |  in |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_start                      |  in |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_done                       | out |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_continue                   |  in |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_idle                       | out |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|ap_ready                      | out |    1| ap_ctrl_hs | memcachedPipeline_flashDispatch | return value |
+|flashDemux2getPath_V_dout     |  in |   48|   ap_fifo  |       flashDemux2getPath_V      |    pointer   |
+|flashDemux2getPath_V_empty_n  |  in |    1|   ap_fifo  |       flashDemux2getPath_V      |    pointer   |
+|flashDemux2getPath_V_read     | out |    1|   ap_fifo  |       flashDemux2getPath_V      |    pointer   |
+|flash_Disp2rec_V_V_din        | out |   16|   ap_fifo  |        flash_Disp2rec_V_V       |    pointer   |
+|flash_Disp2rec_V_V_full_n     |  in |    1|   ap_fifo  |        flash_Disp2rec_V_V       |    pointer   |
+|flash_Disp2rec_V_V_write      | out |    1|   ap_fifo  |        flash_Disp2rec_V_V       |    pointer   |
+|memRdCmd_V_TREADY             |  in |    1|    axis    |            memRdCmd_V           |    pointer   |
+|memRdCmd_V_TDATA              | out |   48|    axis    |            memRdCmd_V           |    pointer   |
+|memRdCmd_V_TVALID             | out |    1|    axis    |            memRdCmd_V           |    pointer   |
++------------------------------+-----+-----+------------+---------------------------------+--------------+
+

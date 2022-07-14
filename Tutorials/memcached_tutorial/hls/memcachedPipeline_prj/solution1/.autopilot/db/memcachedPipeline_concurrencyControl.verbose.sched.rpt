@@ -1,0 +1,1573 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_concurrencyControl'
+================================================================
+* Date:           Wed Oct 21 12:18:28 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|     10.89|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 10.89ns
+ST_1: ccState_load [1/1] 0.00ns
+codeRepl:17  %ccState_load = load i3* @ccState, align 1
+
+ST_1: tmp_EOP_V_16 [1/1] 0.00ns
+codeRepl:18  %tmp_EOP_V_16 = load i1* @ccInputWord_EOP_V, align 1
+
+ST_1: ccCompareElement_load [1/1] 0.00ns
+codeRepl:19  %ccCompareElement_load = load i6* @ccCompareElement_address_V, align 1
+
+ST_1: hashFilter_filterEntries_statu [1/1] 0.00ns
+codeRepl:20  %hashFilter_filterEntries_statu = load i1* @hashFilter_filterEntries_statu, align 1
+
+ST_1: hashFilter_filterEntries_load [1/1] 0.00ns
+codeRepl:21  %hashFilter_filterEntries_load = load i6* @hashFilter_filterEntries_addre, align 1
+
+ST_1: hashFilter_filterEntries_opera [1/1] 0.00ns
+codeRepl:22  %hashFilter_filterEntries_opera = load i8* @hashFilter_filterEntries_opera, align 1
+
+ST_1: hashFilter_filterEntries_opera_1 [1/1] 0.00ns
+codeRepl:23  %hashFilter_filterEntries_opera_1 = load i8* @hashFilter_filterEntries_opera_1, align 1
+
+ST_1: hashFilter_filterEntries_statu_1 [1/1] 0.00ns
+codeRepl:24  %hashFilter_filterEntries_statu_1 = load i1* @hashFilter_filterEntries_statu_1, align 1
+
+ST_1: hashFilter_filterEntries_load_1 [1/1] 0.00ns
+codeRepl:25  %hashFilter_filterEntries_load_1 = load i6* @hashFilter_filterEntries_addre_1, align 1
+
+ST_1: hashFilter_filterEntries_opera_2 [1/1] 0.00ns
+codeRepl:26  %hashFilter_filterEntries_opera_2 = load i8* @hashFilter_filterEntries_opera_2, align 1
+
+ST_1: hashFilter_filterEntries_statu_2 [1/1] 0.00ns
+codeRepl:27  %hashFilter_filterEntries_statu_2 = load i1* @hashFilter_filterEntries_statu_2, align 1
+
+ST_1: hashFilter_filterEntries_load_2 [1/1] 0.00ns
+codeRepl:28  %hashFilter_filterEntries_load_2 = load i6* @hashFilter_filterEntries_addre_2, align 1
+
+ST_1: hashFilter_filterEntries_opera_3 [1/1] 0.00ns
+codeRepl:29  %hashFilter_filterEntries_opera_3 = load i8* @hashFilter_filterEntries_opera_3, align 1
+
+ST_1: hashFilter_filterEntries_statu_3 [1/1] 0.00ns
+codeRepl:30  %hashFilter_filterEntries_statu_3 = load i1* @hashFilter_filterEntries_statu_3, align 1
+
+ST_1: hashFilter_filterEntries_load_3 [1/1] 0.00ns
+codeRepl:31  %hashFilter_filterEntries_load_3 = load i6* @hashFilter_filterEntries_addre_3, align 1
+
+ST_1: hashFilter_filterEntries_opera_4 [1/1] 0.00ns
+codeRepl:32  %hashFilter_filterEntries_opera_4 = load i8* @hashFilter_filterEntries_opera_4, align 1
+
+ST_1: hashFilter_filterEntries_statu_4 [1/1] 0.00ns
+codeRepl:33  %hashFilter_filterEntries_statu_4 = load i1* @hashFilter_filterEntries_statu_4, align 1
+
+ST_1: hashFilter_filterEntries_load_4 [1/1] 0.00ns
+codeRepl:34  %hashFilter_filterEntries_load_4 = load i6* @hashFilter_filterEntries_addre_4, align 1
+
+ST_1: hashFilter_filterEntries_opera_5 [1/1] 0.00ns
+codeRepl:35  %hashFilter_filterEntries_opera_5 = load i8* @hashFilter_filterEntries_opera_5, align 1
+
+ST_1: hashFilter_filterEntries_statu_5 [1/1] 0.00ns
+codeRepl:36  %hashFilter_filterEntries_statu_5 = load i1* @hashFilter_filterEntries_statu_5, align 1
+
+ST_1: hashFilter_filterEntries_load_5 [1/1] 0.00ns
+codeRepl:37  %hashFilter_filterEntries_load_5 = load i6* @hashFilter_filterEntries_addre_5, align 1
+
+ST_1: hashFilter_filterEntries_opera_6 [1/1] 0.00ns
+codeRepl:38  %hashFilter_filterEntries_opera_6 = load i8* @hashFilter_filterEntries_opera_6, align 1
+
+ST_1: hashFilter_filterEntries_statu_6 [1/1] 0.00ns
+codeRepl:39  %hashFilter_filterEntries_statu_6 = load i1* @hashFilter_filterEntries_statu_6, align 1
+
+ST_1: hashFilter_filterEntries_load_6 [1/1] 0.00ns
+codeRepl:40  %hashFilter_filterEntries_load_6 = load i6* @hashFilter_filterEntries_addre_6, align 1
+
+ST_1: hashFilter_filterEntries_opera_7 [1/1] 0.00ns
+codeRepl:41  %hashFilter_filterEntries_opera_7 = load i8* @hashFilter_filterEntries_opera_7, align 1
+
+ST_1: hashFilter_filterEntries_statu_7 [1/1] 0.00ns
+codeRepl:42  %hashFilter_filterEntries_statu_7 = load i1* @hashFilter_filterEntries_statu_7, align 1
+
+ST_1: hashFilter_filterEntries_load_7 [1/1] 0.00ns
+codeRepl:43  %hashFilter_filterEntries_load_7 = load i6* @hashFilter_filterEntries_addre_7, align 1
+
+ST_1: hashFilter_level_load [1/1] 0.00ns
+codeRepl:44  %hashFilter_level_load = load i8* @hashFilter_level, align 1
+
+ST_1: tmp_401 [1/1] 0.00ns
+codeRepl:45  %tmp_401 = trunc i8 %hashFilter_level_load to i4
+
+ST_1: hashFilter_rdPtr_load [1/1] 0.00ns
+codeRepl:46  %hashFilter_rdPtr_load = load i8* @hashFilter_rdPtr, align 1
+
+ST_1: ccCompareElement_operation_V_l [1/1] 0.00ns
+codeRepl:47  %ccCompareElement_operation_V_l = load i8* @ccCompareElement_operation_V, align 1
+
+ST_1: stg_34 [1/1] 1.11ns
+codeRepl:48  switch i3 %ccState_load, label %._crit_edge139 [
+    i3 0, label %0
+    i3 1, label %6
+    i3 2, label %19
+    i3 3, label %23
+    i3 -4, label %25
+    i3 -3, label %26
+  ]
+
+ST_1: tmp_V_101 [1/1] 1.66ns
+:0  %tmp_V_101 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @dec2cc_V_V) nounwind
+
+ST_1: stg_36 [1/1] 0.00ns
+:1  br i1 %tmp_V_101, label %pop.exit174, label %._crit_edge150
+
+ST_1: tmp_408 [1/1] 0.00ns
+pop.exit174:0  %tmp_408 = trunc i8 %hashFilter_rdPtr_load to i3
+
+ST_1: stg_38 [1/1] 0.89ns
+branch22:0  store i6 0, i6* @hashFilter_filterEntries_addre_6, align 2
+
+ST_1: stg_39 [1/1] 0.00ns
+branch22:1  br label %pop.exit174198
+
+ST_1: stg_40 [1/1] 0.89ns
+branch21:0  store i6 0, i6* @hashFilter_filterEntries_addre_5, align 2
+
+ST_1: stg_41 [1/1] 0.00ns
+branch21:1  br label %pop.exit174198
+
+ST_1: stg_42 [1/1] 0.89ns
+branch20:0  store i6 0, i6* @hashFilter_filterEntries_addre_4, align 2
+
+ST_1: stg_43 [1/1] 0.00ns
+branch20:1  br label %pop.exit174198
+
+ST_1: stg_44 [1/1] 0.89ns
+branch19:0  store i6 0, i6* @hashFilter_filterEntries_addre_3, align 2
+
+ST_1: stg_45 [1/1] 0.00ns
+branch19:1  br label %pop.exit174198
+
+ST_1: stg_46 [1/1] 0.89ns
+branch18:0  store i6 0, i6* @hashFilter_filterEntries_addre_2, align 2
+
+ST_1: stg_47 [1/1] 0.00ns
+branch18:1  br label %pop.exit174198
+
+ST_1: stg_48 [1/1] 0.89ns
+branch17:0  store i6 0, i6* @hashFilter_filterEntries_addre_1, align 2
+
+ST_1: stg_49 [1/1] 0.00ns
+branch17:1  br label %pop.exit174198
+
+ST_1: stg_50 [1/1] 0.89ns
+branch16:0  store i6 0, i6* @hashFilter_filterEntries_addre, align 2
+
+ST_1: stg_51 [1/1] 0.00ns
+branch16:1  br label %pop.exit174198
+
+ST_1: stg_52 [1/1] 0.89ns
+branch23:0  store i6 0, i6* @hashFilter_filterEntries_addre_7, align 2
+
+ST_1: stg_53 [1/1] 0.00ns
+branch23:1  br label %pop.exit174198
+
+ST_1: stg_54 [1/1] 0.89ns
+branch62:0  store i1 false, i1* @hashFilter_filterEntries_statu_6, align 1
+
+ST_1: stg_55 [1/1] 0.89ns
+branch61:0  store i1 false, i1* @hashFilter_filterEntries_statu_5, align 1
+
+ST_1: stg_56 [1/1] 0.89ns
+branch60:0  store i1 false, i1* @hashFilter_filterEntries_statu_4, align 1
+
+ST_1: stg_57 [1/1] 0.89ns
+branch59:0  store i1 false, i1* @hashFilter_filterEntries_statu_3, align 1
+
+ST_1: stg_58 [1/1] 0.89ns
+branch58:0  store i1 false, i1* @hashFilter_filterEntries_statu_2, align 1
+
+ST_1: stg_59 [1/1] 0.89ns
+branch57:0  store i1 false, i1* @hashFilter_filterEntries_statu_1, align 1
+
+ST_1: stg_60 [1/1] 0.89ns
+branch56:0  store i1 false, i1* @hashFilter_filterEntries_statu, align 1
+
+ST_1: stg_61 [1/1] 0.89ns
+branch63:0  store i1 false, i1* @hashFilter_filterEntries_statu_7, align 1
+
+ST_1: tmp_307 [1/1] 1.34ns
+pop.exit174198245:0  %tmp_307 = icmp eq i8 %hashFilter_rdPtr_load, 7
+
+ST_1: tmp_308 [1/1] 1.24ns
+pop.exit174198245:1  %tmp_308 = add i8 %hashFilter_rdPtr_load, 1
+
+ST_1: p_tmp_3 [1/1] 0.71ns
+pop.exit174198245:2  %p_tmp_3 = select i1 %tmp_307, i8 0, i8 %tmp_308
+
+ST_1: stg_65 [1/1] 0.89ns
+pop.exit174198245:3  store i8 %p_tmp_3, i8* @hashFilter_rdPtr, align 1
+
+ST_1: tmp_309 [1/1] 1.24ns
+pop.exit174198245:4  %tmp_309 = add i8 %hashFilter_level_load, -1
+
+ST_1: stg_67 [1/1] 0.89ns
+pop.exit174198245:5  store i8 %tmp_309, i8* @hashFilter_level, align 2
+
+ST_1: stg_68 [1/1] 1.07ns
+._crit_edge150:0  store i3 1, i3* @ccState, align 1
+
+ST_1: tmp_V_100 [1/1] 1.66ns
+:0  %tmp_V_100 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @dec2cc_V_V) nounwind
+
+ST_1: stg_70 [1/1] 0.00ns
+:1  br i1 %tmp_V_100, label %pop.exit, label %._crit_edge149
+
+ST_1: tmp_407 [1/1] 0.00ns
+pop.exit:0  %tmp_407 = trunc i8 %hashFilter_rdPtr_load to i3
+
+ST_1: stg_72 [1/1] 0.89ns
+branch14:0  store i6 0, i6* @hashFilter_filterEntries_addre_6, align 2
+
+ST_1: stg_73 [1/1] 0.00ns
+branch14:1  br label %pop.exit189
+
+ST_1: stg_74 [1/1] 0.89ns
+branch13:0  store i6 0, i6* @hashFilter_filterEntries_addre_5, align 2
+
+ST_1: stg_75 [1/1] 0.00ns
+branch13:1  br label %pop.exit189
+
+ST_1: stg_76 [1/1] 0.89ns
+branch12:0  store i6 0, i6* @hashFilter_filterEntries_addre_4, align 2
+
+ST_1: stg_77 [1/1] 0.00ns
+branch12:1  br label %pop.exit189
+
+ST_1: stg_78 [1/1] 0.89ns
+branch11:0  store i6 0, i6* @hashFilter_filterEntries_addre_3, align 2
+
+ST_1: stg_79 [1/1] 0.00ns
+branch11:1  br label %pop.exit189
+
+ST_1: stg_80 [1/1] 0.89ns
+branch10:0  store i6 0, i6* @hashFilter_filterEntries_addre_2, align 2
+
+ST_1: stg_81 [1/1] 0.00ns
+branch10:1  br label %pop.exit189
+
+ST_1: stg_82 [1/1] 0.89ns
+branch9:0  store i6 0, i6* @hashFilter_filterEntries_addre_1, align 2
+
+ST_1: stg_83 [1/1] 0.00ns
+branch9:1  br label %pop.exit189
+
+ST_1: stg_84 [1/1] 0.89ns
+branch8:0  store i6 0, i6* @hashFilter_filterEntries_addre, align 2
+
+ST_1: stg_85 [1/1] 0.00ns
+branch8:1  br label %pop.exit189
+
+ST_1: stg_86 [1/1] 0.89ns
+branch15:0  store i6 0, i6* @hashFilter_filterEntries_addre_7, align 2
+
+ST_1: stg_87 [1/1] 0.00ns
+branch15:1  br label %pop.exit189
+
+ST_1: stg_88 [1/1] 0.89ns
+branch54:0  store i1 false, i1* @hashFilter_filterEntries_statu_6, align 1
+
+ST_1: stg_89 [1/1] 0.89ns
+branch53:0  store i1 false, i1* @hashFilter_filterEntries_statu_5, align 1
+
+ST_1: stg_90 [1/1] 0.89ns
+branch52:0  store i1 false, i1* @hashFilter_filterEntries_statu_4, align 1
+
+ST_1: stg_91 [1/1] 0.89ns
+branch51:0  store i1 false, i1* @hashFilter_filterEntries_statu_3, align 1
+
+ST_1: stg_92 [1/1] 0.89ns
+branch50:0  store i1 false, i1* @hashFilter_filterEntries_statu_2, align 1
+
+ST_1: stg_93 [1/1] 0.89ns
+branch49:0  store i1 false, i1* @hashFilter_filterEntries_statu_1, align 1
+
+ST_1: stg_94 [1/1] 0.89ns
+branch48:0  store i1 false, i1* @hashFilter_filterEntries_statu, align 1
+
+ST_1: stg_95 [1/1] 0.89ns
+branch55:0  store i1 false, i1* @hashFilter_filterEntries_statu_7, align 1
+
+ST_1: tmp_304 [1/1] 1.34ns
+pop.exit189235:0  %tmp_304 = icmp eq i8 %hashFilter_rdPtr_load, 7
+
+ST_1: tmp_305 [1/1] 1.24ns
+pop.exit189235:1  %tmp_305 = add i8 %hashFilter_rdPtr_load, 1
+
+ST_1: p_tmp_s [1/1] 0.71ns
+pop.exit189235:2  %p_tmp_s = select i1 %tmp_304, i8 0, i8 %tmp_305
+
+ST_1: stg_99 [1/1] 0.89ns
+pop.exit189235:3  store i8 %p_tmp_s, i8* @hashFilter_rdPtr, align 1
+
+ST_1: tmp_306 [1/1] 1.24ns
+pop.exit189235:4  %tmp_306 = add i8 %hashFilter_level_load, -1
+
+ST_1: stg_101 [1/1] 0.89ns
+pop.exit189235:5  store i8 %tmp_306, i8* @hashFilter_level, align 2
+
+ST_1: stg_102 [1/1] 1.07ns
+._crit_edge149:0  store i3 0, i3* @ccState, align 1
+
+ST_1: tmp_4 [1/1] 2.91ns
+:0  %tmp_4 = call i130 @_ssdm_op_Read.ap_fifo.volatile.i130P(i130* @in2cc_V) nounwind
+
+ST_1: tmp_data_V [1/1] 0.00ns
+:1  %tmp_data_V = trunc i130 %tmp_4 to i128
+
+ST_1: stg_105 [1/1] 0.89ns
+:2  store i128 %tmp_data_V, i128* @ccInputWord_data_V, align 16
+
+ST_1: tmp_SOP_V [1/1] 0.00ns
+:3  %tmp_SOP_V = call i1 @_ssdm_op_BitSelect.i1.i130.i32(i130 %tmp_4, i32 128)
+
+ST_1: stg_107 [1/1] 0.89ns
+:4  store i1 %tmp_SOP_V, i1* @ccInputWord_SOP_V, align 16
+
+ST_1: tmp_EOP_V [1/1] 0.00ns
+:5  %tmp_EOP_V = call i1 @_ssdm_op_BitSelect.i1.i130.i32(i130 %tmp_4, i32 129)
+
+ST_1: stg_109 [1/1] 0.89ns
+:6  store i1 %tmp_EOP_V, i1* @ccInputWord_EOP_V, align 1
+
+ST_1: stg_110 [1/1] 0.00ns
+:8  br i1 %tmp_EOP_V, label %24, label %._crit_edge148
+
+ST_1: stg_111 [1/1] 1.07ns
+:0  store i3 0, i3* @ccState, align 1
+
+ST_1: tmp_402 [1/1] 0.00ns
+:0  %tmp_402 = call i5 @_ssdm_op_PartSelect.i5.i8.i32.i32(i8 %hashFilter_level_load, i32 3, i32 7)
+
+ST_1: icmp [1/1] 1.17ns
+:1  %icmp = icmp eq i5 %tmp_402, 0
+
+ST_1: stg_114 [1/1] 0.00ns
+:2  br i1 %icmp, label %20, label %push.exit
+
+ST_1: hashFilter_wrPtr_load [1/1] 0.00ns
+:0  %hashFilter_wrPtr_load = load i8* @hashFilter_wrPtr, align 2
+
+ST_1: tmp_406 [1/1] 0.00ns
+:1  %tmp_406 = trunc i8 %hashFilter_wrPtr_load to i3
+
+ST_1: stg_117 [1/1] 0.89ns
+branch6:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_6, align 2
+
+ST_1: stg_118 [1/1] 0.00ns
+branch6:1  br label %branch24
+
+ST_1: stg_119 [1/1] 0.89ns
+branch5:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_5, align 2
+
+ST_1: stg_120 [1/1] 0.00ns
+branch5:1  br label %branch24
+
+ST_1: stg_121 [1/1] 0.89ns
+branch4:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_4, align 2
+
+ST_1: stg_122 [1/1] 0.00ns
+branch4:1  br label %branch24
+
+ST_1: stg_123 [1/1] 0.89ns
+branch3:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_3, align 2
+
+ST_1: stg_124 [1/1] 0.00ns
+branch3:1  br label %branch24
+
+ST_1: stg_125 [1/1] 0.89ns
+branch2:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_2, align 2
+
+ST_1: stg_126 [1/1] 0.00ns
+branch2:1  br label %branch24
+
+ST_1: stg_127 [1/1] 0.89ns
+branch1:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_1, align 2
+
+ST_1: stg_128 [1/1] 0.00ns
+branch1:1  br label %branch24
+
+ST_1: stg_129 [1/1] 0.89ns
+branch0:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre, align 2
+
+ST_1: stg_130 [1/1] 0.00ns
+branch0:1  br label %branch24
+
+ST_1: stg_131 [1/1] 0.89ns
+branch7:0  store i6 %ccCompareElement_load, i6* @hashFilter_filterEntries_addre_7, align 2
+
+ST_1: stg_132 [1/1] 0.00ns
+branch7:1  br label %branch24
+
+ST_1: stg_133 [1/1] 0.00ns
+branch38:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_6, align 2
+
+ST_1: stg_134 [1/1] 0.00ns
+branch38:1  br label %21
+
+ST_1: stg_135 [1/1] 0.00ns
+branch37:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_5, align 2
+
+ST_1: stg_136 [1/1] 0.00ns
+branch37:1  br label %21
+
+ST_1: stg_137 [1/1] 0.00ns
+branch36:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_4, align 2
+
+ST_1: stg_138 [1/1] 0.00ns
+branch36:1  br label %21
+
+ST_1: stg_139 [1/1] 0.00ns
+branch35:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_3, align 2
+
+ST_1: stg_140 [1/1] 0.00ns
+branch35:1  br label %21
+
+ST_1: stg_141 [1/1] 0.00ns
+branch34:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_2, align 2
+
+ST_1: stg_142 [1/1] 0.00ns
+branch34:1  br label %21
+
+ST_1: stg_143 [1/1] 0.00ns
+branch33:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_1, align 2
+
+ST_1: stg_144 [1/1] 0.00ns
+branch33:1  br label %21
+
+ST_1: stg_145 [1/1] 0.00ns
+branch32:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera, align 2
+
+ST_1: stg_146 [1/1] 0.00ns
+branch32:1  br label %21
+
+ST_1: stg_147 [1/1] 0.00ns
+branch39:0  store i8 %ccCompareElement_operation_V_l, i8* @hashFilter_filterEntries_opera_7, align 2
+
+ST_1: stg_148 [1/1] 0.00ns
+branch39:1  br label %21
+
+ST_1: stg_149 [1/1] 0.89ns
+branch46:0  store i1 true, i1* @hashFilter_filterEntries_statu_6, align 1
+
+ST_1: stg_150 [1/1] 0.89ns
+branch45:0  store i1 true, i1* @hashFilter_filterEntries_statu_5, align 1
+
+ST_1: stg_151 [1/1] 0.89ns
+branch44:0  store i1 true, i1* @hashFilter_filterEntries_statu_4, align 1
+
+ST_1: stg_152 [1/1] 0.89ns
+branch43:0  store i1 true, i1* @hashFilter_filterEntries_statu_3, align 1
+
+ST_1: stg_153 [1/1] 0.89ns
+branch42:0  store i1 true, i1* @hashFilter_filterEntries_statu_2, align 1
+
+ST_1: stg_154 [1/1] 0.89ns
+branch41:0  store i1 true, i1* @hashFilter_filterEntries_statu_1, align 1
+
+ST_1: stg_155 [1/1] 0.89ns
+branch40:0  store i1 true, i1* @hashFilter_filterEntries_statu, align 1
+
+ST_1: stg_156 [1/1] 0.89ns
+branch47:0  store i1 true, i1* @hashFilter_filterEntries_statu_7, align 1
+
+ST_1: tmp_310 [1/1] 1.34ns
+:0  %tmp_310 = icmp eq i8 %hashFilter_wrPtr_load, 7
+
+ST_1: tmp_311 [1/1] 1.24ns
+:1  %tmp_311 = add i8 %hashFilter_wrPtr_load, 1
+
+ST_1: p_tmp_4 [1/1] 0.71ns
+:2  %p_tmp_4 = select i1 %tmp_310, i8 0, i8 %tmp_311
+
+ST_1: stg_160 [1/1] 0.00ns
+:3  store i8 %p_tmp_4, i8* @hashFilter_wrPtr, align 2
+
+ST_1: tmp_312 [1/1] 0.43ns
+:4  %tmp_312 = add i4 %tmp_401, 1
+
+ST_1: tmp_387_cast [1/1] 0.00ns
+:5  %tmp_387_cast = zext i4 %tmp_312 to i8
+
+ST_1: stg_163 [1/1] 0.89ns
+:6  store i8 %tmp_387_cast, i8* @hashFilter_level, align 2
+
+ST_1: storemerge_cast_cast_cast [1/1] 0.71ns
+push.exit:10  %storemerge_cast_cast_cast = select i1 %tmp_EOP_V_16, i3 0, i3 3
+
+ST_1: stg_165 [1/1] 1.07ns
+push.exit:11  store i3 %storemerge_cast_cast_cast, i3* @ccState, align 1
+
+ST_1: tmp_74 [1/1] 0.00ns
+:0  %tmp_74 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @dec2cc_V_V, i32 1) nounwind
+
+ST_1: stg_167 [1/1] 0.00ns
+:1  br i1 %tmp_74, label %7, label %8
+
+ST_1: tmp_s [1/1] 1.34ns
+:0  %tmp_s = icmp eq i8 %hashFilter_level_load, 8
+
+ST_1: stg_169 [1/1] 0.00ns
+:1  br i1 %tmp_s, label %._crit_edge146, label %9
+
+ST_1: tmp_301 [1/1] 1.22ns
+:0  %tmp_301 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load
+
+ST_1: or_cond5 [1/1] 0.71ns
+:1  %or_cond5 = and i1 %hashFilter_filterEntries_statu, %tmp_301
+
+ST_1: tmp_674_0_not [1/1] 1.34ns
+:2  %tmp_674_0_not = icmp eq i8 %hashFilter_filterEntries_opera, 8
+
+ST_1: stg_173 [1/1] 0.00ns
+:3  br i1 %or_cond5, label %10, label %._crit_edge.i162.0
+
+ST_1: demorgan_old [1/1] 0.71ns
+._crit_edge.i162.0:0  %demorgan_old = and i1 %hashFilter_filterEntries_statu, %tmp_674_0_not
+
+ST_1: stg_175 [1/1] 0.00ns
+._crit_edge.i162.0:1  br i1 %demorgan_old, label %._crit_edge39.i163, label %._crit_edge42.i164.0
+
+ST_1: stg_176 [1/1] 0.00ns
+:0  br i1 %tmp_674_0_not, label %._crit_edge39.i163, label %switch.early.test
+
+ST_1: tmp_414 [1/1] 1.34ns
+switch.early.test:0  %tmp_414 = icmp eq i8 %hashFilter_filterEntries_opera, 4
+
+ST_1: tmp_415 [1/1] 1.34ns
+switch.early.test:1  %tmp_415 = icmp eq i8 %hashFilter_filterEntries_opera, 1
+
+ST_1: tmp_416 [1/1] 0.71ns
+switch.early.test:2  %tmp_416 = or i1 %tmp_415, %tmp_414
+
+ST_1: stg_180 [1/1] 0.00ns
+switch.early.test:3  br i1 %tmp_416, label %._crit_edge39.i163, label %._crit_edge42.i164.0
+
+ST_1: tmp_667_1 [1/1] 1.22ns
+._crit_edge42.i164.0:0  %tmp_667_1 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_1
+
+ST_1: or_cond4 [1/1] 0.71ns
+._crit_edge42.i164.0:1  %or_cond4 = and i1 %hashFilter_filterEntries_statu_1, %tmp_667_1
+
+ST_1: tmp_674_1_not [1/1] 1.34ns
+._crit_edge42.i164.0:2  %tmp_674_1_not = icmp eq i8 %hashFilter_filterEntries_opera_1, 8
+
+ST_1: stg_184 [1/1] 0.00ns
+._crit_edge42.i164.0:3  br i1 %or_cond4, label %11, label %._crit_edge.i162.1
+
+ST_1: demorgan89_old [1/1] 0.71ns
+._crit_edge.i162.1:0  %demorgan89_old = and i1 %hashFilter_filterEntries_statu_1, %tmp_674_1_not
+
+ST_1: stg_186 [1/1] 0.00ns
+._crit_edge.i162.1:1  br i1 %demorgan89_old, label %._crit_edge39.i163, label %._crit_edge42.i164.1
+
+ST_1: stg_187 [1/1] 0.00ns
+:0  br i1 %tmp_674_1_not, label %._crit_edge39.i163, label %switch.early.test99
+
+ST_1: tmp_417 [1/1] 1.34ns
+switch.early.test99:0  %tmp_417 = icmp eq i8 %hashFilter_filterEntries_opera_1, 4
+
+ST_1: tmp_418 [1/1] 1.34ns
+switch.early.test99:1  %tmp_418 = icmp eq i8 %hashFilter_filterEntries_opera_1, 1
+
+ST_1: tmp_419 [1/1] 0.71ns
+switch.early.test99:2  %tmp_419 = or i1 %tmp_418, %tmp_417
+
+ST_1: stg_191 [1/1] 0.00ns
+switch.early.test99:3  br i1 %tmp_419, label %._crit_edge39.i163, label %._crit_edge42.i164.1
+
+ST_1: tmp_667_2 [1/1] 1.22ns
+._crit_edge42.i164.1:0  %tmp_667_2 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_2
+
+ST_1: or_cond10 [1/1] 0.71ns
+._crit_edge42.i164.1:1  %or_cond10 = and i1 %hashFilter_filterEntries_statu_2, %tmp_667_2
+
+ST_1: tmp_674_2_not [1/1] 1.34ns
+._crit_edge42.i164.1:2  %tmp_674_2_not = icmp eq i8 %hashFilter_filterEntries_opera_2, 8
+
+ST_1: stg_195 [1/1] 0.00ns
+._crit_edge42.i164.1:3  br i1 %or_cond10, label %12, label %._crit_edge.i162.2
+
+ST_1: demorgan90_old [1/1] 0.71ns
+._crit_edge.i162.2:0  %demorgan90_old = and i1 %hashFilter_filterEntries_statu_2, %tmp_674_2_not
+
+ST_1: stg_197 [1/1] 0.00ns
+._crit_edge.i162.2:1  br i1 %demorgan90_old, label %._crit_edge39.i163, label %._crit_edge42.i164.2
+
+ST_1: stg_198 [1/1] 0.00ns
+:0  br i1 %tmp_674_2_not, label %._crit_edge39.i163, label %switch.early.test102
+
+ST_1: tmp_420 [1/1] 1.34ns
+switch.early.test102:0  %tmp_420 = icmp eq i8 %hashFilter_filterEntries_opera_2, 4
+
+ST_1: tmp_421 [1/1] 1.34ns
+switch.early.test102:1  %tmp_421 = icmp eq i8 %hashFilter_filterEntries_opera_2, 1
+
+ST_1: tmp_422 [1/1] 0.71ns
+switch.early.test102:2  %tmp_422 = or i1 %tmp_421, %tmp_420
+
+ST_1: stg_202 [1/1] 0.00ns
+switch.early.test102:3  br i1 %tmp_422, label %._crit_edge39.i163, label %._crit_edge42.i164.2
+
+ST_1: tmp_667_3 [1/1] 1.22ns
+._crit_edge42.i164.2:0  %tmp_667_3 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_3
+
+ST_1: or_cond11 [1/1] 0.71ns
+._crit_edge42.i164.2:1  %or_cond11 = and i1 %hashFilter_filterEntries_statu_3, %tmp_667_3
+
+ST_1: tmp_674_3_not [1/1] 1.34ns
+._crit_edge42.i164.2:2  %tmp_674_3_not = icmp eq i8 %hashFilter_filterEntries_opera_3, 8
+
+ST_1: stg_206 [1/1] 0.00ns
+._crit_edge42.i164.2:3  br i1 %or_cond11, label %13, label %._crit_edge.i162.3
+
+ST_1: demorgan91_old [1/1] 0.71ns
+._crit_edge.i162.3:0  %demorgan91_old = and i1 %hashFilter_filterEntries_statu_3, %tmp_674_3_not
+
+ST_1: stg_208 [1/1] 0.00ns
+._crit_edge.i162.3:1  br i1 %demorgan91_old, label %._crit_edge39.i163, label %._crit_edge42.i164.3
+
+ST_1: stg_209 [1/1] 0.00ns
+:0  br i1 %tmp_674_3_not, label %._crit_edge39.i163, label %switch.early.test105
+
+ST_1: tmp_423 [1/1] 1.34ns
+switch.early.test105:0  %tmp_423 = icmp eq i8 %hashFilter_filterEntries_opera_3, 4
+
+ST_1: tmp_424 [1/1] 1.34ns
+switch.early.test105:1  %tmp_424 = icmp eq i8 %hashFilter_filterEntries_opera_3, 1
+
+ST_1: tmp_425 [1/1] 0.71ns
+switch.early.test105:2  %tmp_425 = or i1 %tmp_424, %tmp_423
+
+ST_1: stg_213 [1/1] 0.00ns
+switch.early.test105:3  br i1 %tmp_425, label %._crit_edge39.i163, label %._crit_edge42.i164.3
+
+ST_1: tmp_667_4 [1/1] 1.22ns
+._crit_edge42.i164.3:0  %tmp_667_4 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_4
+
+ST_1: or_cond12 [1/1] 0.71ns
+._crit_edge42.i164.3:1  %or_cond12 = and i1 %hashFilter_filterEntries_statu_4, %tmp_667_4
+
+ST_1: tmp_674_4_not [1/1] 1.34ns
+._crit_edge42.i164.3:2  %tmp_674_4_not = icmp eq i8 %hashFilter_filterEntries_opera_4, 8
+
+ST_1: stg_217 [1/1] 0.00ns
+._crit_edge42.i164.3:3  br i1 %or_cond12, label %14, label %._crit_edge.i162.4
+
+ST_1: demorgan92_old [1/1] 0.71ns
+._crit_edge.i162.4:0  %demorgan92_old = and i1 %hashFilter_filterEntries_statu_4, %tmp_674_4_not
+
+ST_1: stg_219 [1/1] 0.00ns
+._crit_edge.i162.4:1  br i1 %demorgan92_old, label %._crit_edge39.i163, label %._crit_edge42.i164.4
+
+ST_1: stg_220 [1/1] 0.00ns
+:0  br i1 %tmp_674_4_not, label %._crit_edge39.i163, label %switch.early.test108
+
+ST_1: tmp_426 [1/1] 1.34ns
+switch.early.test108:0  %tmp_426 = icmp eq i8 %hashFilter_filterEntries_opera_4, 4
+
+ST_1: tmp_427 [1/1] 1.34ns
+switch.early.test108:1  %tmp_427 = icmp eq i8 %hashFilter_filterEntries_opera_4, 1
+
+ST_1: tmp_428 [1/1] 0.71ns
+switch.early.test108:2  %tmp_428 = or i1 %tmp_427, %tmp_426
+
+ST_1: stg_224 [1/1] 0.00ns
+switch.early.test108:3  br i1 %tmp_428, label %._crit_edge39.i163, label %._crit_edge42.i164.4
+
+ST_1: tmp_667_5 [1/1] 1.22ns
+._crit_edge42.i164.4:0  %tmp_667_5 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_5
+
+ST_1: or_cond13 [1/1] 0.71ns
+._crit_edge42.i164.4:1  %or_cond13 = and i1 %hashFilter_filterEntries_statu_5, %tmp_667_5
+
+ST_1: tmp_674_5_not [1/1] 1.34ns
+._crit_edge42.i164.4:2  %tmp_674_5_not = icmp eq i8 %hashFilter_filterEntries_opera_5, 8
+
+ST_1: stg_228 [1/1] 0.00ns
+._crit_edge42.i164.4:3  br i1 %or_cond13, label %15, label %._crit_edge.i162.5
+
+ST_1: demorgan93_old [1/1] 0.71ns
+._crit_edge.i162.5:0  %demorgan93_old = and i1 %hashFilter_filterEntries_statu_5, %tmp_674_5_not
+
+ST_1: stg_230 [1/1] 0.00ns
+._crit_edge.i162.5:1  br i1 %demorgan93_old, label %._crit_edge39.i163, label %._crit_edge42.i164.5
+
+ST_1: stg_231 [1/1] 0.00ns
+:0  br i1 %tmp_674_5_not, label %._crit_edge39.i163, label %switch.early.test111
+
+ST_1: tmp_429 [1/1] 1.34ns
+switch.early.test111:0  %tmp_429 = icmp eq i8 %hashFilter_filterEntries_opera_5, 4
+
+ST_1: tmp_430 [1/1] 1.34ns
+switch.early.test111:1  %tmp_430 = icmp eq i8 %hashFilter_filterEntries_opera_5, 1
+
+ST_1: tmp_431 [1/1] 0.71ns
+switch.early.test111:2  %tmp_431 = or i1 %tmp_430, %tmp_429
+
+ST_1: stg_235 [1/1] 0.00ns
+switch.early.test111:3  br i1 %tmp_431, label %._crit_edge39.i163, label %._crit_edge42.i164.5
+
+ST_1: tmp_667_6 [1/1] 1.22ns
+._crit_edge42.i164.5:0  %tmp_667_6 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_6
+
+ST_1: or_cond14 [1/1] 0.71ns
+._crit_edge42.i164.5:1  %or_cond14 = and i1 %hashFilter_filterEntries_statu_6, %tmp_667_6
+
+ST_1: tmp_674_6_not [1/1] 1.34ns
+._crit_edge42.i164.5:2  %tmp_674_6_not = icmp eq i8 %hashFilter_filterEntries_opera_6, 8
+
+ST_1: stg_239 [1/1] 0.00ns
+._crit_edge42.i164.5:3  br i1 %or_cond14, label %16, label %._crit_edge.i162.6
+
+ST_1: demorgan94_old [1/1] 0.71ns
+._crit_edge.i162.6:0  %demorgan94_old = and i1 %hashFilter_filterEntries_statu_6, %tmp_674_6_not
+
+ST_1: stg_241 [1/1] 0.00ns
+._crit_edge.i162.6:1  br i1 %demorgan94_old, label %._crit_edge39.i163, label %._crit_edge42.i164.6
+
+ST_1: stg_242 [1/1] 0.00ns
+:0  br i1 %tmp_674_6_not, label %._crit_edge39.i163, label %switch.early.test114
+
+ST_1: tmp_432 [1/1] 1.34ns
+switch.early.test114:0  %tmp_432 = icmp eq i8 %hashFilter_filterEntries_opera_6, 4
+
+ST_1: tmp_433 [1/1] 1.34ns
+switch.early.test114:1  %tmp_433 = icmp eq i8 %hashFilter_filterEntries_opera_6, 1
+
+ST_1: tmp_434 [1/1] 0.71ns
+switch.early.test114:2  %tmp_434 = or i1 %tmp_433, %tmp_432
+
+ST_1: stg_246 [1/1] 0.00ns
+switch.early.test114:3  br i1 %tmp_434, label %._crit_edge39.i163, label %._crit_edge42.i164.6
+
+ST_1: tmp_667_7 [1/1] 1.22ns
+._crit_edge42.i164.6:0  %tmp_667_7 = icmp eq i6 %ccCompareElement_load, %hashFilter_filterEntries_load_7
+
+ST_1: or_cond15 [1/1] 0.71ns
+._crit_edge42.i164.6:1  %or_cond15 = and i1 %hashFilter_filterEntries_statu_7, %tmp_667_7
+
+ST_1: tmp_674_7_not [1/1] 1.34ns
+._crit_edge42.i164.6:2  %tmp_674_7_not = icmp eq i8 %hashFilter_filterEntries_opera_7, 8
+
+ST_1: stg_250 [1/1] 0.00ns
+._crit_edge42.i164.6:3  br i1 %or_cond15, label %17, label %._crit_edge.i162.7
+
+ST_1: demorgan95_old [1/1] 0.71ns
+._crit_edge.i162.7:0  %demorgan95_old = and i1 %hashFilter_filterEntries_statu_7, %tmp_674_7_not
+
+ST_1: stg_252 [1/1] 0.00ns
+._crit_edge.i162.7:1  br i1 %demorgan95_old, label %._crit_edge39.i163, label %compare.exit166
+
+ST_1: stg_253 [1/1] 0.00ns
+:0  br i1 %tmp_674_7_not, label %._crit_edge39.i163, label %switch.early.test117
+
+ST_1: tmp_435 [1/1] 1.34ns
+switch.early.test117:0  %tmp_435 = icmp eq i8 %hashFilter_filterEntries_opera_7, 4
+
+ST_1: tmp_436 [1/1] 1.34ns
+switch.early.test117:1  %tmp_436 = icmp eq i8 %hashFilter_filterEntries_opera_7, 1
+
+ST_1: tmp_437 [1/1] 0.71ns
+switch.early.test117:2  %tmp_437 = or i1 %tmp_436, %tmp_435
+
+ST_1: stg_257 [1/1] 0.00ns
+switch.early.test117:3  br i1 %tmp_437, label %._crit_edge39.i163, label %compare.exit166
+
+ST_1: stg_258 [1/1] 1.07ns
+compare.exit166:0  store i3 2, i3* @ccState, align 1
+
+ST_1: stg_259 [1/1] 1.07ns
+:0  store i3 -3, i3* @ccState, align 1
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @dec2cc_V_V, i32 1) nounwind
+
+ST_1: stg_261 [1/1] 0.00ns
+:1  br i1 %tmp, label %1, label %2
+
+ST_1: tmp_75 [1/1] 0.00ns
+:0  %tmp_75 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i64P(i64* @in2ccMd_V, i32 1) nounwind
+
+ST_1: stg_263 [1/1] 0.00ns
+:1  br i1 %tmp_75, label %3, label %._crit_edge140
+
+ST_1: tmp_76 [1/1] 0.00ns
+:0  %tmp_76 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i130P(i130* @in2cc_V, i32 1) nounwind
+
+ST_1: stg_265 [1/1] 0.00ns
+:1  br i1 %tmp_76, label %4, label %._crit_edge140
+
+ST_1: tmp_77 [1/1] 0.00ns
+:0  %tmp_77 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P(i32* @hash2cc_V_V, i32 1) nounwind
+
+ST_1: stg_267 [1/1] 0.00ns
+:1  br i1 %tmp_77, label %_ifconv, label %._crit_edge140
+
+ST_1: tmp110 [1/1] 2.91ns
+_ifconv:0  %tmp110 = call i64 @_ssdm_op_Read.ap_fifo.volatile.i64P(i64* @in2ccMd_V) nounwind
+
+ST_1: tmp_409 [1/1] 0.00ns
+_ifconv:1  %tmp_409 = trunc i64 %tmp110 to i8
+
+ST_1: stg_270 [1/1] 0.00ns
+_ifconv:2  store i8 %tmp_409, i8* @ccInputWordMd_operation_V, align 4
+
+ST_1: tmp_keyLength_V_load_new [1/1] 0.00ns
+_ifconv:3  %tmp_keyLength_V_load_new = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp110, i32 40, i32 47)
+
+ST_1: stg_272 [1/1] 0.00ns
+_ifconv:4  store i8 %tmp_keyLength_V_load_new, i8* @ccInputWordMd_keyLength_V, align 4
+
+ST_1: tmp_valueLength_V_load_new [1/1] 0.00ns
+_ifconv:5  %tmp_valueLength_V_load_new = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %tmp110, i32 48, i32 63)
+
+ST_1: stg_274 [1/1] 0.00ns
+_ifconv:6  store i16 %tmp_valueLength_V_load_new, i16* @ccInputWordMd_valueLength_V, align 2
+
+ST_1: tmp_1 [1/1] 2.91ns
+_ifconv:7  %tmp_1 = call i130 @_ssdm_op_Read.ap_fifo.volatile.i130P(i130* @in2cc_V) nounwind
+
+ST_1: tmp_410 [1/1] 0.00ns
+_ifconv:8  %tmp_410 = trunc i130 %tmp_1 to i128
+
+ST_1: stg_277 [1/1] 0.89ns
+_ifconv:9  store i128 %tmp_410, i128* @ccInputWord_data_V, align 16
+
+ST_1: tmp_411 [1/1] 0.00ns
+_ifconv:10  %tmp_411 = call i1 @_ssdm_op_BitSelect.i1.i130.i32(i130 %tmp_1, i32 128)
+
+ST_1: stg_279 [1/1] 0.89ns
+_ifconv:11  store i1 %tmp_411, i1* @ccInputWord_SOP_V, align 16
+
+ST_1: tmp_412 [1/1] 0.00ns
+_ifconv:12  %tmp_412 = call i1 @_ssdm_op_BitSelect.i1.i130.i32(i130 %tmp_1, i32 129)
+
+ST_1: stg_281 [1/1] 0.89ns
+_ifconv:13  store i1 %tmp_412, i1* @ccInputWord_EOP_V, align 1
+
+ST_1: tmp_V [1/1] 2.91ns
+_ifconv:14  %tmp_V = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* @hash2cc_V_V) nounwind
+
+ST_1: tmp_413 [1/1] 0.00ns
+_ifconv:15  %tmp_413 = trunc i32 %tmp_V to i6
+
+ST_1: stg_284 [1/1] 0.00ns
+_ifconv:16  store i6 %tmp_413, i6* @ccCompareElement_address_V, align 2
+
+ST_1: stg_285 [1/1] 0.00ns
+_ifconv:17  store i8 %tmp_409, i8* @ccCompareElement_operation_V, align 2
+
+ST_1: stg_286 [1/1] 0.00ns
+_ifconv:18  store i32 %tmp_V, i32* @ccInputWordMd_metadata_V, align 4
+
+ST_1: tmp_302 [1/1] 1.22ns
+_ifconv:19  %tmp_302 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load
+
+ST_1: or_cond [1/1] 0.71ns
+_ifconv:20  %or_cond = and i1 %hashFilter_filterEntries_statu, %tmp_302
+
+ST_1: tmp_671_1 [1/1] 1.22ns
+_ifconv:21  %tmp_671_1 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_1
+
+ST_1: or_cond6 [1/1] 0.71ns
+_ifconv:22  %or_cond6 = and i1 %hashFilter_filterEntries_statu_1, %tmp_671_1
+
+ST_1: tmp_671_2 [1/1] 1.22ns
+_ifconv:23  %tmp_671_2 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_2
+
+ST_1: or_cond7 [1/1] 0.71ns
+_ifconv:24  %or_cond7 = and i1 %hashFilter_filterEntries_statu_2, %tmp_671_2
+
+ST_1: tmp_671_3 [1/1] 1.22ns
+_ifconv:25  %tmp_671_3 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_3
+
+ST_1: or_cond8 [1/1] 0.71ns
+_ifconv:26  %or_cond8 = and i1 %hashFilter_filterEntries_statu_3, %tmp_671_3
+
+ST_1: tmp_671_4 [1/1] 1.22ns
+_ifconv:27  %tmp_671_4 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_4
+
+ST_1: or_cond9 [1/1] 0.71ns
+_ifconv:28  %or_cond9 = and i1 %hashFilter_filterEntries_statu_4, %tmp_671_4
+
+ST_1: tmp_671_5 [1/1] 1.22ns
+_ifconv:29  %tmp_671_5 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_5
+
+ST_1: or_cond1 [1/1] 0.71ns
+_ifconv:30  %or_cond1 = and i1 %hashFilter_filterEntries_statu_5, %tmp_671_5
+
+ST_1: tmp_671_6 [1/1] 1.22ns
+_ifconv:31  %tmp_671_6 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_6
+
+ST_1: or_cond2 [1/1] 0.71ns
+_ifconv:32  %or_cond2 = and i1 %hashFilter_filterEntries_statu_6, %tmp_671_6
+
+ST_1: tmp_671_7 [1/1] 1.22ns
+_ifconv:33  %tmp_671_7 = icmp eq i6 %tmp_413, %hashFilter_filterEntries_load_7
+
+ST_1: or_cond3 [1/1] 0.71ns
+_ifconv:34  %or_cond3 = and i1 %hashFilter_filterEntries_statu_7, %tmp_671_7
+
+ST_1: tmp_303 [1/1] 1.34ns
+_ifconv:35  %tmp_303 = icmp eq i8 %hashFilter_level_load, 8
+
+ST_1: sel_tmp [1/1] 1.34ns
+_ifconv:36  %sel_tmp = icmp eq i8 %hashFilter_filterEntries_opera, 4
+
+ST_1: sel_tmp1 [1/1] 1.34ns
+_ifconv:37  %sel_tmp1 = icmp eq i8 %hashFilter_filterEntries_opera, 1
+
+ST_1: sel_tmp2 [1/1] 1.34ns
+_ifconv:38  %sel_tmp2 = icmp eq i8 %hashFilter_filterEntries_opera_1, 4
+
+ST_1: sel_tmp3 [1/1] 1.34ns
+_ifconv:39  %sel_tmp3 = icmp eq i8 %hashFilter_filterEntries_opera_1, 1
+
+ST_1: sel_tmp4 [1/1] 1.34ns
+_ifconv:40  %sel_tmp4 = icmp eq i8 %hashFilter_filterEntries_opera_2, 4
+
+ST_1: sel_tmp5 [1/1] 1.34ns
+_ifconv:41  %sel_tmp5 = icmp eq i8 %hashFilter_filterEntries_opera_2, 1
+
+ST_1: sel_tmp6 [1/1] 1.34ns
+_ifconv:42  %sel_tmp6 = icmp eq i8 %hashFilter_filterEntries_opera_3, 4
+
+ST_1: sel_tmp7 [1/1] 1.34ns
+_ifconv:43  %sel_tmp7 = icmp eq i8 %hashFilter_filterEntries_opera_3, 1
+
+ST_1: sel_tmp8 [1/1] 1.34ns
+_ifconv:44  %sel_tmp8 = icmp eq i8 %hashFilter_filterEntries_opera_4, 4
+
+ST_1: sel_tmp9 [1/1] 1.34ns
+_ifconv:45  %sel_tmp9 = icmp eq i8 %hashFilter_filterEntries_opera_4, 1
+
+ST_1: sel_tmp10 [1/1] 1.34ns
+_ifconv:46  %sel_tmp10 = icmp eq i8 %hashFilter_filterEntries_opera_5, 4
+
+ST_1: sel_tmp11 [1/1] 1.34ns
+_ifconv:47  %sel_tmp11 = icmp eq i8 %hashFilter_filterEntries_opera_5, 1
+
+ST_1: sel_tmp12 [1/1] 1.34ns
+_ifconv:48  %sel_tmp12 = icmp eq i8 %hashFilter_filterEntries_opera_6, 4
+
+ST_1: sel_tmp13 [1/1] 1.34ns
+_ifconv:49  %sel_tmp13 = icmp eq i8 %hashFilter_filterEntries_opera_6, 1
+
+ST_1: sel_tmp14 [1/1] 1.34ns
+_ifconv:50  %sel_tmp14 = icmp eq i8 %hashFilter_filterEntries_opera_7, 4
+
+ST_1: sel_tmp15 [1/1] 1.34ns
+_ifconv:51  %sel_tmp15 = icmp eq i8 %hashFilter_filterEntries_opera_7, 1
+
+ST_1: sel_tmp16 [1/1] 0.71ns
+_ifconv:52  %sel_tmp16 = and i1 %or_cond, %sel_tmp
+
+ST_1: tmp_676_0_not_not [1/1] 1.34ns
+_ifconv:53  %tmp_676_0_not_not = icmp eq i8 %hashFilter_filterEntries_opera, 8
+
+ST_1: sel_tmp17 [1/1] 0.71ns
+_ifconv:54  %sel_tmp17 = and i1 %hashFilter_filterEntries_statu, %tmp_676_0_not_not
+
+ST_1: sel_tmp18 [1/1] 0.71ns
+_ifconv:55  %sel_tmp18 = and i1 %or_cond, %sel_tmp1
+
+ST_1: sel_tmp19 [1/1] 0.71ns
+_ifconv:56  %sel_tmp19 = and i1 %or_cond6, %sel_tmp2
+
+ST_1: tmp_676_1_not_not [1/1] 1.34ns
+_ifconv:57  %tmp_676_1_not_not = icmp eq i8 %hashFilter_filterEntries_opera_1, 8
+
+ST_1: sel_tmp20 [1/1] 0.71ns
+_ifconv:58  %sel_tmp20 = and i1 %hashFilter_filterEntries_statu_1, %tmp_676_1_not_not
+
+ST_1: sel_tmp21 [1/1] 0.71ns
+_ifconv:59  %sel_tmp21 = and i1 %or_cond6, %sel_tmp3
+
+ST_1: sel_tmp22 [1/1] 0.71ns
+_ifconv:60  %sel_tmp22 = and i1 %or_cond7, %sel_tmp4
+
+ST_1: tmp_676_2_not_not [1/1] 1.34ns
+_ifconv:61  %tmp_676_2_not_not = icmp eq i8 %hashFilter_filterEntries_opera_2, 8
+
+ST_1: sel_tmp23 [1/1] 0.71ns
+_ifconv:62  %sel_tmp23 = and i1 %hashFilter_filterEntries_statu_2, %tmp_676_2_not_not
+
+ST_1: sel_tmp24 [1/1] 0.71ns
+_ifconv:63  %sel_tmp24 = and i1 %or_cond7, %sel_tmp5
+
+ST_1: sel_tmp25 [1/1] 0.71ns
+_ifconv:64  %sel_tmp25 = and i1 %or_cond8, %sel_tmp6
+
+ST_1: tmp_676_3_not_not [1/1] 1.34ns
+_ifconv:65  %tmp_676_3_not_not = icmp eq i8 %hashFilter_filterEntries_opera_3, 8
+
+ST_1: sel_tmp26 [1/1] 0.71ns
+_ifconv:66  %sel_tmp26 = and i1 %hashFilter_filterEntries_statu_3, %tmp_676_3_not_not
+
+ST_1: sel_tmp27 [1/1] 0.71ns
+_ifconv:67  %sel_tmp27 = and i1 %or_cond8, %sel_tmp7
+
+ST_1: sel_tmp28 [1/1] 0.71ns
+_ifconv:68  %sel_tmp28 = and i1 %or_cond9, %sel_tmp8
+
+ST_1: tmp_676_4_not_not [1/1] 1.34ns
+_ifconv:69  %tmp_676_4_not_not = icmp eq i8 %hashFilter_filterEntries_opera_4, 8
+
+ST_1: sel_tmp29 [1/1] 0.71ns
+_ifconv:70  %sel_tmp29 = and i1 %hashFilter_filterEntries_statu_4, %tmp_676_4_not_not
+
+ST_1: sel_tmp30 [1/1] 0.71ns
+_ifconv:71  %sel_tmp30 = and i1 %or_cond9, %sel_tmp9
+
+ST_1: sel_tmp31 [1/1] 0.71ns
+_ifconv:72  %sel_tmp31 = and i1 %or_cond1, %sel_tmp10
+
+ST_1: tmp_676_5_not_not [1/1] 1.34ns
+_ifconv:73  %tmp_676_5_not_not = icmp eq i8 %hashFilter_filterEntries_opera_5, 8
+
+ST_1: sel_tmp32 [1/1] 0.71ns
+_ifconv:74  %sel_tmp32 = and i1 %hashFilter_filterEntries_statu_5, %tmp_676_5_not_not
+
+ST_1: sel_tmp33 [1/1] 0.71ns
+_ifconv:75  %sel_tmp33 = and i1 %or_cond1, %sel_tmp11
+
+ST_1: sel_tmp34 [1/1] 0.71ns
+_ifconv:76  %sel_tmp34 = and i1 %or_cond2, %sel_tmp12
+
+ST_1: tmp_676_6_not_not [1/1] 1.34ns
+_ifconv:77  %tmp_676_6_not_not = icmp eq i8 %hashFilter_filterEntries_opera_6, 8
+
+ST_1: sel_tmp35 [1/1] 0.71ns
+_ifconv:78  %sel_tmp35 = and i1 %hashFilter_filterEntries_statu_6, %tmp_676_6_not_not
+
+ST_1: sel_tmp36 [1/1] 0.71ns
+_ifconv:79  %sel_tmp36 = and i1 %or_cond2, %sel_tmp13
+
+ST_1: sel_tmp37 [1/1] 0.71ns
+_ifconv:80  %sel_tmp37 = and i1 %or_cond3, %sel_tmp14
+
+ST_1: tmp_676_7_not_not [1/1] 1.34ns
+_ifconv:81  %tmp_676_7_not_not = icmp eq i8 %hashFilter_filterEntries_opera_7, 8
+
+ST_1: sel_tmp38 [1/1] 0.71ns
+_ifconv:82  %sel_tmp38 = and i1 %hashFilter_filterEntries_statu_7, %tmp_676_7_not_not
+
+ST_1: sel_tmp39 [1/1] 0.71ns
+_ifconv:83  %sel_tmp39 = and i1 %or_cond3, %sel_tmp15
+
+ST_1: tmp68 [1/1] 0.71ns
+_ifconv:84  %tmp68 = or i1 %sel_tmp17, %sel_tmp18
+
+ST_1: tmp67 [1/1] 0.71ns
+_ifconv:85  %tmp67 = or i1 %tmp68, %sel_tmp16
+
+ST_1: tmp70 [1/1] 0.71ns
+_ifconv:86  %tmp70 = or i1 %sel_tmp20, %sel_tmp21
+
+ST_1: tmp69 [1/1] 0.71ns
+_ifconv:87  %tmp69 = or i1 %tmp70, %sel_tmp19
+
+ST_1: tmp66 [1/1] 0.71ns
+_ifconv:88  %tmp66 = or i1 %tmp69, %tmp67
+
+ST_1: tmp73 [1/1] 0.71ns
+_ifconv:89  %tmp73 = or i1 %sel_tmp23, %sel_tmp24
+
+ST_1: tmp72 [1/1] 0.71ns
+_ifconv:90  %tmp72 = or i1 %tmp73, %sel_tmp22
+
+ST_1: tmp75 [1/1] 0.71ns
+_ifconv:91  %tmp75 = or i1 %sel_tmp26, %sel_tmp27
+
+ST_1: tmp74 [1/1] 0.71ns
+_ifconv:92  %tmp74 = or i1 %tmp75, %sel_tmp25
+
+ST_1: tmp71 [1/1] 0.71ns
+_ifconv:93  %tmp71 = or i1 %tmp74, %tmp72
+
+ST_1: tmp65 [1/1] 0.71ns
+_ifconv:94  %tmp65 = or i1 %tmp71, %tmp66
+
+ST_1: tmp79 [1/1] 0.71ns
+_ifconv:95  %tmp79 = or i1 %sel_tmp29, %sel_tmp30
+
+ST_1: tmp78 [1/1] 0.71ns
+_ifconv:96  %tmp78 = or i1 %tmp79, %sel_tmp28
+
+ST_1: tmp81 [1/1] 0.71ns
+_ifconv:97  %tmp81 = or i1 %sel_tmp32, %sel_tmp33
+
+ST_1: tmp80 [1/1] 0.71ns
+_ifconv:98  %tmp80 = or i1 %tmp81, %sel_tmp31
+
+ST_1: tmp77 [1/1] 0.71ns
+_ifconv:99  %tmp77 = or i1 %tmp80, %tmp78
+
+ST_1: tmp84 [1/1] 0.71ns
+_ifconv:100  %tmp84 = or i1 %sel_tmp35, %sel_tmp36
+
+ST_1: tmp83 [1/1] 0.71ns
+_ifconv:101  %tmp83 = or i1 %tmp84, %sel_tmp34
+
+ST_1: tmp86 [1/1] 0.71ns
+_ifconv:102  %tmp86 = or i1 %sel_tmp37, %sel_tmp38
+
+ST_1: tmp87 [1/1] 0.71ns
+_ifconv:103  %tmp87 = or i1 %tmp_303, %sel_tmp39
+
+ST_1: tmp85 [1/1] 0.71ns
+_ifconv:104  %tmp85 = or i1 %tmp87, %tmp86
+
+ST_1: tmp82 [1/1] 0.71ns
+_ifconv:105  %tmp82 = or i1 %tmp85, %tmp83
+
+ST_1: tmp76 [1/1] 0.71ns
+_ifconv:106  %tmp76 = or i1 %tmp82, %tmp77
+
+ST_1: sel_tmp40 [1/1] 0.71ns
+_ifconv:107  %sel_tmp40 = or i1 %tmp76, %tmp65
+
+ST_1: storemerge44_cast_cast_cast [1/1] 0.71ns
+_ifconv:108  %storemerge44_cast_cast_cast = select i1 %sel_tmp40, i3 1, i3 2
+
+ST_1: stg_377 [1/1] 1.07ns
+_ifconv:109  store i3 %storemerge44_cast_cast_cast, i3* @ccState, align 1
+
+ST_1: stg_378 [1/1] 1.07ns
+:0  store i3 -4, i3* @ccState, align 1
+
+
+ <State 2>: 2.91ns
+ST_2: stg_379 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i1* @dec2cc_V_V, [8 x i8]* @str1718, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1719, [1 x i8]* @str1719, [8 x i8]* @str1718)
+
+ST_2: stg_380 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i64* @cc2memReadMd_V, [8 x i8]* @str1638, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1639, [1 x i8]* @str1639, [8 x i8]* @str1638) nounwind
+
+ST_2: stg_381 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i64* @cc2memReadMd_V, [8 x i8]* @str1634, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1635, [1 x i8]* @str1635, [8 x i8]* @str1634) nounwind
+
+ST_2: stg_382 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i64* @cc2memReadMd_V, [8 x i8]* @str1630, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1631, [1 x i8]* @str1631, [8 x i8]* @str1630) nounwind
+
+ST_2: stg_383 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i64* @cc2memReadMd_V, [8 x i8]* @str1626, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1627, [1 x i8]* @str1627, [8 x i8]* @str1626) nounwind
+
+ST_2: stg_384 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i130* @cc2memRead_V, [8 x i8]* @str1622, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1623, [1 x i8]* @str1623, [8 x i8]* @str1622) nounwind
+
+ST_2: stg_385 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i130* @cc2memRead_V, [8 x i8]* @str1618, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1619, [1 x i8]* @str1619, [8 x i8]* @str1618) nounwind
+
+ST_2: stg_386 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i130* @cc2memRead_V, [8 x i8]* @str1614, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1615, [1 x i8]* @str1615, [8 x i8]* @str1614) nounwind
+
+ST_2: stg_387 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i32* @hash2cc_V_V, [8 x i8]* @str1610, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1611, [1 x i8]* @str1611, [8 x i8]* @str1610)
+
+ST_2: stg_388 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecInterface(i64* @in2ccMd_V, [8 x i8]* @str1590, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1591, [1 x i8]* @str1591, [8 x i8]* @str1590) nounwind
+
+ST_2: stg_389 [1/1] 0.00ns
+codeRepl:10  call void (...)* @_ssdm_op_SpecInterface(i64* @in2ccMd_V, [8 x i8]* @str1586, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1587, [1 x i8]* @str1587, [8 x i8]* @str1586) nounwind
+
+ST_2: stg_390 [1/1] 0.00ns
+codeRepl:11  call void (...)* @_ssdm_op_SpecInterface(i64* @in2ccMd_V, [8 x i8]* @str1582, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1583, [1 x i8]* @str1583, [8 x i8]* @str1582) nounwind
+
+ST_2: stg_391 [1/1] 0.00ns
+codeRepl:12  call void (...)* @_ssdm_op_SpecInterface(i64* @in2ccMd_V, [8 x i8]* @str1578, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1579, [1 x i8]* @str1579, [8 x i8]* @str1578) nounwind
+
+ST_2: stg_392 [1/1] 0.00ns
+codeRepl:13  call void (...)* @_ssdm_op_SpecInterface(i130* @in2cc_V, [8 x i8]* @str1574, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1575, [1 x i8]* @str1575, [8 x i8]* @str1574) nounwind
+
+ST_2: stg_393 [1/1] 0.00ns
+codeRepl:14  call void (...)* @_ssdm_op_SpecInterface(i130* @in2cc_V, [8 x i8]* @str1570, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1571, [1 x i8]* @str1571, [8 x i8]* @str1570) nounwind
+
+ST_2: stg_394 [1/1] 0.00ns
+codeRepl:15  call void (...)* @_ssdm_op_SpecInterface(i130* @in2cc_V, [8 x i8]* @str1566, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1567, [1 x i8]* @str1567, [8 x i8]* @str1566) nounwind
+
+ST_2: stg_395 [1/1] 0.00ns
+codeRepl:16  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str363) nounwind
+
+ST_2: stg_396 [1/1] 1.17ns
+pop.exit174:1  switch i3 %tmp_408, label %branch23 [
+    i3 0, label %branch16
+    i3 1, label %branch17
+    i3 2, label %branch18
+    i3 3, label %branch19
+    i3 -4, label %branch20
+    i3 -3, label %branch21
+    i3 -2, label %branch22
+  ]
+
+ST_2: stg_397 [1/1] 1.17ns
+pop.exit174198:0  switch i3 %tmp_408, label %branch63 [
+    i3 0, label %branch56
+    i3 1, label %branch57
+    i3 2, label %branch58
+    i3 3, label %branch59
+    i3 -4, label %branch60
+    i3 -3, label %branch61
+    i3 -2, label %branch62
+  ]
+
+ST_2: stg_398 [1/1] 0.00ns
+branch62:1  br label %pop.exit174198245
+
+ST_2: stg_399 [1/1] 0.00ns
+branch61:1  br label %pop.exit174198245
+
+ST_2: stg_400 [1/1] 0.00ns
+branch60:1  br label %pop.exit174198245
+
+ST_2: stg_401 [1/1] 0.00ns
+branch59:1  br label %pop.exit174198245
+
+ST_2: stg_402 [1/1] 0.00ns
+branch58:1  br label %pop.exit174198245
+
+ST_2: stg_403 [1/1] 0.00ns
+branch57:1  br label %pop.exit174198245
+
+ST_2: stg_404 [1/1] 0.00ns
+branch56:1  br label %pop.exit174198245
+
+ST_2: stg_405 [1/1] 0.00ns
+branch63:1  br label %pop.exit174198245
+
+ST_2: stg_406 [1/1] 0.00ns
+pop.exit174198245:6  br label %._crit_edge150
+
+ST_2: stg_407 [1/1] 0.00ns
+._crit_edge150:1  br label %._crit_edge139
+
+ST_2: stg_408 [1/1] 1.17ns
+pop.exit:1  switch i3 %tmp_407, label %branch15 [
+    i3 0, label %branch8
+    i3 1, label %branch9
+    i3 2, label %branch10
+    i3 3, label %branch11
+    i3 -4, label %branch12
+    i3 -3, label %branch13
+    i3 -2, label %branch14
+  ]
+
+ST_2: stg_409 [1/1] 1.17ns
+pop.exit189:0  switch i3 %tmp_407, label %branch55 [
+    i3 0, label %branch48
+    i3 1, label %branch49
+    i3 2, label %branch50
+    i3 3, label %branch51
+    i3 -4, label %branch52
+    i3 -3, label %branch53
+    i3 -2, label %branch54
+  ]
+
+ST_2: stg_410 [1/1] 0.00ns
+branch54:1  br label %pop.exit189235
+
+ST_2: stg_411 [1/1] 0.00ns
+branch53:1  br label %pop.exit189235
+
+ST_2: stg_412 [1/1] 0.00ns
+branch52:1  br label %pop.exit189235
+
+ST_2: stg_413 [1/1] 0.00ns
+branch51:1  br label %pop.exit189235
+
+ST_2: stg_414 [1/1] 0.00ns
+branch50:1  br label %pop.exit189235
+
+ST_2: stg_415 [1/1] 0.00ns
+branch49:1  br label %pop.exit189235
+
+ST_2: stg_416 [1/1] 0.00ns
+branch48:1  br label %pop.exit189235
+
+ST_2: stg_417 [1/1] 0.00ns
+branch55:1  br label %pop.exit189235
+
+ST_2: stg_418 [1/1] 0.00ns
+pop.exit189235:6  br label %._crit_edge149
+
+ST_2: stg_419 [1/1] 0.00ns
+._crit_edge149:1  br label %._crit_edge139
+
+ST_2: stg_420 [1/1] 2.91ns
+:7  call void @_ssdm_op_Write.ap_fifo.volatile.i130P(i130* @cc2memRead_V, i130 %tmp_4) nounwind
+
+ST_2: stg_421 [1/1] 0.00ns
+:1  br label %._crit_edge148
+
+ST_2: stg_422 [1/1] 0.00ns
+._crit_edge148:0  br label %._crit_edge139
+
+ST_2: stg_423 [1/1] 1.17ns
+:2  switch i3 %tmp_406, label %branch7 [
+    i3 0, label %branch0
+    i3 1, label %branch1
+    i3 2, label %branch2
+    i3 3, label %branch3
+    i3 -4, label %branch4
+    i3 -3, label %branch5
+    i3 -2, label %branch6
+  ]
+
+ST_2: stg_424 [1/1] 1.17ns
+branch24:0  switch i3 %tmp_406, label %branch39 [
+    i3 0, label %branch32
+    i3 1, label %branch33
+    i3 2, label %branch34
+    i3 3, label %branch35
+    i3 -4, label %branch36
+    i3 -3, label %branch37
+    i3 -2, label %branch38
+  ]
+
+ST_2: stg_425 [1/1] 1.17ns
+:0  switch i3 %tmp_406, label %branch47 [
+    i3 0, label %branch40
+    i3 1, label %branch41
+    i3 2, label %branch42
+    i3 3, label %branch43
+    i3 -4, label %branch44
+    i3 -3, label %branch45
+    i3 -2, label %branch46
+  ]
+
+ST_2: stg_426 [1/1] 0.00ns
+branch46:1  br label %22
+
+ST_2: stg_427 [1/1] 0.00ns
+branch45:1  br label %22
+
+ST_2: stg_428 [1/1] 0.00ns
+branch44:1  br label %22
+
+ST_2: stg_429 [1/1] 0.00ns
+branch43:1  br label %22
+
+ST_2: stg_430 [1/1] 0.00ns
+branch42:1  br label %22
+
+ST_2: stg_431 [1/1] 0.00ns
+branch41:1  br label %22
+
+ST_2: stg_432 [1/1] 0.00ns
+branch40:1  br label %22
+
+ST_2: stg_433 [1/1] 0.00ns
+branch47:1  br label %22
+
+ST_2: stg_434 [1/1] 0.00ns
+:7  br label %push.exit
+
+ST_2: tmp_operation_V [1/1] 0.00ns
+push.exit:0  %tmp_operation_V = load i8* @ccInputWordMd_operation_V, align 4
+
+ST_2: tmp_metadata_V [1/1] 0.00ns
+push.exit:1  %tmp_metadata_V = load i32* @ccInputWordMd_metadata_V, align 4
+
+ST_2: tmp_keyLength_V [1/1] 0.00ns
+push.exit:2  %tmp_keyLength_V = load i8* @ccInputWordMd_keyLength_V, align 4
+
+ST_2: tmp_valueLength_V [1/1] 0.00ns
+push.exit:3  %tmp_valueLength_V = load i16* @ccInputWordMd_valueLength_V, align 2
+
+ST_2: tmp_2 [1/1] 0.00ns
+push.exit:4  %tmp_2 = call i64 @_ssdm_op_BitConcatenate.i64.i16.i8.i32.i8(i16 %tmp_valueLength_V, i8 %tmp_keyLength_V, i32 %tmp_metadata_V, i8 %tmp_operation_V)
+
+ST_2: stg_440 [1/1] 2.91ns
+push.exit:5  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @cc2memReadMd_V, i64 %tmp_2) nounwind
+
+ST_2: tmp_data_V_11 [1/1] 0.00ns
+push.exit:6  %tmp_data_V_11 = load i128* @ccInputWord_data_V, align 16
+
+ST_2: tmp_SOP_V_3 [1/1] 0.00ns
+push.exit:7  %tmp_SOP_V_3 = load i1* @ccInputWord_SOP_V, align 16
+
+ST_2: tmp_3 [1/1] 0.00ns
+push.exit:8  %tmp_3 = call i130 @_ssdm_op_BitConcatenate.i130.i1.i1.i128(i1 %tmp_EOP_V_16, i1 %tmp_SOP_V_3, i128 %tmp_data_V_11)
+
+ST_2: stg_444 [1/1] 2.91ns
+push.exit:9  call void @_ssdm_op_Write.ap_fifo.volatile.i130P(i130* @cc2memRead_V, i130 %tmp_3) nounwind
+
+ST_2: stg_445 [1/1] 0.00ns
+push.exit:12  br label %._crit_edge139
+
+ST_2: stg_446 [1/1] 0.00ns
+compare.exit166:1  br label %._crit_edge146
+
+ST_2: stg_447 [1/1] 0.00ns
+._crit_edge39.i163:0  br label %._crit_edge146
+
+ST_2: stg_448 [1/1] 0.00ns
+._crit_edge146:0  br label %18
+
+ST_2: stg_449 [1/1] 0.00ns
+:1  br label %18
+
+ST_2: stg_450 [1/1] 0.00ns
+:0  br label %._crit_edge139
+
+ST_2: stg_451 [1/1] 0.00ns
+_ifconv:110  br label %._crit_edge140
+
+ST_2: stg_452 [1/1] 0.00ns
+._crit_edge140:0  br label %5
+
+ST_2: stg_453 [1/1] 0.00ns
+:1  br label %5
+
+ST_2: stg_454 [1/1] 0.00ns
+:0  br label %._crit_edge139
+
+ST_2: stg_455 [1/1] 0.00ns
+._crit_edge139:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

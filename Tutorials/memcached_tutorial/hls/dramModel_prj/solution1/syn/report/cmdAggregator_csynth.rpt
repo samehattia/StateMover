@@ -1,0 +1,149 @@
+
+
+================================================================
+== Vivado HLS Report for 'cmdAggregator'
+================================================================
+* Date:           Wed Oct 14 13:04:51 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        dramModel_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     2.265|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|      10|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|      66|
+|Register         |        -|      -|      46|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|      46|      76|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |ap_condition_121                  |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op18_write_state2    |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op7_read_state1      |    and   |      0|  0|   2|           1|           1|
+    |ap_block_state1_pp0_stage0_iter0  |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1  |    or    |      0|  0|   2|           1|           1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0|  10|           5|           5|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |aggregateMemCmd_V_blk_n  |   9|          2|    1|          2|
+    |aggregateMemCmd_V_din    |  15|          3|   21|         63|
+    |ap_NS_iter1_fsm          |  15|          3|    2|          6|
+    |ap_done                  |   9|          2|    1|          2|
+    |rdCmdIn_V_TDATA_blk_n    |   9|          2|    1|          2|
+    |wrCmdIn_V_TDATA_blk_n    |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  66|         14|   27|         77|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------+----+----+-----+-----------+
+    |              Name              | FF | LUT| Bits| Const Bits|
+    +--------------------------------+----+----+-----+-----------+
+    |ap_CS_iter0_fsm                 |   1|   0|    1|          0|
+    |ap_CS_iter1_fsm                 |   2|   0|    2|          0|
+    |ap_done_reg                     |   1|   0|    1|          0|
+    |tempExtCtrlWord_addr_1_reg_133  |  12|   0|   12|          0|
+    |tempExtCtrlWord_addr_reg_143    |  12|   0|   12|          0|
+    |tempExtCtrlWord_coun_1_reg_138  |   8|   0|    8|          0|
+    |tempExtCtrlWord_coun_reg_148    |   8|   0|    8|          0|
+    |tmp_3_reg_129                   |   1|   0|    1|          0|
+    |tmp_reg_125                     |   1|   0|    1|          0|
+    +--------------------------------+----+----+-----+-----------+
+    |Total                           |  46|   0|   46|          0|
+    +--------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+-------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |   Source Object   |    C Type    |
++--------------------------+-----+-----+------------+-------------------+--------------+
+|ap_clk                    |  in |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_rst                    |  in |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_start                  |  in |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_done                   | out |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_continue               |  in |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_idle                   | out |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|ap_ready                  | out |    1| ap_ctrl_hs |   cmdAggregator   | return value |
+|rdCmdIn_V_TVALID          |  in |    1|    axis    |     rdCmdIn_V     |    pointer   |
+|rdCmdIn_V_TDATA           |  in |   40|    axis    |     rdCmdIn_V     |    pointer   |
+|rdCmdIn_V_TREADY          | out |    1|    axis    |     rdCmdIn_V     |    pointer   |
+|wrCmdIn_V_TVALID          |  in |    1|    axis    |     wrCmdIn_V     |    pointer   |
+|wrCmdIn_V_TDATA           |  in |   40|    axis    |     wrCmdIn_V     |    pointer   |
+|wrCmdIn_V_TREADY          | out |    1|    axis    |     wrCmdIn_V     |    pointer   |
+|aggregateMemCmd_V_din     | out |   21|   ap_fifo  | aggregateMemCmd_V |    pointer   |
+|aggregateMemCmd_V_full_n  |  in |    1|   ap_fifo  | aggregateMemCmd_V |    pointer   |
+|aggregateMemCmd_V_write   | out |    1|   ap_fifo  | aggregateMemCmd_V |    pointer   |
++--------------------------+-----+-----+------------+-------------------+--------------+
+

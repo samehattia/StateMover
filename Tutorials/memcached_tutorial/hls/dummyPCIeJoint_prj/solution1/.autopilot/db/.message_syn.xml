@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_631" tag="SCHEDULE" content="Option &apos;relax_ii_for_timing&apos; is enabled, will increase II to preserve clock frequency constraints."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp&apos; ..."/>
+	<Message severity="WARNING" prefix="[HLS 200-41]" key="HLS_41_1434" tag="" content="Resource core &apos;AXI4Stream&apos; on port &apos;&amp;inData&apos; is deprecated. Please use the interface directive to specify the AXI interface."/>
+	<Message severity="WARNING" prefix="[HLS 200-41]" key="HLS_41_1434" tag="" content="Resource core &apos;AXI4Stream&apos; on port &apos;&amp;outDataFlash&apos; is deprecated. Please use the interface directive to specify the AXI interface."/>
+	<Message severity="WARNING" prefix="[HLS 200-41]" key="HLS_41_1434" tag="" content="Resource core &apos;AXI4Stream&apos; on port &apos;&amp;outDataDram&apos; is deprecated. Please use the interface directive to specify the AXI interface."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 438.008 ; gain = 0.145 ; free physical = 59860 ; free virtual = 176936"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 438.008 ; gain = 0.145 ; free physical = 59860 ; free virtual = 176936"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1467" tag="" content="Starting code transformations ..."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Standard Transforms Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 438.012 ; gain = 0.148 ; free physical = 59854 ; free virtual = 176931"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1472" tag="" content="Checking synthesizability ..."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Synthesizability Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 438.012 ; gain = 0.148 ; free physical = 59852 ; free virtual = 176929"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Pre-synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59829 ; free virtual = 176906"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Architecture Synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59836 ; free virtual = 176914"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1317" tag="" content="Starting hardware synthesis ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1385" tag="" content="Synthesizing &apos;dummyPCIeJoint&apos; ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;dummyPCIeJoint&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_46" tag="" content="Pipelining function &apos;dummyPCIeJoint&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-63]" key="SCHED_PORT_ACCESS_TOO_LATE_51" tag="SCHEDULE" content="Unable to schedule fifo write on port &apos;outDataDram_V_V&apos; (src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:124) within the last cycle (II = 1).
+Please consider increasing the initiation interval of the pipeline."/>
+	<Message severity="WARNING" prefix="[SCHED 204-63]" key="SCHED_PORT_ACCESS_TOO_LATE_51" tag="SCHEDULE" content="Unable to schedule fifo read on port &apos;inData_V_V&apos; (src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:104) within the first cycle (II = 1).
+Please consider increasing the target initiation interval of the pipeline."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 1, Depth = 4."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_76" tag="SDX_KERNEL,SCHEDULE" content="Estimated clock period (5.929ns) exceeds the target (target clock period: 6.4ns, clock uncertainty: 0.8ns, effective delay budget: 5.6ns)."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_74" tag="SDX_KERNEL,SCHEDULE" content="The critical path in module &apos;dummyPCIeJoint&apos; consists of the following:
+	&apos;load&apos; operation (&apos;elementCounterFlash_1&apos;) on static variable &apos;elementCounterFlash_s&apos; [43]  (0 ns)
+	&apos;mul&apos; operation of DSP[126] (&apos;tmp_9&apos;, src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [125]  (1.11 ns)
+	&apos;add&apos; operation of DSP[126] (&apos;tmp.V&apos;, src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [126]  (2.64 ns)
+	fifo write on port &apos;freeAddressArrayFlas_1&apos; (src/otherModules/dummyPCIeAddressAllocation/dummyPCIeJoint.cpp:89) [128]  (2.18 ns)"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 10.97 seconds; current allocated memory: 72.421 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.05 seconds; current allocated memory: 73.098 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;dummyPCIeJoint&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/inData_V_V&apos; to &apos;ap_fifo&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/outDataFlash_V_V&apos; to &apos;ap_fifo&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/outDataDram_V_V&apos; to &apos;ap_fifo&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/flushReq_V&apos; to &apos;ap_none&apos; (register)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/flushAck_V&apos; to &apos;ap_none&apos; (register)."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_871" tag="" content="Port &apos;flushAck_V&apos; with mode &apos;ap_none&apos; may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dummyPCIeJoint/flushDone_V&apos; to &apos;ap_none&apos; (register)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on function &apos;dummyPCIeJoint&apos; to &apos;ap_ctrl_none&apos;."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;pcieState&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;streamInitializedFla&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;elementCounterDram_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;elementCounterFlash_s&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;flushFlag&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;inputAddress_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;pcie_flushAck_V&apos; is power-on initialization."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;dummyPCIeJoint&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.06 seconds; current allocated memory: 73.880 MB."/>
+	<Message severity="INFO" prefix="[RTMG 210-285]" key="RTMG_285_1799" tag="" content="Implementing FIFO &apos;freeAddressArrayFlas_1_U(fifo_w32_d32_A)&apos; using Shift Registers."/>
+	<Message severity="INFO" prefix="[RTMG 210-285]" key="RTMG_285_1799" tag="" content="Implementing FIFO &apos;freeAddressArrayDram_1_U(fifo_w32_d64_A)&apos; using Block RAMs."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;inData_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;outDataDram_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[IMPL 213-200]" key="IMPL_200_1804" tag="" content="Port &apos;outDataFlash_V_V&apos; is mapped to &apos;TDATA&apos; by default."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished generating all RTL models Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59822 ; free virtual = 176903"/>
+	<Message severity="INFO" prefix="[SYSC 207-301]" key="SYSC_301_1065" tag="" content="Generating SystemC RTL for dummyPCIeJoint."/>
+	<Message severity="INFO" prefix="[VHDL 208-304]" key="VHDL_304_1066" tag="" content="Generating VHDL RTL for dummyPCIeJoint."/>
+	<Message severity="INFO" prefix="[VLOG 209-307]" key="VLOG_307_1067" tag="" content="Generating Verilog RTL for dummyPCIeJoint."/>
+</Messages>

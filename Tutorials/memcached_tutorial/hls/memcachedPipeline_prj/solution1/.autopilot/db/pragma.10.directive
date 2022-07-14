@@ -1,0 +1,174 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="ht_inputLogic" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="ht_inputLogic" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="ht_inputLogic" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="ht_outputLogic" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="ht_outputLogic" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="ht_outputLogic" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="in2hash"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="in2cc"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="in2ccMd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="cc2memRead"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="cc2memReadMd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="memRd2comp"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="memRd2compMd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="memWr2out"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="comp2memWrKey"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="comp2memWrMd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="comp2memWrStatus"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="hashKeyBuffer"/>
+<option name="depth" value="128"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="hashValueBuffer"/>
+<option name="depth" value="1024"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="hashMdBuffer"/>
+<option name="depth" value="32"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="in2cc"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="in2ccMd"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="cc2memRead"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="cc2memReadMd"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="memRd2comp"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="memRd2compMd"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="comp2memWrMd"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="comp2memWrKey"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashTable" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="comp2memWrMemData"/>
+<option name="depth" value="10"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

@@ -1,0 +1,19 @@
+set DEVICE_NAME "xcku040_0"
+
+set TASK_NAME "DUT"
+set DESIGN_PATH "./memcached_impl"
+
+set FULL_BITSTREAM "$DESIGN_PATH/top.bit"
+set FULL_PROBES "$DESIGN_PATH/top.ltx"
+
+set FULL_LOCAL_BITSTREAM "$DESIGN_PATH/top_modified.bit"
+
+set LOGIC_LOCATION_FILE "$DESIGN_PATH/top.ll"
+set RAM_LOCATION_FILE "$DESIGN_PATH/top.rl"
+
+set READBACK_FILE "$DESIGN_PATH/$TASK_NAME.rdbk"
+set TASK_NAME "memcached_i/DUT"
+
+set AXI_LINK 1
+set AXIS_TX_LINK 1
+set AXIS_RX_LINK 1

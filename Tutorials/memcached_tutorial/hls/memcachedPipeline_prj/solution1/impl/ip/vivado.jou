@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2015.1 (64-bit)
+# SW Build 1215546 on Mon Apr 27 19:07:21 MDT 2015
+# IP Build 1209967 on Tue Apr 21 11:39:20 MDT 2015
+# Start of session at: Wed Oct 21 12:19:14 2020
+# Process ID: 3763
+# Log file: /home/sameh/Dropbox/UofT/Research/Work/Designs/debugging/memcached/hls/memcachedPipeline_prj/solution1/impl/ip/vivado.log
+# Journal file: /home/sameh/Dropbox/UofT/Research/Work/Designs/debugging/memcached/hls/memcachedPipeline_prj/solution1/impl/ip/vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace

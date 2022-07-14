@@ -1,0 +1,104 @@
+==============================================================
+File generated on Wed Oct 14 13:19:30 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcku040-ffva1156-2-e'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.66ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'src/mac_header_add/mac_header_add.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 438.008 ; gain = 0.145 ; free physical = 59812 ; free virtual = 176932
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 438.008 ; gain = 0.145 ; free physical = 59812 ; free virtual = 176932
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 438.340 ; gain = 0.477 ; free physical = 59798 ; free virtual = 176920
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59789 ; free virtual = 176913
+INFO: [XFORM 203-712] Applying dataflow to function 'mac_header_add', detected/extracted 2 process function(s): 
+	 'add_mac_header'
+	 'edit_len_field'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_add/mac_header_add.cpp:198:4) to (src/mac_header_add/mac_header_add.cpp:219:3) in function 'edit_len_field'... converting 4 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59760 ; free virtual = 176885
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 565.863 ; gain = 128.000 ; free physical = 59742 ; free virtual = 176868
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mac_header_add' ...
+WARNING: [SYN 201-107] Renaming port name 'mac_header_add/srcMacAddress_V' to 'mac_header_add/srcMacAddress_V_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'add_mac_header' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'add_mac_header'.
+WARNING: [SCHED 204-68] The II Violation in module 'add_mac_header': Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between fifo write on port 'dataLenFifo_V_V' (src/mac_header_add/mac_header_add.cpp:162) and fifo write on port 'dataLenFifo_V_V' (src/mac_header_add/mac_header_add.cpp:147).
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 2, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 13.39 seconds; current allocated memory: 111.557 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 112.563 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'edit_len_field' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'edit_len_field'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 112.810 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 113.076 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mac_header_add' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 113.178 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 113.347 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'add_mac_header' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'mw_writeLast' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'mw_prevWord_data_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'mw_prevWord_keep_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'mw_state' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'headWord_data_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'headWord_keep_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'headWord_last_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dataLen_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dataLenW' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'srcMacAddress_V_r' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'add_mac_header'.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 114.693 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'edit_len_field' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'pkt_state' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dataLen_V_1' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'edit_len_field'.
+INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 118.664 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mac_header_add' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataIn_V_data_V' to 'axis'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataIn_V_keep_V' to 'axis'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataIn_V_last_V' to 'axis'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataIn_V_user_V' to 'axis'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataOut_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataOut_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataOut_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/dataOut_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/SrcMacAddress_V' to 'ap_stable'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mac_header_add/DestMacAddress_V' to 'ap_stable'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'mac_header_add' to 'ap_ctrl_none'.

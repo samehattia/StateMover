@@ -1,0 +1,234 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="flashAccessControl" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashAccessControl" label="">
+<pragma name="INLINE">
+<option name="region" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashAccessControl" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashAccessControl" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashFilterSeq"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashDemux" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashDemux" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashDemux" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashRemux" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashRemux" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashRemux" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPathNoFilter" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPathNoFilter" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPathNoFilter" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPath" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPath" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashSetPath" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashDispatch" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashDispatch" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashReceiveNoFilter" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashReceiveNoFilter" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashReceive" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashReceive" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashGetPathNoFilter" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="flashGetPathNoFilter" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flash_Disp2rec"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="flashGetPath" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="flashGetPath" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flash_Disp2rec"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashDemux2setPathValue"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashDemux2setPathMetadata"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashDemux2getPath"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashMetadataBuffer"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashAccCtrl2demux"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashDemux2setPathValue"/>
+<option name="depth" value="96"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashGetPath2remux"/>
+<option name="depth" value="96"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashDemux2setPathMetadata"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashDemux2getPath"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashMetadataBuffer"/>
+<option name="depth" value="24"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashKeyBuffer"/>
+<option name="depth" value="48"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashFilterPopSet"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashFilterPopGet"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="valueStoreFlash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="flashAccCtrl2demux"/>
+<option name="depth" value="4"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

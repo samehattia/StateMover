@@ -1,0 +1,154 @@
+==============================================================
+File generated on Tue Oct 20 11:22:02 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcku040-ffva1156-2-e'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.66ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'src/axis_width_upsizer/axis_width_upsizer.cpp' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:48:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(0) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:53:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(1) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:58:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(2) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:63:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(3) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:68:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(4) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:73:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(5) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:78:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(6) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+In file included from src/axis_width_upsizer/axis_width_upsizer.cpp:1:
+src/axis_width_upsizer/axis_width_upsizer.cpp:83:5: error: no matching function for call to object of type 'ap_uint<8>'
+    send_word.keep(7) = 1;
+    ^~~~~~~~~~~~~~
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:955:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:964:68: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:946:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) {
+                                                                   ^
+/home/sameh/Xilinx/Vivado/2018.3/common/technology/autopilot/ap_int_base.h:950:68: note: candidate function not viable: requires 2 arguments, but 1 was provided
+  inline __attribute__((always_inline)) ap_range_ref<_AP_W, _AP_S> operator()(int Hi, int Lo) const {
+                                                                   ^
+8 errors generated.
+==============================================================
+File generated on Tue Oct 20 11:42:59 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Tue Oct 20 12:45:04 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================

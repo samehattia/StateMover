@@ -1,0 +1,45 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'detect_mac_protocol'" level="0">
+<item name = "Date">Thu Oct 22 16:32:28 2020
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">macHeaderStrip_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">6.66, 3.364, 0.83</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

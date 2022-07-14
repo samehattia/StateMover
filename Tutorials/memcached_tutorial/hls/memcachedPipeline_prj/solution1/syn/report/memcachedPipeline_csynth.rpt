@@ -1,0 +1,303 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline'
+================================================================
+* Date:           Wed Oct 21 12:18:58 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|     11.23|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    5|    5|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------+----------------------------------------+-----+-----+-----+-----+----------+
+        |                                                    |                                        |  Latency  |  Interval | Pipeline |
+        |                      Instance                      |                 Module                 | min | max | min | max |   Type   |
+        +----------------------------------------------------+----------------------------------------+-----+-----+-----+-----+----------+
+        |grp_memcachedPipeline_bp_f_fu_1522                  |memcachedPipeline_bp_f                  |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_bp_r_fu_1692                  |memcachedPipeline_bp_r                  |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_ht_inputLogic_fu_1486         |memcachedPipeline_ht_inputLogic         |    3|    3|    1|    1| function |
+        |grp_memcachedPipeline_hashKeyResizer_fu_2018        |memcachedPipeline_hashKeyResizer        |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_bobj_fu_1580                  |memcachedPipeline_bobj                  |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_concurrencyControl_fu_1928    |memcachedPipeline_concurrencyControl    |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_memRead_fu_1764               |memcachedPipeline_memRead               |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_ht_compare_fu_1716            |memcachedPipeline_ht_compare            |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_memWrite_fu_1391              |memcachedPipeline_memWrite              |    5|    5|    1|    1| function |
+        |grp_memcachedPipeline_ht_outputLogic_fu_1672        |memcachedPipeline_ht_outputLogic        |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_splitter_fu_2040              |memcachedPipeline_splitter              |    2|    2|    1|    1| function |
+        |grp_memcachedPipeline_accessControl_fu_1802         |memcachedPipeline_accessControl         |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_demux_fu_1892                 |memcachedPipeline_demux                 |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_setPath_fu_1462               |memcachedPipeline_setPath               |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_dispatch_fu_2094              |memcachedPipeline_dispatch              |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_receive_fu_1560               |memcachedPipeline_receive               |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_remux_fu_1652                 |memcachedPipeline_remux                 |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_flashDemux_fu_1780            |memcachedPipeline_flashDemux            |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_flashSetPathNoFilter_fu_2054  |memcachedPipeline_flashSetPathNoFilter  |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_flashDispatch_fu_2084         |memcachedPipeline_flashDispatch         |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_flashReceiveNoFilter_fu_2068  |memcachedPipeline_flashReceiveNoFilter  |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_flashRemux_fu_1632            |memcachedPipeline_flashRemux            |    1|    1|    1|    1| function |
+        |grp_memcachedPipeline_merger_fu_1914                |memcachedPipeline_merger                |    1|    1|    1|    1| function |
+        |stg_96_memcachedPipeline_response_f_fu_2104         |memcachedPipeline_response_f            |    0|    0|    1|    1| function |
+        |grp_memcachedPipeline_response_r_fu_1602            |memcachedPipeline_response_r            |    1|    1|    1|    1| function |
+        +----------------------------------------------------+----------------------------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |      311|      -|    5934|    5315|
+|Instance         |        0|      -|   26743|  133730|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|      28|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |      311|      0|   32705|  139045|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |       25|      0|       6|      57|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------+----------------------------------------+---------+-------+-------+-------+
+    |                  Instance                 |                 Module                 | BRAM_18K| DSP48E|   FF  |  LUT  |
+    +-------------------------------------------+----------------------------------------+---------+-------+-------+-------+
+    |memcachedPipeline_accessControl_U0         |memcachedPipeline_accessControl         |        0|      0|    931|    917|
+    |memcachedPipeline_bobj_U0                  |memcachedPipeline_bobj                  |        0|      0|    801|   2379|
+    |memcachedPipeline_bp_f_U0                  |memcachedPipeline_bp_f                  |        0|      0|    778|   5852|
+    |memcachedPipeline_bp_r_U0                  |memcachedPipeline_bp_r                  |        0|      0|    808|    889|
+    |memcachedPipeline_concurrencyControl_U0    |memcachedPipeline_concurrencyControl    |        0|      0|    493|    575|
+    |memcachedPipeline_demux_U0                 |memcachedPipeline_demux                 |        0|      0|    598|    299|
+    |memcachedPipeline_dispatch_U0              |memcachedPipeline_dispatch              |        0|      0|     58|     28|
+    |memcachedPipeline_flashDemux_U0            |memcachedPipeline_flashDemux            |        0|      0|    599|    306|
+    |memcachedPipeline_flashDispatch_U0         |memcachedPipeline_flashDispatch         |        0|      0|     67|     39|
+    |memcachedPipeline_flashReceiveNoFilter_U0  |memcachedPipeline_flashReceiveNoFilter  |        0|      0|     98|    101|
+    |memcachedPipeline_flashRemux_U0            |memcachedPipeline_flashRemux            |        0|      0|   1004|   1541|
+    |memcachedPipeline_flashSetPathNoFilter_U0  |memcachedPipeline_flashSetPathNoFilter  |        0|      0|    185|    109|
+    |memcachedPipeline_hashKeyResizer_U0        |memcachedPipeline_hashKeyResizer        |        0|      0|    671|    482|
+    |memcachedPipeline_ht_compare_U0            |memcachedPipeline_ht_compare            |        0|      0|    840|    421|
+    |memcachedPipeline_ht_inputLogic_U0         |memcachedPipeline_ht_inputLogic         |        0|      0|   1600|   6860|
+    |memcachedPipeline_ht_outputLogic_U0        |memcachedPipeline_ht_outputLogic        |        0|      0|    852|   1038|
+    |memcachedPipeline_memRead_U0               |memcachedPipeline_memRead               |        0|      0|    473|   1540|
+    |memcachedPipeline_memWrite_U0              |memcachedPipeline_memWrite              |        0|      0|  10348|  80889|
+    |memcachedPipeline_merger_U0                |memcachedPipeline_merger                |        0|      0|    523|    260|
+    |memcachedPipeline_receive_U0               |memcachedPipeline_receive               |        0|      0|   1126|   5246|
+    |memcachedPipeline_remux_U0                 |memcachedPipeline_remux                 |        0|      0|   1004|   1534|
+    |memcachedPipeline_response_f_U0            |memcachedPipeline_response_f            |        0|      0|    252|    267|
+    |memcachedPipeline_response_r_U0            |memcachedPipeline_response_r            |        0|      0|    788|   1884|
+    |memcachedPipeline_setPath_U0               |memcachedPipeline_setPath               |        0|      0|   1319|  20244|
+    |memcachedPipeline_splitter_U0              |memcachedPipeline_splitter              |        0|      0|    527|     30|
+    +-------------------------------------------+----------------------------------------+---------+-------+-------+-------+
+    |Total                                      |                                        |        0|      0|  26743| 133730|
+    +-------------------------------------------+----------------------------------------+---------+-------+-------+-------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------------------+---------+-----+-----+------+-----+---------+
+    |              Name              | BRAM_18K|  FF | LUT | Depth| Bits| Size:D*B|
+    +--------------------------------+---------+-----+-----+------+-----+---------+
+    |accCtrl2demux_V_U               |       15|  272|  179|    16|  256|     4096|
+    |cc2memReadMd_V_U                |        4|   77|   71|    10|   64|      640|
+    |cc2memRead_V_U                  |        8|  143|  122|    10|  130|     1300|
+    |comp2memWrKey_V_U               |        8|  143|  122|    10|  130|     1300|
+    |comp2memWrMd_V_U                |        4|   77|   71|    10|   64|      640|
+    |comp2memWrMemData_V_V_U         |       29|  525|  421|    10|  512|     5120|
+    |comp2memWrStatus_V_bin_U        |        0|    5|   20|     1|    8|        8|
+    |dec2cc_V_V_U                    |        0|    5|   16|     1|    1|        1|
+    |demux2getPath_V_U               |        3|   61|   54|    16|   45|      720|
+    |demux2setPathMetadata_V_U       |        3|   61|   54|    16|   45|      720|
+    |demux2setPathValue_V_U          |        4|   86|   93|    96|   66|     6336|
+    |disp2rec_V_V_U                  |        0|    7|   28|    16|   12|      192|
+    |filterPopGet_V_V_U              |        0|    7|   20|    16|    1|       16|
+    |filterPopSet_V_V_U              |        0|    7|   20|    16|    1|       16|
+    |flashDemux2getPath_V_U          |        3|   64|   56|    16|   48|      768|
+    |flashDemux2setPathMetadata_V_U  |        3|   64|   56|    16|   48|      768|
+    |flashDemux2setPathValue_V_U     |        4|   86|   93|    96|   66|     6336|
+    |flashGetPath2remux_V_V_U        |        4|   84|   91|    96|   64|     6144|
+    |flashKeyBuffer_V_V_U            |        4|   82|   84|    48|   64|     3072|
+    |flashMetadataBuffer_V_U         |        8|  145|  112|    24|  128|     3072|
+    |flash_Disp2rec_V_V_U            |        0|    7|   32|    16|   16|      256|
+    |getPath2remux_V_V_U             |        4|   84|   91|    96|   64|     6144|
+    |hash2cc_V_V_U                   |        0|    5|   44|     1|   32|       32|
+    |hashKeyBuffer_V_V_U             |        4|   85|   89|   128|   64|     8192|
+    |hashMdBuffer_V_V_U              |        8|  145|  121|    32|  128|     4096|
+    |hashTable2splitter_V_U          |       15|  272|  179|    16|  256|     4096|
+    |hashValueBuffer_V_V_U           |        4|   98|  137|  1024|   64|    65536|
+    |in2ccMd_V_U                     |        4|   77|   71|    10|   64|      640|
+    |in2cc_V_U                       |        8|  143|  122|    10|  130|     1300|
+    |in2hashKeyLength_V_V_U          |        0|    5|   20|     1|    8|        8|
+    |in2hash_V_U                     |        0|    5|  142|     1|  130|      130|
+    |keyBuffer_V_V_U                 |        4|   82|   84|    48|   64|     3072|
+    |keyBuffer_rp_V_V_U              |        4|   85|   89|   128|   64|     8192|
+    |memRd2compMd_V_U                |        4|   77|   71|    10|   64|      640|
+    |memRd2comp_V_U                  |        8|  143|  122|    10|  130|     1300|
+    |memWr2out_V_U                   |        0|    5|   69|     1|   57|       57|
+    |merger2responseFormatter_V_U    |       15|  272|  179|    16|  256|     4096|
+    |metadataBuffer_V_U              |        8|  145|  112|    24|  128|     3072|
+    |metadataBuffer_rf_V_V_U         |       14|  260|  228|     8|  248|     1984|
+    |metadataBuffer_rp_V_V_U         |       14|  264|  174|    16|  248|     3968|
+    |requestParser2hashTable_V_U     |       15|  272|  179|    16|  256|     4096|
+    |resizedInitValue_V_U            |        0|    5|   44|     1|   32|       32|
+    |resizedKeyLength_V_U            |        0|    5|   44|     1|   32|       32|
+    |resizedKey_V_V_U                |        6|  108|   99|     8|   96|      768|
+    |splitter2valueStoreDram_V_U     |       15|  272|  179|    16|  256|     4096|
+    |splitter2valueStoreFlash_V_U    |       15|  272|  179|    16|  256|     4096|
+    |valueBuffer_rf_V_V_U            |        4|   98|  137|  1024|   64|    65536|
+    |valueBuffer_rp_V_V_U            |        4|   98|  137|  1024|   64|    65536|
+    |valueStoreDram2merger_V_U       |       15|  272|  179|    16|  256|     4096|
+    |valueStoreFlash2merger_V_U      |       15|  272|  179|    16|  256|     4096|
+    +--------------------------------+---------+-----+-----+------+-----+---------+
+    |Total                           |      311| 5934| 5315|  4274| 5536|   310460|
+    +--------------------------------+---------+-----+-----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +-----------------------------------------------------------+---+----+-----+-----------+
+    |                            Name                           | FF| LUT| Bits| Const Bits|
+    +-----------------------------------------------------------+---+----+-----+-----------+
+    |ap_CS                                                      |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_dispatch_U0              |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_flashDispatch_U0         |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_flashSetPathNoFilter_U0  |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_memRead_U0               |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_memWrite_U0              |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_response_r_U0            |  1|   0|    1|          0|
+    |ap_reg_procdone_memcachedPipeline_setPath_U0               |  1|   0|    1|          0|
+    |memcachedPipeline_accessControl_U0_ap_start                |  1|   0|    1|          0|
+    |memcachedPipeline_bobj_U0_ap_start                         |  1|   0|    1|          0|
+    |memcachedPipeline_bp_r_U0_ap_start                         |  1|   0|    1|          0|
+    |memcachedPipeline_concurrencyControl_U0_ap_start           |  1|   0|    1|          0|
+    |memcachedPipeline_demux_U0_ap_start                        |  1|   0|    1|          0|
+    |memcachedPipeline_dispatch_U0_ap_start                     |  1|   0|    1|          0|
+    |memcachedPipeline_flashDemux_U0_ap_start                   |  1|   0|    1|          0|
+    |memcachedPipeline_flashDispatch_U0_ap_start                |  1|   0|    1|          0|
+    |memcachedPipeline_flashRemux_U0_ap_start                   |  1|   0|    1|          0|
+    |memcachedPipeline_flashSetPathNoFilter_U0_ap_start         |  1|   0|    1|          0|
+    |memcachedPipeline_hashKeyResizer_U0_ap_start               |  1|   0|    1|          0|
+    |memcachedPipeline_ht_inputLogic_U0_ap_start                |  1|   0|    1|          0|
+    |memcachedPipeline_ht_outputLogic_U0_ap_start               |  1|   0|    1|          0|
+    |memcachedPipeline_memRead_U0_ap_start                      |  1|   0|    1|          0|
+    |memcachedPipeline_merger_U0_ap_start                       |  1|   0|    1|          0|
+    |memcachedPipeline_remux_U0_ap_start                        |  1|   0|    1|          0|
+    |memcachedPipeline_response_f_U0_ap_start                   |  1|   0|    1|          0|
+    |memcachedPipeline_response_r_U0_ap_start                   |  1|   0|    1|          0|
+    |memcachedPipeline_setPath_U0_ap_start                      |  1|   0|    1|          0|
+    |memcachedPipeline_splitter_U0_ap_start                     |  1|   0|    1|          0|
+    +-----------------------------------------------------------+---+----+-----+-----------+
+    |Total                                                      | 28|   0|   28|          0|
+    +-----------------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+|              RTL Ports              | Dir | Bits|   Protocol   |         Source Object        |    C Type    |
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+|inData_TDATA                         |  in |   64|     axis     |        inData_V_data_V       |    pointer   |
+|inData_TUSER                         |  in |  112|     axis     |        inData_V_user_V       |    pointer   |
+|inData_TKEEP                         |  in |    8|     axis     |        inData_V_keep_V       |    pointer   |
+|inData_TLAST                         |  in |    1|     axis     |        inData_V_last_V       |    pointer   |
+|inData_TVALID                        |  in |    1|     axis     |        inData_V_last_V       |    pointer   |
+|inData_TREADY                        | out |    1|     axis     |        inData_V_last_V       |    pointer   |
+|outData_TDATA                        | out |   64|     axis     |       outData_V_data_V       |    pointer   |
+|outData_TUSER                        | out |  112|     axis     |       outData_V_user_V       |    pointer   |
+|outData_TKEEP                        | out |    8|     axis     |       outData_V_keep_V       |    pointer   |
+|outData_TLAST                        | out |    1|     axis     |       outData_V_last_V       |    pointer   |
+|outData_TVALID                       | out |    1|     axis     |       outData_V_last_V       |    pointer   |
+|outData_TREADY                       |  in |    1|     axis     |       outData_V_last_V       |    pointer   |
+|dramValueStoreMemRdCmd_V_TDATA       | out |   40|     axis     |   dramValueStoreMemRdCmd_V   |    pointer   |
+|dramValueStoreMemRdCmd_V_TVALID      | out |    1|     axis     |   dramValueStoreMemRdCmd_V   |    pointer   |
+|dramValueStoreMemRdCmd_V_TREADY      |  in |    1|     axis     |   dramValueStoreMemRdCmd_V   |    pointer   |
+|dramValueStoreMemRdData_V_V_TDATA    |  in |  512|     axis     |  dramValueStoreMemRdData_V_V |    pointer   |
+|dramValueStoreMemRdData_V_V_TVALID   |  in |    1|     axis     |  dramValueStoreMemRdData_V_V |    pointer   |
+|dramValueStoreMemRdData_V_V_TREADY   | out |    1|     axis     |  dramValueStoreMemRdData_V_V |    pointer   |
+|dramValueStoreMemWrCmd_V_TDATA       | out |   40|     axis     |   dramValueStoreMemWrCmd_V   |    pointer   |
+|dramValueStoreMemWrCmd_V_TVALID      | out |    1|     axis     |   dramValueStoreMemWrCmd_V   |    pointer   |
+|dramValueStoreMemWrCmd_V_TREADY      |  in |    1|     axis     |   dramValueStoreMemWrCmd_V   |    pointer   |
+|dramValueStoreMemWrData_V_V_TDATA    | out |  512|     axis     |  dramValueStoreMemWrData_V_V |    pointer   |
+|dramValueStoreMemWrData_V_V_TVALID   | out |    1|     axis     |  dramValueStoreMemWrData_V_V |    pointer   |
+|dramValueStoreMemWrData_V_V_TREADY   |  in |    1|     axis     |  dramValueStoreMemWrData_V_V |    pointer   |
+|flashValueStoreMemRdCmd_V_TDATA      | out |   48|     axis     |   flashValueStoreMemRdCmd_V  |    pointer   |
+|flashValueStoreMemRdCmd_V_TVALID     | out |    1|     axis     |   flashValueStoreMemRdCmd_V  |    pointer   |
+|flashValueStoreMemRdCmd_V_TREADY     |  in |    1|     axis     |   flashValueStoreMemRdCmd_V  |    pointer   |
+|flashValueStoreMemRdData_V_V_TDATA   |  in |   64|     axis     | flashValueStoreMemRdData_V_V |    pointer   |
+|flashValueStoreMemRdData_V_V_TVALID  |  in |    1|     axis     | flashValueStoreMemRdData_V_V |    pointer   |
+|flashValueStoreMemRdData_V_V_TREADY  | out |    1|     axis     | flashValueStoreMemRdData_V_V |    pointer   |
+|flashValueStoreMemWrCmd_V_TDATA      | out |   48|     axis     |   flashValueStoreMemWrCmd_V  |    pointer   |
+|flashValueStoreMemWrCmd_V_TVALID     | out |    1|     axis     |   flashValueStoreMemWrCmd_V  |    pointer   |
+|flashValueStoreMemWrCmd_V_TREADY     |  in |    1|     axis     |   flashValueStoreMemWrCmd_V  |    pointer   |
+|flashValueStoreMemWrData_V_V_TDATA   | out |   64|     axis     | flashValueStoreMemWrData_V_V |    pointer   |
+|flashValueStoreMemWrData_V_V_TVALID  | out |    1|     axis     | flashValueStoreMemWrData_V_V |    pointer   |
+|flashValueStoreMemWrData_V_V_TREADY  |  in |    1|     axis     | flashValueStoreMemWrData_V_V |    pointer   |
+|hashTableMemRdData_V_V_TDATA         |  in |  512|     axis     |    hashTableMemRdData_V_V    |    pointer   |
+|hashTableMemRdData_V_V_TVALID        |  in |    1|     axis     |    hashTableMemRdData_V_V    |    pointer   |
+|hashTableMemRdData_V_V_TREADY        | out |    1|     axis     |    hashTableMemRdData_V_V    |    pointer   |
+|hashTableMemRdCmd_V_TDATA            | out |   40|     axis     |      hashTableMemRdCmd_V     |    pointer   |
+|hashTableMemRdCmd_V_TVALID           | out |    1|     axis     |      hashTableMemRdCmd_V     |    pointer   |
+|hashTableMemRdCmd_V_TREADY           |  in |    1|     axis     |      hashTableMemRdCmd_V     |    pointer   |
+|hashTableMemWrData_V_V_TDATA         | out |  512|     axis     |    hashTableMemWrData_V_V    |    pointer   |
+|hashTableMemWrData_V_V_TVALID        | out |    1|     axis     |    hashTableMemWrData_V_V    |    pointer   |
+|hashTableMemWrData_V_V_TREADY        |  in |    1|     axis     |    hashTableMemWrData_V_V    |    pointer   |
+|hashTableMemWrCmd_V_TDATA            | out |   40|     axis     |      hashTableMemWrCmd_V     |    pointer   |
+|hashTableMemWrCmd_V_TVALID           | out |    1|     axis     |      hashTableMemWrCmd_V     |    pointer   |
+|hashTableMemWrCmd_V_TREADY           |  in |    1|     axis     |      hashTableMemWrCmd_V     |    pointer   |
+|addressReturnOut_V_V_TDATA           | out |   32|     axis     |     addressReturnOut_V_V     |    pointer   |
+|addressReturnOut_V_V_TVALID          | out |    1|     axis     |     addressReturnOut_V_V     |    pointer   |
+|addressReturnOut_V_V_TREADY          |  in |    1|     axis     |     addressReturnOut_V_V     |    pointer   |
+|addressAssignDramIn_V_V_TDATA        |  in |   32|     axis     |    addressAssignDramIn_V_V   |    pointer   |
+|addressAssignDramIn_V_V_TVALID       |  in |    1|     axis     |    addressAssignDramIn_V_V   |    pointer   |
+|addressAssignDramIn_V_V_TREADY       | out |    1|     axis     |    addressAssignDramIn_V_V   |    pointer   |
+|addressAssignFlashIn_V_V_TDATA       |  in |   32|     axis     |   addressAssignFlashIn_V_V   |    pointer   |
+|addressAssignFlashIn_V_V_TVALID      |  in |    1|     axis     |   addressAssignFlashIn_V_V   |    pointer   |
+|addressAssignFlashIn_V_V_TREADY      | out |    1|     axis     |   addressAssignFlashIn_V_V   |    pointer   |
+|flushReq_V                           | out |    1|    ap_none   |          flushReq_V          |    pointer   |
+|flushAck_V                           |  in |    1|    ap_none   |          flushAck_V          |    scalar    |
+|flushDone_V                          | out |    1|    ap_none   |          flushDone_V         |    pointer   |
+|ap_clk                               |  in |    1| ap_ctrl_none |       memcachedPipeline      | return value |
+|ap_rst_n                             |  in |    1| ap_ctrl_none |       memcachedPipeline      | return value |
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+

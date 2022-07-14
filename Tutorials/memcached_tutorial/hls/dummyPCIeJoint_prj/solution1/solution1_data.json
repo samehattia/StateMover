@@ -1,0 +1,339 @@
+{
+  "Top": "dummyPCIeJoint",
+  "RtlTop": "dummyPCIeJoint",
+  "PcoreTop": "dummypciejoint_top",
+  "RtlPrefix": "",
+  "SourceLanguage": "cpp",
+  "ResetStyle": "control",
+  "GenerateBdFiles": "1",
+  "HostMachineBits": "64",
+  "Target": {
+    "Family": "kintexu",
+    "Device": "xcku040",
+    "Package": "-ffva1156",
+    "Speed": "-2-e"
+  },
+  "HlsSolution": {"Config": [
+      "config_export -description {A BRAM model for emulating host side memory management.}",
+      "config_export -display_name {Model for emulating host side memory management}",
+      "config_export -format=ip_catalog",
+      "config_export -vendor=xilinx.labs",
+      "config_export -version=1.0"
+    ]},
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "PcoreClockName": "aclk",
+    "ClockPeriod": "6.4",
+    "IsCombLogic": "0",
+    "II": "1",
+    "Latency": "3",
+    "Uncertainty": "0.8"
+  },
+  "Xdc": {
+    "OocClocks": ["create_clock -name ap_clk -period 6.400 [get_ports ap_clk]"],
+    "PcoreOocClocks": ["create_clock -name aclk -period 6.400 [get_ports aclk]"]
+  },
+  "Ipx": {
+    "Vendor": "xilinx.labs",
+    "Library": "hls",
+    "Name": "dummyPCIeJoint",
+    "Version": "1.0",
+    "DisplayName": " Model for emulating host side memory management",
+    "Revision": "",
+    "Description": "A BRAM model for emulating host side memory management.",
+    "Taxonomy": "\/VIVADO_HLS_IP",
+    "AutoFamilySupport": ""
+  },
+  "Files": {
+    "CSource": ["..\/..\/src\/otherModules\/dummyPCIeAddressAllocation\/dummyPCIeJoint.cpp"],
+    "Vhdl": [
+      "impl\/vhdl\/dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1.vhd",
+      "impl\/vhdl\/fifo_w32_d32_A.vhd",
+      "impl\/vhdl\/fifo_w32_d64_A.vhd",
+      "impl\/vhdl\/dummyPCIeJoint.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1.v",
+      "impl\/verilog\/fifo_w32_d32_A.v",
+      "impl\/verilog\/fifo_w32_d64_A.v",
+      "impl\/verilog\/dummyPCIeJoint.v"
+    ],
+    "PcoreVerilog": [
+      "impl\/verilog.pcore\/dummyPCIeJoint.v",
+      "impl\/verilog.pcore\/dummyPCIeJoint_ap_rst_if.v",
+      "impl\/verilog.pcore\/dummyPCIeJoint_inData_V_V_if.v",
+      "impl\/verilog.pcore\/dummyPCIeJoint_mac_muladd_6ns_14ns_14ns_18_1_1.v",
+      "impl\/verilog.pcore\/dummyPCIeJoint_outDataDram_V_V_if.v",
+      "impl\/verilog.pcore\/dummyPCIeJoint_outDataFlash_V_V_if.v",
+      "impl\/verilog.pcore\/fifo_w32_d32_A.v",
+      "impl\/verilog.pcore\/fifo_w32_d64_A.v",
+      "impl\/verilog.pcore\/dummypciejoint_top.v"
+    ],
+    "Misc": ["impl\/misc\/logo.png"],
+    "DesignXml": "\/home\/sameh\/Dropbox\/UofT\/Research\/Work\/Designs\/debugging\/memcached\/hls\/dummyPCIeJoint_prj\/solution1\/.autopilot\/db\/dummyPCIeJoint.design.xml"
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "IP": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "ctype": {"CLK": {"Type": "bool"}},
+      "reset": "ap_rst"
+    },
+    "ap_rst": {
+      "type": "reset",
+      "polarity": "ACTIVE_HIGH",
+      "ctype": {"RST": {"Type": "bool"}}
+    },
+    "flushAck_V": {
+      "type": "data",
+      "dir": "out",
+      "width": "1",
+      "ctype": {"DATA": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }}
+    },
+    "flushDone_V": {
+      "type": "data",
+      "dir": "in",
+      "width": "1",
+      "ctype": {"DATA": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }}
+    },
+    "flushReq_V": {
+      "type": "data",
+      "dir": "in",
+      "width": "1",
+      "ctype": {"DATA": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }}
+    },
+    "inData_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "32",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "outDataDram_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "32",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    },
+    "outDataFlash_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "32",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    }
+  },
+  "PcoreInterfaces": {
+    "aclk": {
+      "type": "clock",
+      "buses": "inData_V_V outDataDram_V_V outDataFlash_V_V",
+      "is_pcore_adaptor": "1"
+    },
+    "aresetn": {
+      "type": "reset",
+      "is_pcore_adaptor": "1"
+    },
+    "inData_V_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "inData_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "32"}
+    },
+    "outDataDram_V_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "outDataDram_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "32"}
+    },
+    "outDataFlash_V_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "outDataFlash_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "32"}
+    }
+  },
+  "RtlPorts": {
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst": {
+      "dir": "in",
+      "width": "1"
+    },
+    "inData_V_V_dout": {
+      "dir": "in",
+      "width": "32"
+    },
+    "inData_V_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "inData_V_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "outDataFlash_V_V_din": {
+      "dir": "out",
+      "width": "32"
+    },
+    "outDataFlash_V_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "outDataFlash_V_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "outDataDram_V_V_din": {
+      "dir": "out",
+      "width": "32"
+    },
+    "outDataDram_V_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "outDataDram_V_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "flushReq_V": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "flushAck_V": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "flushDone_V": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    }
+  },
+  "CPorts": {
+    "inData_V_V": {
+      "interfaceRef": "inData_V_V",
+      "dir": "in"
+    },
+    "outDataFlash_V_V": {
+      "interfaceRef": "outDataFlash_V_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "outDataDram_V_V": {
+      "interfaceRef": "outDataDram_V_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "flushReq_V": {
+      "interfaceRef": "flushReq_V",
+      "dir": "in",
+      "dataWidth": "1",
+      "handshakeRef": "ap_none"
+    },
+    "flushAck_V": {
+      "interfaceRef": "flushAck_V",
+      "dir": "out",
+      "dataWidth": "1",
+      "handshakeRef": "ap_none",
+      "firstOutLatency": "2"
+    },
+    "flushDone_V": {
+      "interfaceRef": "flushDone_V",
+      "dir": "in",
+      "dataWidth": "1",
+      "handshakeRef": "ap_none"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {"ModuleName": "dummyPCIeJoint"},
+    "Metrics": {"dummyPCIeJoint": {
+        "Latency": {
+          "LatencyBest": "3",
+          "LatencyAvg": "3",
+          "LatencyWorst": "3",
+          "PipelineII": "1",
+          "PipelineDepth": "4",
+          "PipelineType": "function"
+        },
+        "Timing": {
+          "Target": "6.40",
+          "Uncertainty": "0.80",
+          "Estimate": "5.929"
+        },
+        "Area": {
+          "BRAM_18K": "4",
+          "DSP48E": "1",
+          "FF": "158",
+          "LUT": "324"
+        }
+      }}
+  },
+  "Sdx": {
+    "Target": "none",
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "XO": "",
+    "KernelName": "dummyPCIeJoint",
+    "EnableXoSwEmu": "1"
+  },
+  "GenData": {
+    "DataVersion": "0.1",
+    "Time": "2020-10-14 13:17:36 EDT",
+    "ToolName": "vivado_hls",
+    "ToolVersion": "2018.3"
+  }
+}

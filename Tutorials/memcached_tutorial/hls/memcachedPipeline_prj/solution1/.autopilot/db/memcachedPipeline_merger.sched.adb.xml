@@ -1,0 +1,1087 @@
+<stg><name>memcachedPipeline_merger</name>
+
+
+<trans_list>
+
+<trans id="79" from="1" to="2">
+<condition id="79">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="3" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="29" bw="1" op_0_bw="1">
+<![CDATA[
+codeRepl:23  %mergerState_load = load i1* @mergerState, align 1
+
+]]></node>
+<StgValue><ssdm name="mergerState_load"/></StgValue>
+</operation>
+
+<operation id="4" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="30" bw="1" op_0_bw="1">
+<![CDATA[
+codeRepl:24  %dramOrFlash_V_1_load = load i1* @dramOrFlash_V_1, align 1
+
+]]></node>
+<StgValue><ssdm name="dramOrFlash_V_1_load"/></StgValue>
+</operation>
+
+<operation id="5" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="31" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+codeRepl:25  br i1 %mergerState_load, label %5, label %0
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="6" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="0">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="33" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @valueStoreFlash2merger_V, i32 1) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp"/></StgValue>
+</operation>
+
+<operation id="7" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="0">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="34" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp, label %1, label %2
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="8" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="52">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="36" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+:0  %tmp_1 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @valueStoreDram2merger_V, i32 1) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_1"/></StgValue>
+</operation>
+
+<operation id="9" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="52">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="37" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp_1, label %3, label %._crit_edge86
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="10" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="53">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+<literal name="tmp_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="39" bw="256" op_0_bw="256" op_1_bw="256">
+<![CDATA[
+:0  %tmp_2317 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @valueStoreDram2merger_V) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_2317"/></StgValue>
+</operation>
+
+<operation id="11" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="53">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+<literal name="tmp_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="41" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:2  store i1 true, i1* @dramOrFlash_V_1, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="12" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="53">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+<literal name="tmp_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="42" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:3  store i1 true, i1* @mergerState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="13" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="54">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="47" bw="256" op_0_bw="256" op_1_bw="256">
+<![CDATA[
+:0  %tmp273 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @valueStoreFlash2merger_V) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp273"/></StgValue>
+</operation>
+
+<operation id="14" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="54">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="49" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:2  store i1 false, i1* @dramOrFlash_V_1, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="15" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="54">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="50" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:3  store i1 true, i1* @mergerState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="16" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="16">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="55" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:0  br i1 %dramOrFlash_V_1_load, label %.critedge, label %6
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="17" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="55">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="57" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+:0  %tmp_3 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @valueStoreFlash2merger_V, i32 1) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_3"/></StgValue>
+</operation>
+
+<operation id="18" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="55">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="58" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp_3, label %7, label %._crit_edge90
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="19" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="56">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="60" bw="256" op_0_bw="256" op_1_bw="256">
+<![CDATA[
+:0  %tmp_4361 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @valueStoreFlash2merger_V) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_4361"/></StgValue>
+</operation>
+
+<operation id="20" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="56">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="61" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+:1  %tmp_EOP_V_1 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_4361, i32 127)
+
+]]></node>
+<StgValue><ssdm name="tmp_EOP_V_1"/></StgValue>
+</operation>
+
+<operation id="21" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="56">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="63" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:3  br i1 %tmp_EOP_V_1, label %8, label %._crit_edge89
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="22" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="57">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+<literal name="tmp_EOP_V_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="65" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:0  store i1 false, i1* @mergerState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="23" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="58">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="70" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+.critedge:0  %tmp_2 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @valueStoreDram2merger_V, i32 1) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_2"/></StgValue>
+</operation>
+
+<operation id="24" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="58">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="71" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+.critedge:1  br i1 %tmp_2, label %9, label %._crit_edge90
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="25" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="59">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="73" bw="256" op_0_bw="256" op_1_bw="256">
+<![CDATA[
+:0  %tmp_6 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @valueStoreDram2merger_V) nounwind
+
+]]></node>
+<StgValue><ssdm name="tmp_6"/></StgValue>
+</operation>
+
+<operation id="26" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="59">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="74" bw="1" op_0_bw="1" op_1_bw="256" op_2_bw="32">
+<![CDATA[
+:1  %tmp_EOP_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_6, i32 127)
+
+]]></node>
+<StgValue><ssdm name="tmp_EOP_V"/></StgValue>
+</operation>
+
+<operation id="27" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="59">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="76" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:3  br i1 %tmp_EOP_V, label %10, label %._crit_edge92
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="28" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="60">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+<literal name="tmp_EOP_V" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="78" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:0  store i1 false, i1* @mergerState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="2" st_id="2">
+
+<operation id="29" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="6" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1370, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1371, [1 x i8]* @str1371, [8 x i8]* @str1370) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="30" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="7" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1366, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1367, [1 x i8]* @str1367, [8 x i8]* @str1366) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="31" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="8" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1362, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1363, [1 x i8]* @str1363, [8 x i8]* @str1362) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="32" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="9" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1358, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1359, [1 x i8]* @str1359, [8 x i8]* @str1358) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="33" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="10" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1354, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1355, [1 x i8]* @str1355, [8 x i8]* @str1354) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="34" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="11" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1350, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1351, [1 x i8]* @str1351, [8 x i8]* @str1350) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="35" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="12" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreDram2merger_V, [8 x i8]* @str1346, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1347, [1 x i8]* @str1347, [8 x i8]* @str1346) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="36" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="13" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1342, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1343, [1 x i8]* @str1343, [8 x i8]* @str1342) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="37" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="14" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1338, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1339, [1 x i8]* @str1339, [8 x i8]* @str1338) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="38" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="15" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:9  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1334, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1335, [1 x i8]* @str1335, [8 x i8]* @str1334) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="39" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="16" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:10  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1330, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1331, [1 x i8]* @str1331, [8 x i8]* @str1330) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="40" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="17" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:11  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1326, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1327, [1 x i8]* @str1327, [8 x i8]* @str1326) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="41" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="18" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:12  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1322, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1323, [1 x i8]* @str1323, [8 x i8]* @str1322) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="42" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="19" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:13  call void (...)* @_ssdm_op_SpecInterface(i256* @valueStoreFlash2merger_V, [8 x i8]* @str1318, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1319, [1 x i8]* @str1319, [8 x i8]* @str1318) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="43" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="20" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:14  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1258, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1259, [1 x i8]* @str1259, [8 x i8]* @str1258) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="44" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="21" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:15  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1254, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1255, [1 x i8]* @str1255, [8 x i8]* @str1254) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="45" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="22" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:16  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1250, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1251, [1 x i8]* @str1251, [8 x i8]* @str1250) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="46" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="23" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:17  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1246, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1247, [1 x i8]* @str1247, [8 x i8]* @str1246) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="47" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="24" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:18  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1242, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1243, [1 x i8]* @str1243, [8 x i8]* @str1242) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="48" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="25" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:19  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1238, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1239, [1 x i8]* @str1239, [8 x i8]* @str1238) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="49" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="26" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:20  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1234, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1235, [1 x i8]* @str1235, [8 x i8]* @str1234) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="50" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="27" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:21  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str37, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str138, [1 x i8]* @p_str138, [1 x i8]* @p_str138) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="51" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="28" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="8">
+<![CDATA[
+codeRepl:22  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str138) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="52" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="53">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+<literal name="tmp_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="40" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="256">
+<![CDATA[
+:1  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @merger2responseFormatter_V, i256 %tmp_2317) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="53" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="53">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+<literal name="tmp_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="43" bw="0" op_0_bw="0">
+<![CDATA[
+:4  br label %._crit_edge86
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="54" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="61">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="45" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge86:0  br label %4
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="55" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="54">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="48" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="256">
+<![CDATA[
+:1  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @merger2responseFormatter_V, i256 %tmp273) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="56" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="54">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="51" bw="0" op_0_bw="0">
+<![CDATA[
+:4  br label %4
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="57" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="62">
+<or_exp><and_exp><literal name="mergerState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="53" bw="0" op_0_bw="0">
+<![CDATA[
+:0  br label %._crit_edge85
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="58" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="56">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="62" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="256">
+<![CDATA[
+:2  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @merger2responseFormatter_V, i256 %tmp_4361) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="59" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="57">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+<literal name="tmp_EOP_V_1" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="66" bw="0" op_0_bw="0">
+<![CDATA[
+:1  br label %._crit_edge89
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="60" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="63">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="0"/>
+<literal name="tmp_3" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="68" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge89:0  br label %11
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="61" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="59">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="75" bw="0" op_0_bw="0" op_1_bw="256" op_2_bw="256">
+<![CDATA[
+:2  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @merger2responseFormatter_V, i256 %tmp_6) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="62" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="60">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+<literal name="tmp_EOP_V" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="79" bw="0" op_0_bw="0">
+<![CDATA[
+:1  br label %._crit_edge92
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="63" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="64">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+<literal name="tmp_2" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="81" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge92:0  br label %._crit_edge90
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="64" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="65">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="dramOrFlash_V_1_load" val="1"/>
+</and_exp><and_exp><literal name="mergerState_load" val="1"/>
+<literal name="tmp_3" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="83" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge90:0  br label %11
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="65" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="66">
+<or_exp><and_exp><literal name="mergerState_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="85" bw="0" op_0_bw="0">
+<![CDATA[
+:0  br label %._crit_edge85
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="66" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="50">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="87" bw="0">
+<![CDATA[
+._crit_edge85:0  ret void
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+</ports>
+
+
+<dataflows>
+</dataflows>
+
+
+</stg>

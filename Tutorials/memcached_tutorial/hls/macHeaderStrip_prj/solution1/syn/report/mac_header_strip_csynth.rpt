@@ -1,0 +1,132 @@
+
+
+================================================================
+== Vivado HLS Report for 'mac_header_strip'
+================================================================
+* Date:           Thu Oct 22 16:32:30 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        macHeaderStrip_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.66|     8.865|        0.83|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    4|    4|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------+---------------------+-----+-----+-----+-----+----------+
+        |                        |                     |  Latency  |  Interval | Pipeline |
+        |        Instance        |        Module       | min | max | min | max |   Type   |
+        +------------------------+---------------------+-----+-----+-----+-----+----------+
+        |strip_mac_header_U0     |strip_mac_header     |    2|    2|    1|    1| function |
+        |detect_mac_protocol_U0  |detect_mac_protocol  |    1|    1|    1|    1| function |
+        +------------------------+---------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       -|       -|
+|FIFO             |       11|      -|     195|     193|
+|Instance         |        -|      -|    1328|    1633|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |       11|      0|    1523|    1826|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |    ~0   |      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +------------------------+---------------------+---------+-------+-----+------+
+    |        Instance        |        Module       | BRAM_18K| DSP48E|  FF |  LUT |
+    +------------------------+---------------------+---------+-------+-----+------+
+    |detect_mac_protocol_U0  |detect_mac_protocol  |        0|      0|  400|   286|
+    |strip_mac_header_U0     |strip_mac_header     |        0|      0|  928|  1347|
+    +------------------------+---------------------+---------+-------+-----+------+
+    |Total                   |                     |        0|      0| 1328|  1633|
+    +------------------------+---------------------+---------+-------+-----+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +----------------+---------+-----+-----+------+-----+---------+
+    |      Name      | BRAM_18K|  FF | LUT | Depth| Bits| Size:D*B|
+    +----------------+---------+-----+-----+------+-----+---------+
+    |ipDataFifo_V_U  |       11|  195|  193|     4|  185|      740|
+    +----------------+---------+-----+-----+------+-----+---------+
+    |Total           |       11|  195|  193|     4|  185|      740|
+    +----------------+---------+-----+-----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------+-----+-----+--------------+--------------------+--------------+
+|     RTL Ports    | Dir | Bits|   Protocol   |    Source Object   |    C Type    |
++------------------+-----+-----+--------------+--------------------+--------------+
+|dataIn_TDATA      |  in |   64|     axis     |   dataIn_V_data_V  |    pointer   |
+|dataIn_TKEEP      |  in |    8|     axis     |   dataIn_V_keep_V  |    pointer   |
+|dataIn_TLAST      |  in |    1|     axis     |   dataIn_V_last_V  |    pointer   |
+|dataIn_TUSER      |  in |  112|     axis     |   dataIn_V_user_V  |    pointer   |
+|dataIn_TVALID     |  in |    1|     axis     |   dataIn_V_user_V  |    pointer   |
+|dataIn_TREADY     | out |    1|     axis     |   dataIn_V_user_V  |    pointer   |
+|IPdataOut_TDATA   | out |   64|     axis     | IPdataOut_V_data_V |    pointer   |
+|IPdataOut_TKEEP   | out |    8|     axis     | IPdataOut_V_keep_V |    pointer   |
+|IPdataOut_TLAST   | out |    1|     axis     | IPdataOut_V_last_V |    pointer   |
+|IPdataOut_TUSER   | out |  112|     axis     | IPdataOut_V_user_V |    pointer   |
+|IPdataOut_TVALID  | out |    1|     axis     | IPdataOut_V_user_V |    pointer   |
+|IPdataOut_TREADY  |  in |    1|     axis     | IPdataOut_V_user_V |    pointer   |
+|myMacAddress_V    |  in |   48|   ap_stable  |   myMacAddress_V   |    scalar    |
+|ap_clk            |  in |    1| ap_ctrl_none |  mac_header_strip  | return value |
+|ap_rst_n          |  in |    1| ap_ctrl_none |  mac_header_strip  | return value |
++------------------+-----+-----+--------------+--------------------+--------------+
+

@@ -1,0 +1,159 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'flashMemAccess'" level="0">
+<item name = "Date">Wed Oct 14 13:19:00 2020
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">flashModel_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">6.40, 3.183, 0.80</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">2, 2, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 100</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">228, -, 0, 0</column>
+<column name="Multiplexer">-, -, -, 123</column>
+<column name="Register">-, -, 189, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">19, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="memArray_V_U">flashMemAccess_memArray_V, 228, 0, 0, 65536, 64, 1, 4194304</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="grp_fu_139_p2">+, 0, 0, 20, 13, 2</column>
+<column name="grp_fu_150_p2">+, 0, 0, 39, 32, 1</column>
+<column name="ap_block_state2_io">and, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state3_io">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_364">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op11_read_state1">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op35_read_state1">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op46_write_state2">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op56_write_state3">and, 0, 0, 2, 1, 1</column>
+<column name="rdDataOut_V_V_1_load_A">and, 0, 0, 2, 1, 1</column>
+<column name="rdDataOut_V_V_1_load_B">and, 0, 0, 2, 1, 1</column>
+<column name="grp_fu_134_p2">icmp, 0, 0, 13, 13, 1</column>
+<column name="rdDataOut_V_V_1_state_cmp_full">icmp, 0, 0, 8, 2, 1</column>
+<column name="ap_block_state1_pp0_stage0_iter0">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_iter1_fsm">15, 3, 2, 6</column>
+<column name="ap_NS_iter2_fsm">15, 3, 2, 6</column>
+<column name="ap_done">9, 2, 1, 2</column>
+<column name="flashAggregateMemCmd_1_blk_n">9, 2, 1, 2</column>
+<column name="inputWord_address_V">9, 2, 32, 64</column>
+<column name="inputWord_count_V">9, 2, 13, 26</column>
+<column name="memArray_V_address0">15, 3, 16, 48</column>
+<column name="rdDataOut_V_V_1_data_out">9, 2, 64, 128</column>
+<column name="rdDataOut_V_V_1_state">15, 3, 2, 6</column>
+<column name="rdDataOut_V_V_TDATA_blk_n">9, 2, 1, 2</column>
+<column name="wrDataIn_V_V_TDATA_blk_n">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_iter0_fsm">1, 0, 1, 0</column>
+<column name="ap_CS_iter1_fsm">2, 0, 2, 0</column>
+<column name="ap_CS_iter2_fsm">2, 0, 2, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="inputWord_address_V">32, 0, 32, 0</column>
+<column name="inputWord_count_V">13, 0, 13, 0</column>
+<column name="inputWord_rdOrWr_V">1, 0, 1, 0</column>
+<column name="inputWord_rdOrWr_V_l_reg_254">1, 0, 1, 0</column>
+<column name="inputWord_rdOrWr_V_l_reg_254_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="memState">1, 0, 1, 0</column>
+<column name="memState_load_reg_250">1, 0, 1, 0</column>
+<column name="memState_load_reg_250_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="rdDataOut_V_V_1_payload_A">64, 0, 64, 0</column>
+<column name="rdDataOut_V_V_1_payload_B">64, 0, 64, 0</column>
+<column name="rdDataOut_V_V_1_sel_rd">1, 0, 1, 0</column>
+<column name="rdDataOut_V_V_1_sel_wr">1, 0, 1, 0</column>
+<column name="rdDataOut_V_V_1_state">2, 0, 2, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, flashMemAccess, return value</column>
+<column name="flashAggregateMemCmd_1_dout">in, 46, ap_fifo, flashAggregateMemCmd_1, pointer</column>
+<column name="flashAggregateMemCmd_1_empty_n">in, 1, ap_fifo, flashAggregateMemCmd_1, pointer</column>
+<column name="flashAggregateMemCmd_1_read">out, 1, ap_fifo, flashAggregateMemCmd_1, pointer</column>
+<column name="wrDataIn_V_V_TVALID">in, 1, axis, wrDataIn_V_V, pointer</column>
+<column name="wrDataIn_V_V_TDATA">in, 64, axis, wrDataIn_V_V, pointer</column>
+<column name="wrDataIn_V_V_TREADY">out, 1, axis, wrDataIn_V_V, pointer</column>
+<column name="rdDataOut_V_V_TREADY">in, 1, axis, rdDataOut_V_V, pointer</column>
+<column name="rdDataOut_V_V_TDATA">out, 64, axis, rdDataOut_V_V, pointer</column>
+<column name="rdDataOut_V_V_TVALID">out, 1, axis, rdDataOut_V_V, pointer</column>
+</table>
+</item>
+</section>
+</profile>

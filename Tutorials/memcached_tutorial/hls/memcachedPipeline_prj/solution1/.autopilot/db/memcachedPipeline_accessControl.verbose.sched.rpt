@@ -1,0 +1,1551 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_accessControl'
+================================================================
+* Date:           Wed Oct 21 12:18:34 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      7.54|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 7.54ns
+ST_1: accState_load [1/1] 0.00ns
+codeRepl:19  %accState_load = load i3* @accState, align 1
+
+ST_1: streamToPop_V_load [1/1] 0.00ns
+codeRepl:20  %streamToPop_V_load = load i2* @streamToPop_V, align 1
+
+ST_1: pushWord_load [1/1] 0.00ns
+codeRepl:21  %pushWord_load = load i32* @pushWord_address_V, align 4
+
+ST_1: pushWord_operation_V_load [1/1] 0.00ns
+codeRepl:22  %pushWord_operation_V_load = load i8* @pushWord_operation_V, align 1
+
+ST_1: accessCtrl_filterEntries_statu [1/1] 0.00ns
+codeRepl:23  %accessCtrl_filterEntries_statu = load i1* @accessCtrl_filterEntries_statu, align 1
+
+ST_1: accessCtrl_filterEntries_load [1/1] 0.00ns
+codeRepl:24  %accessCtrl_filterEntries_load = load i32* @accessCtrl_filterEntries_addre, align 4
+
+ST_1: accessCtrl_filterEntries_opera [1/1] 0.00ns
+codeRepl:25  %accessCtrl_filterEntries_opera = load i8* @accessCtrl_filterEntries_opera, align 1
+
+ST_1: accessCtrl_filterEntries_statu_1 [1/1] 0.00ns
+codeRepl:26  %accessCtrl_filterEntries_statu_1 = load i1* @accessCtrl_filterEntries_statu_1, align 1
+
+ST_1: accessCtrl_filterEntries_load_1 [1/1] 0.00ns
+codeRepl:27  %accessCtrl_filterEntries_load_1 = load i32* @accessCtrl_filterEntries_addre_1, align 4
+
+ST_1: accessCtrl_filterEntries_opera_1 [1/1] 0.00ns
+codeRepl:28  %accessCtrl_filterEntries_opera_1 = load i8* @accessCtrl_filterEntries_opera_1, align 1
+
+ST_1: accessCtrl_filterEntries_statu_2 [1/1] 0.00ns
+codeRepl:29  %accessCtrl_filterEntries_statu_2 = load i1* @accessCtrl_filterEntries_statu_2, align 1
+
+ST_1: accessCtrl_filterEntries_load_2 [1/1] 0.00ns
+codeRepl:30  %accessCtrl_filterEntries_load_2 = load i32* @accessCtrl_filterEntries_addre_2, align 4
+
+ST_1: accessCtrl_filterEntries_opera_2 [1/1] 0.00ns
+codeRepl:31  %accessCtrl_filterEntries_opera_2 = load i8* @accessCtrl_filterEntries_opera_2, align 1
+
+ST_1: accessCtrl_filterEntries_statu_3 [1/1] 0.00ns
+codeRepl:32  %accessCtrl_filterEntries_statu_3 = load i1* @accessCtrl_filterEntries_statu_3, align 1
+
+ST_1: accessCtrl_filterEntries_load_3 [1/1] 0.00ns
+codeRepl:33  %accessCtrl_filterEntries_load_3 = load i32* @accessCtrl_filterEntries_addre_3, align 4
+
+ST_1: accessCtrl_filterEntries_opera_3 [1/1] 0.00ns
+codeRepl:34  %accessCtrl_filterEntries_opera_3 = load i8* @accessCtrl_filterEntries_opera_3, align 1
+
+ST_1: accessCtrl_filterEntries_statu_4 [1/1] 0.00ns
+codeRepl:35  %accessCtrl_filterEntries_statu_4 = load i1* @accessCtrl_filterEntries_statu_4, align 1
+
+ST_1: accessCtrl_filterEntries_load_4 [1/1] 0.00ns
+codeRepl:36  %accessCtrl_filterEntries_load_4 = load i32* @accessCtrl_filterEntries_addre_4, align 4
+
+ST_1: accessCtrl_filterEntries_opera_4 [1/1] 0.00ns
+codeRepl:37  %accessCtrl_filterEntries_opera_4 = load i8* @accessCtrl_filterEntries_opera_4, align 1
+
+ST_1: accessCtrl_filterEntries_statu_5 [1/1] 0.00ns
+codeRepl:38  %accessCtrl_filterEntries_statu_5 = load i1* @accessCtrl_filterEntries_statu_5, align 1
+
+ST_1: accessCtrl_filterEntries_load_5 [1/1] 0.00ns
+codeRepl:39  %accessCtrl_filterEntries_load_5 = load i32* @accessCtrl_filterEntries_addre_5, align 4
+
+ST_1: accessCtrl_filterEntries_opera_5 [1/1] 0.00ns
+codeRepl:40  %accessCtrl_filterEntries_opera_5 = load i8* @accessCtrl_filterEntries_opera_5, align 1
+
+ST_1: accessCtrl_filterEntries_statu_6 [1/1] 0.00ns
+codeRepl:41  %accessCtrl_filterEntries_statu_6 = load i1* @accessCtrl_filterEntries_statu_6, align 1
+
+ST_1: accessCtrl_filterEntries_load_6 [1/1] 0.00ns
+codeRepl:42  %accessCtrl_filterEntries_load_6 = load i32* @accessCtrl_filterEntries_addre_6, align 4
+
+ST_1: accessCtrl_filterEntries_opera_6 [1/1] 0.00ns
+codeRepl:43  %accessCtrl_filterEntries_opera_6 = load i8* @accessCtrl_filterEntries_opera_6, align 1
+
+ST_1: accessCtrl_filterEntries_statu_7 [1/1] 0.00ns
+codeRepl:44  %accessCtrl_filterEntries_statu_7 = load i1* @accessCtrl_filterEntries_statu_7, align 1
+
+ST_1: accessCtrl_filterEntries_load_7 [1/1] 0.00ns
+codeRepl:45  %accessCtrl_filterEntries_load_7 = load i32* @accessCtrl_filterEntries_addre_7, align 4
+
+ST_1: accessCtrl_filterEntries_opera_7 [1/1] 0.00ns
+codeRepl:46  %accessCtrl_filterEntries_opera_7 = load i8* @accessCtrl_filterEntries_opera_7, align 1
+
+ST_1: accessCtrl_level_load [1/1] 0.00ns
+codeRepl:47  %accessCtrl_level_load = load i8* @accessCtrl_level, align 1
+
+ST_1: tmp_63 [1/1] 0.00ns
+codeRepl:48  %tmp_63 = trunc i8 %accessCtrl_level_load to i4
+
+ST_1: accessCtrl_rdPtr_load [1/1] 0.00ns
+codeRepl:49  %accessCtrl_rdPtr_load = load i8* @accessCtrl_rdPtr, align 1
+
+ST_1: tmp_27 [1/1] 1.34ns
+codeRepl:51  %tmp_27 = icmp eq i8 %pushWord_operation_V_load, 0
+
+ST_1: tmp_28 [1/1] 0.76ns
+codeRepl:52  %tmp_28 = icmp eq i2 %streamToPop_V_load, 1
+
+ST_1: tmp_29 [1/1] 0.76ns
+codeRepl:53  %tmp_29 = icmp eq i2 %streamToPop_V_load, 0
+
+ST_1: stg_37 [1/1] 1.17ns
+codeRepl:54  switch i3 %accState_load, label %._crit_edge278 [
+    i3 0, label %0
+    i3 1, label %_ifconv
+    i3 2, label %12
+    i3 -1, label %13
+    i3 -3, label %20
+    i3 -2, label %22
+    i3 -4, label %38
+    i3 3, label %44
+  ]
+
+ST_1: stg_38 [1/1] 0.00ns
+:0  br i1 %tmp_28, label %45, label %46
+
+ST_1: stg_39 [1/1] 0.00ns
+:0  br i1 %tmp_29, label %47, label %._crit_edge302
+
+ST_1: tmp_V_23_0 [1/1] 1.66ns
+:0  %tmp_V_23_0 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @filterPopGet_V_V) nounwind
+
+ST_1: tmp_V_20_0 [1/1] 1.66ns
+:0  %tmp_V_20_0 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @filterPopSet_V_V) nounwind
+
+ST_1: tmp_26 [1/1] 0.00ns
+:0  %tmp_26 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i2P(i2* @filterSeq_V_V, i32 1) nounwind
+
+ST_1: stg_43 [1/1] 0.89ns
+:1  br i1 %tmp_26, label %49, label %._crit_edge303
+
+ST_1: tmp_V_15 [1/1] 1.66ns
+:0  %tmp_V_15 = call i2 @_ssdm_op_Read.ap_fifo.volatile.i2P(i2* @filterSeq_V_V) nounwind
+
+ST_1: stg_45 [1/1] 0.89ns
+:1  br label %._crit_edge303
+
+ST_1: storemerge [1/1] 0.00ns
+._crit_edge303:0  %storemerge = phi i2 [ %tmp_V_15, %49 ], [ -2, %48 ]
+
+ST_1: stg_47 [1/1] 0.89ns
+._crit_edge303:1  store i2 %storemerge, i2* @streamToPop_V, align 1
+
+ST_1: tmp_78 [1/1] 0.00ns
+._crit_edge303:2  %tmp_78 = trunc i8 %accessCtrl_rdPtr_load to i3
+
+ST_1: stg_49 [1/1] 0.89ns
+branch22:0  store i32 0, i32* @accessCtrl_filterEntries_addre_6, align 4
+
+ST_1: stg_50 [1/1] 0.00ns
+branch22:1  br label %._crit_edge303325
+
+ST_1: stg_51 [1/1] 0.89ns
+branch21:0  store i32 0, i32* @accessCtrl_filterEntries_addre_5, align 4
+
+ST_1: stg_52 [1/1] 0.00ns
+branch21:1  br label %._crit_edge303325
+
+ST_1: stg_53 [1/1] 0.89ns
+branch20:0  store i32 0, i32* @accessCtrl_filterEntries_addre_4, align 4
+
+ST_1: stg_54 [1/1] 0.00ns
+branch20:1  br label %._crit_edge303325
+
+ST_1: stg_55 [1/1] 0.89ns
+branch19:0  store i32 0, i32* @accessCtrl_filterEntries_addre_3, align 4
+
+ST_1: stg_56 [1/1] 0.00ns
+branch19:1  br label %._crit_edge303325
+
+ST_1: stg_57 [1/1] 0.89ns
+branch18:0  store i32 0, i32* @accessCtrl_filterEntries_addre_2, align 4
+
+ST_1: stg_58 [1/1] 0.00ns
+branch18:1  br label %._crit_edge303325
+
+ST_1: stg_59 [1/1] 0.89ns
+branch17:0  store i32 0, i32* @accessCtrl_filterEntries_addre_1, align 4
+
+ST_1: stg_60 [1/1] 0.00ns
+branch17:1  br label %._crit_edge303325
+
+ST_1: stg_61 [1/1] 0.89ns
+branch16:0  store i32 0, i32* @accessCtrl_filterEntries_addre, align 4
+
+ST_1: stg_62 [1/1] 0.00ns
+branch16:1  br label %._crit_edge303325
+
+ST_1: stg_63 [1/1] 0.89ns
+branch23:0  store i32 0, i32* @accessCtrl_filterEntries_addre_7, align 4
+
+ST_1: stg_64 [1/1] 0.00ns
+branch23:1  br label %._crit_edge303325
+
+ST_1: stg_65 [1/1] 0.89ns
+branch54:0  store i1 false, i1* @accessCtrl_filterEntries_statu_6, align 1
+
+ST_1: stg_66 [1/1] 0.89ns
+branch53:0  store i1 false, i1* @accessCtrl_filterEntries_statu_5, align 1
+
+ST_1: stg_67 [1/1] 0.89ns
+branch52:0  store i1 false, i1* @accessCtrl_filterEntries_statu_4, align 1
+
+ST_1: stg_68 [1/1] 0.89ns
+branch51:0  store i1 false, i1* @accessCtrl_filterEntries_statu_3, align 1
+
+ST_1: stg_69 [1/1] 0.89ns
+branch50:0  store i1 false, i1* @accessCtrl_filterEntries_statu_2, align 1
+
+ST_1: stg_70 [1/1] 0.89ns
+branch49:0  store i1 false, i1* @accessCtrl_filterEntries_statu_1, align 1
+
+ST_1: stg_71 [1/1] 0.89ns
+branch48:0  store i1 false, i1* @accessCtrl_filterEntries_statu, align 1
+
+ST_1: stg_72 [1/1] 0.89ns
+branch55:0  store i1 false, i1* @accessCtrl_filterEntries_statu_7, align 1
+
+ST_1: tmp_51 [1/1] 1.34ns
+._crit_edge303325363:0  %tmp_51 = icmp eq i8 %accessCtrl_rdPtr_load, 7
+
+ST_1: tmp_52 [1/1] 1.24ns
+._crit_edge303325363:1  %tmp_52 = add i8 %accessCtrl_rdPtr_load, 1
+
+ST_1: p_tmp_1 [1/1] 0.71ns
+._crit_edge303325363:2  %p_tmp_1 = select i1 %tmp_51, i8 0, i8 %tmp_52
+
+ST_1: stg_76 [1/1] 0.89ns
+._crit_edge303325363:3  store i8 %p_tmp_1, i8* @accessCtrl_rdPtr, align 1
+
+ST_1: tmp_53 [1/1] 1.24ns
+._crit_edge303325363:4  %tmp_53 = add i8 %accessCtrl_level_load, -1
+
+ST_1: stg_78 [1/1] 0.89ns
+._crit_edge303325363:5  store i8 %tmp_53, i8* @accessCtrl_level, align 2
+
+ST_1: stg_79 [1/1] 1.07ns
+._crit_edge303325363:6  store i3 0, i3* @accState, align 1
+
+ST_1: stg_80 [1/1] 0.00ns
+._crit_edge303325363:7  br label %._crit_edge278
+
+ST_1: stg_81 [1/1] 0.00ns
+:0  br i1 %tmp_28, label %39, label %40
+
+ST_1: stg_82 [1/1] 0.00ns
+:0  br i1 %tmp_29, label %41, label %._crit_edge300
+
+ST_1: tmp_V_22_0 [1/1] 1.66ns
+:0  %tmp_V_22_0 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @filterPopGet_V_V) nounwind
+
+ST_1: tmp_V_0 [1/1] 1.66ns
+:0  %tmp_V_0 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @filterPopSet_V_V) nounwind
+
+ST_1: tmp_25 [1/1] 0.00ns
+:0  %tmp_25 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i2P(i2* @filterSeq_V_V, i32 1) nounwind
+
+ST_1: stg_86 [1/1] 0.89ns
+:1  br i1 %tmp_25, label %43, label %._crit_edge301
+
+ST_1: tmp_V_14 [1/1] 1.66ns
+:0  %tmp_V_14 = call i2 @_ssdm_op_Read.ap_fifo.volatile.i2P(i2* @filterSeq_V_V) nounwind
+
+ST_1: stg_88 [1/1] 0.89ns
+:1  br label %._crit_edge301
+
+ST_1: storemerge4 [1/1] 0.00ns
+._crit_edge301:0  %storemerge4 = phi i2 [ %tmp_V_14, %43 ], [ -2, %42 ]
+
+ST_1: stg_90 [1/1] 0.89ns
+._crit_edge301:1  store i2 %storemerge4, i2* @streamToPop_V, align 1
+
+ST_1: tmp_77 [1/1] 0.00ns
+._crit_edge301:2  %tmp_77 = trunc i8 %accessCtrl_rdPtr_load to i3
+
+ST_1: stg_92 [1/1] 0.89ns
+branch14:0  store i32 0, i32* @accessCtrl_filterEntries_addre_6, align 4
+
+ST_1: stg_93 [1/1] 0.00ns
+branch14:1  br label %._crit_edge301316
+
+ST_1: stg_94 [1/1] 0.89ns
+branch13:0  store i32 0, i32* @accessCtrl_filterEntries_addre_5, align 4
+
+ST_1: stg_95 [1/1] 0.00ns
+branch13:1  br label %._crit_edge301316
+
+ST_1: stg_96 [1/1] 0.89ns
+branch12:0  store i32 0, i32* @accessCtrl_filterEntries_addre_4, align 4
+
+ST_1: stg_97 [1/1] 0.00ns
+branch12:1  br label %._crit_edge301316
+
+ST_1: stg_98 [1/1] 0.89ns
+branch11:0  store i32 0, i32* @accessCtrl_filterEntries_addre_3, align 4
+
+ST_1: stg_99 [1/1] 0.00ns
+branch11:1  br label %._crit_edge301316
+
+ST_1: stg_100 [1/1] 0.89ns
+branch10:0  store i32 0, i32* @accessCtrl_filterEntries_addre_2, align 4
+
+ST_1: stg_101 [1/1] 0.00ns
+branch10:1  br label %._crit_edge301316
+
+ST_1: stg_102 [1/1] 0.89ns
+branch9:0  store i32 0, i32* @accessCtrl_filterEntries_addre_1, align 4
+
+ST_1: stg_103 [1/1] 0.00ns
+branch9:1  br label %._crit_edge301316
+
+ST_1: stg_104 [1/1] 0.89ns
+branch8:0  store i32 0, i32* @accessCtrl_filterEntries_addre, align 4
+
+ST_1: stg_105 [1/1] 0.00ns
+branch8:1  br label %._crit_edge301316
+
+ST_1: stg_106 [1/1] 0.89ns
+branch15:0  store i32 0, i32* @accessCtrl_filterEntries_addre_7, align 4
+
+ST_1: stg_107 [1/1] 0.00ns
+branch15:1  br label %._crit_edge301316
+
+ST_1: stg_108 [1/1] 0.89ns
+branch46:0  store i1 false, i1* @accessCtrl_filterEntries_statu_6, align 1
+
+ST_1: stg_109 [1/1] 0.89ns
+branch45:0  store i1 false, i1* @accessCtrl_filterEntries_statu_5, align 1
+
+ST_1: stg_110 [1/1] 0.89ns
+branch44:0  store i1 false, i1* @accessCtrl_filterEntries_statu_4, align 1
+
+ST_1: stg_111 [1/1] 0.89ns
+branch43:0  store i1 false, i1* @accessCtrl_filterEntries_statu_3, align 1
+
+ST_1: stg_112 [1/1] 0.89ns
+branch42:0  store i1 false, i1* @accessCtrl_filterEntries_statu_2, align 1
+
+ST_1: stg_113 [1/1] 0.89ns
+branch41:0  store i1 false, i1* @accessCtrl_filterEntries_statu_1, align 1
+
+ST_1: stg_114 [1/1] 0.89ns
+branch40:0  store i1 false, i1* @accessCtrl_filterEntries_statu, align 1
+
+ST_1: stg_115 [1/1] 0.89ns
+branch47:0  store i1 false, i1* @accessCtrl_filterEntries_statu_7, align 1
+
+ST_1: tmp_48 [1/1] 1.34ns
+._crit_edge301316353:0  %tmp_48 = icmp eq i8 %accessCtrl_rdPtr_load, 7
+
+ST_1: tmp_49 [1/1] 1.24ns
+._crit_edge301316353:1  %tmp_49 = add i8 %accessCtrl_rdPtr_load, 1
+
+ST_1: p_tmp_s [1/1] 0.71ns
+._crit_edge301316353:2  %p_tmp_s = select i1 %tmp_48, i8 0, i8 %tmp_49
+
+ST_1: stg_119 [1/1] 0.89ns
+._crit_edge301316353:3  store i8 %p_tmp_s, i8* @accessCtrl_rdPtr, align 1
+
+ST_1: tmp_50 [1/1] 1.24ns
+._crit_edge301316353:4  %tmp_50 = add i8 %accessCtrl_level_load, -1
+
+ST_1: stg_121 [1/1] 0.89ns
+._crit_edge301316353:5  store i8 %tmp_50, i8* @accessCtrl_level, align 2
+
+ST_1: stg_122 [1/1] 1.07ns
+._crit_edge301316353:6  store i3 -2, i3* @accState, align 1
+
+ST_1: stg_123 [1/1] 0.00ns
+._crit_edge301316353:7  br label %._crit_edge278
+
+ST_1: stg_124 [1/1] 0.00ns
+:0  br i1 %tmp_28, label %23, label %._crit_edge294
+
+ST_1: tmp_20 [1/1] 0.00ns
+:0  %tmp_20 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @filterPopSet_V_V, i32 1) nounwind
+
+ST_1: stg_126 [1/1] 0.00ns
+:1  br i1 %tmp_20, label %24, label %._crit_edge294
+
+ST_1: stg_127 [1/1] 0.00ns
+._crit_edge294:0  br i1 %tmp_29, label %25, label %._crit_edge296
+
+ST_1: tmp_23 [1/1] 0.00ns
+:0  %tmp_23 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @filterPopGet_V_V, i32 1) nounwind
+
+ST_1: stg_129 [1/1] 0.00ns
+:1  br i1 %tmp_23, label %26, label %._crit_edge296
+
+ST_1: stg_130 [1/1] 0.00ns
+._crit_edge296:0  br i1 %accessCtrl_filterEntries_statu, label %27, label %._crit_edge24.i317.0
+
+ST_1: notlhs4 [1/1] 1.50ns
+:0  %notlhs4 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load
+
+ST_1: tmp_47 [1/1] 1.34ns
+:1  %tmp_47 = icmp eq i8 %accessCtrl_filterEntries_opera, 1
+
+ST_1: tmp40 [1/1] 0.71ns
+:2  %tmp40 = and i1 %notlhs4, %tmp_47
+
+ST_1: or_cond3 [1/1] 0.71ns
+:3  %or_cond3 = and i1 %tmp40, %tmp_27
+
+ST_1: stg_135 [1/1] 0.00ns
+:4  br i1 %or_cond3, label %._crit_edge298.loopexit, label %._crit_edge24.i317.0
+
+ST_1: stg_136 [1/1] 0.00ns
+._crit_edge24.i317.0:0  br i1 %accessCtrl_filterEntries_statu_1, label %28, label %._crit_edge24.i317.1
+
+ST_1: notlhs6 [1/1] 1.50ns
+:0  %notlhs6 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_1
+
+ST_1: tmp_132_1 [1/1] 1.34ns
+:1  %tmp_132_1 = icmp eq i8 %accessCtrl_filterEntries_opera_1, 1
+
+ST_1: tmp41 [1/1] 0.71ns
+:2  %tmp41 = and i1 %notlhs6, %tmp_132_1
+
+ST_1: or_cond5 [1/1] 0.71ns
+:3  %or_cond5 = and i1 %tmp41, %tmp_27
+
+ST_1: stg_141 [1/1] 0.00ns
+:4  br i1 %or_cond5, label %._crit_edge298.loopexit, label %._crit_edge24.i317.1
+
+ST_1: stg_142 [1/1] 0.00ns
+._crit_edge24.i317.1:0  br i1 %accessCtrl_filterEntries_statu_2, label %29, label %._crit_edge24.i317.2
+
+ST_1: notlhs8 [1/1] 1.50ns
+:0  %notlhs8 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_2
+
+ST_1: tmp_132_2 [1/1] 1.34ns
+:1  %tmp_132_2 = icmp eq i8 %accessCtrl_filterEntries_opera_2, 1
+
+ST_1: tmp42 [1/1] 0.71ns
+:2  %tmp42 = and i1 %notlhs8, %tmp_132_2
+
+ST_1: or_cond7 [1/1] 0.71ns
+:3  %or_cond7 = and i1 %tmp42, %tmp_27
+
+ST_1: stg_147 [1/1] 0.00ns
+:4  br i1 %or_cond7, label %._crit_edge298.loopexit, label %._crit_edge24.i317.2
+
+ST_1: stg_148 [1/1] 0.00ns
+._crit_edge24.i317.2:0  br i1 %accessCtrl_filterEntries_statu_3, label %30, label %._crit_edge24.i317.3
+
+ST_1: notlhs10 [1/1] 1.50ns
+:0  %notlhs10 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_3
+
+ST_1: tmp_132_3 [1/1] 1.34ns
+:1  %tmp_132_3 = icmp eq i8 %accessCtrl_filterEntries_opera_3, 1
+
+ST_1: tmp43 [1/1] 0.71ns
+:2  %tmp43 = and i1 %notlhs10, %tmp_132_3
+
+ST_1: or_cond9 [1/1] 0.71ns
+:3  %or_cond9 = and i1 %tmp43, %tmp_27
+
+ST_1: stg_153 [1/1] 0.00ns
+:4  br i1 %or_cond9, label %._crit_edge298.loopexit, label %._crit_edge24.i317.3
+
+ST_1: stg_154 [1/1] 0.00ns
+._crit_edge24.i317.3:0  br i1 %accessCtrl_filterEntries_statu_4, label %31, label %._crit_edge24.i317.4
+
+ST_1: notlhs12 [1/1] 1.50ns
+:0  %notlhs12 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_4
+
+ST_1: tmp_132_4 [1/1] 1.34ns
+:1  %tmp_132_4 = icmp eq i8 %accessCtrl_filterEntries_opera_4, 1
+
+ST_1: tmp44 [1/1] 0.71ns
+:2  %tmp44 = and i1 %notlhs12, %tmp_132_4
+
+ST_1: or_cond [1/1] 0.71ns
+:3  %or_cond = and i1 %tmp44, %tmp_27
+
+ST_1: stg_159 [1/1] 0.00ns
+:4  br i1 %or_cond, label %._crit_edge298.loopexit, label %._crit_edge24.i317.4
+
+ST_1: stg_160 [1/1] 0.00ns
+._crit_edge24.i317.4:0  br i1 %accessCtrl_filterEntries_statu_5, label %32, label %._crit_edge24.i317.5
+
+ST_1: notlhs14 [1/1] 1.50ns
+:0  %notlhs14 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_5
+
+ST_1: tmp_132_5 [1/1] 1.34ns
+:1  %tmp_132_5 = icmp eq i8 %accessCtrl_filterEntries_opera_5, 1
+
+ST_1: tmp45 [1/1] 0.71ns
+:2  %tmp45 = and i1 %notlhs14, %tmp_132_5
+
+ST_1: or_cond1 [1/1] 0.71ns
+:3  %or_cond1 = and i1 %tmp45, %tmp_27
+
+ST_1: stg_165 [1/1] 0.00ns
+:4  br i1 %or_cond1, label %._crit_edge298.loopexit, label %._crit_edge24.i317.5
+
+ST_1: stg_166 [1/1] 0.00ns
+._crit_edge24.i317.5:0  br i1 %accessCtrl_filterEntries_statu_6, label %33, label %._crit_edge24.i317.6
+
+ST_1: notlhs15 [1/1] 1.50ns
+:0  %notlhs15 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_6
+
+ST_1: tmp_132_6 [1/1] 1.34ns
+:1  %tmp_132_6 = icmp eq i8 %accessCtrl_filterEntries_opera_6, 1
+
+ST_1: tmp46 [1/1] 0.71ns
+:2  %tmp46 = and i1 %notlhs15, %tmp_132_6
+
+ST_1: or_cond2 [1/1] 0.71ns
+:3  %or_cond2 = and i1 %tmp46, %tmp_27
+
+ST_1: stg_171 [1/1] 0.00ns
+:4  br i1 %or_cond2, label %._crit_edge298.loopexit, label %._crit_edge24.i317.6
+
+ST_1: stg_172 [1/1] 0.00ns
+._crit_edge24.i317.6:0  br i1 %accessCtrl_filterEntries_statu_7, label %34, label %.critedge323
+
+ST_1: notlhs [1/1] 1.50ns
+:0  %notlhs = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_7
+
+ST_1: tmp_132_7 [1/1] 1.34ns
+:1  %tmp_132_7 = icmp eq i8 %accessCtrl_filterEntries_opera_7, 1
+
+ST_1: tmp47 [1/1] 0.71ns
+:2  %tmp47 = and i1 %notlhs, %tmp_132_7
+
+ST_1: or_cond4 [1/1] 0.71ns
+:3  %or_cond4 = and i1 %tmp47, %tmp_27
+
+ST_1: stg_177 [1/1] 0.00ns
+:4  br i1 %or_cond4, label %._crit_edge298.loopexit, label %.critedge323
+
+ST_1: tmp_57 [1/1] 1.34ns
+.critedge323:0  %tmp_57 = icmp eq i8 %accessCtrl_level_load, 8
+
+ST_1: stg_179 [1/1] 0.00ns
+.critedge323:1  br i1 %tmp_57, label %._crit_edge298, label %35
+
+ST_1: stg_180 [1/1] 1.07ns
+:0  store i3 -1, i3* @accState, align 1
+
+ST_1: stg_181 [1/1] 1.07ns
+:0  store i3 -4, i3* @accState, align 1
+
+ST_1: stg_182 [1/1] 1.07ns
+:0  store i3 -4, i3* @accState, align 1
+
+ST_1: stg_183 [1/1] 0.00ns
+:0  br label %._crit_edge278
+
+ST_1: tmp_3 [1/1] 2.91ns
+:0  %tmp_3 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @splitter2valueStoreDram_V) nounwind
+
+ST_1: tmp_metadata_V [1/1] 0.00ns
+:1  %tmp_metadata_V = trunc i256 %tmp_3 to i124
+
+ST_1: stg_186 [1/1] 0.89ns
+:2  store i124 %tmp_metadata_V, i124* @inputWord_metadata_V, align 8
+
+ST_1: tmp_SOP_V [1/1] 0.00ns
+:3  %tmp_SOP_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_3, i32 124)
+
+ST_1: stg_188 [1/1] 0.89ns
+:4  store i1 %tmp_SOP_V, i1* @inputWord_SOP_V, align 8
+
+ST_1: tmp_keyValid_V [1/1] 0.00ns
+:5  %tmp_keyValid_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_3, i32 125)
+
+ST_1: stg_190 [1/1] 0.89ns
+:6  store i1 %tmp_keyValid_V, i1* @inputWord_keyValid_V, align 1
+
+ST_1: tmp_valueValid_V [1/1] 0.00ns
+:7  %tmp_valueValid_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_3, i32 126)
+
+ST_1: stg_192 [1/1] 0.89ns
+:8  store i1 %tmp_valueValid_V, i1* @inputWord_valueValid_V, align 2
+
+ST_1: tmp_EOP_V [1/1] 0.00ns
+:9  %tmp_EOP_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp_3, i32 127)
+
+ST_1: stg_194 [1/1] 0.89ns
+:10  store i1 %tmp_EOP_V, i1* @inputWord_EOP_V, align 1
+
+ST_1: tmp_value_V [1/1] 0.00ns
+:11  %tmp_value_V = call i64 @_ssdm_op_PartSelect.i64.i256.i32.i32(i256 %tmp_3, i32 128, i32 191)
+
+ST_1: stg_196 [1/1] 0.89ns
+:12  store i64 %tmp_value_V, i64* @inputWord_value_V, align 8
+
+ST_1: tmp_key_V [1/1] 0.00ns
+:13  %tmp_key_V = call i64 @_ssdm_op_PartSelect.i64.i256.i32.i32(i256 %tmp_3, i32 192, i32 255)
+
+ST_1: stg_198 [1/1] 0.89ns
+:14  store i64 %tmp_key_V, i64* @inputWord_key_V, align 8
+
+ST_1: stg_199 [1/1] 0.00ns
+:16  br i1 %tmp_EOP_V, label %21, label %._crit_edge293
+
+ST_1: stg_200 [1/1] 1.07ns
+:0  store i3 0, i3* @accState, align 1
+
+ST_1: stg_201 [1/1] 0.00ns
+._crit_edge293:0  br label %._crit_edge278
+
+ST_1: tmp_46 [1/1] 0.76ns
+:0  %tmp_46 = icmp eq i2 %streamToPop_V_load, -2
+
+ST_1: stg_203 [1/1] 0.00ns
+:1  br i1 %tmp_46, label %14, label %._crit_edge291
+
+ST_1: tmp_19 [1/1] 0.00ns
+:0  %tmp_19 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i2P(i2* @filterSeq_V_V, i32 1) nounwind
+
+ST_1: stg_205 [1/1] 0.00ns
+:1  br i1 %tmp_19, label %15, label %._crit_edge291
+
+ST_1: tmp_V_13 [1/1] 1.66ns
+:0  %tmp_V_13 = call i2 @_ssdm_op_Read.ap_fifo.volatile.i2P(i2* @filterSeq_V_V) nounwind
+
+ST_1: stg_207 [1/1] 0.89ns
+:1  store i2 %tmp_V_13, i2* @streamToPop_V, align 1
+
+ST_1: tmp_69 [1/1] 0.00ns
+._crit_edge291:0  %tmp_69 = call i5 @_ssdm_op_PartSelect.i5.i8.i32.i32(i8 %accessCtrl_level_load, i32 3, i32 7)
+
+ST_1: icmp [1/1] 1.17ns
+._crit_edge291:1  %icmp = icmp eq i5 %tmp_69, 0
+
+ST_1: stg_210 [1/1] 0.00ns
+._crit_edge291:2  br i1 %icmp, label %16, label %push.exit
+
+ST_1: accessCtrl_wrPtr_load [1/1] 0.00ns
+:0  %accessCtrl_wrPtr_load = load i8* @accessCtrl_wrPtr, align 4
+
+ST_1: tmp_70 [1/1] 0.00ns
+:1  %tmp_70 = trunc i8 %accessCtrl_wrPtr_load to i3
+
+ST_1: stg_213 [1/1] 0.89ns
+branch6:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_6, align 4
+
+ST_1: stg_214 [1/1] 0.00ns
+branch6:1  br label %17
+
+ST_1: stg_215 [1/1] 0.89ns
+branch5:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_5, align 4
+
+ST_1: stg_216 [1/1] 0.00ns
+branch5:1  br label %17
+
+ST_1: stg_217 [1/1] 0.89ns
+branch4:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_4, align 4
+
+ST_1: stg_218 [1/1] 0.00ns
+branch4:1  br label %17
+
+ST_1: stg_219 [1/1] 0.89ns
+branch3:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_3, align 4
+
+ST_1: stg_220 [1/1] 0.00ns
+branch3:1  br label %17
+
+ST_1: stg_221 [1/1] 0.89ns
+branch2:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_2, align 4
+
+ST_1: stg_222 [1/1] 0.00ns
+branch2:1  br label %17
+
+ST_1: stg_223 [1/1] 0.89ns
+branch1:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_1, align 4
+
+ST_1: stg_224 [1/1] 0.00ns
+branch1:1  br label %17
+
+ST_1: stg_225 [1/1] 0.89ns
+branch0:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre, align 4
+
+ST_1: stg_226 [1/1] 0.00ns
+branch0:1  br label %17
+
+ST_1: stg_227 [1/1] 0.89ns
+branch7:0  store i32 %pushWord_load, i32* @accessCtrl_filterEntries_addre_7, align 4
+
+ST_1: stg_228 [1/1] 0.00ns
+branch7:1  br label %17
+
+ST_1: stg_229 [1/1] 0.00ns
+branch30:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_6, align 4
+
+ST_1: stg_230 [1/1] 0.00ns
+branch30:1  br label %18
+
+ST_1: stg_231 [1/1] 0.00ns
+branch29:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_5, align 4
+
+ST_1: stg_232 [1/1] 0.00ns
+branch29:1  br label %18
+
+ST_1: stg_233 [1/1] 0.00ns
+branch28:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_4, align 4
+
+ST_1: stg_234 [1/1] 0.00ns
+branch28:1  br label %18
+
+ST_1: stg_235 [1/1] 0.00ns
+branch27:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_3, align 4
+
+ST_1: stg_236 [1/1] 0.00ns
+branch27:1  br label %18
+
+ST_1: stg_237 [1/1] 0.00ns
+branch26:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_2, align 4
+
+ST_1: stg_238 [1/1] 0.00ns
+branch26:1  br label %18
+
+ST_1: stg_239 [1/1] 0.00ns
+branch25:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_1, align 4
+
+ST_1: stg_240 [1/1] 0.00ns
+branch25:1  br label %18
+
+ST_1: stg_241 [1/1] 0.00ns
+branch24:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera, align 4
+
+ST_1: stg_242 [1/1] 0.00ns
+branch24:1  br label %18
+
+ST_1: stg_243 [1/1] 0.00ns
+branch31:0  store i8 %pushWord_operation_V_load, i8* @accessCtrl_filterEntries_opera_7, align 4
+
+ST_1: stg_244 [1/1] 0.00ns
+branch31:1  br label %18
+
+ST_1: stg_245 [1/1] 0.89ns
+branch38:0  store i1 true, i1* @accessCtrl_filterEntries_statu_6, align 1
+
+ST_1: stg_246 [1/1] 0.89ns
+branch37:0  store i1 true, i1* @accessCtrl_filterEntries_statu_5, align 1
+
+ST_1: stg_247 [1/1] 0.89ns
+branch36:0  store i1 true, i1* @accessCtrl_filterEntries_statu_4, align 1
+
+ST_1: stg_248 [1/1] 0.89ns
+branch35:0  store i1 true, i1* @accessCtrl_filterEntries_statu_3, align 1
+
+ST_1: stg_249 [1/1] 0.89ns
+branch34:0  store i1 true, i1* @accessCtrl_filterEntries_statu_2, align 1
+
+ST_1: stg_250 [1/1] 0.89ns
+branch33:0  store i1 true, i1* @accessCtrl_filterEntries_statu_1, align 1
+
+ST_1: stg_251 [1/1] 0.89ns
+branch32:0  store i1 true, i1* @accessCtrl_filterEntries_statu, align 1
+
+ST_1: stg_252 [1/1] 0.89ns
+branch39:0  store i1 true, i1* @accessCtrl_filterEntries_statu_7, align 1
+
+ST_1: tmp_54 [1/1] 1.34ns
+:0  %tmp_54 = icmp eq i8 %accessCtrl_wrPtr_load, 7
+
+ST_1: tmp_55 [1/1] 1.24ns
+:1  %tmp_55 = add i8 %accessCtrl_wrPtr_load, 1
+
+ST_1: p_tmp_2 [1/1] 0.71ns
+:2  %p_tmp_2 = select i1 %tmp_54, i8 0, i8 %tmp_55
+
+ST_1: stg_256 [1/1] 0.00ns
+:3  store i8 %p_tmp_2, i8* @accessCtrl_wrPtr, align 4
+
+ST_1: tmp_56 [1/1] 0.43ns
+:4  %tmp_56 = add i4 %tmp_63, 1
+
+ST_1: tmp_79_cast [1/1] 0.00ns
+:5  %tmp_79_cast = zext i4 %tmp_56 to i8
+
+ST_1: stg_259 [1/1] 0.89ns
+:6  store i8 %tmp_79_cast, i8* @accessCtrl_level, align 2
+
+ST_1: stg_260 [1/1] 1.07ns
+push.exit:9  store i3 -3, i3* @accState, align 1
+
+ST_1: stg_261 [1/1] 0.00ns
+push.exit:10  br label %._crit_edge278
+
+ST_1: tmp_V [1/1] 1.66ns
+:0  %tmp_V = call i2 @_ssdm_op_Read.ap_fifo.volatile.i2P(i2* @filterSeq_V_V) nounwind
+
+ST_1: stg_263 [1/1] 0.89ns
+:1  store i2 %tmp_V, i2* @streamToPop_V, align 1
+
+ST_1: stg_264 [1/1] 1.07ns
+:2  store i3 -2, i3* @accState, align 1
+
+ST_1: stg_265 [1/1] 0.00ns
+:3  br label %._crit_edge278
+
+ST_1: notlhs1 [1/1] 1.50ns
+_ifconv:0  %notlhs1 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load
+
+ST_1: tmp_s [1/1] 1.34ns
+_ifconv:1  %tmp_s = icmp eq i8 %accessCtrl_filterEntries_opera, 1
+
+ST_1: notlhs2 [1/1] 1.50ns
+_ifconv:2  %notlhs2 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_1
+
+ST_1: tmp_121_1 [1/1] 1.34ns
+_ifconv:3  %tmp_121_1 = icmp eq i8 %accessCtrl_filterEntries_opera_1, 1
+
+ST_1: notlhs3 [1/1] 1.50ns
+_ifconv:4  %notlhs3 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_2
+
+ST_1: tmp_121_2 [1/1] 1.34ns
+_ifconv:5  %tmp_121_2 = icmp eq i8 %accessCtrl_filterEntries_opera_2, 1
+
+ST_1: notlhs5 [1/1] 1.50ns
+_ifconv:6  %notlhs5 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_3
+
+ST_1: tmp_121_3 [1/1] 1.34ns
+_ifconv:7  %tmp_121_3 = icmp eq i8 %accessCtrl_filterEntries_opera_3, 1
+
+ST_1: notlhs7 [1/1] 1.50ns
+_ifconv:8  %notlhs7 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_4
+
+ST_1: tmp_121_4 [1/1] 1.34ns
+_ifconv:9  %tmp_121_4 = icmp eq i8 %accessCtrl_filterEntries_opera_4, 1
+
+ST_1: notlhs9 [1/1] 1.50ns
+_ifconv:10  %notlhs9 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_5
+
+ST_1: tmp_121_5 [1/1] 1.34ns
+_ifconv:11  %tmp_121_5 = icmp eq i8 %accessCtrl_filterEntries_opera_5, 1
+
+ST_1: notlhs11 [1/1] 1.50ns
+_ifconv:12  %notlhs11 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_6
+
+ST_1: tmp_121_6 [1/1] 1.34ns
+_ifconv:13  %tmp_121_6 = icmp eq i8 %accessCtrl_filterEntries_opera_6, 1
+
+ST_1: notlhs13 [1/1] 1.50ns
+_ifconv:14  %notlhs13 = icmp eq i32 %pushWord_load, %accessCtrl_filterEntries_load_7
+
+ST_1: tmp_121_7 [1/1] 1.34ns
+_ifconv:15  %tmp_121_7 = icmp eq i8 %accessCtrl_filterEntries_opera_7, 1
+
+ST_1: tmp_44 [1/1] 1.34ns
+_ifconv:16  %tmp_44 = icmp eq i8 %accessCtrl_level_load, 8
+
+ST_1: tmp_45 [1/1] 0.76ns
+_ifconv:17  %tmp_45 = icmp eq i2 %streamToPop_V_load, -2
+
+ST_1: storemerge6 [1/1] 0.71ns
+_ifconv:18  %storemerge6 = select i1 %tmp_45, i3 2, i3 -2
+
+ST_1: tmp17 [1/1] 0.71ns
+_ifconv:19  %tmp17 = and i1 %accessCtrl_filterEntries_statu, %tmp_27
+
+ST_1: tmp18 [1/1] 0.71ns
+_ifconv:20  %tmp18 = and i1 %notlhs1, %tmp_s
+
+ST_1: sel_tmp [1/1] 0.71ns
+_ifconv:21  %sel_tmp = and i1 %tmp18, %tmp17
+
+ST_1: tmp19 [1/1] 0.71ns
+_ifconv:22  %tmp19 = and i1 %accessCtrl_filterEntries_statu_1, %tmp_27
+
+ST_1: tmp20 [1/1] 0.71ns
+_ifconv:23  %tmp20 = and i1 %notlhs2, %tmp_121_1
+
+ST_1: sel_tmp1 [1/1] 0.71ns
+_ifconv:24  %sel_tmp1 = and i1 %tmp20, %tmp19
+
+ST_1: tmp21 [1/1] 0.71ns
+_ifconv:25  %tmp21 = and i1 %accessCtrl_filterEntries_statu_2, %tmp_27
+
+ST_1: tmp22 [1/1] 0.71ns
+_ifconv:26  %tmp22 = and i1 %notlhs3, %tmp_121_2
+
+ST_1: sel_tmp3 [1/1] 0.71ns
+_ifconv:27  %sel_tmp3 = and i1 %tmp22, %tmp21
+
+ST_1: tmp23 [1/1] 0.71ns
+_ifconv:28  %tmp23 = and i1 %accessCtrl_filterEntries_statu_3, %tmp_27
+
+ST_1: tmp24 [1/1] 0.71ns
+_ifconv:29  %tmp24 = and i1 %notlhs5, %tmp_121_3
+
+ST_1: sel_tmp5 [1/1] 0.71ns
+_ifconv:30  %sel_tmp5 = and i1 %tmp24, %tmp23
+
+ST_1: tmp25 [1/1] 0.71ns
+_ifconv:31  %tmp25 = and i1 %accessCtrl_filterEntries_statu_4, %tmp_27
+
+ST_1: tmp26 [1/1] 0.71ns
+_ifconv:32  %tmp26 = and i1 %notlhs7, %tmp_121_4
+
+ST_1: sel_tmp7 [1/1] 0.71ns
+_ifconv:33  %sel_tmp7 = and i1 %tmp26, %tmp25
+
+ST_1: tmp27 [1/1] 0.71ns
+_ifconv:34  %tmp27 = and i1 %accessCtrl_filterEntries_statu_5, %tmp_27
+
+ST_1: tmp28 [1/1] 0.71ns
+_ifconv:35  %tmp28 = and i1 %notlhs9, %tmp_121_5
+
+ST_1: sel_tmp9 [1/1] 0.71ns
+_ifconv:36  %sel_tmp9 = and i1 %tmp28, %tmp27
+
+ST_1: tmp29 [1/1] 0.71ns
+_ifconv:37  %tmp29 = and i1 %accessCtrl_filterEntries_statu_6, %tmp_27
+
+ST_1: tmp30 [1/1] 0.71ns
+_ifconv:38  %tmp30 = and i1 %notlhs11, %tmp_121_6
+
+ST_1: sel_tmp2 [1/1] 0.71ns
+_ifconv:39  %sel_tmp2 = and i1 %tmp30, %tmp29
+
+ST_1: tmp31 [1/1] 0.71ns
+_ifconv:40  %tmp31 = and i1 %accessCtrl_filterEntries_statu_7, %tmp_27
+
+ST_1: tmp32 [1/1] 0.71ns
+_ifconv:41  %tmp32 = and i1 %notlhs13, %tmp_121_7
+
+ST_1: sel_tmp4 [1/1] 0.71ns
+_ifconv:42  %sel_tmp4 = and i1 %tmp32, %tmp31
+
+ST_1: tmp34 [1/1] 0.71ns
+_ifconv:43  %tmp34 = or i1 %sel_tmp, %sel_tmp1
+
+ST_1: tmp35 [1/1] 0.71ns
+_ifconv:44  %tmp35 = or i1 %sel_tmp3, %sel_tmp5
+
+ST_1: tmp33 [1/1] 0.71ns
+_ifconv:45  %tmp33 = or i1 %tmp35, %tmp34
+
+ST_1: tmp37 [1/1] 0.71ns
+_ifconv:46  %tmp37 = or i1 %sel_tmp7, %sel_tmp9
+
+ST_1: tmp39 [1/1] 0.71ns
+_ifconv:47  %tmp39 = or i1 %sel_tmp4, %tmp_44
+
+ST_1: tmp38 [1/1] 0.71ns
+_ifconv:48  %tmp38 = or i1 %tmp39, %sel_tmp2
+
+ST_1: tmp36 [1/1] 0.71ns
+_ifconv:49  %tmp36 = or i1 %tmp38, %tmp37
+
+ST_1: sel_tmp6 [1/1] 0.71ns
+_ifconv:50  %sel_tmp6 = or i1 %tmp36, %tmp33
+
+ST_1: storemerge7 [1/1] 0.71ns
+_ifconv:51  %storemerge7 = select i1 %sel_tmp6, i3 %storemerge6, i3 -1
+
+ST_1: stg_318 [1/1] 1.07ns
+_ifconv:52  store i3 %storemerge7, i3* @accState, align 1
+
+ST_1: stg_319 [1/1] 0.00ns
+_ifconv:53  br label %._crit_edge278
+
+ST_1: stg_320 [1/1] 0.00ns
+:0  br i1 %tmp_28, label %1, label %._crit_edge279
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @filterPopSet_V_V, i32 1) nounwind
+
+ST_1: stg_322 [1/1] 0.00ns
+:1  br i1 %tmp, label %2, label %._crit_edge279
+
+ST_1: stg_323 [1/1] 0.00ns
+._crit_edge279:0  br i1 %tmp_29, label %3, label %._crit_edge281
+
+ST_1: tmp_21 [1/1] 0.00ns
+:0  %tmp_21 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @filterPopGet_V_V, i32 1) nounwind
+
+ST_1: stg_325 [1/1] 0.00ns
+:1  br i1 %tmp_21, label %4, label %._crit_edge281
+
+ST_1: tmp_22 [1/1] 0.00ns
+._crit_edge281:0  %tmp_22 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @splitter2valueStoreDram_V, i32 1) nounwind
+
+ST_1: stg_327 [1/1] 0.00ns
+._crit_edge281:1  br i1 %tmp_22, label %5, label %._crit_edge283
+
+ST_1: tmp_24 [1/1] 0.00ns
+:0  %tmp_24 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i2P(i2* @filterSeq_V_V, i32 1) nounwind
+
+ST_1: stg_329 [1/1] 0.00ns
+:1  br i1 %tmp_24, label %6, label %._crit_edge283
+
+ST_1: tmp188 [1/1] 2.91ns
+:0  %tmp188 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @splitter2valueStoreDram_V) nounwind
+
+ST_1: p_Val2_s [1/1] 0.00ns
+:1  %p_Val2_s = trunc i256 %tmp188 to i124
+
+ST_1: stg_332 [1/1] 0.89ns
+:2  store i124 %p_Val2_s, i124* @inputWord_metadata_V, align 8
+
+ST_1: tmp_SOP_V_1 [1/1] 0.00ns
+:3  %tmp_SOP_V_1 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 124)
+
+ST_1: stg_334 [1/1] 0.89ns
+:4  store i1 %tmp_SOP_V_1, i1* @inputWord_SOP_V, align 8
+
+ST_1: tmp_keyValid_V_7 [1/1] 0.00ns
+:5  %tmp_keyValid_V_7 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 125)
+
+ST_1: stg_336 [1/1] 0.89ns
+:6  store i1 %tmp_keyValid_V_7, i1* @inputWord_keyValid_V, align 1
+
+ST_1: tmp_valueValid_V_2 [1/1] 0.00ns
+:7  %tmp_valueValid_V_2 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 126)
+
+ST_1: stg_338 [1/1] 0.89ns
+:8  store i1 %tmp_valueValid_V_2, i1* @inputWord_valueValid_V, align 2
+
+ST_1: tmp_EOP_V_8 [1/1] 0.00ns
+:9  %tmp_EOP_V_8 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 127)
+
+ST_1: stg_340 [1/1] 0.89ns
+:10  store i1 %tmp_EOP_V_8, i1* @inputWord_EOP_V, align 1
+
+ST_1: tmp_value_V_3 [1/1] 0.00ns
+:11  %tmp_value_V_3 = call i64 @_ssdm_op_PartSelect.i64.i256.i32.i32(i256 %tmp188, i32 128, i32 191)
+
+ST_1: stg_342 [1/1] 0.89ns
+:12  store i64 %tmp_value_V_3, i64* @inputWord_value_V, align 8
+
+ST_1: tmp_key_V_6 [1/1] 0.00ns
+:13  %tmp_key_V_6 = call i64 @_ssdm_op_PartSelect.i64.i256.i32.i32(i256 %tmp188, i32 192, i32 255)
+
+ST_1: stg_344 [1/1] 0.89ns
+:14  store i64 %tmp_key_V_6, i64* @inputWord_key_V, align 8
+
+ST_1: tmp_76 [1/1] 0.00ns
+:15  %tmp_76 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 112)
+
+ST_1: stg_346 [1/1] 0.00ns
+:16  br i1 %tmp_76, label %._crit_edge285, label %7
+
+ST_1: p_Result_s [1/1] 0.00ns
+:0  %p_Result_s = call i8 @_ssdm_op_PartSelect.i8.i256.i32.i32(i256 %tmp188, i32 104, i32 111)
+
+ST_1: tmp_79 [1/1] 1.34ns
+:1  %tmp_79 = icmp eq i8 %p_Result_s, 8
+
+ST_1: tmp_80 [1/1] 1.34ns
+:2  %tmp_80 = icmp eq i8 %p_Result_s, 4
+
+ST_1: tmp_81 [1/1] 0.71ns
+:3  %tmp_81 = or i1 %tmp_80, %tmp_79
+
+ST_1: stg_351 [1/1] 0.00ns
+:4  br i1 %tmp_81, label %._crit_edge285, label %8
+
+ST_1: p_Result_6 [1/1] 0.00ns
+:0  %p_Result_6 = call i32 @_ssdm_op_PartSelect.i32.i256.i32.i32(i256 %tmp188, i32 72, i32 103)
+
+ST_1: stg_353 [1/1] 0.00ns
+:1  store i32 %p_Result_6, i32* @pushWord_address_V, align 4
+
+ST_1: stg_354 [1/1] 0.00ns
+:2  store i8 %p_Result_s, i8* @pushWord_operation_V, align 4
+
+ST_1: tmp_82 [1/1] 0.00ns
+:3  %tmp_82 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp188, i32 104)
+
+ST_1: tmp_V_16 [1/1] 0.00ns
+:4  %tmp_V_16 = zext i1 %tmp_82 to i2
+
+ST_1: stg_357 [1/1] 1.66ns
+:5  call void @_ssdm_op_Write.ap_fifo.volatile.i2P(i2* @filterSeq_V_V, i2 %tmp_V_16) nounwind
+
+ST_1: stg_358 [1/1] 0.89ns
+:6  br label %9
+
+ST_1: stg_359 [1/1] 0.89ns
+._crit_edge285:1  br label %9
+
+ST_1: storemerge5 [1/1] 0.00ns
+:0  %storemerge5 = phi i3 [ 1, %8 ], [ -3, %._crit_edge285 ]
+
+ST_1: stg_361 [1/1] 1.07ns
+:1  store i3 %storemerge5, i3* @accState, align 1
+
+ST_1: stg_362 [1/1] 1.07ns
+:0  store i3 3, i3* @accState, align 1
+
+ST_1: stg_363 [1/1] 1.07ns
+:0  store i3 3, i3* @accState, align 1
+
+ST_1: stg_364 [1/1] 0.00ns
+:0  br label %._crit_edge278
+
+
+ <State 2>: 2.91ns
+ST_2: stg_365 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1530, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1531, [1 x i8]* @str1531, [8 x i8]* @str1530) nounwind
+
+ST_2: stg_366 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1526, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1527, [1 x i8]* @str1527, [8 x i8]* @str1526) nounwind
+
+ST_2: stg_367 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1522, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1523, [1 x i8]* @str1523, [8 x i8]* @str1522) nounwind
+
+ST_2: stg_368 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1518, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1519, [1 x i8]* @str1519, [8 x i8]* @str1518) nounwind
+
+ST_2: stg_369 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1514, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1515, [1 x i8]* @str1515, [8 x i8]* @str1514) nounwind
+
+ST_2: stg_370 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1510, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1511, [1 x i8]* @str1511, [8 x i8]* @str1510) nounwind
+
+ST_2: stg_371 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i256* @accCtrl2demux_V, [8 x i8]* @str1506, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1507, [1 x i8]* @str1507, [8 x i8]* @str1506) nounwind
+
+ST_2: stg_372 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i1* @filterPopGet_V_V, [8 x i8]* @str1502, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1503, [1 x i8]* @str1503, [8 x i8]* @str1502)
+
+ST_2: stg_373 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i1* @filterPopSet_V_V, [8 x i8]* @str1498, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1499, [1 x i8]* @str1499, [8 x i8]* @str1498)
+
+ST_2: stg_374 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecInterface(i2* @filterSeq_V_V, [8 x i8]* @str1434, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1435, [1 x i8]* @str1435, [8 x i8]* @str1434)
+
+ST_2: stg_375 [1/1] 0.00ns
+codeRepl:10  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1314, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1315, [1 x i8]* @str1315, [8 x i8]* @str1314) nounwind
+
+ST_2: stg_376 [1/1] 0.00ns
+codeRepl:11  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1310, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1311, [1 x i8]* @str1311, [8 x i8]* @str1310) nounwind
+
+ST_2: stg_377 [1/1] 0.00ns
+codeRepl:12  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1306, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1307, [1 x i8]* @str1307, [8 x i8]* @str1306) nounwind
+
+ST_2: stg_378 [1/1] 0.00ns
+codeRepl:13  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1302, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1303, [1 x i8]* @str1303, [8 x i8]* @str1302) nounwind
+
+ST_2: stg_379 [1/1] 0.00ns
+codeRepl:14  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1298, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1299, [1 x i8]* @str1299, [8 x i8]* @str1298) nounwind
+
+ST_2: stg_380 [1/1] 0.00ns
+codeRepl:15  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1294, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1295, [1 x i8]* @str1295, [8 x i8]* @str1294) nounwind
+
+ST_2: stg_381 [1/1] 0.00ns
+codeRepl:16  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1290, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1291, [1 x i8]* @str1291, [8 x i8]* @str1290) nounwind
+
+ST_2: stg_382 [1/1] 0.00ns
+codeRepl:17  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str127, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1128, [1 x i8]* @p_str1128, [1 x i8]* @p_str1128) nounwind
+
+ST_2: stg_383 [1/1] 0.00ns
+codeRepl:18  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str1128) nounwind
+
+ST_2: empty [1/1] 0.00ns
+codeRepl:50  %empty = call i32 (...)* @_ssdm_op_SpecChannel([14 x i8]* @str1432, i32 1, [1 x i8]* @str1433, [1 x i8]* @str1433, i32 16, i32 16, i2* @filterSeq_V_V, i2* @filterSeq_V_V) nounwind
+
+ST_2: stg_385 [1/1] 0.00ns
+:1  br label %._crit_edge302
+
+ST_2: stg_386 [1/1] 0.00ns
+._crit_edge302:0  br label %48
+
+ST_2: stg_387 [1/1] 0.00ns
+:1  br label %48
+
+ST_2: stg_388 [1/1] 1.17ns
+._crit_edge303:3  switch i3 %tmp_78, label %branch23 [
+    i3 0, label %branch16
+    i3 1, label %branch17
+    i3 2, label %branch18
+    i3 3, label %branch19
+    i3 -4, label %branch20
+    i3 -3, label %branch21
+    i3 -2, label %branch22
+  ]
+
+ST_2: stg_389 [1/1] 1.17ns
+._crit_edge303325:0  switch i3 %tmp_78, label %branch55 [
+    i3 0, label %branch48
+    i3 1, label %branch49
+    i3 2, label %branch50
+    i3 3, label %branch51
+    i3 -4, label %branch52
+    i3 -3, label %branch53
+    i3 -2, label %branch54
+  ]
+
+ST_2: stg_390 [1/1] 0.00ns
+branch54:1  br label %._crit_edge303325363
+
+ST_2: stg_391 [1/1] 0.00ns
+branch53:1  br label %._crit_edge303325363
+
+ST_2: stg_392 [1/1] 0.00ns
+branch52:1  br label %._crit_edge303325363
+
+ST_2: stg_393 [1/1] 0.00ns
+branch51:1  br label %._crit_edge303325363
+
+ST_2: stg_394 [1/1] 0.00ns
+branch50:1  br label %._crit_edge303325363
+
+ST_2: stg_395 [1/1] 0.00ns
+branch49:1  br label %._crit_edge303325363
+
+ST_2: stg_396 [1/1] 0.00ns
+branch48:1  br label %._crit_edge303325363
+
+ST_2: stg_397 [1/1] 0.00ns
+branch55:1  br label %._crit_edge303325363
+
+ST_2: stg_398 [1/1] 0.00ns
+:1  br label %._crit_edge300
+
+ST_2: stg_399 [1/1] 0.00ns
+._crit_edge300:0  br label %42
+
+ST_2: stg_400 [1/1] 0.00ns
+:1  br label %42
+
+ST_2: stg_401 [1/1] 1.17ns
+._crit_edge301:3  switch i3 %tmp_77, label %branch15 [
+    i3 0, label %branch8
+    i3 1, label %branch9
+    i3 2, label %branch10
+    i3 3, label %branch11
+    i3 -4, label %branch12
+    i3 -3, label %branch13
+    i3 -2, label %branch14
+  ]
+
+ST_2: stg_402 [1/1] 1.17ns
+._crit_edge301316:0  switch i3 %tmp_77, label %branch47 [
+    i3 0, label %branch40
+    i3 1, label %branch41
+    i3 2, label %branch42
+    i3 3, label %branch43
+    i3 -4, label %branch44
+    i3 -3, label %branch45
+    i3 -2, label %branch46
+  ]
+
+ST_2: stg_403 [1/1] 0.00ns
+branch46:1  br label %._crit_edge301316353
+
+ST_2: stg_404 [1/1] 0.00ns
+branch45:1  br label %._crit_edge301316353
+
+ST_2: stg_405 [1/1] 0.00ns
+branch44:1  br label %._crit_edge301316353
+
+ST_2: stg_406 [1/1] 0.00ns
+branch43:1  br label %._crit_edge301316353
+
+ST_2: stg_407 [1/1] 0.00ns
+branch42:1  br label %._crit_edge301316353
+
+ST_2: stg_408 [1/1] 0.00ns
+branch41:1  br label %._crit_edge301316353
+
+ST_2: stg_409 [1/1] 0.00ns
+branch40:1  br label %._crit_edge301316353
+
+ST_2: stg_410 [1/1] 0.00ns
+branch47:1  br label %._crit_edge301316353
+
+ST_2: stg_411 [1/1] 0.00ns
+:1  br label %._crit_edge298
+
+ST_2: stg_412 [1/1] 0.00ns
+._crit_edge298.loopexit:0  br label %._crit_edge298
+
+ST_2: stg_413 [1/1] 0.00ns
+._crit_edge298:0  br label %36
+
+ST_2: stg_414 [1/1] 0.00ns
+:1  br label %36
+
+ST_2: stg_415 [1/1] 0.00ns
+:0  br label %37
+
+ST_2: stg_416 [1/1] 0.00ns
+:1  br label %37
+
+ST_2: stg_417 [1/1] 2.91ns
+:15  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @accCtrl2demux_V, i256 %tmp_3) nounwind
+
+ST_2: stg_418 [1/1] 0.00ns
+:1  br label %._crit_edge293
+
+ST_2: stg_419 [1/1] 0.00ns
+:2  br label %._crit_edge291
+
+ST_2: stg_420 [1/1] 1.17ns
+:2  switch i3 %tmp_70, label %branch7 [
+    i3 0, label %branch0
+    i3 1, label %branch1
+    i3 2, label %branch2
+    i3 3, label %branch3
+    i3 -4, label %branch4
+    i3 -3, label %branch5
+    i3 -2, label %branch6
+  ]
+
+ST_2: stg_421 [1/1] 1.17ns
+:0  switch i3 %tmp_70, label %branch31 [
+    i3 0, label %branch24
+    i3 1, label %branch25
+    i3 2, label %branch26
+    i3 3, label %branch27
+    i3 -4, label %branch28
+    i3 -3, label %branch29
+    i3 -2, label %branch30
+  ]
+
+ST_2: stg_422 [1/1] 1.17ns
+:0  switch i3 %tmp_70, label %branch39 [
+    i3 0, label %branch32
+    i3 1, label %branch33
+    i3 2, label %branch34
+    i3 3, label %branch35
+    i3 -4, label %branch36
+    i3 -3, label %branch37
+    i3 -2, label %branch38
+  ]
+
+ST_2: stg_423 [1/1] 0.00ns
+branch38:1  br label %19
+
+ST_2: stg_424 [1/1] 0.00ns
+branch37:1  br label %19
+
+ST_2: stg_425 [1/1] 0.00ns
+branch36:1  br label %19
+
+ST_2: stg_426 [1/1] 0.00ns
+branch35:1  br label %19
+
+ST_2: stg_427 [1/1] 0.00ns
+branch34:1  br label %19
+
+ST_2: stg_428 [1/1] 0.00ns
+branch33:1  br label %19
+
+ST_2: stg_429 [1/1] 0.00ns
+branch32:1  br label %19
+
+ST_2: stg_430 [1/1] 0.00ns
+branch39:1  br label %19
+
+ST_2: stg_431 [1/1] 0.00ns
+:7  br label %push.exit
+
+ST_2: tmp_metadata_V_6 [1/1] 0.00ns
+push.exit:0  %tmp_metadata_V_6 = load i124* @inputWord_metadata_V, align 8
+
+ST_2: tmp_SOP_V_2 [1/1] 0.00ns
+push.exit:1  %tmp_SOP_V_2 = load i1* @inputWord_SOP_V, align 8
+
+ST_2: tmp_keyValid_V_8 [1/1] 0.00ns
+push.exit:2  %tmp_keyValid_V_8 = load i1* @inputWord_keyValid_V, align 1
+
+ST_2: tmp_valueValid_V_3 [1/1] 0.00ns
+push.exit:3  %tmp_valueValid_V_3 = load i1* @inputWord_valueValid_V, align 2
+
+ST_2: tmp_EOP_V_9 [1/1] 0.00ns
+push.exit:4  %tmp_EOP_V_9 = load i1* @inputWord_EOP_V, align 1
+
+ST_2: tmp_value_V_4 [1/1] 0.00ns
+push.exit:5  %tmp_value_V_4 = load i64* @inputWord_value_V, align 8
+
+ST_2: tmp_key_V_7 [1/1] 0.00ns
+push.exit:6  %tmp_key_V_7 = load i64* @inputWord_key_V, align 8
+
+ST_2: tmp_2 [1/1] 0.00ns
+push.exit:7  %tmp_2 = call i256 @_ssdm_op_BitConcatenate.i256.i64.i64.i1.i1.i1.i1.i124(i64 %tmp_key_V_7, i64 %tmp_value_V_4, i1 %tmp_EOP_V_9, i1 %tmp_valueValid_V_3, i1 %tmp_keyValid_V_8, i1 %tmp_SOP_V_2, i124 %tmp_metadata_V_6)
+
+ST_2: stg_440 [1/1] 2.91ns
+push.exit:8  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @accCtrl2demux_V, i256 %tmp_2) nounwind
+
+ST_2: stg_441 [1/1] 2.91ns
+._crit_edge285:0  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @accCtrl2demux_V, i256 %tmp188) nounwind
+
+ST_2: stg_442 [1/1] 0.00ns
+:2  br label %._crit_edge283
+
+ST_2: stg_443 [1/1] 0.00ns
+._crit_edge283:0  br label %10
+
+ST_2: stg_444 [1/1] 0.00ns
+:1  br label %10
+
+ST_2: stg_445 [1/1] 0.00ns
+:0  br label %11
+
+ST_2: stg_446 [1/1] 0.00ns
+:1  br label %11
+
+ST_2: stg_447 [1/1] 0.00ns
+._crit_edge278:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

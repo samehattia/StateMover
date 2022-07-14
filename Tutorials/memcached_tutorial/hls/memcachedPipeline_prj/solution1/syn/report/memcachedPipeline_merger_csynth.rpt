@@ -1,0 +1,143 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_merger'
+================================================================
+* Date:           Wed Oct 21 12:18:56 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      2.91|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|       4|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|     256|
+|Register         |        -|      -|     523|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|     523|     260|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------+----------+-------+---+----+------------+------------+
+    |  Variable Name | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------+----------+-------+---+----+------------+------------+
+    |ap_sig_bdd_204  |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_205  |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_115  |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_76   |    or    |      0|  0|   1|           1|           1|
+    +----------------+----------+-------+---+----+------------+------------+
+    |Total           |          |      0|  0|   4|           4|           4|
+    +----------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------+-----+-----------+-----+-----------+
+    |              Name              | LUT | Input Size| Bits| Total Bits|
+    +--------------------------------+-----+-----------+-----+-----------+
+    |merger2responseFormatter_V_din  |  256|          3|  256|        768|
+    +--------------------------------+-----+-----------+-----+-----------+
+    |Total                           |  256|          3|  256|        768|
+    +--------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------+-----+----+-----+-----------+
+    |             Name             |  FF | LUT| Bits| Const Bits|
+    +------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                     |    1|   0|    1|          0|
+    |ap_done_reg                   |    1|   0|    1|          0|
+    |ap_reg_ppiten_pp0_it1         |    1|   0|    1|          0|
+    |dramOrFlash_V_1               |    1|   0|    1|          0|
+    |dramOrFlash_V_1_load_reg_218  |    1|   0|    1|          0|
+    |mergerState                   |    1|   0|    1|          0|
+    |mergerState_load_reg_214      |    1|   0|    1|          0|
+    |reg_168                       |  256|   0|  256|          0|
+    |reg_173                       |  256|   0|  256|          0|
+    |tmp_1_reg_226                 |    1|   0|    1|          0|
+    |tmp_2_reg_238                 |    1|   0|    1|          0|
+    |tmp_3_reg_230                 |    1|   0|    1|          0|
+    |tmp_reg_222                   |    1|   0|    1|          0|
+    +------------------------------+-----+----+-----+-----------+
+    |Total                         |  523|   0|  523|          0|
+    +------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------+-----+-----+--------------+----------------------------+--------------+
+|             RTL Ports             | Dir | Bits|   Protocol   |        Source Object       |    C Type    |
++-----------------------------------+-----+-----+--------------+----------------------------+--------------+
+|ap_clk                             |  in |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_rst                             |  in |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_start                           |  in |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_done                            | out |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_continue                        |  in |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_idle                            | out |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|ap_ready                           | out |    1| ap_ctrl_none |  memcachedPipeline_merger  | return value |
+|valueStoreDram2merger_V_dout       |  in |  256|    ap_fifo   |   valueStoreDram2merger_V  |    pointer   |
+|valueStoreDram2merger_V_empty_n    |  in |    1|    ap_fifo   |   valueStoreDram2merger_V  |    pointer   |
+|valueStoreDram2merger_V_read       | out |    1|    ap_fifo   |   valueStoreDram2merger_V  |    pointer   |
+|valueStoreFlash2merger_V_dout      |  in |  256|    ap_fifo   |  valueStoreFlash2merger_V  |    pointer   |
+|valueStoreFlash2merger_V_empty_n   |  in |    1|    ap_fifo   |  valueStoreFlash2merger_V  |    pointer   |
+|valueStoreFlash2merger_V_read      | out |    1|    ap_fifo   |  valueStoreFlash2merger_V  |    pointer   |
+|merger2responseFormatter_V_din     | out |  256|    ap_fifo   | merger2responseFormatter_V |    pointer   |
+|merger2responseFormatter_V_full_n  |  in |    1|    ap_fifo   | merger2responseFormatter_V |    pointer   |
+|merger2responseFormatter_V_write   | out |    1|    ap_fifo   | merger2responseFormatter_V |    pointer   |
++-----------------------------------+-----+-----+--------------+----------------------------+--------------+
+

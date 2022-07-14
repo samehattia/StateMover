@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="dramModel" xd:componentRef="dramModel" xd:initiationInterval="5" xd:clockPeriod="6.400" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="rdCmdIn.address" xd:originalName="rdCmdIn" xd:direction="in" xd:interfaceRef="rdCmdIn_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="rdCmdIn.count" xd:originalName="rdCmdIn" xd:direction="in" xd:interfaceRef="rdCmdIn_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="rdDataOut" xd:originalName="rdDataOut" xd:direction="out" xd:interfaceRef="rdDataOut_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="wrCmdIn.address" xd:originalName="wrCmdIn" xd:direction="in" xd:interfaceRef="wrCmdIn_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="wrCmdIn.count" xd:originalName="wrCmdIn" xd:direction="in" xd:interfaceRef="wrCmdIn_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="wrDataIn" xd:originalName="wrDataIn" xd:direction="in" xd:interfaceRef="wrDataIn_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:latencyEstimates xd:best-case="4" xd:worst-case="4" xd:average-case="4"/>
+  <xd:resourceEstimates xd:LUT="323" xd:FF="1114" xd:BRAM="114" xd:DSP="0"/>
+</xd:acceleratorMap>

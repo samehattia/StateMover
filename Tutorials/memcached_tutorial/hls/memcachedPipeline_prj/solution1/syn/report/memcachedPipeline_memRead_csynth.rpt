@@ -1,0 +1,173 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_memRead'
+================================================================
+* Date:           Wed Oct 21 12:18:47 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.67|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|    1407|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|     133|
+|Register         |        -|      -|     473|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|     473|    1540|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------+----------+-------+---+-----+------------+------------+
+    |             Variable Name             | Operation| DSP48E| FF| LUT | Bitwidth P0| Bitwidth P1|
+    +---------------------------------------+----------+-------+---+-----+------------+------------+
+    |memData_count_V_fu_351_p2              |     +    |      0|  0|    5|           5|           5|
+    |tmp_492_fu_288_p2                      |     -    |      0|  0|    9|           9|           8|
+    |tmp_496_fu_304_p2                      |     -    |      0|  0|    9|           9|           8|
+    |p_0184_1_0_v_cast_cast_cast_fu_344_p3  |  Select  |      0|  0|    2|           1|           2|
+    |tmp_data_V_fu_393_p3                   |  Select  |      0|  0|  128|           1|         128|
+    |ap_sig_bdd_121                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_193                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_198                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_201                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_365                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_366                         |    and   |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_88                          |    and   |      0|  0|    1|           1|           1|
+    |p_Result_66_fu_374_p2                  |    and   |      0|  0|  160|         128|         128|
+    |p_Result_67_fu_387_p2                  |    and   |      0|  0|  160|         128|         128|
+    |tmp_313_fu_258_p2                      |   icmp   |      0|  0|    3|           8|           8|
+    |tmp_314_fu_264_p2                      |   icmp   |      0|  0|    3|           8|           5|
+    |tmp_s_fu_234_p2                        |   icmp   |      0|  0|    3|           8|           4|
+    |tmp_494_fu_298_p2                      |   lshr   |      0|  0|  458|           2|         128|
+    |tmp_498_fu_381_p2                      |   lshr   |      0|  0|  458|           2|         128|
+    |ap_sig_bdd_69                          |    or    |      0|  0|    1|           1|           1|
+    |ap_sig_bdd_99                          |    or    |      0|  0|    1|           1|           1|
+    +---------------------------------------+----------+-------+---+-----+------------+------------+
+    |Total                                  |          |      0|  0| 1407|         318|         689|
+    +---------------------------------------+----------+-------+---+-----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |                Name               | LUT | Input Size| Bits| Total Bits|
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm1                         |    2|          3|    2|          6|
+    |ap_sig_ioackin_memRdCtrl_V_TREADY  |    1|          2|    1|          2|
+    |memRd2comp_V_din                   |  130|          3|  130|        390|
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |Total                              |  133|          8|  133|        398|
+    +-----------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+-----+----+-----+-----------+
+    |                Name               |  FF | LUT| Bits| Const Bits|
+    +-----------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm0                         |    1|   0|    1|          0|
+    |ap_CS_fsm1                         |    2|   0|    2|          0|
+    |ap_done_reg                        |    1|   0|    1|          0|
+    |ap_reg_ioackin_memRdCtrl_V_TREADY  |    1|   0|    1|          0|
+    |memRdState                         |    1|   0|    1|          0|
+    |memRdState_load_reg_407            |    1|   0|    1|          0|
+    |p_Val2_s_reg_425                   |  128|   0|  128|          0|
+    |tmp1_reg_419                       |   64|   0|   64|          0|
+    |tmp_107_reg_464                    |    2|   0|    2|          0|
+    |tmp_313_reg_444                    |    1|   0|    1|          0|
+    |tmp_314_reg_449                    |    1|   0|    1|          0|
+    |tmp_494_reg_454                    |  128|   0|  128|          0|
+    |tmp_496_reg_459                    |    5|   0|    8|          3|
+    |tmp_5_reg_469                      |  130|   0|  130|          0|
+    |tmp_83_reg_415                     |    1|   0|    1|          0|
+    |tmp_92_reg_439                     |    4|   0|    4|          0|
+    |tmp_reg_411                        |    1|   0|    1|          0|
+    |tmp_s_reg_435                      |    1|   0|    1|          0|
+    +-----------------------------------+-----+----+-----+-----------+
+    |Total                              |  473|   0|  476|          3|
+    +-----------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+---------------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_start                |  in |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_done                 | out |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_continue             |  in |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|ap_ready                | out |    1| ap_ctrl_hs | memcachedPipeline_memRead | return value |
+|cc2memReadMd_V_dout     |  in |   64|   ap_fifo  |       cc2memReadMd_V      |    pointer   |
+|cc2memReadMd_V_empty_n  |  in |    1|   ap_fifo  |       cc2memReadMd_V      |    pointer   |
+|cc2memReadMd_V_read     | out |    1|   ap_fifo  |       cc2memReadMd_V      |    pointer   |
+|cc2memRead_V_dout       |  in |  130|   ap_fifo  |        cc2memRead_V       |    pointer   |
+|cc2memRead_V_empty_n    |  in |    1|   ap_fifo  |        cc2memRead_V       |    pointer   |
+|cc2memRead_V_read       | out |    1|   ap_fifo  |        cc2memRead_V       |    pointer   |
+|memRd2comp_V_din        | out |  130|   ap_fifo  |        memRd2comp_V       |    pointer   |
+|memRd2comp_V_full_n     |  in |    1|   ap_fifo  |        memRd2comp_V       |    pointer   |
+|memRd2comp_V_write      | out |    1|   ap_fifo  |        memRd2comp_V       |    pointer   |
+|memRd2compMd_V_din      | out |   64|   ap_fifo  |       memRd2compMd_V      |    pointer   |
+|memRd2compMd_V_full_n   |  in |    1|   ap_fifo  |       memRd2compMd_V      |    pointer   |
+|memRd2compMd_V_write    | out |    1|   ap_fifo  |       memRd2compMd_V      |    pointer   |
+|memRdCtrl_V_TREADY      |  in |    1|    axis    |        memRdCtrl_V        |    pointer   |
+|memRdCtrl_V_TDATA       | out |   40|    axis    |        memRdCtrl_V        |    pointer   |
+|memRdCtrl_V_TVALID      | out |    1|    axis    |        memRdCtrl_V        |    pointer   |
++------------------------+-----+-----+------------+---------------------------+--------------+
+

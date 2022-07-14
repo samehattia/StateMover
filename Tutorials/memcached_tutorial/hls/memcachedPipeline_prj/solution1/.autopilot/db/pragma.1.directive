@@ -1,0 +1,14 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="splitter" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="splitter" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

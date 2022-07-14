@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="memcachedPipeline" xd:componentRef="memcachedPipeline" xd:initiationInterval="6" xd:clockPeriod="6.660000" xd:sequential="true" xd:hostMachine="64" xd:reset="all">
+  <xd:arg xd:name="inData.data" xd:originalName="inData" xd:direction="in" xd:interfaceRef="inData" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="inData.user" xd:originalName="inData" xd:direction="in" xd:interfaceRef="inData" xd:busTypeRef="axis" xd:dataWidth="112"/>
+  <xd:arg xd:name="inData.keep" xd:originalName="inData" xd:direction="in" xd:interfaceRef="inData" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="inData.last" xd:originalName="inData" xd:direction="in" xd:interfaceRef="inData" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="outData.data" xd:originalName="outData" xd:direction="out" xd:interfaceRef="outData" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="outData.user" xd:originalName="outData" xd:direction="out" xd:interfaceRef="outData" xd:busTypeRef="axis" xd:dataWidth="112"/>
+  <xd:arg xd:name="outData.keep" xd:originalName="outData" xd:direction="out" xd:interfaceRef="outData" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="outData.last" xd:originalName="outData" xd:direction="out" xd:interfaceRef="outData" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dramValueStoreMemRdCmd.address" xd:originalName="dramValueStoreMemRdCmd" xd:direction="out" xd:interfaceRef="dramValueStoreMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="dramValueStoreMemRdCmd.count" xd:originalName="dramValueStoreMemRdCmd" xd:direction="out" xd:interfaceRef="dramValueStoreMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="dramValueStoreMemRdData" xd:originalName="dramValueStoreMemRdData" xd:direction="in" xd:interfaceRef="dramValueStoreMemRdData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="dramValueStoreMemWrCmd.address" xd:originalName="dramValueStoreMemWrCmd" xd:direction="out" xd:interfaceRef="dramValueStoreMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="dramValueStoreMemWrCmd.count" xd:originalName="dramValueStoreMemWrCmd" xd:direction="out" xd:interfaceRef="dramValueStoreMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="dramValueStoreMemWrData" xd:originalName="dramValueStoreMemWrData" xd:direction="out" xd:interfaceRef="dramValueStoreMemWrData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="flashValueStoreMemRdCmd.address" xd:originalName="flashValueStoreMemRdCmd" xd:direction="out" xd:interfaceRef="flashValueStoreMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="flashValueStoreMemRdCmd.count" xd:originalName="flashValueStoreMemRdCmd" xd:direction="out" xd:interfaceRef="flashValueStoreMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="44:32" xd:dataWidth="13"/>
+  <xd:arg xd:name="flashValueStoreMemRdData" xd:originalName="flashValueStoreMemRdData" xd:direction="in" xd:interfaceRef="flashValueStoreMemRdData_V_V" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="flashValueStoreMemWrCmd.address" xd:originalName="flashValueStoreMemWrCmd" xd:direction="out" xd:interfaceRef="flashValueStoreMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="flashValueStoreMemWrCmd.count" xd:originalName="flashValueStoreMemWrCmd" xd:direction="out" xd:interfaceRef="flashValueStoreMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="44:32" xd:dataWidth="13"/>
+  <xd:arg xd:name="flashValueStoreMemWrData" xd:originalName="flashValueStoreMemWrData" xd:direction="out" xd:interfaceRef="flashValueStoreMemWrData_V_V" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="hashTableMemRdData" xd:originalName="hashTableMemRdData" xd:direction="in" xd:interfaceRef="hashTableMemRdData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="hashTableMemRdCmd.address" xd:originalName="hashTableMemRdCmd" xd:direction="out" xd:interfaceRef="hashTableMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="hashTableMemRdCmd.count" xd:originalName="hashTableMemRdCmd" xd:direction="out" xd:interfaceRef="hashTableMemRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="hashTableMemWrData" xd:originalName="hashTableMemWrData" xd:direction="out" xd:interfaceRef="hashTableMemWrData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="hashTableMemWrCmd.address" xd:originalName="hashTableMemWrCmd" xd:direction="out" xd:interfaceRef="hashTableMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="hashTableMemWrCmd.count" xd:originalName="hashTableMemWrCmd" xd:direction="out" xd:interfaceRef="hashTableMemWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="addressReturnOut" xd:originalName="addressReturnOut" xd:direction="out" xd:interfaceRef="addressReturnOut_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="addressAssignDramIn" xd:originalName="addressAssignDramIn" xd:direction="in" xd:interfaceRef="addressAssignDramIn_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="addressAssignFlashIn" xd:originalName="addressAssignFlashIn" xd:direction="in" xd:interfaceRef="addressAssignFlashIn_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="flushReq" xd:originalName="flushReq" xd:direction="out" xd:interfaceRef="flushReq_V" xd:busTypeRef="register" xd:dataWidth="1" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="flushAck" xd:originalName="flushAck" xd:direction="in" xd:interfaceRef="flushAck_V" xd:busTypeRef="register" xd:dataWidth="1" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="flushDone" xd:originalName="flushDone" xd:direction="out" xd:interfaceRef="flushDone_V" xd:busTypeRef="register" xd:dataWidth="1" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="5" xd:worst-case="5" xd:average-case="5"/>
+  <xd:resourceEstimates xd:LUT="139045" xd:FF="32705" xd:BRAM="311" xd:DSP="0"/>
+</xd:acceleratorMap>

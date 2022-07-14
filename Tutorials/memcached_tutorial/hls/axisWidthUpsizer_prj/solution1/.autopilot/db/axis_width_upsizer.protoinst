@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"axis_width_upsizer": {
+			"proto_instances": {
+			}
+		}
+	}
+}

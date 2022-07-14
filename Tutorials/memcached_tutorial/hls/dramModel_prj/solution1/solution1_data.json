@@ -1,0 +1,331 @@
+{
+  "Top": "dramModel",
+  "RtlTop": "dramModel",
+  "RtlPrefix": "",
+  "SourceLanguage": "cpp",
+  "ResetStyle": "control",
+  "GenerateBdFiles": "1",
+  "HostMachineBits": "64",
+  "Target": {
+    "Family": "kintexu",
+    "Device": "xcku040",
+    "Package": "-ffva1156",
+    "Speed": "-2-e"
+  },
+  "HlsSolution": {"Config": [
+      "config_export -description {A BRAM Value Store imitating the I\/F of the DDR one.}",
+      "config_export -display_name {Dram Model for the KVS Pipeline}",
+      "config_export -format=ip_catalog",
+      "config_export -vendor=xilinx.labs",
+      "config_export -version=1.0"
+    ]},
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "ClockPeriod": "6.4",
+    "IsCombLogic": "0",
+    "II": "x",
+    "Latency": "4",
+    "Uncertainty": "0.8"
+  },
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 6.400 [get_ports ap_clk]"]},
+  "Ipx": {
+    "Vendor": "xilinx.labs",
+    "Library": "hls",
+    "Name": "dramModel",
+    "Version": "1.0",
+    "DisplayName": "Dram Model for the KVS Pipeline",
+    "Revision": "",
+    "Description": "A BRAM Value Store imitating the I\/F of the DDR one.",
+    "Taxonomy": "\/VIVADO_HLS_IP",
+    "AutoFamilySupport": ""
+  },
+  "Files": {
+    "CSource": ["..\/..\/src\/otherModules\/dramModel\/dramModel.cpp"],
+    "Vhdl": [
+      "impl\/vhdl\/cmdAggregator.vhd",
+      "impl\/vhdl\/fifo_w21_d16_A.vhd",
+      "impl\/vhdl\/memAccess.vhd",
+      "impl\/vhdl\/memAccess_memArray_V.vhd",
+      "impl\/vhdl\/dramModel.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/cmdAggregator.v",
+      "impl\/verilog\/fifo_w21_d16_A.v",
+      "impl\/verilog\/memAccess.v",
+      "impl\/verilog\/memAccess_memArray_V.v",
+      "impl\/verilog\/memAccess_memArray_V_ram.dat",
+      "impl\/verilog\/dramModel.v"
+    ],
+    "Misc": ["impl\/misc\/logo.png"],
+    "DesignXml": "\/home\/sameh\/Dropbox\/UofT\/Research\/Work\/Designs\/debugging\/memcached\/hls\/dramModel_prj\/solution1\/.autopilot\/db\/dramModel.design.xml"
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "IP": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "ctype": {"CLK": {"Type": "bool"}},
+      "buses": "rdCmdIn_V rdDataOut_V_V wrCmdIn_V wrDataIn_V_V",
+      "reset": "ap_rst_n"
+    },
+    "ap_rst_n": {
+      "type": "reset",
+      "polarity": "ACTIVE_LOW",
+      "ctype": {"RST": {"Type": "bool"}}
+    },
+    "rdCmdIn_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "rdCmdIn_V",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "struct",
+          "Width": "40",
+          "Fields": {
+            "address": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "count": {
+              "Type": "integer unsigned",
+              "Width": "8"
+            }
+          }
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"}
+      },
+      "port_width": {"TDATA": "40"}
+    },
+    "rdDataOut_V_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "rdDataOut_V_V",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"}
+      },
+      "port_width": {"TDATA": "512"}
+    },
+    "wrCmdIn_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "wrCmdIn_V",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "struct",
+          "Width": "40",
+          "Fields": {
+            "address": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "count": {
+              "Type": "integer unsigned",
+              "Width": "8"
+            }
+          }
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"}
+      },
+      "port_width": {"TDATA": "40"}
+    },
+    "wrDataIn_V_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "wrDataIn_V_V",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"}
+      },
+      "port_width": {"TDATA": "512"}
+    }
+  },
+  "RtlPorts": {
+    "rdCmdIn_V_TDATA": {
+      "dir": "in",
+      "width": "40"
+    },
+    "rdCmdIn_V_TVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "rdCmdIn_V_TREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "rdDataOut_V_V_TDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "rdDataOut_V_V_TVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "rdDataOut_V_V_TREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "wrCmdIn_V_TDATA": {
+      "dir": "in",
+      "width": "40"
+    },
+    "wrCmdIn_V_TVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "wrCmdIn_V_TREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "wrDataIn_V_V_TDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "wrDataIn_V_V_TVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "wrDataIn_V_V_TREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst_n": {
+      "dir": "in",
+      "width": "1"
+    }
+  },
+  "CPorts": {
+    "rdCmdIn_V": {
+      "interfaceRef": "rdCmdIn_V",
+      "dir": "in"
+    },
+    "rdDataOut_V_V": {
+      "interfaceRef": "rdDataOut_V_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "wrCmdIn_V": {
+      "interfaceRef": "wrCmdIn_V",
+      "dir": "in"
+    },
+    "wrDataIn_V_V": {
+      "interfaceRef": "wrDataIn_V_V",
+      "dir": "in"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {
+      "ModuleName": "dramModel",
+      "Instances": [
+        {
+          "ModuleName": "memAccess",
+          "InstanceName": "memAccess_U0"
+        },
+        {
+          "ModuleName": "cmdAggregator",
+          "InstanceName": "cmdAggregator_U0"
+        }
+      ]
+    },
+    "Metrics": {
+      "cmdAggregator": {
+        "Latency": {
+          "LatencyBest": "1",
+          "LatencyAvg": "1",
+          "LatencyWorst": "1",
+          "PipelineII": "1",
+          "PipelineDepth": "2",
+          "PipelineType": "function"
+        },
+        "Timing": {
+          "Target": "6.40",
+          "Uncertainty": "0.80",
+          "Estimate": "2.265"
+        },
+        "Area": {
+          "FF": "46",
+          "LUT": "76",
+          "BRAM_18K": "0",
+          "DSP48E": "0"
+        }
+      },
+      "memAccess": {
+        "Latency": {
+          "LatencyBest": "2",
+          "LatencyAvg": "2",
+          "LatencyWorst": "2",
+          "PipelineII": "1",
+          "PipelineDepth": "3",
+          "PipelineType": "function"
+        },
+        "Timing": {
+          "Target": "6.40",
+          "Uncertainty": "0.80",
+          "Estimate": "3.183"
+        },
+        "Area": {
+          "BRAM_18K": "114",
+          "FF": "1061",
+          "LUT": "210",
+          "DSP48E": "0"
+        }
+      },
+      "dramModel": {
+        "Latency": {
+          "LatencyBest": "4",
+          "LatencyAvg": "4",
+          "LatencyWorst": "4",
+          "PipelineII": "1",
+          "PipelineDepth": "",
+          "PipelineType": "dataflow"
+        },
+        "Timing": {
+          "Target": "6.40",
+          "Uncertainty": "0.80",
+          "Estimate": "3.183"
+        },
+        "Area": {
+          "BRAM_18K": "114",
+          "FF": "1114",
+          "LUT": "323",
+          "DSP48E": "0"
+        }
+      }
+    }
+  },
+  "Sdx": {
+    "Target": "none",
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "XO": "",
+    "KernelName": "dramModel",
+    "EnableXoSwEmu": "1"
+  },
+  "GenData": {
+    "DataVersion": "0.1",
+    "Time": "2020-10-14 13:04:52 EDT",
+    "ToolName": "vivado_hls",
+    "ToolVersion": "2018.3"
+  }
+}

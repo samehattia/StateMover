@@ -1,0 +1,740 @@
+{
+  "Top": "readWriteConverter",
+  "RtlTop": "readWriteConverter",
+  "PcoreTop": "readwriteconverter_top",
+  "RtlPrefix": "",
+  "SourceLanguage": "cpp",
+  "ResetStyle": "all",
+  "GenerateBdFiles": "1",
+  "HostMachineBits": "64",
+  "Target": {
+    "Family": "kintexu",
+    "Device": "xcku040",
+    "Package": "-ffva1156",
+    "Speed": "-2-e"
+  },
+  "HlsSolution": {"Config": [
+      "config_rtl -reset=all",
+      "config_rtl -reset_async=1",
+      "config_export -description {Converts the memcached pipeline mem. read write commands to a format understood by the AXI data mover IP block}",
+      "config_export -display_name {Mem. Read Write Command Converter}",
+      "config_export -format=ip_catalog",
+      "config_export -vendor=xilinx.labs",
+      "config_export -version=1.04"
+    ]},
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "PcoreClockName": "aclk",
+    "ClockPeriod": "6.66",
+    "IsCombLogic": "0",
+    "II": "2",
+    "Latency": "1",
+    "Uncertainty": "0.8325"
+  },
+  "Xdc": {
+    "OocClocks": ["create_clock -name ap_clk -period 6.660 [get_ports ap_clk]"],
+    "PcoreOocClocks": ["create_clock -name aclk -period 6.660 [get_ports aclk]"]
+  },
+  "Ipx": {
+    "Vendor": "xilinx.labs",
+    "Library": "hls",
+    "Name": "readWriteConverter",
+    "Version": "1.04",
+    "DisplayName": "Mem. Read Write Command Converter",
+    "Revision": "",
+    "Description": "Converts the memcached pipeline mem. read write commands to a format understood by the AXI data mover IP block",
+    "Taxonomy": "\/VIVADO_HLS_IP",
+    "AutoFamilySupport": ""
+  },
+  "Files": {
+    "CSource": ["..\/..\/src\/axiDataMoverReadWriteConverter\/readWriteConverter.cpp"],
+    "Vhdl": [
+      "impl\/vhdl\/fifo_w1_d16_A.vhd",
+      "impl\/vhdl\/fifo_w8_d16_A.vhd",
+      "impl\/vhdl\/fifo_w32_d16_A.vhd",
+      "impl\/vhdl\/readWriteConverter.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/fifo_w1_d16_A.v",
+      "impl\/verilog\/fifo_w8_d16_A.v",
+      "impl\/verilog\/fifo_w32_d16_A.v",
+      "impl\/verilog\/readWriteConverter.v"
+    ],
+    "PcoreVerilog": [
+      "impl\/verilog.pcore\/fifo_w1_d16_A.v",
+      "impl\/verilog.pcore\/fifo_w8_d16_A.v",
+      "impl\/verilog.pcore\/fifo_w32_d16_A.v",
+      "impl\/verilog.pcore\/readWriteConverter.v",
+      "impl\/verilog.pcore\/readWriteConverter_ap_rst_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmRdCmd_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmRdData_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmRdStatus_V_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmWrCmd_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmWrData_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_dmWrStatus_V_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_memRdCmd_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_memRdData_V_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_memWrCmd_V_if.v",
+      "impl\/verilog.pcore\/readWriteConverter_memWrData_V_V_if.v",
+      "impl\/verilog.pcore\/readwriteconverter_top.v"
+    ],
+    "Misc": ["impl\/misc\/logo.png"],
+    "DesignXml": "\/home\/sameh\/Dropbox\/UofT\/Research\/Work\/Designs\/debugging\/memcached\/hls\/readWriteConverter_prj\/solution1\/.autopilot\/db\/readWriteConverter.design.xml"
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "IP": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "ctype": {"CLK": {"Type": "bool"}},
+      "reset": "ap_rst"
+    },
+    "ap_rst": {
+      "type": "reset",
+      "polarity": "ACTIVE_HIGH",
+      "ctype": {"RST": {"Type": "bool"}}
+    },
+    "dmRdAddrPosted_V": {
+      "type": "data",
+      "dir": "in",
+      "width": "1",
+      "ctype": {"DATA": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }}
+    },
+    "dmRdCmd_V": {
+      "type": "ap_fifo",
+      "fifo_width": "72",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "struct",
+          "Width": "72",
+          "Fields": {
+            "btt": {
+              "Type": "integer unsigned",
+              "Width": "23"
+            },
+            "type": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "dsa": {
+              "Type": "integer unsigned",
+              "Width": "6"
+            },
+            "eof": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "drr": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "startAddress": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "tag": {
+              "Type": "integer unsigned",
+              "Width": "4"
+            },
+            "rsvd": {
+              "Type": "integer unsigned",
+              "Width": "4"
+            }
+          }
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    },
+    "dmRdData_V": {
+      "type": "ap_fifo",
+      "fifo_width": "577",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "struct",
+          "Width": "577",
+          "Fields": {
+            "data": {
+              "Type": "integer unsigned",
+              "Width": "512"
+            },
+            "keep": {
+              "Type": "integer unsigned",
+              "Width": "64"
+            },
+            "last": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            }
+          }
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "dmRdStatus_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "8",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "integer unsigned",
+          "Width": "8"
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "dmWrAddrPosted_V": {
+      "type": "data",
+      "dir": "in",
+      "width": "1",
+      "ctype": {"DATA": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }}
+    },
+    "dmWrCmd_V": {
+      "type": "ap_fifo",
+      "fifo_width": "72",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "struct",
+          "Width": "72",
+          "Fields": {
+            "btt": {
+              "Type": "integer unsigned",
+              "Width": "23"
+            },
+            "type": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "dsa": {
+              "Type": "integer unsigned",
+              "Width": "6"
+            },
+            "eof": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "drr": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            },
+            "startAddress": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "tag": {
+              "Type": "integer unsigned",
+              "Width": "4"
+            },
+            "rsvd": {
+              "Type": "integer unsigned",
+              "Width": "4"
+            }
+          }
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    },
+    "dmWrData_V": {
+      "type": "ap_fifo",
+      "fifo_width": "577",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "struct",
+          "Width": "577",
+          "Fields": {
+            "data": {
+              "Type": "integer unsigned",
+              "Width": "512"
+            },
+            "keep": {
+              "Type": "integer unsigned",
+              "Width": "64"
+            },
+            "last": {
+              "Type": "integer unsigned",
+              "Width": "1"
+            }
+          }
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    },
+    "dmWrStatus_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "8",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "integer unsigned",
+          "Width": "8"
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "memRdCmd_V": {
+      "type": "ap_fifo",
+      "fifo_width": "40",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "struct",
+          "Width": "40",
+          "Fields": {
+            "address": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "count": {
+              "Type": "integer unsigned",
+              "Width": "8"
+            }
+          }
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "memRdData_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "512",
+      "fifo_type": "write",
+      "ctype": {
+        "WR_DATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        },
+        "FULL_N": {"Type": "bool"},
+        "WR_EN": {"Type": "bool"}
+      }
+    },
+    "memWrCmd_V": {
+      "type": "ap_fifo",
+      "fifo_width": "40",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "struct",
+          "Width": "40",
+          "Fields": {
+            "address": {
+              "Type": "integer unsigned",
+              "Width": "32"
+            },
+            "count": {
+              "Type": "integer unsigned",
+              "Width": "8"
+            }
+          }
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    },
+    "memWrData_V_V": {
+      "type": "ap_fifo",
+      "fifo_width": "512",
+      "fifo_type": "read",
+      "ctype": {
+        "RD_DATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        },
+        "EMPTY_N": {"Type": "bool"},
+        "RD_EN": {"Type": "bool"}
+      }
+    }
+  },
+  "PcoreInterfaces": {
+    "aclk": {
+      "type": "clock",
+      "buses": "dmRdCmd_V dmRdData_V dmRdStatus_V_V dmWrCmd_V dmWrData_V dmWrStatus_V_V memRdCmd_V memRdData_V_V memWrCmd_V memWrData_V_V",
+      "is_pcore_adaptor": "1"
+    },
+    "aresetn": {
+      "type": "reset",
+      "is_pcore_adaptor": "1"
+    },
+    "dmRdCmd_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "dmRdCmd_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "null",
+          "Width": "72"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "72"}
+    },
+    "dmRdData_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "dmRdData_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {
+        "TDATA": "512",
+        "TKEEP": "64",
+        "TLAST": "1"
+      }
+    },
+    "dmRdStatus_V_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "dmRdStatus_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "8"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "8"}
+    },
+    "dmWrCmd_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "dmWrCmd_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "null",
+          "Width": "72"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "72"}
+    },
+    "dmWrData_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "dmWrData_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {
+        "TDATA": "512",
+        "TKEEP": "64",
+        "TLAST": "1"
+      }
+    },
+    "dmWrStatus_V_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "dmWrStatus_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "8"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "8"}
+    },
+    "memRdCmd_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "memRdCmd_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "null",
+          "Width": "40"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "40"}
+    },
+    "memRdData_V_V": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "memRdData_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "512"}
+    },
+    "memWrCmd_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "memWrCmd_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "null",
+          "Width": "40"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "40"}
+    },
+    "memWrData_V_V": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "memWrData_V_V",
+      "has_tready": "1",
+      "ctype": {"TDATA": {
+          "Type": "integer unsigned",
+          "Width": "512"
+        }},
+      "is_pcore_adaptor": "1",
+      "port_width": {"TDATA": "512"}
+    }
+  },
+  "RtlPorts": {
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst": {
+      "dir": "in",
+      "width": "1"
+    },
+    "memWrCmd_V_dout": {
+      "dir": "in",
+      "width": "40"
+    },
+    "memWrCmd_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "memWrCmd_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "memWrData_V_V_dout": {
+      "dir": "in",
+      "width": "512"
+    },
+    "memWrData_V_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "memWrData_V_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmWrCmd_V_din": {
+      "dir": "out",
+      "width": "72"
+    },
+    "dmWrCmd_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmWrCmd_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmWrData_V_din": {
+      "dir": "out",
+      "width": "577"
+    },
+    "dmWrData_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmWrData_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmWrStatus_V_V_dout": {
+      "dir": "in",
+      "width": "8"
+    },
+    "dmWrStatus_V_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmWrStatus_V_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "memRdCmd_V_dout": {
+      "dir": "in",
+      "width": "40"
+    },
+    "memRdCmd_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "memRdCmd_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "memRdData_V_V_din": {
+      "dir": "out",
+      "width": "512"
+    },
+    "memRdData_V_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "memRdData_V_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmRdCmd_V_din": {
+      "dir": "out",
+      "width": "72"
+    },
+    "dmRdCmd_V_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmRdCmd_V_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmRdData_V_dout": {
+      "dir": "in",
+      "width": "577"
+    },
+    "dmRdData_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmRdData_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmRdStatus_V_V_dout": {
+      "dir": "in",
+      "width": "8"
+    },
+    "dmRdStatus_V_V_empty_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "dmRdStatus_V_V_read": {
+      "dir": "out",
+      "width": "1"
+    },
+    "dmRdAddrPosted_V": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "dmWrAddrPosted_V": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    }
+  },
+  "CPorts": {
+    "memWrCmd_V": {
+      "interfaceRef": "memWrCmd_V",
+      "dir": "in"
+    },
+    "memWrData_V_V": {
+      "interfaceRef": "memWrData_V_V",
+      "dir": "in"
+    },
+    "dmWrCmd_V": {
+      "interfaceRef": "dmWrCmd_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "dmWrData_V": {
+      "interfaceRef": "dmWrData_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "dmWrStatus_V_V": {
+      "interfaceRef": "dmWrStatus_V_V",
+      "dir": "in"
+    },
+    "memRdCmd_V": {
+      "interfaceRef": "memRdCmd_V",
+      "dir": "in"
+    },
+    "memRdData_V_V": {
+      "interfaceRef": "memRdData_V_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "dmRdCmd_V": {
+      "interfaceRef": "dmRdCmd_V",
+      "dir": "out",
+      "firstOutLatency": "1"
+    },
+    "dmRdData_V": {
+      "interfaceRef": "dmRdData_V",
+      "dir": "in"
+    },
+    "dmRdStatus_V_V": {
+      "interfaceRef": "dmRdStatus_V_V",
+      "dir": "in"
+    },
+    "dmRdAddrPosted_V": {
+      "interfaceRef": "dmRdAddrPosted_V",
+      "dir": "in",
+      "dataWidth": "1",
+      "handshakeRef": "ap_none"
+    },
+    "dmWrAddrPosted_V": {
+      "interfaceRef": "dmWrAddrPosted_V",
+      "dir": "in",
+      "dataWidth": "1",
+      "handshakeRef": "ap_none"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {"ModuleName": "readWriteConverter"},
+    "Metrics": {"readWriteConverter": {
+        "Latency": {
+          "LatencyBest": "1",
+          "LatencyAvg": "1",
+          "LatencyWorst": "1",
+          "PipelineII": "2",
+          "PipelineDepth": "2",
+          "PipelineType": "function"
+        },
+        "Timing": {
+          "Target": "6.66",
+          "Uncertainty": "0.83",
+          "Estimate": "3.129"
+        },
+        "Area": {
+          "BRAM_18K": "0",
+          "FF": "280",
+          "LUT": "674",
+          "DSP48E": "0"
+        }
+      }}
+  },
+  "Sdx": {
+    "Target": "none",
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "XO": "",
+    "KernelName": "readWriteConverter",
+    "EnableXoSwEmu": "1"
+  },
+  "GenData": {
+    "DataVersion": "0.1",
+    "Time": "2020-10-14 13:29:49 EDT",
+    "ToolName": "vivado_hls",
+    "ToolVersion": "2018.3"
+  }
+}

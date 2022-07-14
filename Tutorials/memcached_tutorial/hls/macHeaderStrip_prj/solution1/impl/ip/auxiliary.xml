@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="mac_header_strip" xd:componentRef="mac_header_strip" xd:initiationInterval="5" xd:clockPeriod="6.660" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="dataIn.data" xd:originalName="dataIn" xd:direction="in" xd:interfaceRef="dataIn" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="dataIn.keep" xd:originalName="dataIn" xd:direction="in" xd:interfaceRef="dataIn" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="dataIn.last" xd:originalName="dataIn" xd:direction="in" xd:interfaceRef="dataIn" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dataIn.user" xd:originalName="dataIn" xd:direction="in" xd:interfaceRef="dataIn" xd:busTypeRef="axis" xd:dataWidth="112"/>
+  <xd:arg xd:name="IPdataOut.data" xd:originalName="IPdataOut" xd:direction="out" xd:interfaceRef="IPdataOut" xd:busTypeRef="axis" xd:dataWidth="64"/>
+  <xd:arg xd:name="IPdataOut.keep" xd:originalName="IPdataOut" xd:direction="out" xd:interfaceRef="IPdataOut" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="IPdataOut.last" xd:originalName="IPdataOut" xd:direction="out" xd:interfaceRef="IPdataOut" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="IPdataOut.user" xd:originalName="IPdataOut" xd:direction="out" xd:interfaceRef="IPdataOut" xd:busTypeRef="axis" xd:dataWidth="112"/>
+  <xd:arg xd:name="myMacAddress" xd:originalName="myMacAddress" xd:direction="in" xd:interfaceRef="myMacAddress_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="48" xd:firstOut="1"/>
+  <xd:latencyEstimates xd:best-case="4" xd:worst-case="4" xd:average-case="4"/>
+  <xd:resourceEstimates xd:LUT="1826" xd:FF="1523" xd:BRAM="11" xd:DSP="0"/>
+</xd:acceleratorMap>

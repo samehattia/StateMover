@@ -1,0 +1,292 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_flashSetPathNoFilter'
+================================================================
+* Date:           Wed Oct 21 12:18:38 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      4.98|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 4.98ns
+ST_1: flashSetState_load [1/1] 0.00ns
+codeRepl:9  %flashSetState_load = load i1* @flashSetState, align 1
+
+ST_1: stg_4 [1/1] 0.00ns
+codeRepl:10  br i1 %flashSetState_load, label %3, label %0
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i48P(i48* @flashDemux2setPathMetadata_V, i32 1)
+
+ST_1: stg_6 [1/1] 0.00ns
+:1  br i1 %tmp, label %1, label %._crit_edge80
+
+ST_1: tmp_82 [1/1] 0.00ns
+:0  %tmp_82 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i66P(i66* @flashDemux2setPathValue_V, i32 1)
+
+ST_1: stg_8 [1/1] 0.00ns
+:1  br i1 %tmp_82, label %._crit_edge82, label %._crit_edge80
+
+ST_1: tmp1 [1/1] 2.91ns
+._crit_edge82:0  %tmp1 = call i48 @_ssdm_op_Read.ap_fifo.volatile.i48P(i48* @flashDemux2setPathMetadata_V)
+
+ST_1: setCtrlWord_address_V [1/1] 0.00ns
+._crit_edge82:1  %setCtrlWord_address_V = trunc i48 %tmp1 to i32
+
+ST_1: tmp_length_V_load_new6 [1/1] 0.00ns
+._crit_edge82:2  %tmp_length_V_load_new6 = call i16 @_ssdm_op_PartSelect.i16.i48.i32.i32(i48 %tmp1, i32 32, i32 47)
+
+ST_1: tmp_101 [1/1] 0.00ns
+._crit_edge82:3  %tmp_101 = call i13 @_ssdm_op_PartSelect.i13.i48.i32.i32(i48 %tmp1, i32 35, i32 47)
+
+ST_1: op2_assign [1/1] 0.00ns
+._crit_edge82:4  %op2_assign = call i16 @_ssdm_op_BitConcatenate.i16.i13.i3(i13 %tmp_101, i3 0)
+
+ST_1: tmp_73 [1/1] 1.26ns
+._crit_edge82:5  %tmp_73 = icmp ugt i16 %tmp_length_V_load_new6, %op2_assign
+
+ST_1: tmp_104 [1/1] 1.36ns
+._crit_edge82:6  %tmp_104 = add i13 1, %tmp_101
+
+ST_1: setCtrlWord_count_V [1/1] 0.71ns
+._crit_edge82:7  %setCtrlWord_count_V = select i1 %tmp_73, i13 %tmp_104, i13 %tmp_101
+
+ST_1: tmp_1 [1/1] 2.91ns
+._crit_edge82:8  %tmp_1 = call i66 @_ssdm_op_Read.ap_fifo.volatile.i66P(i66* @flashDemux2setPathValue_V)
+
+ST_1: tmp_V_111 [1/1] 0.00ns
+._crit_edge82:9  %tmp_V_111 = trunc i66 %tmp_1 to i64
+
+ST_1: tmp_702 [1/1] 0.00ns
+._crit_edge82:10  %tmp_702 = call i1 @_ssdm_op_BitSelect.i1.i66.i32(i66 %tmp_1, i32 64)
+
+ST_1: stg_20 [1/1] 0.00ns
+._crit_edge82:11  br i1 %tmp_702, label %2, label %._crit_edge83
+
+ST_1: stg_21 [1/1] 0.89ns
+:4  store i1 true, i1* @flashSetState, align 1
+
+ST_1: tmp_81 [1/1] 0.00ns
+:0  %tmp_81 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i66P(i66* @flashDemux2setPathValue_V, i32 1)
+
+ST_1: stg_23 [1/1] 0.00ns
+:1  br i1 %tmp_81, label %4, label %._crit_edge84
+
+ST_1: tmp_3 [1/1] 2.91ns
+:0  %tmp_3 = call i66 @_ssdm_op_Read.ap_fifo.volatile.i66P(i66* @flashDemux2setPathValue_V)
+
+ST_1: tmp_V [1/1] 0.00ns
+:1  %tmp_V = trunc i66 %tmp_3 to i64
+
+ST_1: tmp_699 [1/1] 0.00ns
+:2  %tmp_699 = call i1 @_ssdm_op_BitSelect.i1.i66.i32(i66 %tmp_3, i32 65)
+
+ST_1: stg_27 [1/1] 0.00ns
+:4  br i1 %tmp_699, label %5, label %._crit_edge85
+
+ST_1: stg_28 [1/1] 0.89ns
+:0  store i1 false, i1* @flashSetState, align 1
+
+
+ <State 2>: 0.00ns
+ST_2: stg_29 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i64* %memWrData_V_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_30 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i48* %memWrCmd_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_31 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i48* @flashDemux2setPathMetadata_V, [8 x i8]* @str1398, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1399, [1 x i8]* @str1399, [8 x i8]* @str1398) nounwind
+
+ST_2: stg_32 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i48* @flashDemux2setPathMetadata_V, [8 x i8]* @str1394, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1395, [1 x i8]* @str1395, [8 x i8]* @str1394) nounwind
+
+ST_2: stg_33 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i66* @flashDemux2setPathValue_V, [8 x i8]* @str1386, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1387, [1 x i8]* @str1387, [8 x i8]* @str1386) nounwind
+
+ST_2: stg_34 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i66* @flashDemux2setPathValue_V, [8 x i8]* @str1382, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1383, [1 x i8]* @str1383, [8 x i8]* @str1382) nounwind
+
+ST_2: stg_35 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i66* @flashDemux2setPathValue_V, [8 x i8]* @str1378, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1379, [1 x i8]* @str1379, [8 x i8]* @str1378) nounwind
+
+ST_2: stg_36 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str90, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str191, [1 x i8]* @p_str191, [1 x i8]* @p_str191) nounwind
+
+ST_2: stg_37 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str191) nounwind
+
+ST_2: tmp_2 [1/1] 0.00ns
+:0  %tmp_2 = call i45 @_ssdm_op_BitConcatenate.i45.i13.i32(i13 %setCtrlWord_count_V, i32 %setCtrlWord_address_V)
+
+ST_2: tmp_2_cast [1/1] 0.00ns
+:1  %tmp_2_cast = zext i45 %tmp_2 to i48
+
+ST_2: stg_40 [1/1] 0.00ns
+:2  call void @_ssdm_op_Write.axis.volatile.i48P(i48* %memWrCmd_V, i48 %tmp_2_cast)
+
+ST_2: stg_41 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.axis.volatile.i64P(i64* %memWrData_V_V, i64 %tmp_V_111)
+
+ST_2: stg_42 [1/1] 0.00ns
+:5  br label %._crit_edge83
+
+ST_2: stg_43 [1/1] 0.00ns
+._crit_edge83:0  br label %._crit_edge80
+
+ST_2: stg_44 [1/1] 0.00ns
+._crit_edge80:0  br label %._crit_edge79
+
+ST_2: stg_45 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.axis.volatile.i64P(i64* %memWrData_V_V, i64 %tmp_V)
+
+ST_2: stg_46 [1/1] 0.00ns
+:1  br label %._crit_edge85
+
+ST_2: stg_47 [1/1] 0.00ns
+._crit_edge85:0  br label %._crit_edge84
+
+ST_2: stg_48 [1/1] 0.00ns
+._crit_edge84:0  br label %._crit_edge79
+
+ST_2: stg_49 [1/1] 0.00ns
+._crit_edge79:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

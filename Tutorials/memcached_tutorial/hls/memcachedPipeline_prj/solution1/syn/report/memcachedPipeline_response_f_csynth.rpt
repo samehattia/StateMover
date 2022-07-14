@@ -1,0 +1,146 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_response_f'
+================================================================
+* Date:           Wed Oct 21 12:18:56 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.83|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|      15|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|     252|
+|Register         |        -|      -|     252|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|     252|     267|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |tmp_91_fu_286_p2                  |     +    |      0|  0|   2|           2|           1|
+    |p_inWordCounter_V_new_fu_300_p3   |  Select  |      0|  0|   2|           1|           1|
+    |ap_sig_bdd_121                    |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_127                    |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_143                    |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_216                    |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_217                    |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_220                    |    and   |      0|  0|   1|           1|           1|
+    |or_cond_fu_243_p2                 |    and   |      0|  0|   1|           1|           1|
+    |tmp_90_fu_280_p2                  |   icmp   |      0|  0|   1|           2|           1|
+    |tmp_s_fu_237_p2                   |   icmp   |      0|  0|   1|           2|           1|
+    |ap_sig_bdd_91                     |    or    |      0|  0|   1|           1|           1|
+    |p_inWordCounter_V_flag_fu_293_p2  |    or    |      0|  0|   1|           1|           1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0|  15|          16|          13|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+-----+-----------+-----+-----------+
+    |                 Name                 | LUT | Input Size| Bits| Total Bits|
+    +--------------------------------------+-----+-----------+-----+-----------+
+    |bf_metadataTempBuffer_V               |  248|          2|  248|        496|
+    |inWordCounter_V_flag_3_phi_fu_170_p6  |    1|          4|    1|          4|
+    |inWordCounter_V_flag_phi_fu_149_p4    |    1|          3|    1|          3|
+    |inWordCounter_V_new_3_phi_fu_183_p6   |    2|          3|    2|          6|
+    +--------------------------------------+-----+-----------+-----+-----------+
+    |Total                                 |  252|         12|  252|        509|
+    +--------------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+-----+----+-----+-----------+
+    |           Name          |  FF | LUT| Bits| Const Bits|
+    +-------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                |    1|   0|    1|          0|
+    |ap_done_reg              |    1|   0|    1|          0|
+    |bf_metadataTempBuffer_V  |  248|   0|  248|          0|
+    |inWordCounter_V          |    2|   0|    2|          0|
+    +-------------------------+-----+----+-----+-----------+
+    |Total                    |  252|   0|  252|          0|
+    +-------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------------+-----+-----+------------+------------------------------+--------------+
+|              RTL Ports             | Dir | Bits|  Protocol  |         Source Object        |    C Type    |
++------------------------------------+-----+-----+------------+------------------------------+--------------+
+|ap_clk                              |  in |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_rst                              |  in |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_start                            |  in |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_done                             | out |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_continue                         |  in |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_idle                             | out |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|ap_ready                            | out |    1| ap_ctrl_hs | memcachedPipeline_response_f | return value |
+|valueBuffer_rf_V_V_din              | out |   64|   ap_fifo  |      valueBuffer_rf_V_V      |    pointer   |
+|valueBuffer_rf_V_V_full_n           |  in |    1|   ap_fifo  |      valueBuffer_rf_V_V      |    pointer   |
+|valueBuffer_rf_V_V_write            | out |    1|   ap_fifo  |      valueBuffer_rf_V_V      |    pointer   |
+|metadataBuffer_rf_V_V_din           | out |  248|   ap_fifo  |     metadataBuffer_rf_V_V    |    pointer   |
+|metadataBuffer_rf_V_V_full_n        |  in |    1|   ap_fifo  |     metadataBuffer_rf_V_V    |    pointer   |
+|metadataBuffer_rf_V_V_write         | out |    1|   ap_fifo  |     metadataBuffer_rf_V_V    |    pointer   |
+|merger2responseFormatter_V_dout     |  in |  256|   ap_fifo  |  merger2responseFormatter_V  |    pointer   |
+|merger2responseFormatter_V_empty_n  |  in |    1|   ap_fifo  |  merger2responseFormatter_V  |    pointer   |
+|merger2responseFormatter_V_read     | out |    1|   ap_fifo  |  merger2responseFormatter_V  |    pointer   |
++------------------------------------+-----+-----+------------+------------------------------+--------------+
+

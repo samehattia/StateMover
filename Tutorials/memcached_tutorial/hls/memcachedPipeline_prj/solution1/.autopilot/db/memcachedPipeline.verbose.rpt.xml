@@ -1,0 +1,285 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'memcachedPipeline'" level="0">
+<item name = "Date">Wed Oct 21 12:18:58 2020
+</item>
+<item name = "Version">2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)</item>
+<item name = "Project">memcachedPipeline_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="default">6.66, 11.23, 0.83</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">5, 5, 1, 1, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_memcachedPipeline_bp_f_fu_1522">memcachedPipeline_bp_f, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_bp_r_fu_1692">memcachedPipeline_bp_r, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_ht_inputLogic_fu_1486">memcachedPipeline_ht_inputLogic, 3, 3, 1, 1, function</column>
+<column name="grp_memcachedPipeline_hashKeyResizer_fu_2018">memcachedPipeline_hashKeyResizer, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_bobj_fu_1580">memcachedPipeline_bobj, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_concurrencyControl_fu_1928">memcachedPipeline_concurrencyControl, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_memRead_fu_1764">memcachedPipeline_memRead, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_ht_compare_fu_1716">memcachedPipeline_ht_compare, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_memWrite_fu_1391">memcachedPipeline_memWrite, 5, 5, 1, 1, function</column>
+<column name="grp_memcachedPipeline_ht_outputLogic_fu_1672">memcachedPipeline_ht_outputLogic, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_splitter_fu_2040">memcachedPipeline_splitter, 2, 2, 1, 1, function</column>
+<column name="grp_memcachedPipeline_accessControl_fu_1802">memcachedPipeline_accessControl, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_demux_fu_1892">memcachedPipeline_demux, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_setPath_fu_1462">memcachedPipeline_setPath, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_dispatch_fu_2094">memcachedPipeline_dispatch, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_receive_fu_1560">memcachedPipeline_receive, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_remux_fu_1652">memcachedPipeline_remux, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_flashDemux_fu_1780">memcachedPipeline_flashDemux, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_flashSetPathNoFilter_fu_2054">memcachedPipeline_flashSetPathNoFilter, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_flashDispatch_fu_2084">memcachedPipeline_flashDispatch, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_flashReceiveNoFilter_fu_2068">memcachedPipeline_flashReceiveNoFilter, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_flashRemux_fu_1632">memcachedPipeline_flashRemux, 1, 1, 1, 1, function</column>
+<column name="grp_memcachedPipeline_merger_fu_1914">memcachedPipeline_merger, 1, 1, 1, 1, function</column>
+<column name="stg_96_memcachedPipeline_response_f_fu_2104">memcachedPipeline_response_f, 0, 0, 1, 1, function</column>
+<column name="grp_memcachedPipeline_response_r_fu_1602">memcachedPipeline_response_r, 1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="Expression">-, -, -, -</column>
+<column name="FIFO">311, -, 5934, 5315</column>
+<column name="Instance">0, -, 26743, 133730</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, -</column>
+<column name="Register">-, -, 28, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">25, 0, 6, 57</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="memcachedPipeline_accessControl_U0">memcachedPipeline_accessControl, 0, 0, 931, 917</column>
+<column name="memcachedPipeline_bobj_U0">memcachedPipeline_bobj, 0, 0, 801, 2379</column>
+<column name="memcachedPipeline_bp_f_U0">memcachedPipeline_bp_f, 0, 0, 778, 5852</column>
+<column name="memcachedPipeline_bp_r_U0">memcachedPipeline_bp_r, 0, 0, 808, 889</column>
+<column name="memcachedPipeline_concurrencyControl_U0">memcachedPipeline_concurrencyControl, 0, 0, 493, 575</column>
+<column name="memcachedPipeline_demux_U0">memcachedPipeline_demux, 0, 0, 598, 299</column>
+<column name="memcachedPipeline_dispatch_U0">memcachedPipeline_dispatch, 0, 0, 58, 28</column>
+<column name="memcachedPipeline_flashDemux_U0">memcachedPipeline_flashDemux, 0, 0, 599, 306</column>
+<column name="memcachedPipeline_flashDispatch_U0">memcachedPipeline_flashDispatch, 0, 0, 67, 39</column>
+<column name="memcachedPipeline_flashReceiveNoFilter_U0">memcachedPipeline_flashReceiveNoFilter, 0, 0, 98, 101</column>
+<column name="memcachedPipeline_flashRemux_U0">memcachedPipeline_flashRemux, 0, 0, 1004, 1541</column>
+<column name="memcachedPipeline_flashSetPathNoFilter_U0">memcachedPipeline_flashSetPathNoFilter, 0, 0, 185, 109</column>
+<column name="memcachedPipeline_hashKeyResizer_U0">memcachedPipeline_hashKeyResizer, 0, 0, 671, 482</column>
+<column name="memcachedPipeline_ht_compare_U0">memcachedPipeline_ht_compare, 0, 0, 840, 421</column>
+<column name="memcachedPipeline_ht_inputLogic_U0">memcachedPipeline_ht_inputLogic, 0, 0, 1600, 6860</column>
+<column name="memcachedPipeline_ht_outputLogic_U0">memcachedPipeline_ht_outputLogic, 0, 0, 852, 1038</column>
+<column name="memcachedPipeline_memRead_U0">memcachedPipeline_memRead, 0, 0, 473, 1540</column>
+<column name="memcachedPipeline_memWrite_U0">memcachedPipeline_memWrite, 0, 0, 10348, 80889</column>
+<column name="memcachedPipeline_merger_U0">memcachedPipeline_merger, 0, 0, 523, 260</column>
+<column name="memcachedPipeline_receive_U0">memcachedPipeline_receive, 0, 0, 1126, 5246</column>
+<column name="memcachedPipeline_remux_U0">memcachedPipeline_remux, 0, 0, 1004, 1534</column>
+<column name="memcachedPipeline_response_f_U0">memcachedPipeline_response_f, 0, 0, 252, 267</column>
+<column name="memcachedPipeline_response_r_U0">memcachedPipeline_response_r, 0, 0, 788, 1884</column>
+<column name="memcachedPipeline_setPath_U0">memcachedPipeline_setPath, 0, 0, 1319, 20244</column>
+<column name="memcachedPipeline_splitter_U0">memcachedPipeline_splitter, 0, 0, 527, 30</column>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+<column name="accCtrl2demux_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="cc2memReadMd_V_U">4, 77, 71, 10, 64, 640</column>
+<column name="cc2memRead_V_U">8, 143, 122, 10, 130, 1300</column>
+<column name="comp2memWrKey_V_U">8, 143, 122, 10, 130, 1300</column>
+<column name="comp2memWrMd_V_U">4, 77, 71, 10, 64, 640</column>
+<column name="comp2memWrMemData_V_V_U">29, 525, 421, 10, 512, 5120</column>
+<column name="comp2memWrStatus_V_bin_U">0, 5, 20, 1, 8, 8</column>
+<column name="dec2cc_V_V_U">0, 5, 16, 1, 1, 1</column>
+<column name="demux2getPath_V_U">3, 61, 54, 16, 45, 720</column>
+<column name="demux2setPathMetadata_V_U">3, 61, 54, 16, 45, 720</column>
+<column name="demux2setPathValue_V_U">4, 86, 93, 96, 66, 6336</column>
+<column name="disp2rec_V_V_U">0, 7, 28, 16, 12, 192</column>
+<column name="filterPopGet_V_V_U">0, 7, 20, 16, 1, 16</column>
+<column name="filterPopSet_V_V_U">0, 7, 20, 16, 1, 16</column>
+<column name="flashDemux2getPath_V_U">3, 64, 56, 16, 48, 768</column>
+<column name="flashDemux2setPathMetadata_V_U">3, 64, 56, 16, 48, 768</column>
+<column name="flashDemux2setPathValue_V_U">4, 86, 93, 96, 66, 6336</column>
+<column name="flashGetPath2remux_V_V_U">4, 84, 91, 96, 64, 6144</column>
+<column name="flashKeyBuffer_V_V_U">4, 82, 84, 48, 64, 3072</column>
+<column name="flashMetadataBuffer_V_U">8, 145, 112, 24, 128, 3072</column>
+<column name="flash_Disp2rec_V_V_U">0, 7, 32, 16, 16, 256</column>
+<column name="getPath2remux_V_V_U">4, 84, 91, 96, 64, 6144</column>
+<column name="hash2cc_V_V_U">0, 5, 44, 1, 32, 32</column>
+<column name="hashKeyBuffer_V_V_U">4, 85, 89, 128, 64, 8192</column>
+<column name="hashMdBuffer_V_V_U">8, 145, 121, 32, 128, 4096</column>
+<column name="hashTable2splitter_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="hashValueBuffer_V_V_U">4, 98, 137, 1024, 64, 65536</column>
+<column name="in2ccMd_V_U">4, 77, 71, 10, 64, 640</column>
+<column name="in2cc_V_U">8, 143, 122, 10, 130, 1300</column>
+<column name="in2hashKeyLength_V_V_U">0, 5, 20, 1, 8, 8</column>
+<column name="in2hash_V_U">0, 5, 142, 1, 130, 130</column>
+<column name="keyBuffer_V_V_U">4, 82, 84, 48, 64, 3072</column>
+<column name="keyBuffer_rp_V_V_U">4, 85, 89, 128, 64, 8192</column>
+<column name="memRd2compMd_V_U">4, 77, 71, 10, 64, 640</column>
+<column name="memRd2comp_V_U">8, 143, 122, 10, 130, 1300</column>
+<column name="memWr2out_V_U">0, 5, 69, 1, 57, 57</column>
+<column name="merger2responseFormatter_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="metadataBuffer_V_U">8, 145, 112, 24, 128, 3072</column>
+<column name="metadataBuffer_rf_V_V_U">14, 260, 228, 8, 248, 1984</column>
+<column name="metadataBuffer_rp_V_V_U">14, 264, 174, 16, 248, 3968</column>
+<column name="requestParser2hashTable_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="resizedInitValue_V_U">0, 5, 44, 1, 32, 32</column>
+<column name="resizedKeyLength_V_U">0, 5, 44, 1, 32, 32</column>
+<column name="resizedKey_V_V_U">6, 108, 99, 8, 96, 768</column>
+<column name="splitter2valueStoreDram_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="splitter2valueStoreFlash_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="valueBuffer_rf_V_V_U">4, 98, 137, 1024, 64, 65536</column>
+<column name="valueBuffer_rp_V_V_U">4, 98, 137, 1024, 64, 65536</column>
+<column name="valueStoreDram2merger_V_U">15, 272, 179, 16, 256, 4096</column>
+<column name="valueStoreFlash2merger_V_U">15, 272, 179, 16, 256, 4096</column>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_dispatch_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_flashDispatch_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_flashSetPathNoFilter_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_memRead_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_memWrite_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_response_r_U0">1, 0, 1, 0</column>
+<column name="ap_reg_procdone_memcachedPipeline_setPath_U0">1, 0, 1, 0</column>
+<column name="memcachedPipeline_accessControl_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_bobj_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_bp_r_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_concurrencyControl_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_demux_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_dispatch_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_flashDemux_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_flashDispatch_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_flashRemux_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_flashSetPathNoFilter_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_hashKeyResizer_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_ht_inputLogic_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_ht_outputLogic_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_memRead_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_merger_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_remux_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_response_f_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_response_r_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_setPath_U0_ap_start">1, 0, 1, 0</column>
+<column name="memcachedPipeline_splitter_U0_ap_start">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="inData_TDATA">in, 64, axis, inData_V_data_V, pointer</column>
+<column name="inData_TUSER">in, 112, axis, inData_V_user_V, pointer</column>
+<column name="inData_TKEEP">in, 8, axis, inData_V_keep_V, pointer</column>
+<column name="inData_TLAST">in, 1, axis, inData_V_last_V, pointer</column>
+<column name="inData_TVALID">in, 1, axis, inData_V_last_V, pointer</column>
+<column name="inData_TREADY">out, 1, axis, inData_V_last_V, pointer</column>
+<column name="outData_TDATA">out, 64, axis, outData_V_data_V, pointer</column>
+<column name="outData_TUSER">out, 112, axis, outData_V_user_V, pointer</column>
+<column name="outData_TKEEP">out, 8, axis, outData_V_keep_V, pointer</column>
+<column name="outData_TLAST">out, 1, axis, outData_V_last_V, pointer</column>
+<column name="outData_TVALID">out, 1, axis, outData_V_last_V, pointer</column>
+<column name="outData_TREADY">in, 1, axis, outData_V_last_V, pointer</column>
+<column name="dramValueStoreMemRdCmd_V_TDATA">out, 40, axis, dramValueStoreMemRdCmd_V, pointer</column>
+<column name="dramValueStoreMemRdCmd_V_TVALID">out, 1, axis, dramValueStoreMemRdCmd_V, pointer</column>
+<column name="dramValueStoreMemRdCmd_V_TREADY">in, 1, axis, dramValueStoreMemRdCmd_V, pointer</column>
+<column name="dramValueStoreMemRdData_V_V_TDATA">in, 512, axis, dramValueStoreMemRdData_V_V, pointer</column>
+<column name="dramValueStoreMemRdData_V_V_TVALID">in, 1, axis, dramValueStoreMemRdData_V_V, pointer</column>
+<column name="dramValueStoreMemRdData_V_V_TREADY">out, 1, axis, dramValueStoreMemRdData_V_V, pointer</column>
+<column name="dramValueStoreMemWrCmd_V_TDATA">out, 40, axis, dramValueStoreMemWrCmd_V, pointer</column>
+<column name="dramValueStoreMemWrCmd_V_TVALID">out, 1, axis, dramValueStoreMemWrCmd_V, pointer</column>
+<column name="dramValueStoreMemWrCmd_V_TREADY">in, 1, axis, dramValueStoreMemWrCmd_V, pointer</column>
+<column name="dramValueStoreMemWrData_V_V_TDATA">out, 512, axis, dramValueStoreMemWrData_V_V, pointer</column>
+<column name="dramValueStoreMemWrData_V_V_TVALID">out, 1, axis, dramValueStoreMemWrData_V_V, pointer</column>
+<column name="dramValueStoreMemWrData_V_V_TREADY">in, 1, axis, dramValueStoreMemWrData_V_V, pointer</column>
+<column name="flashValueStoreMemRdCmd_V_TDATA">out, 48, axis, flashValueStoreMemRdCmd_V, pointer</column>
+<column name="flashValueStoreMemRdCmd_V_TVALID">out, 1, axis, flashValueStoreMemRdCmd_V, pointer</column>
+<column name="flashValueStoreMemRdCmd_V_TREADY">in, 1, axis, flashValueStoreMemRdCmd_V, pointer</column>
+<column name="flashValueStoreMemRdData_V_V_TDATA">in, 64, axis, flashValueStoreMemRdData_V_V, pointer</column>
+<column name="flashValueStoreMemRdData_V_V_TVALID">in, 1, axis, flashValueStoreMemRdData_V_V, pointer</column>
+<column name="flashValueStoreMemRdData_V_V_TREADY">out, 1, axis, flashValueStoreMemRdData_V_V, pointer</column>
+<column name="flashValueStoreMemWrCmd_V_TDATA">out, 48, axis, flashValueStoreMemWrCmd_V, pointer</column>
+<column name="flashValueStoreMemWrCmd_V_TVALID">out, 1, axis, flashValueStoreMemWrCmd_V, pointer</column>
+<column name="flashValueStoreMemWrCmd_V_TREADY">in, 1, axis, flashValueStoreMemWrCmd_V, pointer</column>
+<column name="flashValueStoreMemWrData_V_V_TDATA">out, 64, axis, flashValueStoreMemWrData_V_V, pointer</column>
+<column name="flashValueStoreMemWrData_V_V_TVALID">out, 1, axis, flashValueStoreMemWrData_V_V, pointer</column>
+<column name="flashValueStoreMemWrData_V_V_TREADY">in, 1, axis, flashValueStoreMemWrData_V_V, pointer</column>
+<column name="hashTableMemRdData_V_V_TDATA">in, 512, axis, hashTableMemRdData_V_V, pointer</column>
+<column name="hashTableMemRdData_V_V_TVALID">in, 1, axis, hashTableMemRdData_V_V, pointer</column>
+<column name="hashTableMemRdData_V_V_TREADY">out, 1, axis, hashTableMemRdData_V_V, pointer</column>
+<column name="hashTableMemRdCmd_V_TDATA">out, 40, axis, hashTableMemRdCmd_V, pointer</column>
+<column name="hashTableMemRdCmd_V_TVALID">out, 1, axis, hashTableMemRdCmd_V, pointer</column>
+<column name="hashTableMemRdCmd_V_TREADY">in, 1, axis, hashTableMemRdCmd_V, pointer</column>
+<column name="hashTableMemWrData_V_V_TDATA">out, 512, axis, hashTableMemWrData_V_V, pointer</column>
+<column name="hashTableMemWrData_V_V_TVALID">out, 1, axis, hashTableMemWrData_V_V, pointer</column>
+<column name="hashTableMemWrData_V_V_TREADY">in, 1, axis, hashTableMemWrData_V_V, pointer</column>
+<column name="hashTableMemWrCmd_V_TDATA">out, 40, axis, hashTableMemWrCmd_V, pointer</column>
+<column name="hashTableMemWrCmd_V_TVALID">out, 1, axis, hashTableMemWrCmd_V, pointer</column>
+<column name="hashTableMemWrCmd_V_TREADY">in, 1, axis, hashTableMemWrCmd_V, pointer</column>
+<column name="addressReturnOut_V_V_TDATA">out, 32, axis, addressReturnOut_V_V, pointer</column>
+<column name="addressReturnOut_V_V_TVALID">out, 1, axis, addressReturnOut_V_V, pointer</column>
+<column name="addressReturnOut_V_V_TREADY">in, 1, axis, addressReturnOut_V_V, pointer</column>
+<column name="addressAssignDramIn_V_V_TDATA">in, 32, axis, addressAssignDramIn_V_V, pointer</column>
+<column name="addressAssignDramIn_V_V_TVALID">in, 1, axis, addressAssignDramIn_V_V, pointer</column>
+<column name="addressAssignDramIn_V_V_TREADY">out, 1, axis, addressAssignDramIn_V_V, pointer</column>
+<column name="addressAssignFlashIn_V_V_TDATA">in, 32, axis, addressAssignFlashIn_V_V, pointer</column>
+<column name="addressAssignFlashIn_V_V_TVALID">in, 1, axis, addressAssignFlashIn_V_V, pointer</column>
+<column name="addressAssignFlashIn_V_V_TREADY">out, 1, axis, addressAssignFlashIn_V_V, pointer</column>
+<column name="flushReq_V">out, 1, ap_none, flushReq_V, pointer</column>
+<column name="flushAck_V">in, 1, ap_none, flushAck_V, scalar</column>
+<column name="flushDone_V">out, 1, ap_none, flushDone_V, pointer</column>
+<column name="ap_clk">in, 1, ap_ctrl_none, memcachedPipeline, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, memcachedPipeline, return value</column>
+</table>
+</item>
+</section>
+</profile>

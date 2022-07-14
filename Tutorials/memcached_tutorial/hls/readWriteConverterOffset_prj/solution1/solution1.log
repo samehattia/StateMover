@@ -1,0 +1,87 @@
+==============================================================
+File generated on Thu Aug 26 19:00:20 EDT 2021
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+File generated on Thu Aug 26 19:00:41 EDT 2021
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.66ns.
+INFO: [HLS 200-10] Setting target device to 'xcku040-ffva1156-2-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Cannot find source file src/axiDataMoverReadWriteConverter/readWriteConverterOffset.cpp; skipping it.
+INFO: [HLS 200-10] Analyzing design file 'src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp' ... 
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&memWrCmd' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&memWrData' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmWrCmd' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmWrData' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmWrStatus' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmRdStatus' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&memRdData' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmRdCmd' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&dmRdData' is deprecated. Please use the interface directive to specify the AXI interface.
+WARNING: [HLS 200-41] Resource core 'AXIS' on port '&memRdCmd' is deprecated. Please use the interface directive to specify the AXI interface.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 438.020 ; gain = 0.145 ; free physical = 55792 ; free virtual = 176631
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 438.020 ; gain = 0.145 ; free physical = 55792 ; free virtual = 176631
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 438.414 ; gain = 0.539 ; free physical = 55773 ; free virtual = 176619
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 566.355 ; gain = 128.480 ; free physical = 55764 ; free virtual = 176611
+INFO: [XFORM 203-1101] Packing variable 'memWrCmd.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:31) into a 40-bit variable.
+INFO: [XFORM 203-1101] Packing variable 'dmWrCmd.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:32) into a 72-bit variable.
+INFO: [XFORM 203-1101] Packing variable 'dmWrData.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:32) into a 577-bit variable.
+INFO: [XFORM 203-1101] Packing variable 'memRdCmd.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:33) into a 40-bit variable.
+INFO: [XFORM 203-1101] Packing variable 'dmRdCmd.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:33) into a 72-bit variable.
+INFO: [XFORM 203-1101] Packing variable 'dmRdData.V' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:34) into a 577-bit variable.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 566.355 ; gain = 128.480 ; free physical = 55733 ; free virtual = 176582
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 566.355 ; gain = 128.480 ; free physical = 55731 ; free virtual = 176580
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'readWriteConverterOffset' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'readWriteConverterOffset' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'readWriteConverterOffset'.
+WARNING: [SCHED 204-68] The II Violation in module 'readWriteConverterOffset': Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between fifo write on port 'memReadCmd_V_address' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:175) and fifo request on port 'memReadCmd_V_address' (src/axiDataMoverReadWriteConverterOffset/readWriteConverterOffset.cpp:121).
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 2, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 15.34 seconds; current allocated memory: 96.755 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 97.696 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'readWriteConverterOffset' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/memWrCmd_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/memWrData_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmWrCmd_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmWrData_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmWrStatus_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/memRdCmd_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/memRdData_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmRdCmd_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmRdData_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmRdStatus_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmRdAddrPosted_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'readWriteConverterOffset/dmWrAddrPosted_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'readWriteConverterOffset' to 'ap_ctrl_none'.
+WARNING: [RTGEN 206-101] Port 'readWriteConverterOffset/dmWrAddrPosted_V' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'readWriteConverterOffset'.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 98.804 MB.
+INFO: [RTMG 210-285] Implementing FIFO 'aggregateMemCmdType_s_0_U(fifo_w1_d16_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'memWriteCmd_V_addres_U(fifo_w32_d16_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'memWriteCmd_V_count_s_U(fifo_w8_d16_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'memReadCmd_V_address_U(fifo_w32_d16_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'memReadCmd_V_count_V_U(fifo_w8_d16_A)' using Shift Registers.
+WARNING: [IMPL 213-402] The data fields of packed port 'dmRdCmd_V' are mapped to TDATA by default. Please use the 'port_map' option of the resource directive to specify mapping to individual AXI4-Stream ports.

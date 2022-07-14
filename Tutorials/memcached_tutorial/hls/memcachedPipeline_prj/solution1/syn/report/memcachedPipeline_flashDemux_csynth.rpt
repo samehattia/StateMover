@@ -1,0 +1,193 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_flashDemux'
+================================================================
+* Date:           Wed Oct 21 12:18:55 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      6.38|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|      89|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|     217|
+|Register         |        -|      -|     599|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|     599|     306|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+-------+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+-------+---+----+------------+------------+
+    |grp_fu_300_p2             |     +    |      0|  0|   2|           1|           2|
+    |tmp_11_fu_546_p2          |     +    |      0|  0|  16|          16|           5|
+    |tmp_5_fu_498_p2           |     +    |      0|  0|  16|          16|           5|
+    |tmp_length_V_2_fu_552_p3  |  Select  |      0|  0|  16|           1|          16|
+    |ap_sig_bdd_100            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_111            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_146            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_162            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_332            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_335            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_590            |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_78             |    and   |      0|  0|   1|           1|           1|
+    |tmp_1_fu_460_p2           |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_27_fu_436_p2          |   icmp   |      0|  0|   3|           8|           4|
+    |tmp_28_fu_442_p2          |   icmp   |      0|  0|   3|           8|           3|
+    |tmp_6_fu_454_p2           |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_9_fu_492_p2           |   icmp   |      0|  0|   6|          16|           4|
+    |tmp_EOP_V_4_fu_540_p2     |   icmp   |      0|  0|   6|          16|           4|
+    |tmp_s_fu_482_p2           |   icmp   |      0|  0|   3|           8|           4|
+    |ap_sig_bdd_176            |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_199            |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_65             |    or    |      0|  0|   1|           1|           1|
+    |tmp_29_fu_448_p2          |    or    |      0|  0|   1|           1|           1|
+    +--------------------------+----------+-------+---+----+------------+------------+
+    |Total                     |          |      0|  0|  89|         118|          61|
+    +--------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+-----+-----------+-----+-----------+
+    |              Name             | LUT | Input Size| Bits| Total Bits|
+    +-------------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm1                     |    2|          3|    2|          6|
+    |flashDemux2setPathValue_V_din  |   66|          3|   66|        198|
+    |flashDemuxState                |    2|          3|    2|          6|
+    |flashDemuxValueLength_V        |   16|          2|   16|         32|
+    |flashMetadataBuffer_V_din      |  128|          6|  128|        768|
+    |flashWordCounter_V             |    2|          2|    2|          4|
+    |tmp_EOP_V_3_phi_fu_248_p4      |    1|          3|    1|          3|
+    +-------------------------------+-----+-----------+-----+-----------+
+    |Total                          |  217|         22|  217|       1017|
+    +-------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------+-----+----+-----+-----------+
+    |                 Name                |  FF | LUT| Bits| Const Bits|
+    +-------------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm0                           |    1|   0|    1|          0|
+    |ap_CS_fsm1                           |    2|   0|    2|          0|
+    |ap_done_reg                          |    1|   0|    1|          0|
+    |flashDemuxState                      |    2|   0|    2|          0|
+    |flashDemuxState_load_reg_606         |    2|   0|    2|          0|
+    |flashDemuxValueLength_V              |   16|   0|   16|          0|
+    |flashWordCounter_V                   |    2|   0|    2|          0|
+    |metadataWrWord_SOP_V_reg_663         |    1|   0|    1|          0|
+    |metadataWrWord_keyValid_V_2_reg_635  |    1|   0|    1|          0|
+    |metadataWrWord_keyValid_V_3_reg_610  |    1|   0|    1|          0|
+    |metadataWrWord_keyValid_V_reg_667    |    1|   0|    1|          0|
+    |metadataWrWord_valueValid_V_reg_614  |    1|   0|    1|          0|
+    |p_Val2_s_reg_656                     |  124|   0|  124|          0|
+    |reg_353                              |   64|   0|   64|          0|
+    |reg_357                              |   64|   0|   64|          0|
+    |reg_362                              |    3|   0|    3|          0|
+    |reg_366                              |   32|   0|   32|          0|
+    |reg_370                              |   16|   0|   16|          0|
+    |tmp_10312_reg_626                    |  128|   0|  128|          0|
+    |tmp_17_reg_622                       |    1|   0|    1|          0|
+    |tmp_1_reg_683                        |    1|   0|    1|          0|
+    |tmp_23_reg_643                       |    1|   0|    1|          0|
+    |tmp_25_reg_671                       |    1|   0|    1|          0|
+    |tmp_29_reg_675                       |    1|   0|    1|          0|
+    |tmp_3_reg_652                        |    1|   0|    1|          0|
+    |tmp_6_reg_679                        |    1|   0|    1|          0|
+    |tmp_8410_reg_647                     |  128|   0|  128|          0|
+    |tmp_reg_631                          |    1|   0|    1|          0|
+    |tmp_s_reg_687                        |    1|   0|    1|          0|
+    +-------------------------------------+-----+----+-----+-----------+
+    |Total                                |  599|   0|  599|          0|
+    +-------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+|              RTL Ports              | Dir | Bits|   Protocol   |         Source Object        |    C Type    |
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+|ap_clk                               |  in |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_rst                               |  in |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_start                             |  in |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_done                              | out |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_continue                          |  in |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_idle                              | out |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|ap_ready                             | out |    1| ap_ctrl_none | memcachedPipeline_flashDemux | return value |
+|splitter2valueStoreFlash_V_dout      |  in |  256|    ap_fifo   |  splitter2valueStoreFlash_V  |    pointer   |
+|splitter2valueStoreFlash_V_empty_n   |  in |    1|    ap_fifo   |  splitter2valueStoreFlash_V  |    pointer   |
+|splitter2valueStoreFlash_V_read      | out |    1|    ap_fifo   |  splitter2valueStoreFlash_V  |    pointer   |
+|flashMetadataBuffer_V_din            | out |  128|    ap_fifo   |     flashMetadataBuffer_V    |    pointer   |
+|flashMetadataBuffer_V_full_n         |  in |    1|    ap_fifo   |     flashMetadataBuffer_V    |    pointer   |
+|flashMetadataBuffer_V_write          | out |    1|    ap_fifo   |     flashMetadataBuffer_V    |    pointer   |
+|flashKeyBuffer_V_V_din               | out |   64|    ap_fifo   |      flashKeyBuffer_V_V      |    pointer   |
+|flashKeyBuffer_V_V_full_n            |  in |    1|    ap_fifo   |      flashKeyBuffer_V_V      |    pointer   |
+|flashKeyBuffer_V_V_write             | out |    1|    ap_fifo   |      flashKeyBuffer_V_V      |    pointer   |
+|flashDemux2setPathValue_V_din        | out |   66|    ap_fifo   |   flashDemux2setPathValue_V  |    pointer   |
+|flashDemux2setPathValue_V_full_n     |  in |    1|    ap_fifo   |   flashDemux2setPathValue_V  |    pointer   |
+|flashDemux2setPathValue_V_write      | out |    1|    ap_fifo   |   flashDemux2setPathValue_V  |    pointer   |
+|flashDemux2setPathMetadata_V_din     | out |   48|    ap_fifo   | flashDemux2setPathMetadata_V |    pointer   |
+|flashDemux2setPathMetadata_V_full_n  |  in |    1|    ap_fifo   | flashDemux2setPathMetadata_V |    pointer   |
+|flashDemux2setPathMetadata_V_write   | out |    1|    ap_fifo   | flashDemux2setPathMetadata_V |    pointer   |
+|flashDemux2getPath_V_din             | out |   48|    ap_fifo   |     flashDemux2getPath_V     |    pointer   |
+|flashDemux2getPath_V_full_n          |  in |    1|    ap_fifo   |     flashDemux2getPath_V     |    pointer   |
+|flashDemux2getPath_V_write           | out |    1|    ap_fifo   |     flashDemux2getPath_V     |    pointer   |
++-------------------------------------+-----+-----+--------------+------------------------------+--------------+
+

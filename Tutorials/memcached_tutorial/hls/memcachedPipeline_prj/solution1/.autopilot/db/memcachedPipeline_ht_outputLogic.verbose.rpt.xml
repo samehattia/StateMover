@@ -1,0 +1,232 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'memcachedPipeline_ht_outputLogic'" level="0">
+<item name = "Date">Wed Oct 21 12:18:49 2020
+</item>
+<item name = "Version">2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)</item>
+<item name = "Project">memcachedPipeline_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="default">6.66, 8.17, 0.83</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="Expression">-, -, 0, 177</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 861</column>
+<column name="Register">-, -, 852, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="grp_fu_520_p2">+, 0, 0, 8, 8, 5</column>
+<column name="grp_fu_540_p2">+, 0, 0, 16, 16, 5</column>
+<column name="tmp_181_fu_742_p2">+, 0, 0, 16, 16, 5</column>
+<column name="tmp_187_fu_768_p2">+, 0, 0, 8, 8, 5</column>
+<column name="grp_fu_525_p3">Select, 0, 0, 8, 1, 8</column>
+<column name="grp_fu_545_p3">Select, 0, 0, 16, 1, 16</column>
+<column name="storemerge34_cast_fu_649_p3">Select, 0, 0, 2, 1, 2</column>
+<column name="storemerge_fu_748_p3">Select, 0, 0, 16, 1, 16</column>
+<column name="tmp_467_s_fu_774_p3">Select, 0, 0, 8, 1, 8</column>
+<column name="ap_sig_bdd_275">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_430">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_580">and, 0, 0, 1, 1, 1</column>
+<column name="not_tmp_EOP_V_demorgan_fu_637_p2">and, 0, 0, 1, 1, 1</column>
+<column name="or_cond_fu_609_p2">and, 0, 0, 1, 1, 1</column>
+<column name="tmp_EOP_V_fu_812_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_505_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="grp_fu_510_p2">icmp, 0, 0, 6, 16, 1</column>
+<column name="grp_fu_515_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="grp_fu_535_p2">icmp, 0, 0, 6, 16, 4</column>
+<column name="tmp_174_fu_698_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="tmp_177_fu_704_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="tmp_180_fu_736_p2">icmp, 0, 0, 6, 16, 4</column>
+<column name="tmp_186_fu_762_p2">icmp, 0, 0, 3, 8, 4</column>
+<column name="tmp_191_fu_597_p2">icmp, 0, 0, 6, 16, 1</column>
+<column name="tmp_192_fu_603_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="tmp_194_fu_625_p2">icmp, 0, 0, 6, 16, 1</column>
+<column name="tmp_195_fu_631_p2">icmp, 0, 0, 3, 8, 1</column>
+<column name="ap_sig_bdd_104">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_110">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_138">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_144">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_157">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_191">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_223">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_259">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_262">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_410">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_414">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_427">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_446">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_456">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_471">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_483">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_598">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_63">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_77">or, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_98">or, 0, 0, 1, 1, 1</column>
+<column name="not_tmp_EOP_V_fu_643_p2">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm1">2, 3, 2, 6</column>
+<column name="ap_reg_phiprechg_p_Val2_27_reg_473pp0_it1">128, 3, 128, 384</column>
+<column name="ap_reg_phiprechg_tmp_EOP_V_15_reg_426pp0_it1">1, 2, 1, 2</column>
+<column name="ap_reg_phiprechg_tmp_key_V_12_reg_391pp0_it1">64, 3, 64, 192</column>
+<column name="ap_reg_phiprechg_tmp_key_V_3_reg_438pp0_it1">64, 3, 64, 192</column>
+<column name="ap_reg_phiprechg_tmp_key_V_reg_493pp0_it1">64, 3, 64, 192</column>
+<column name="ap_reg_phiprechg_tmp_valueValid_V_6_reg_413pp0_it1">1, 3, 1, 3</column>
+<column name="ap_reg_phiprechg_tmp_valueValid_V_reg_460pp0_it1">1, 3, 1, 3</column>
+<column name="ap_reg_phiprechg_tmp_value_V_8_reg_449pp0_it1">64, 3, 64, 192</column>
+<column name="ap_reg_phiprechg_tmp_value_V_9_reg_402pp0_it1">64, 3, 64, 192</column>
+<column name="ap_reg_phiprechg_tmp_value_V_reg_482pp0_it1">64, 3, 64, 192</column>
+<column name="hashTable2splitter_V_din">256, 4, 256, 1024</column>
+<column name="olState">2, 3, 2, 6</column>
+<column name="ol_keyLength_V_flag_7_phi_fu_307_p26">1, 5, 1, 5</column>
+<column name="ol_keyLength_V_load_8_phi_fu_250_p4">8, 3, 8, 24</column>
+<column name="ol_keyLength_V_load_9_phi_fu_280_p4">8, 3, 8, 24</column>
+<column name="ol_keyLength_V_new_7_phi_fu_352_p26">8, 5, 8, 40</column>
+<column name="ol_keyLength_V_new_phi_fu_298_p4">8, 3, 8, 24</column>
+<column name="ol_valueLength_V">16, 2, 16, 32</column>
+<column name="tmp_190_phi_fu_259_p4">16, 3, 16, 48</column>
+<column name="tmp_193_phi_fu_289_p4">16, 3, 16, 48</column>
+<column name="tmp_EOP_V_15_phi_fu_430_p4">1, 2, 1, 2</column>
+<column name="tmp_keyValid_V_14_phi_fu_238_p4">1, 3, 1, 3</column>
+<column name="tmp_keyValid_V_14_reg_235">1, 3, 1, 3</column>
+<column name="tmp_keyValid_V_phi_fu_268_p4">1, 3, 1, 3</column>
+<column name="tmp_keyValid_V_reg_265">1, 3, 1, 3</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm0">1, 0, 1, 0</column>
+<column name="ap_CS_fsm1">2, 0, 2, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_p_Val2_27_reg_473pp0_it1">128, 0, 128, 0</column>
+<column name="ap_reg_phiprechg_tmp_EOP_V_15_reg_426pp0_it1">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_tmp_key_V_12_reg_391pp0_it1">64, 0, 64, 0</column>
+<column name="ap_reg_phiprechg_tmp_key_V_3_reg_438pp0_it1">64, 0, 64, 0</column>
+<column name="ap_reg_phiprechg_tmp_key_V_reg_493pp0_it1">64, 0, 64, 0</column>
+<column name="ap_reg_phiprechg_tmp_valueValid_V_6_reg_413pp0_it1">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_tmp_valueValid_V_reg_460pp0_it1">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_tmp_value_V_8_reg_449pp0_it1">64, 0, 64, 0</column>
+<column name="ap_reg_phiprechg_tmp_value_V_9_reg_402pp0_it1">64, 0, 64, 0</column>
+<column name="ap_reg_phiprechg_tmp_value_V_reg_482pp0_it1">64, 0, 64, 0</column>
+<column name="olState">2, 0, 2, 0</column>
+<column name="olState_load_reg_873">2, 0, 2, 0</column>
+<column name="ol_keyLength_V">8, 0, 8, 0</column>
+<column name="ol_valueLength_V">16, 0, 16, 0</column>
+<column name="or_cond_reg_893">1, 0, 1, 0</column>
+<column name="outputWord_metadata_V_reg_917">124, 0, 124, 0</column>
+<column name="p_Result_s_reg_968">32, 0, 32, 0</column>
+<column name="tmp_173_reg_901">1, 0, 1, 0</column>
+<column name="tmp_174_reg_952">1, 0, 1, 0</column>
+<column name="tmp_175_reg_885">1, 0, 1, 0</column>
+<column name="tmp_176_reg_909">1, 0, 1, 0</column>
+<column name="tmp_177_reg_960">1, 0, 1, 0</column>
+<column name="tmp_194_reg_922">1, 0, 1, 0</column>
+<column name="tmp_195_reg_927">1, 0, 1, 0</column>
+<column name="tmp_351_reg_940">1, 0, 1, 0</column>
+<column name="tmp_50_reg_897">1, 0, 1, 0</column>
+<column name="tmp_51_reg_936">1, 0, 1, 0</column>
+<column name="tmp_52_reg_881">1, 0, 1, 0</column>
+<column name="tmp_53_reg_905">1, 0, 1, 0</column>
+<column name="tmp_54_reg_956">1, 0, 1, 0</column>
+<column name="tmp_55_reg_889">1, 0, 1, 0</column>
+<column name="tmp_56_reg_913">1, 0, 1, 0</column>
+<column name="tmp_57_reg_964">1, 0, 1, 0</column>
+<column name="tmp_V_reg_945">128, 0, 128, 0</column>
+<column name="tmp_keyValid_V_14_reg_235">1, 0, 1, 0</column>
+<column name="tmp_keyValid_V_reg_265">1, 0, 1, 0</column>
+<column name="tmp_reg_932">1, 0, 1, 0</column>
+<column name="tmp_s_reg_877">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_none, memcachedPipeline_ht_outputLogic, return value</column>
+<column name="hashKeyBuffer_V_V_dout">in, 64, ap_fifo, hashKeyBuffer_V_V, pointer</column>
+<column name="hashKeyBuffer_V_V_empty_n">in, 1, ap_fifo, hashKeyBuffer_V_V, pointer</column>
+<column name="hashKeyBuffer_V_V_read">out, 1, ap_fifo, hashKeyBuffer_V_V, pointer</column>
+<column name="hashValueBuffer_V_V_dout">in, 64, ap_fifo, hashValueBuffer_V_V, pointer</column>
+<column name="hashValueBuffer_V_V_empty_n">in, 1, ap_fifo, hashValueBuffer_V_V, pointer</column>
+<column name="hashValueBuffer_V_V_read">out, 1, ap_fifo, hashValueBuffer_V_V, pointer</column>
+<column name="hashMdBuffer_V_V_dout">in, 128, ap_fifo, hashMdBuffer_V_V, pointer</column>
+<column name="hashMdBuffer_V_V_empty_n">in, 1, ap_fifo, hashMdBuffer_V_V, pointer</column>
+<column name="hashMdBuffer_V_V_read">out, 1, ap_fifo, hashMdBuffer_V_V, pointer</column>
+<column name="memWr2out_V_dout">in, 57, ap_fifo, memWr2out_V, pointer</column>
+<column name="memWr2out_V_empty_n">in, 1, ap_fifo, memWr2out_V, pointer</column>
+<column name="memWr2out_V_read">out, 1, ap_fifo, memWr2out_V, pointer</column>
+<column name="hashTable2splitter_V_din">out, 256, ap_fifo, hashTable2splitter_V, pointer</column>
+<column name="hashTable2splitter_V_full_n">in, 1, ap_fifo, hashTable2splitter_V, pointer</column>
+<column name="hashTable2splitter_V_write">out, 1, ap_fifo, hashTable2splitter_V, pointer</column>
+</table>
+</item>
+</section>
+</profile>

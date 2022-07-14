@@ -1,0 +1,28 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="readWriteConverter_prj"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcku040:-ffva1156:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="6.66" default="false"/>
+    </clockList>
+    <config>
+        <config_rtl reset="all" reset_async="1"/>
+        <config_compile blackbox=""/>
+        <schedule model="readWriteConverter"/>
+        <config_export description="Converts the memcached pipeline mem. read write commands to a format understood by the AXI data mover IP block" display_name="Mem. Read Write Command Converter" format="ip_catalog" vendor="xilinx.labs" version="1.04"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="Converts the memcached pipeline mem. read write commands to a format understood by the AXI data mover IP block" vendor="xilinx.labs" library="" ipname="" version="1.04" driver_input_dir="" display_name="Mem. Read Write Command Converter" taxonomy=""/>
+    </ExportDesign>
+</AutoPilot:solution>
+

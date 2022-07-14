@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="dummyPCIeJoint" xd:componentRef="dummyPCIeJoint" xd:initiationInterval="1" xd:clockPeriod="6.400" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:arg xd:name="inData" xd:originalName="inData" xd:direction="in" xd:interfaceRef="inData_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="outDataFlash" xd:originalName="outDataFlash" xd:direction="out" xd:interfaceRef="outDataFlash_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="outDataDram" xd:originalName="outDataDram" xd:direction="out" xd:interfaceRef="outDataDram_V_V" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="flushReq" xd:originalName="flushReq" xd:direction="in" xd:interfaceRef="flushReq_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="flushAck" xd:originalName="flushAck" xd:direction="out" xd:interfaceRef="flushAck_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="flushDone" xd:originalName="flushDone" xd:direction="in" xd:interfaceRef="flushDone_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="3" xd:worst-case="3" xd:average-case="3"/>
+  <xd:resourceEstimates xd:LUT="324" xd:FF="158" xd:BRAM="4" xd:DSP="1"/>
+</xd:acceleratorMap>

@@ -1,0 +1,313 @@
+
+
+================================================================
+== Vivado HLS Report for 'readWriteConverter'
+================================================================
+* Date:           Wed Oct 14 13:29:48 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        readWriteConverter_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.66|     3.129|        0.83|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    2|    2| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.26>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecChannel([22 x i8]* @aggregateMemCmdType_s, i32 1, [1 x i8]* @p_str191, [1 x i8]* @p_str191, i32 16, i32 16, i1* @aggregateMemCmdType_s_0, i1* @aggregateMemCmdType_s_0)"   --->   Operation 3 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1* @aggregateMemCmdType_s_0, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str192, i32 0, i32 0, [1 x i8]* @p_str193, [1 x i8]* @p_str194, [1 x i8]* @p_str195, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str196, [1 x i8]* @p_str197)"   --->   Operation 4 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%empty_11 = call i32 (...)* @_ssdm_op_SpecChannel([23 x i8]* @memReadCmd_OC_V_OC_a, i32 1, [1 x i8]* @p_str184, [1 x i8]* @p_str184, i32 16, i32 16, i32* @memReadCmd_V_address, i32* @memReadCmd_V_address)"   --->   Operation 5 'specchannel' 'empty_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @memReadCmd_V_address, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str185, i32 0, i32 0, [1 x i8]* @p_str186, [1 x i8]* @p_str187, [1 x i8]* @p_str188, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str189, [1 x i8]* @p_str190)"   --->   Operation 6 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%empty_12 = call i32 (...)* @_ssdm_op_SpecChannel([21 x i8]* @memReadCmd_OC_V_OC_c, i32 1, [1 x i8]* @p_str177, [1 x i8]* @p_str177, i32 16, i32 16, i8* @memReadCmd_V_count_V, i8* @memReadCmd_V_count_V)"   --->   Operation 7 'specchannel' 'empty_12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* @memReadCmd_V_count_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str178, i32 0, i32 0, [1 x i8]* @p_str179, [1 x i8]* @p_str180, [1 x i8]* @p_str181, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str182, [1 x i8]* @p_str183)"   --->   Operation 8 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%empty_13 = call i32 (...)* @_ssdm_op_SpecChannel([24 x i8]* @memWriteCmd_OC_V_OC_1, i32 1, [1 x i8]* @p_str170, [1 x i8]* @p_str170, i32 16, i32 16, i32* @memWriteCmd_V_addres, i32* @memWriteCmd_V_addres)"   --->   Operation 9 'specchannel' 'empty_13' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* @memWriteCmd_V_addres, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str171, i32 0, i32 0, [1 x i8]* @p_str172, [1 x i8]* @p_str173, [1 x i8]* @p_str174, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str175, [1 x i8]* @p_str176)"   --->   Operation 10 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%empty_14 = call i32 (...)* @_ssdm_op_SpecChannel([22 x i8]* @memWriteCmd_OC_V_OC_s, i32 1, [1 x i8]* @p_str163, [1 x i8]* @p_str163, i32 16, i32 16, i8* @memWriteCmd_V_count_s, i8* @memWriteCmd_V_count_s)"   --->   Operation 11 'specchannel' 'empty_14' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* @memWriteCmd_V_count_s, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str164, i32 0, i32 0, [1 x i8]* @p_str165, [1 x i8]* @p_str166, [1 x i8]* @p_str167, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str168, [1 x i8]* @p_str169)"   --->   Operation 12 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %dmRdStatus_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str157, i32 0, i32 0, [1 x i8]* @p_str158, [1 x i8]* @p_str159, [1 x i8]* @p_str160, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str161, [1 x i8]* @p_str162)"   --->   Operation 13 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i577* %dmRdData_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str151, i32 0, i32 0, [1 x i8]* @p_str152, [1 x i8]* @p_str153, [1 x i8]* @p_str154, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str155, [1 x i8]* @p_str156)"   --->   Operation 14 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i72* %dmRdCmd_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str145, i32 0, i32 0, [1 x i8]* @p_str146, [1 x i8]* @p_str147, [1 x i8]* @p_str148, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str149, [1 x i8]* @p_str150)"   --->   Operation 15 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %memRdData_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str139, i32 0, i32 0, [1 x i8]* @p_str140, [1 x i8]* @p_str141, [1 x i8]* @p_str142, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str143, [1 x i8]* @p_str144)"   --->   Operation 16 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i40* %memRdCmd_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str133, i32 0, i32 0, [1 x i8]* @p_str134, [1 x i8]* @p_str135, [1 x i8]* @p_str136, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str137, [1 x i8]* @p_str138)"   --->   Operation 17 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %dmWrStatus_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str127, i32 0, i32 0, [1 x i8]* @p_str128, [1 x i8]* @p_str129, [1 x i8]* @p_str130, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str131, [1 x i8]* @p_str132)"   --->   Operation 18 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i577* %dmWrData_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str121, i32 0, i32 0, [1 x i8]* @p_str122, [1 x i8]* @p_str123, [1 x i8]* @p_str124, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str125, [1 x i8]* @p_str126)"   --->   Operation 19 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i72* %dmWrCmd_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str115, i32 0, i32 0, [1 x i8]* @p_str116, [1 x i8]* @p_str117, [1 x i8]* @p_str118, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str119, [1 x i8]* @p_str120)"   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %memWrData_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str109, i32 0, i32 0, [1 x i8]* @p_str110, [1 x i8]* @p_str111, [1 x i8]* @p_str112, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str113, [1 x i8]* @p_str114)"   --->   Operation 21 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i40* %memWrCmd_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str103, i32 0, i32 0, [1 x i8]* @p_str104, [1 x i8]* @p_str105, [1 x i8]* @p_str106, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str107, [1 x i8]* @p_str108)"   --->   Operation 22 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i577* %dmRdData_V), !map !106"   --->   Operation 23 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i72* %dmRdCmd_V), !map !116"   --->   Operation 24 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i40* %memRdCmd_V), !map !141"   --->   Operation 25 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i577* %dmWrData_V), !map !148"   --->   Operation 26 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i72* %dmWrCmd_V), !map !158"   --->   Operation 27 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i40* %memWrCmd_V), !map !183"   --->   Operation 28 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%dmRdAddrPosted_V_rea = call i1 @_ssdm_op_Read.ap_none.i1(i1 %dmRdAddrPosted_V)"   --->   Operation 29 'read' 'dmRdAddrPosted_V_rea' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i512* %memWrData_V_V), !map !190"   --->   Operation 30 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %dmWrStatus_V_V), !map !194"   --->   Operation 31 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i512* %memRdData_V_V), !map !198"   --->   Operation 32 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %dmRdStatus_V_V), !map !202"   --->   Operation 33 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %dmRdAddrPosted_V), !map !206"   --->   Operation 34 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1 %dmWrAddrPosted_V), !map !212"   --->   Operation 35 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @readWriteConverter_s) nounwind"   --->   Operation 36 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:37]   --->   Operation 37 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %dmRdAddrPosted_V, [8 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:38]   --->   Operation 38 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i1 %dmWrAddrPosted_V, [8 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:39]   --->   Operation 39 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:41]   --->   Operation 40 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i40* %memWrCmd_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 41 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i512* %memWrData_V_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:48]   --->   Operation 42 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i72* %dmWrCmd_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 43 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i577* %dmWrData_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 44 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i8* %dmWrStatus_V_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:51]   --->   Operation 45 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i8* %dmRdStatus_V_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:57]   --->   Operation 46 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i512* %memRdData_V_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:58]   --->   Operation 47 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i72* %dmRdCmd_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 48 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i577* %dmRdData_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 49 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecIFCore(i40* %memRdCmd_V, [1 x i8]* @p_str1, [5 x i8]* @p_str3, [1 x i8]* @p_str1, i32 -1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 50 'specifcore' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%readWriteConverterSt_1 = load i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:93]   --->   Operation 51 'load' 'readWriteConverterSt_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%lastReadCmd_load = load i1* @lastReadCmd, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 52 'load' 'lastReadCmd_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%dmRdCmdCount_V_load = load i16* @dmRdCmdCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 53 'load' 'dmRdCmdCount_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%dmRdStatusCount_V_lo = load i16* @dmRdStatusCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 54 'load' 'dmRdStatusCount_V_lo' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%noOfBytesToWrite_V_l = load i8* @noOfBytesToWrite_V, align 1"   --->   Operation 55 'load' 'noOfBytesToWrite_V_l' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%dmRdAddrPostedCount_1 = load i16* @dmRdAddrPostedCount_s, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:165]   --->   Operation 56 'load' 'dmRdAddrPostedCount_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.90ns)   --->   "switch i3 %readWriteConverterSt_1, label %._crit_edge653 [
+    i3 0, label %0
+    i3 2, label %2
+    i3 1, label %5
+    i3 3, label %8
+    i3 -4, label %14
+  ]" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:93]   --->   Operation 57 'switch' <Predicate = true> <Delay = 0.90>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%tmp_4 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i8P(i8* %dmWrStatus_V_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:146]   --->   Operation 58 'nbreadreq' 'tmp_4' <Predicate = (readWriteConverterSt_1 == 4)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "br i1 %tmp_4, label %15, label %._crit_edge664" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:146]   --->   Operation 59 'br' <Predicate = (readWriteConverterSt_1 == 4)> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%tmp_3 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i512P(i512* %memWrData_V_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:132]   --->   Operation 60 'nbreadreq' 'tmp_3' <Predicate = (readWriteConverterSt_1 == 3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "br i1 %tmp_3, label %9, label %._crit_edge662" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:132]   --->   Operation 61 'br' <Predicate = (readWriteConverterSt_1 == 3)> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%tmp_8 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i577P(i577* %dmWrData_V, i32 1)"   --->   Operation 62 'nbwritereq' 'tmp_8' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "br i1 %tmp_8, label %10, label %._crit_edge662" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:132]   --->   Operation 63 'br' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3)> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%tmp_2 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P.i8P(i32* @memReadCmd_V_address, i8* @memReadCmd_V_count_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:121]   --->   Operation 64 'nbreadreq' 'tmp_2' <Predicate = (readWriteConverterSt_1 == 1)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "br i1 %tmp_2, label %6, label %._crit_edge660" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:121]   --->   Operation 65 'br' <Predicate = (readWriteConverterSt_1 == 1)> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%tmp_7 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i72P(i72* %dmRdCmd_V, i32 1)"   --->   Operation 66 'nbwritereq' 'tmp_7' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "br i1 %tmp_7, label %7, label %._crit_edge660" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:121]   --->   Operation 67 'br' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2)> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (1.93ns)   --->   "%empty_16 = call { i32, i8 } @_ssdm_op_Read.ap_fifo.volatile.i32P.i8P(i32* @memReadCmd_V_address, i8* @memReadCmd_V_count_V)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:122]   --->   Operation 68 'read' 'empty_16' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%tmp_address_V = extractvalue { i32, i8 } %empty_16, 0" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:122]   --->   Operation 69 'extractvalue' 'tmp_address_V' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%tmp_count_V = extractvalue { i32, i8 } %empty_16, 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:122]   --->   Operation 70 'extractvalue' 'tmp_count_V' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%tmp_22 = trunc i32 %tmp_address_V to i26" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:122]   --->   Operation 71 'trunc' 'tmp_22' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (1.00ns)   --->   "store i3 0, i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:127]   --->   Operation 72 'store' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 1.00>
+ST_1 : Operation 73 [1/1] (1.41ns)   --->   "%tmp_10 = add i16 1, %dmRdCmdCount_V_load" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:128]   --->   Operation 73 'add' 'tmp_10' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 74 [1/1] (0.83ns)   --->   "store i16 %tmp_10, i16* @dmRdCmdCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:128]   --->   Operation 74 'store' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.83>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_1 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i32P.i8P(i32* @memWriteCmd_V_addres, i8* @memWriteCmd_V_count_s, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 75 'nbreadreq' 'tmp_1' <Predicate = (readWriteConverterSt_1 == 2)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_1 : Operation 76 [1/1] (0.83ns)   --->   "br i1 %tmp_1, label %3, label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 76 'br' <Predicate = (readWriteConverterSt_1 == 2)> <Delay = 0.83>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%tmp_6 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i72P(i72* %dmWrCmd_V, i32 1)"   --->   Operation 77 'nbwritereq' 'tmp_6' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 78 [1/1] (0.83ns)   --->   "br i1 %tmp_6, label %4, label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 78 'br' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1)> <Delay = 0.83>
+ST_1 : Operation 79 [1/1] (1.09ns)   --->   "%tmp_s = icmp ne i16 %dmRdCmdCount_V_load, %dmRdStatusCount_V_lo" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 79 'icmp' 'tmp_s' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 80 [1/1] (0.33ns)   --->   "%demorgan = and i1 %lastReadCmd_load, %tmp_s" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 80 'and' 'demorgan' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 81 [1/1] (0.83ns)   --->   "br i1 %demorgan, label %._crit_edge653, label %._crit_edge657" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 81 'br' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6)> <Delay = 0.83>
+ST_1 : Operation 82 [1/1] (1.93ns)   --->   "%empty_15 = call { i32, i8 } @_ssdm_op_Read.ap_fifo.volatile.i32P.i8P(i32* @memWriteCmd_V_addres, i8* @memWriteCmd_V_count_s)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:108]   --->   Operation 82 'read' 'empty_15' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "%tmp_address_V_1 = extractvalue { i32, i8 } %empty_15, 0" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:108]   --->   Operation 83 'extractvalue' 'tmp_address_V_1' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_1 : Operation 84 [1/1] (0.00ns)   --->   "%tmp_count_V_1 = extractvalue { i32, i8 } %empty_15, 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:108]   --->   Operation 84 'extractvalue' 'tmp_count_V_1' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%tmp_24 = trunc i32 %tmp_address_V_1 to i26" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:108]   --->   Operation 85 'trunc' 'tmp_24' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "store i8 %tmp_count_V_1, i8* @noOfBytesToWrite_V, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:111]   --->   Operation 86 'store' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_1 : Operation 87 [1/1] (1.00ns)   --->   "store i3 3, i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:114]   --->   Operation 87 'store' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 1.00>
+ST_1 : Operation 88 [1/1] (0.83ns)   --->   "store i16 0, i16* @dmRdCmdCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:117]   --->   Operation 88 'store' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.83>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i1P(i1* @aggregateMemCmdType_s_0, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:95]   --->   Operation 89 'nbreadreq' 'tmp' <Predicate = (readWriteConverterSt_1 == 0)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "br i1 %tmp, label %1, label %._crit_edge654" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:95]   --->   Operation 90 'br' <Predicate = (readWriteConverterSt_1 == 0)> <Delay = 0.00>
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "%tmp_14 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i577P(i577* %dmRdData_V, i32 1)"   --->   Operation 91 'nbreadreq' 'tmp_14' <Predicate = true> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 92 [1/1] (0.00ns)   --->   "%tmp_15 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i512P(i512* %memRdData_V_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:153]   --->   Operation 92 'nbwritereq' 'tmp_15' <Predicate = (tmp_14)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "br i1 %tmp_15, label %17, label %._crit_edge665" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:153]   --->   Operation 93 'br' <Predicate = (tmp_14)> <Delay = 0.00>
+ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%tmp_16 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i8P(i8* %dmRdStatus_V_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:159]   --->   Operation 94 'nbreadreq' 'tmp_16' <Predicate = true> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 95 [1/1] (0.00ns)   --->   "%tmp_19 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i40P(i40* %memWrCmd_V, i32 1)"   --->   Operation 95 'nbreadreq' 'tmp_19' <Predicate = true> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+
+State 2 <SV = 1> <Delay = 3.12>
+ST_2 : Operation 96 [1/1] (0.00ns)   --->   "%tmp_V_0 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %dmWrStatus_V_V)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:147]   --->   Operation 96 'read' 'tmp_V_0' <Predicate = (readWriteConverterSt_1 == 4 & tmp_4)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 97 [1/1] (1.00ns)   --->   "store i3 0, i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:148]   --->   Operation 97 'store' <Predicate = (readWriteConverterSt_1 == 4 & tmp_4)> <Delay = 1.00>
+ST_2 : Operation 98 [1/1] (0.00ns)   --->   "br label %._crit_edge664" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:149]   --->   Operation 98 'br' <Predicate = (readWriteConverterSt_1 == 4 & tmp_4)> <Delay = 0.00>
+ST_2 : Operation 99 [1/1] (0.83ns)   --->   "br label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:150]   --->   Operation 99 'br' <Predicate = (readWriteConverterSt_1 == 4)> <Delay = 0.83>
+ST_2 : Operation 100 [1/1] (0.00ns)   --->   "%tmp_V_1 = call i512 @_ssdm_op_Read.ap_fifo.volatile.i512P(i512* %memWrData_V_V)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:134]   --->   Operation 100 'read' 'tmp_V_1' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 101 [1/1] (0.00ns)   --->   "%lhs_V_cast = zext i8 %noOfBytesToWrite_V_l to i9" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 101 'zext' 'lhs_V_cast' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 102 [1/1] (1.28ns)   --->   "%ret_V = add i9 %lhs_V_cast, -1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 102 'add' 'ret_V' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 1.28> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 103 [1/1] (0.00ns)   --->   "%ret_V_cast = sext i9 %ret_V to i17" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 103 'sext' 'ret_V_cast' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 104 [1/1] (0.00ns)   --->   "%t_V_2 = load i16* @byteCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 104 'load' 't_V_2' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 105 [1/1] (0.00ns)   --->   "%tmp_11_cast = zext i16 %t_V_2 to i17" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 105 'zext' 'tmp_11_cast' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 106 [1/1] (1.09ns)   --->   "%tmp_11 = icmp eq i17 %tmp_11_cast, %ret_V_cast" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 106 'icmp' 'tmp_11' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 107 [1/1] (0.00ns)   --->   "br i1 %tmp_11, label %11, label %12" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:135]   --->   Operation 107 'br' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 108 [1/1] (1.41ns)   --->   "%tmp_13 = add i16 %t_V_2, 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:141]   --->   Operation 108 'add' 'tmp_13' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8 & !tmp_11)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 109 [1/1] (0.83ns)   --->   "br label %13"   --->   Operation 109 'br' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8 & !tmp_11)> <Delay = 0.83>
+ST_2 : Operation 110 [1/1] (1.00ns)   --->   "store i3 -4, i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:137]   --->   Operation 110 'store' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8 & tmp_11)> <Delay = 1.00>
+ST_2 : Operation 111 [1/1] (0.83ns)   --->   "br label %13" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:139]   --->   Operation 111 'br' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8 & tmp_11)> <Delay = 0.83>
+ST_2 : Operation 112 [1/1] (0.00ns)   --->   "%storemerge = phi i16 [ %tmp_13, %12 ], [ 0, %11 ]" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:141]   --->   Operation 112 'phi' 'storemerge' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 113 [1/1] (0.00ns)   --->   "%tmp_last_V = phi i1 [ false, %12 ], [ true, %11 ]"   --->   Operation 113 'phi' 'tmp_last_V' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 114 [1/1] (0.00ns)   --->   "store i16 %storemerge, i16* @byteCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:138]   --->   Operation 114 'store' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 115 [1/1] (0.00ns)   --->   "%tmp_230 = call i577 @_ssdm_op_BitConcatenate.i577.i1.i64.i512(i1 %tmp_last_V, i64 -1, i512 %tmp_V_1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:142]   --->   Operation 115 'bitconcatenate' 'tmp_230' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 116 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i577P(i577* %dmWrData_V, i577 %tmp_230)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:142]   --->   Operation 116 'write' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 117 [1/1] (0.00ns)   --->   "br label %._crit_edge662" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:143]   --->   Operation 117 'br' <Predicate = (readWriteConverterSt_1 == 3 & tmp_3 & tmp_8)> <Delay = 0.00>
+ST_2 : Operation 118 [1/1] (0.83ns)   --->   "br label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:144]   --->   Operation 118 'br' <Predicate = (readWriteConverterSt_1 == 3)> <Delay = 0.83>
+ST_2 : Operation 119 [1/1] (0.00ns)   --->   "%readCtrlWord_btt_V = call i14 @_ssdm_op_BitConcatenate.i14.i8.i6(i8 %tmp_count_V, i6 0)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:124]   --->   Operation 119 'bitconcatenate' 'readCtrlWord_btt_V' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 120 [1/1] (0.00ns)   --->   "%readCtrlWord_btt_V_c = zext i14 %readCtrlWord_btt_V to i23" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:124]   --->   Operation 120 'zext' 'readCtrlWord_btt_V_c' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 121 [1/1] (0.00ns)   --->   "%readCtrlWord_tag_V = load i4* @rdTagCounter_V, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:124]   --->   Operation 121 'load' 'readCtrlWord_tag_V' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 122 [1/1] (0.00ns)   --->   "%tmp_110 = call i72 @_ssdm_op_BitConcatenate.i72.i4.i4.i26.i15.i23(i4 0, i4 %readCtrlWord_tag_V, i26 %tmp_22, i15 129, i23 %readCtrlWord_btt_V_c)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:125]   --->   Operation 122 'bitconcatenate' 'tmp_110' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 123 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i72P(i72* %dmRdCmd_V, i72 %tmp_110)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:125]   --->   Operation 123 'write' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 124 [1/1] (0.94ns)   --->   "%tmp_9 = add i4 1, %readCtrlWord_tag_V" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:126]   --->   Operation 124 'add' 'tmp_9' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.94> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 125 [1/1] (0.00ns)   --->   "store i4 %tmp_9, i4* @rdTagCounter_V, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:126]   --->   Operation 125 'store' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 126 [1/1] (0.00ns)   --->   "br label %._crit_edge660" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:129]   --->   Operation 126 'br' <Predicate = (readWriteConverterSt_1 == 1 & tmp_2 & tmp_7)> <Delay = 0.00>
+ST_2 : Operation 127 [1/1] (0.83ns)   --->   "br label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:130]   --->   Operation 127 'br' <Predicate = (readWriteConverterSt_1 == 1)> <Delay = 0.83>
+ST_2 : Operation 128 [1/1] (0.00ns)   --->   "%writeCtrlWord_btt_V = call i14 @_ssdm_op_BitConcatenate.i14.i8.i6(i8 %tmp_count_V_1, i6 0)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:110]   --->   Operation 128 'bitconcatenate' 'writeCtrlWord_btt_V' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_2 : Operation 129 [1/1] (0.00ns)   --->   "%writeCtrlWord_btt_V_s = zext i14 %writeCtrlWord_btt_V to i23" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:110]   --->   Operation 129 'zext' 'writeCtrlWord_btt_V_s' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_2 : Operation 130 [1/1] (0.00ns)   --->   "%writeCtrlWord_tag_V = load i4* @wrTagCounter_V, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:110]   --->   Operation 130 'load' 'writeCtrlWord_tag_V' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_2 : Operation 131 [1/1] (0.00ns)   --->   "%tmp38 = call i72 @_ssdm_op_BitConcatenate.i72.i4.i4.i26.i15.i23(i4 0, i4 %writeCtrlWord_tag_V, i26 %tmp_24, i15 129, i23 %writeCtrlWord_btt_V_s)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:112]   --->   Operation 131 'bitconcatenate' 'tmp38' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_2 : Operation 132 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i72P(i72* %dmWrCmd_V, i72 %tmp38)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:112]   --->   Operation 132 'write' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 133 [1/1] (0.94ns)   --->   "%tmp_12 = add i4 1, %writeCtrlWord_tag_V" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:113]   --->   Operation 133 'add' 'tmp_12' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.94> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 134 [1/1] (0.00ns)   --->   "store i4 %tmp_12, i4* @wrTagCounter_V, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:113]   --->   Operation 134 'store' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.00>
+ST_2 : Operation 135 [1/1] (0.83ns)   --->   "br label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:118]   --->   Operation 135 'br' <Predicate = (readWriteConverterSt_1 == 2 & tmp_1 & tmp_6 & !demorgan)> <Delay = 0.83>
+ST_2 : Operation 136 [1/1] (0.00ns)   --->   "%readCmd_load = load i1* @readCmd, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:96]   --->   Operation 136 'load' 'readCmd_load' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 0.00>
+ST_2 : Operation 137 [1/1] (0.00ns)   --->   "store i1 %readCmd_load, i1* @lastReadCmd, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:96]   --->   Operation 137 'store' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 0.00>
+ST_2 : Operation 138 [1/1] (1.93ns)   --->   "%tmp_5 = call i1 @_ssdm_op_Read.ap_fifo.volatile.i1P(i1* @aggregateMemCmdType_s_0)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:97]   --->   Operation 138 'read' 'tmp_5' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 139 [1/1] (0.00ns)   --->   "store i1 %tmp_5, i1* @readCmd, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:97]   --->   Operation 139 'store' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 0.00>
+ST_2 : Operation 140 [1/1] (0.19ns)   --->   "%storemerge1_cast_cas = select i1 %tmp_5, i3 1, i3 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:98]   --->   Operation 140 'select' 'storemerge1_cast_cas' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 0.19> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 141 [1/1] (1.00ns)   --->   "store i3 %storemerge1_cast_cas, i3* @readWriteConverterSt, align 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:99]   --->   Operation 141 'store' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 1.00>
+ST_2 : Operation 142 [1/1] (0.00ns)   --->   "br label %._crit_edge654" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:102]   --->   Operation 142 'br' <Predicate = (readWriteConverterSt_1 == 0 & tmp)> <Delay = 0.00>
+ST_2 : Operation 143 [1/1] (0.83ns)   --->   "br label %._crit_edge653" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:103]   --->   Operation 143 'br' <Predicate = (readWriteConverterSt_1 == 0)> <Delay = 0.83>
+ST_2 : Operation 144 [1/1] (0.00ns)   --->   "%dmRdStatusCount_V_fl = phi i1 [ false, %codeRepl ], [ false, %._crit_edge664 ], [ false, %._crit_edge662 ], [ false, %._crit_edge660 ], [ false, %._crit_edge654 ], [ true, %._crit_edge657 ], [ false, %3 ], [ false, %2 ], [ false, %4 ]"   --->   Operation 144 'phi' 'dmRdStatusCount_V_fl' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 145 [1/1] (0.00ns)   --->   "%dmRdStatusCount_V_lo_1 = phi i16 [ %dmRdStatusCount_V_lo, %codeRepl ], [ %dmRdStatusCount_V_lo, %._crit_edge664 ], [ %dmRdStatusCount_V_lo, %._crit_edge662 ], [ %dmRdStatusCount_V_lo, %._crit_edge660 ], [ %dmRdStatusCount_V_lo, %._crit_edge654 ], [ 0, %._crit_edge657 ], [ %dmRdStatusCount_V_lo, %3 ], [ %dmRdStatusCount_V_lo, %2 ], [ %dmRdStatusCount_V_lo, %4 ]" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107]   --->   Operation 145 'phi' 'dmRdStatusCount_V_lo_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 146 [1/1] (0.00ns)   --->   "%dmRdAddrPostedCount_2 = phi i16 [ %dmRdAddrPostedCount_1, %codeRepl ], [ %dmRdAddrPostedCount_1, %._crit_edge664 ], [ %dmRdAddrPostedCount_1, %._crit_edge662 ], [ %dmRdAddrPostedCount_1, %._crit_edge660 ], [ %dmRdAddrPostedCount_1, %._crit_edge654 ], [ 0, %._crit_edge657 ], [ %dmRdAddrPostedCount_1, %3 ], [ %dmRdAddrPostedCount_1, %2 ], [ %dmRdAddrPostedCount_1, %4 ]" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:165]   --->   Operation 146 'phi' 'dmRdAddrPostedCount_2' <Predicate = (dmRdAddrPosted_V_rea)> <Delay = 0.00>
+ST_2 : Operation 147 [1/1] (0.00ns)   --->   "br i1 %tmp_14, label %16, label %._crit_edge665" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:153]   --->   Operation 147 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 148 [1/1] (0.00ns)   --->   "%tmp_360 = call i577 @_ssdm_op_Read.ap_fifo.volatile.i577P(i577* %dmRdData_V)"   --->   Operation 148 'read' 'tmp_360' <Predicate = (tmp_14 & tmp_15)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 149 [1/1] (0.00ns)   --->   "%tmp_V = trunc i577 %tmp_360 to i512" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:155]   --->   Operation 149 'trunc' 'tmp_V' <Predicate = (tmp_14 & tmp_15)> <Delay = 0.00>
+ST_2 : Operation 150 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i512P(i512* %memRdData_V_V, i512 %tmp_V)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:155]   --->   Operation 150 'write' <Predicate = (tmp_14 & tmp_15)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 151 [1/1] (0.00ns)   --->   "br label %._crit_edge665" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:157]   --->   Operation 151 'br' <Predicate = (tmp_14 & tmp_15)> <Delay = 0.00>
+ST_2 : Operation 152 [1/1] (0.83ns)   --->   "br i1 %tmp_16, label %18, label %._crit_edge667" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:159]   --->   Operation 152 'br' <Predicate = true> <Delay = 0.83>
+ST_2 : Operation 153 [1/1] (0.00ns)   --->   "%tmp_V_3_0 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %dmRdStatus_V_V)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:160]   --->   Operation 153 'read' 'tmp_V_3_0' <Predicate = (tmp_16)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 154 [1/1] (1.41ns)   --->   "%tmp_17 = add i16 %dmRdStatusCount_V_lo_1, 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:161]   --->   Operation 154 'add' 'tmp_17' <Predicate = (tmp_16)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 155 [1/1] (0.83ns)   --->   "br label %._crit_edge667" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:162]   --->   Operation 155 'br' <Predicate = (tmp_16)> <Delay = 0.83>
+ST_2 : Operation 156 [1/1] (0.00ns)   --->   "%dmRdStatusCount_V_fl_1 = phi i1 [ true, %18 ], [ %dmRdStatusCount_V_fl, %._crit_edge665 ]"   --->   Operation 156 'phi' 'dmRdStatusCount_V_fl_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 157 [1/1] (0.00ns)   --->   "%dmRdStatusCount_V_ne = phi i16 [ %tmp_17, %18 ], [ 0, %._crit_edge665 ]" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:161]   --->   Operation 157 'phi' 'dmRdStatusCount_V_ne' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 158 [1/1] (0.00ns)   --->   "br i1 %dmRdStatusCount_V_fl_1, label %mergeST, label %._crit_edge667.new"   --->   Operation 158 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 159 [1/1] (0.00ns)   --->   "store i16 %dmRdStatusCount_V_ne, i16* @dmRdStatusCount_V, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:116]   --->   Operation 159 'store' <Predicate = (dmRdStatusCount_V_fl_1)> <Delay = 0.00>
+ST_2 : Operation 160 [1/1] (0.00ns)   --->   "br label %._crit_edge667.new"   --->   Operation 160 'br' <Predicate = (dmRdStatusCount_V_fl_1)> <Delay = 0.00>
+ST_2 : Operation 161 [1/1] (1.41ns)   --->   "%tmp_18 = add i16 %dmRdAddrPostedCount_2, 1" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:165]   --->   Operation 161 'add' 'tmp_18' <Predicate = (dmRdAddrPosted_V_rea)> <Delay = 1.41> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.41> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 162 [1/1] (0.33ns)   --->   "%dmRdAddrPostedCount_3 = or i1 %dmRdStatusCount_V_fl, %dmRdAddrPosted_V_rea" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:164]   --->   Operation 162 'or' 'dmRdAddrPostedCount_3' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 163 [1/1] (0.41ns)   --->   "%dmRdAddrPostedCount_4 = select i1 %dmRdAddrPosted_V_rea, i16 %tmp_18, i16 0" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:164]   --->   Operation 163 'select' 'dmRdAddrPostedCount_4' <Predicate = true> <Delay = 0.41> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 164 [1/1] (0.00ns)   --->   "br i1 %dmRdAddrPostedCount_3, label %mergeST136, label %._crit_edge668.new" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:164]   --->   Operation 164 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 165 [1/1] (0.00ns)   --->   "store i16 %dmRdAddrPostedCount_4, i16* @dmRdAddrPostedCount_s, align 2" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:115]   --->   Operation 165 'store' <Predicate = (dmRdAddrPostedCount_3)> <Delay = 0.00>
+ST_2 : Operation 166 [1/1] (0.00ns)   --->   "br label %._crit_edge668.new"   --->   Operation 166 'br' <Predicate = (dmRdAddrPostedCount_3)> <Delay = 0.00>
+ST_2 : Operation 167 [1/1] (0.00ns)   --->   "br i1 %tmp_19, label %19, label %._crit_edge669" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:168]   --->   Operation 167 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 168 [1/1] (0.00ns)   --->   "%tmp_20 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P.i8P(i32* @memWriteCmd_V_addres, i8* @memWriteCmd_V_count_s, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:168]   --->   Operation 168 'nbwritereq' 'tmp_20' <Predicate = (tmp_19)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 169 [1/1] (0.00ns)   --->   "br i1 %tmp_20, label %20, label %._crit_edge669" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:168]   --->   Operation 169 'br' <Predicate = (tmp_19)> <Delay = 0.00>
+ST_2 : Operation 170 [1/1] (0.00ns)   --->   "%tmp_21 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i40P(i40* %memRdCmd_V, i32 1)"   --->   Operation 170 'nbreadreq' 'tmp_21' <Predicate = (!tmp_20) | (!tmp_19)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 171 [1/1] (0.00ns)   --->   "br i1 %tmp_21, label %21, label %._crit_edge671" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:173]   --->   Operation 171 'br' <Predicate = (!tmp_20) | (!tmp_19)> <Delay = 0.00>
+ST_2 : Operation 172 [1/1] (0.00ns)   --->   "%tmp_23 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i32P.i8P(i32* @memReadCmd_V_address, i8* @memReadCmd_V_count_V, i32 1)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:173]   --->   Operation 172 'nbwritereq' 'tmp_23' <Predicate = (!tmp_20 & tmp_21) | (!tmp_19 & tmp_21)> <Delay = 0.00> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 173 [1/1] (0.00ns)   --->   "br i1 %tmp_23, label %22, label %._crit_edge671" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:173]   --->   Operation 173 'br' <Predicate = (!tmp_20 & tmp_21) | (!tmp_19 & tmp_21)> <Delay = 0.00>
+ST_2 : Operation 174 [1/1] (0.00ns)   --->   "%tmp_576 = call i40 @_ssdm_op_Read.ap_fifo.volatile.i40P(i40* %memRdCmd_V)"   --->   Operation 174 'read' 'tmp_576' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 175 [1/1] (0.00ns)   --->   "%tmp_address_V_3 = trunc i40 %tmp_576 to i32" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:175]   --->   Operation 175 'trunc' 'tmp_address_V_3' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 0.00>
+ST_2 : Operation 176 [1/1] (0.00ns)   --->   "%tmp_count_V_3 = call i8 @_ssdm_op_PartSelect.i8.i40.i32.i32(i40 %tmp_576, i32 32, i32 39)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:175]   --->   Operation 176 'partselect' 'tmp_count_V_3' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 0.00>
+ST_2 : Operation 177 [1/1] (1.93ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P.i8P(i32* @memReadCmd_V_address, i8* @memReadCmd_V_count_V, i32 %tmp_address_V_3, i8 %tmp_count_V_3)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:175]   --->   Operation 177 'write' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 178 [1/1] (1.93ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i1P(i1* @aggregateMemCmdType_s_0, i1 true)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:176]   --->   Operation 178 'write' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 179 [1/1] (0.00ns)   --->   "br label %._crit_edge671" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:177]   --->   Operation 179 'br' <Predicate = (!tmp_20 & tmp_21 & tmp_23) | (!tmp_19 & tmp_21 & tmp_23)> <Delay = 0.00>
+ST_2 : Operation 180 [1/1] (0.00ns)   --->   "br label %23"   --->   Operation 180 'br' <Predicate = (!tmp_20) | (!tmp_19)> <Delay = 0.00>
+ST_2 : Operation 181 [1/1] (0.00ns)   --->   "%tmp_467 = call i40 @_ssdm_op_Read.ap_fifo.volatile.i40P(i40* %memWrCmd_V)"   --->   Operation 181 'read' 'tmp_467' <Predicate = (tmp_19 & tmp_20)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 182 [1/1] (0.00ns)   --->   "%tmp_address_V_2 = trunc i40 %tmp_467 to i32" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:170]   --->   Operation 182 'trunc' 'tmp_address_V_2' <Predicate = (tmp_19 & tmp_20)> <Delay = 0.00>
+ST_2 : Operation 183 [1/1] (0.00ns)   --->   "%tmp_count_V_2 = call i8 @_ssdm_op_PartSelect.i8.i40.i32.i32(i40 %tmp_467, i32 32, i32 39)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:170]   --->   Operation 183 'partselect' 'tmp_count_V_2' <Predicate = (tmp_19 & tmp_20)> <Delay = 0.00>
+ST_2 : Operation 184 [1/1] (1.93ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P.i8P(i32* @memWriteCmd_V_addres, i8* @memWriteCmd_V_count_s, i32 %tmp_address_V_2, i8 %tmp_count_V_2)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:170]   --->   Operation 184 'write' <Predicate = (tmp_19 & tmp_20)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 185 [1/1] (1.93ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i1P(i1* @aggregateMemCmdType_s_0, i1 false)" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:171]   --->   Operation 185 'write' <Predicate = (tmp_19 & tmp_20)> <Delay = 1.93> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 1.93> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 16> <FIFO>
+ST_2 : Operation 186 [1/1] (0.00ns)   --->   "br label %23" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:172]   --->   Operation 186 'br' <Predicate = (tmp_19 & tmp_20)> <Delay = 0.00>
+ST_2 : Operation 187 [1/1] (0.00ns)   --->   "ret void" [src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:178]   --->   Operation 187 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.66ns, clock uncertainty: 0.832ns.
+
+ <State 1>: 2.27ns
+The critical path consists of the following:
+	'load' operation ('dmRdCmdCount_V_load', src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107) on static variable 'dmRdCmdCount_V' [78]  (0 ns)
+	'icmp' operation ('tmp_s', src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107) [153]  (1.1 ns)
+	'and' operation ('demorgan', src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:107) [154]  (0.337 ns)
+	multiplexor before 'phi' operation ('dmRdStatusCount_V_fl') [186]  (0.835 ns)
+
+ <State 2>: 3.13ns
+The critical path consists of the following:
+	fifo read on port 'aggregateMemCmdType_s_0' (src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:97) [178]  (1.94 ns)
+	'select' operation ('storemerge1_cast_cas', src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:98) [180]  (0.19 ns)
+	'store' operation (src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:99) of variable 'storemerge1_cast_cas', src/axiDataMoverReadWriteConverter/readWriteConverter.cpp:98 on static variable 'readWriteConverterSt' [181]  (1 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

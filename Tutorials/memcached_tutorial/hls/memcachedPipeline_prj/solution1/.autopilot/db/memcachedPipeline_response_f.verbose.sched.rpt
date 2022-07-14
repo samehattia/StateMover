@@ -1,0 +1,323 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_response_f'
+================================================================
+* Date:           Wed Oct 21 12:18:39 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.83|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 1
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+* FSM state operations: 
+
+ <State 1>: 5.83ns
+ST_1: stg_2 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i64* @valueBuffer_rf_V_V, [8 x i8]* @str1538, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1539, [1 x i8]* @str1539, [8 x i8]* @str1538)
+
+ST_1: stg_3 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i248* @metadataBuffer_rf_V_V, [8 x i8]* @str1534, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1535, [1 x i8]* @str1535, [8 x i8]* @str1534)
+
+ST_1: stg_4 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1258, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1259, [1 x i8]* @str1259, [8 x i8]* @str1258) nounwind
+
+ST_1: stg_5 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1254, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1255, [1 x i8]* @str1255, [8 x i8]* @str1254) nounwind
+
+ST_1: stg_6 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1250, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1251, [1 x i8]* @str1251, [8 x i8]* @str1250) nounwind
+
+ST_1: stg_7 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1246, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1247, [1 x i8]* @str1247, [8 x i8]* @str1246) nounwind
+
+ST_1: stg_8 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1242, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1243, [1 x i8]* @str1243, [8 x i8]* @str1242) nounwind
+
+ST_1: stg_9 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1238, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1239, [1 x i8]* @str1239, [8 x i8]* @str1238) nounwind
+
+ST_1: stg_10 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i256* @merger2responseFormatter_V, [8 x i8]* @str1234, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1235, [1 x i8]* @str1235, [8 x i8]* @str1234) nounwind
+
+ST_1: stg_11 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str164) nounwind
+
+ST_1: tmp [1/1] 0.00ns
+codeRepl:10  %tmp = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i64P(i64* @valueBuffer_rf_V_V, i32 1) nounwind
+
+ST_1: stg_13 [1/1] 0.00ns
+codeRepl:11  br i1 %tmp, label %0, label %._crit_edge112
+
+ST_1: tmp_39 [1/1] 0.00ns
+:0  %tmp_39 = call i1 @_ssdm_op_NbWriteReq.ap_fifo.i248P(i248* @metadataBuffer_rf_V_V, i32 1) nounwind
+
+ST_1: stg_15 [1/1] 0.00ns
+:1  br i1 %tmp_39, label %1, label %._crit_edge112
+
+ST_1: tmp_40 [1/1] 0.00ns
+:0  %tmp_40 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @merger2responseFormatter_V, i32 1) nounwind
+
+ST_1: stg_17 [1/1] 0.00ns
+:1  br i1 %tmp_40, label %2, label %._crit_edge112
+
+ST_1: tmp51 [1/1] 2.91ns
+:0  %tmp51 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @merger2responseFormatter_V) nounwind
+
+ST_1: tmp_135 [1/1] 0.00ns
+:1  %tmp_135 = trunc i256 %tmp51 to i124
+
+ST_1: tmp_136 [1/1] 0.00ns
+:2  %tmp_136 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp51, i32 124)
+
+ST_1: tmp_137 [1/1] 0.00ns
+:3  %tmp_137 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp51, i32 126)
+
+ST_1: tmp_138 [1/1] 0.00ns
+:4  %tmp_138 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp51, i32 127)
+
+ST_1: tmp_V [1/1] 0.00ns
+:5  %tmp_V = call i64 @_ssdm_op_PartSelect.i64.i256.i32.i32(i256 %tmp51, i32 128, i32 191)
+
+ST_1: inWordCounter_V_load [1/1] 0.00ns
+:6  %inWordCounter_V_load = load i2* @inWordCounter_V, align 1
+
+ST_1: tmp_s [1/1] 0.76ns
+:7  %tmp_s = icmp eq i2 %inWordCounter_V_load, 0
+
+ST_1: or_cond [1/1] 0.71ns
+:8  %or_cond = and i1 %tmp_136, %tmp_s
+
+ST_1: p_Val2_s [1/1] 0.00ns
+:9  %p_Val2_s = load i248* @bf_metadataTempBuffer_V, align 16
+
+ST_1: stg_28 [1/1] 0.00ns
+:10  br i1 %or_cond, label %3, label %._crit_edge115
+
+ST_1: stg_29 [1/1] 0.89ns
+._crit_edge115:0  br i1 %tmp_s, label %._crit_edge118, label %5
+
+ST_1: tmp_139 [1/1] 0.00ns
+:0  %tmp_139 = call i1 @_ssdm_op_BitSelect.i1.i2.i32(i2 %inWordCounter_V_load, i32 1)
+
+ST_1: stg_31 [1/1] 0.89ns
+:1  br i1 %tmp_139, label %._crit_edge119, label %6
+
+ST_1: p_Result_2 [1/1] 0.00ns
+:0  %p_Result_2 = call i248 @llvm.part.set.i248.i124(i248 %p_Val2_s, i124 %tmp_135, i32 124, i32 247)
+
+ST_1: stg_33 [1/1] 0.89ns
+:1  store i248 %p_Result_2, i248* @bf_metadataTempBuffer_V, align 16
+
+ST_1: tmp_90 [1/1] 0.76ns
+:2  %tmp_90 = icmp eq i2 %inWordCounter_V_load, 1
+
+ST_1: stg_35 [1/1] 0.00ns
+:3  br i1 %tmp_90, label %7, label %._crit_edge120
+
+ST_1: stg_36 [1/1] 2.91ns
+:0  call void @_ssdm_op_Write.ap_fifo.volatile.i248P(i248* @metadataBuffer_rf_V_V, i248 %p_Result_2) nounwind
+
+ST_1: stg_37 [1/1] 0.00ns
+:1  br label %._crit_edge120
+
+ST_1: tmp_91 [1/1] 0.43ns
+._crit_edge120:0  %tmp_91 = add i2 %inWordCounter_V_load, 1
+
+ST_1: stg_39 [1/1] 0.89ns
+._crit_edge120:1  br label %._crit_edge119
+
+ST_1: inWordCounter_V_flag [1/1] 0.00ns
+._crit_edge119:0  %inWordCounter_V_flag = phi i1 [ true, %._crit_edge120 ], [ false, %5 ]
+
+ST_1: inWordCounter_V_new [1/1] 0.00ns
+._crit_edge119:1  %inWordCounter_V_new = phi i2 [ %tmp_91, %._crit_edge120 ], [ undef, %5 ]
+
+ST_1: stg_42 [1/1] 0.00ns
+._crit_edge119:2  br i1 %tmp_137, label %8, label %._crit_edge121
+
+ST_1: stg_43 [1/1] 2.91ns
+:0  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @valueBuffer_rf_V_V, i64 %tmp_V) nounwind
+
+ST_1: stg_44 [1/1] 0.00ns
+:1  br label %._crit_edge121
+
+ST_1: p_inWordCounter_V_flag [1/1] 0.71ns
+._crit_edge121:0  %p_inWordCounter_V_flag = or i1 %tmp_138, %inWordCounter_V_flag
+
+ST_1: p_inWordCounter_V_new [1/1] 0.71ns
+._crit_edge121:1  %p_inWordCounter_V_new = select i1 %tmp_138, i2 0, i2 %inWordCounter_V_new
+
+ST_1: stg_47 [1/1] 0.89ns
+._crit_edge121:2  br label %._crit_edge118
+
+ST_1: p_Result_s [1/1] 0.00ns
+:0  %p_Result_s = call i248 @llvm.part.set.i248.i124(i248 %p_Val2_s, i124 %tmp_135, i32 0, i32 123)
+
+ST_1: stg_49 [1/1] 0.89ns
+:1  store i248 %p_Result_s, i248* @bf_metadataTempBuffer_V, align 16
+
+ST_1: stg_50 [1/1] 0.00ns
+:2  br i1 %tmp_137, label %4, label %._crit_edge117
+
+ST_1: stg_51 [1/1] 2.91ns
+:0  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @valueBuffer_rf_V_V, i64 %tmp_V) nounwind
+
+ST_1: stg_52 [1/1] 0.00ns
+:1  br label %._crit_edge117
+
+ST_1: stg_53 [1/1] 0.89ns
+._crit_edge117:0  br label %._crit_edge118
+
+ST_1: inWordCounter_V_flag_3 [1/1] 0.00ns
+._crit_edge118:0  %inWordCounter_V_flag_3 = phi i1 [ true, %._crit_edge117 ], [ false, %._crit_edge115 ], [ %p_inWordCounter_V_flag, %._crit_edge121 ]
+
+ST_1: inWordCounter_V_new_3 [1/1] 0.00ns
+._crit_edge118:1  %inWordCounter_V_new_3 = phi i2 [ 1, %._crit_edge117 ], [ undef, %._crit_edge115 ], [ %p_inWordCounter_V_new, %._crit_edge121 ]
+
+ST_1: stg_56 [1/1] 0.00ns
+._crit_edge118:2  br i1 %inWordCounter_V_flag_3, label %mergeST, label %.new
+
+ST_1: stg_57 [1/1] 0.00ns
+mergeST:0  store i2 %inWordCounter_V_new_3, i2* @inWordCounter_V, align 1
+
+ST_1: stg_58 [1/1] 0.00ns
+mergeST:1  br label %.new
+
+ST_1: stg_59 [1/1] 0.00ns
+.new:0  br label %._crit_edge112
+
+ST_1: stg_60 [1/1] 0.00ns
+._crit_edge112:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

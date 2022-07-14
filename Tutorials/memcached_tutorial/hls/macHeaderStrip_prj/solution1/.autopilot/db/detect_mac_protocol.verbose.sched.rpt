@@ -1,0 +1,192 @@
+
+
+================================================================
+== Vivado HLS Report for 'detect_mac_protocol'
+================================================================
+* Date:           Thu Oct 22 16:32:28 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        macHeaderStrip_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.66|     3.364|        0.83|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.36>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%myMacAddress_V_read = call i48 @_ssdm_op_Read.ap_auto.i48(i48 %myMacAddress_V)"   --->   Operation 3 'read' 'myMacAddress_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%dmp_fsmState_V_load = load i1* @dmp_fsmState_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:60]   --->   Operation 4 'load' 'dmp_fsmState_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%dmp_macType_V_load = load i16* @dmp_macType_V, align 2" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 5 'load' 'dmp_macType_V_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%tmp_data_V = load i64* @dmp_prevWord_data_V, align 8" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 6 'load' 'tmp_data_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "br i1 %dmp_fsmState_V_load, label %8, label %0" [src/mac_header_strip/mac_header_strip.cpp:60]   --->   Operation 7 'br' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_NbReadReq.axis.i64P.i8P.i1P.i112P(i64* %dataIn_V_data_V, i8* %dataIn_V_keep_V, i1* %dataIn_V_last_V, i112* %dataIn_V_user_V, i32 1)" [src/mac_header_strip/mac_header_strip.cpp:62]   --->   Operation 8 'nbreadreq' 'tmp' <Predicate = (!dmp_fsmState_V_load)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "br i1 %tmp, label %1, label %._crit_edge5.i" [src/mac_header_strip/mac_header_strip.cpp:62]   --->   Operation 9 'br' <Predicate = (!dmp_fsmState_V_load)> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%empty = call { i64, i8, i1, i112 } @_ssdm_op_Read.axis.volatile.i64P.i8P.i1P.i112P(i64* %dataIn_V_data_V, i8* %dataIn_V_keep_V, i1* %dataIn_V_last_V, i112* %dataIn_V_user_V)" [src/mac_header_strip/mac_header_strip.cpp:63]   --->   Operation 10 'read' 'empty' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00> <Core = "AXI4Stream">   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%tmp_data_V_6 = extractvalue { i64, i8, i1, i112 } %empty, 0" [src/mac_header_strip/mac_header_strip.cpp:63]   --->   Operation 11 'extractvalue' 'tmp_data_V_6' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%tmp_keep_V_5 = extractvalue { i64, i8, i1, i112 } %empty, 1" [src/mac_header_strip/mac_header_strip.cpp:63]   --->   Operation 12 'extractvalue' 'tmp_keep_V_5' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%tmp_last_V_2 = extractvalue { i64, i8, i1, i112 } %empty, 2" [src/mac_header_strip/mac_header_strip.cpp:63]   --->   Operation 13 'extractvalue' 'tmp_last_V_2' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%tmp_user_V_4 = extractvalue { i64, i8, i1, i112 } %empty, 3" [src/mac_header_strip/mac_header_strip.cpp:63]   --->   Operation 14 'extractvalue' 'tmp_user_V_4' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%t_V = load i2* @dmp_wordCount_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:64]   --->   Operation 15 'load' 't_V' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.53ns)   --->   "%cond_i = icmp eq i2 %t_V, 0" [src/mac_header_strip/mac_header_strip.cpp:64]   --->   Operation 16 'icmp' 'cond_i' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.53> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "br i1 %cond_i, label %2, label %3" [src/mac_header_strip/mac_header_strip.cpp:64]   --->   Operation 17 'br' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.53ns)   --->   "%tmp_36_i = icmp eq i2 %t_V, 1" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 18 'icmp' 'tmp_36_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.53> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (1.09ns)   --->   "%tmp_37_i = icmp ne i16 %dmp_macType_V_load, 0" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 19 'icmp' 'tmp_37_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (0.33ns)   --->   "%demorgan = and i1 %tmp_36_i, %tmp_37_i" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 20 'and' 'demorgan' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (0.83ns)   --->   "br i1 %demorgan, label %4, label %._crit_edge6.i" [src/mac_header_strip/mac_header_strip.cpp:73]   --->   Operation 21 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.83>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%p_Result_i_i = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp_data_V_6, i32 40, i32 47)" [src/mac_header_strip/mac_header_strip.cpp:34->src/mac_header_strip/mac_header_strip.cpp:75]   --->   Operation 22 'partselect' 'p_Result_i_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & demorgan)> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%p_Result_i_i_15 = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp_data_V_6, i32 32, i32 39)" [src/mac_header_strip/mac_header_strip.cpp:34->src/mac_header_strip/mac_header_strip.cpp:75]   --->   Operation 23 'partselect' 'p_Result_i_i_15' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & demorgan)> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%tmp_i_i = call i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8 %p_Result_i_i_15, i8 %p_Result_i_i)" [src/mac_header_strip/mac_header_strip.cpp:34->src/mac_header_strip/mac_header_strip.cpp:75]   --->   Operation 24 'bitconcatenate' 'tmp_i_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & demorgan)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.83ns)   --->   "store i16 %tmp_i_i, i16* @dmp_macType_V, align 2" [src/mac_header_strip/mac_header_strip.cpp:75]   --->   Operation 25 'store' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & demorgan)> <Delay = 0.83>
+ST_1 : Operation 26 [1/1] (0.83ns)   --->   "br label %._crit_edge6.i" [src/mac_header_strip/mac_header_strip.cpp:75]   --->   Operation 26 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & demorgan)> <Delay = 0.83>
+ST_1 : Operation 27 [1/1] (0.00ns) (grouped into LUT with out node tmp_38_i)   --->   "%dmp_macType_V_loc_1_s = phi i16 [ %dmp_macType_V_load, %3 ], [ %tmp_i_i, %4 ]" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 27 'phi' 'dmp_macType_V_loc_1_s' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (1.09ns) (out node of the LUT)   --->   "%tmp_38_i = icmp eq i16 %dmp_macType_V_loc_1_s, 0" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 28 'icmp' 'tmp_38_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "br i1 %tmp_38_i, label %._crit_edge8.i, label %5" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 29 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (1.32ns)   --->   "%tmp_39_i = icmp eq i64 %tmp_data_V, %tmp_data_V_6" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 30 'icmp' 'tmp_39_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i)> <Delay = 1.32> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 31 [1/1] (0.33ns)   --->   "%or_cond_i = and i1 %tmp_36_i, %tmp_39_i" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 31 'and' 'or_cond_i' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i)> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "br i1 %or_cond_i, label %._crit_edge8.i, label %._crit_edge9.i" [src/mac_header_strip/mac_header_strip.cpp:77]   --->   Operation 32 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i)> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.83ns)   --->   "br label %6" [src/mac_header_strip/mac_header_strip.cpp:81]   --->   Operation 33 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i)> <Delay = 0.83>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%tmp_10 = trunc i64 %tmp_data_V_6 to i48" [src/mac_header_strip/mac_header_strip.cpp:66]   --->   Operation 34 'trunc' 'tmp_10' <Predicate = (!dmp_fsmState_V_load & tmp & cond_i)> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (1.38ns)   --->   "%tmp_35_i = icmp eq i48 %tmp_10, %myMacAddress_V_read" [src/mac_header_strip/mac_header_strip.cpp:66]   --->   Operation 35 'icmp' 'tmp_35_i' <Predicate = (!dmp_fsmState_V_load & tmp & cond_i)> <Delay = 1.38> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%storemerge_i = zext i1 %tmp_35_i to i16" [src/mac_header_strip/mac_header_strip.cpp:66]   --->   Operation 36 'zext' 'storemerge_i' <Predicate = (!dmp_fsmState_V_load & tmp & cond_i)> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.83ns)   --->   "store i16 %storemerge_i, i16* @dmp_macType_V, align 2" [src/mac_header_strip/mac_header_strip.cpp:67]   --->   Operation 37 'store' <Predicate = (!dmp_fsmState_V_load & tmp & cond_i)> <Delay = 0.83>
+ST_1 : Operation 38 [1/1] (0.83ns)   --->   "br label %6" [src/mac_header_strip/mac_header_strip.cpp:71]   --->   Operation 38 'br' <Predicate = (!dmp_fsmState_V_load & tmp & cond_i)> <Delay = 0.83>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%dmp_wordCount_V_flag = phi i1 [ true, %2 ], [ %tmp_36_i, %._crit_edge8.i ]" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 39 'phi' 'dmp_wordCount_V_flag' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%dmp_wordCount_V_new_s = phi i2 [ 1, %2 ], [ -2, %._crit_edge8.i ]"   --->   Operation 40 'phi' 'dmp_wordCount_V_new_s' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "store i64 %tmp_data_V_6, i64* @dmp_prevWord_data_V, align 8" [src/mac_header_strip/mac_header_strip.hpp:51->src/mac_header_strip/mac_header_strip.cpp:83]   --->   Operation 41 'store' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.83ns)   --->   "br i1 %tmp_last_V_2, label %7, label %._crit_edge13.i" [src/mac_header_strip/mac_header_strip.cpp:84]   --->   Operation 42 'br' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.83>
+ST_1 : Operation 43 [1/1] (0.83ns)   --->   "store i1 true, i1* @dmp_fsmState_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:86]   --->   Operation 43 'store' <Predicate = (!dmp_fsmState_V_load & tmp & tmp_last_V_2)> <Delay = 0.83>
+ST_1 : Operation 44 [1/1] (0.83ns)   --->   "br label %._crit_edge13.i" [src/mac_header_strip/mac_header_strip.cpp:87]   --->   Operation 44 'br' <Predicate = (!dmp_fsmState_V_load & tmp & tmp_last_V_2)> <Delay = 0.83>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%dmp_wordCount_V_flag_1 = phi i1 [ true, %7 ], [ %dmp_wordCount_V_flag, %6 ]" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 45 'phi' 'dmp_wordCount_V_flag_1' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%dmp_wordCount_V_new_1 = phi i2 [ 0, %7 ], [ %dmp_wordCount_V_new_s, %6 ]"   --->   Operation 46 'phi' 'dmp_wordCount_V_new_1' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "br i1 %dmp_wordCount_V_flag_1, label %mergeST.i, label %._crit_edge13.new.i" [src/mac_header_strip/mac_header_strip.cpp:74]   --->   Operation 47 'br' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "store i2 %dmp_wordCount_V_new_1, i2* @dmp_wordCount_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:70]   --->   Operation 48 'store' <Predicate = (!dmp_fsmState_V_load & tmp & dmp_wordCount_V_flag_1)> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (1.09ns)   --->   "%tmp_i = icmp eq i16 %dmp_macType_V_load, 0" [src/mac_header_strip/mac_header_strip.cpp:91]   --->   Operation 49 'icmp' 'tmp_i' <Predicate = (dmp_fsmState_V_load)> <Delay = 1.09> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "br i1 %tmp_i, label %._crit_edge14.i, label %9" [src/mac_header_strip/mac_header_strip.cpp:91]   --->   Operation 50 'br' <Predicate = (dmp_fsmState_V_load)> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.83ns)   --->   "store i1 false, i1* @dmp_fsmState_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:93]   --->   Operation 51 'store' <Predicate = (dmp_fsmState_V_load)> <Delay = 0.83>
+
+State 2 <SV = 1> <Delay = 2.26>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i185* @ipDataFifo_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 52 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 53 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i64* %dataIn_V_data_V, i8* %dataIn_V_keep_V, i1* %dataIn_V_last_V, i112* %dataIn_V_user_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 53 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 54 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str) nounwind" [src/mac_header_strip/mac_header_strip.cpp:52]   --->   Operation 54 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 55 [1/1] (0.00ns)   --->   "%tmp_keep_V = load i8* @dmp_prevWord_keep_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 55 'load' 'tmp_keep_V' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%tmp_last_V = load i1* @dmp_prevWord_last_V, align 1" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 56 'load' 'tmp_last_V' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%tmp_user_V = load i112* @dmp_prevWord_user_V, align 8" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 57 'load' 'tmp_user_V' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 58 [1/1] (0.00ns)   --->   "%tmp9 = call i185 @_ssdm_op_BitConcatenate.i185.i112.i1.i8.i64(i112 %tmp_user_V, i1 %tmp_last_V, i8 %tmp_keep_V, i64 %tmp_data_V)" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 58 'bitconcatenate' 'tmp9' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i & !or_cond_i)> <Delay = 0.00>
+ST_2 : Operation 59 [1/1] (2.26ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i185P(i185* @ipDataFifo_V, i185 %tmp9)" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 59 'write' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i & !or_cond_i)> <Delay = 2.26> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 185> <Depth = 0> <FIFO>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "br label %._crit_edge8.i" [src/mac_header_strip/mac_header_strip.cpp:78]   --->   Operation 60 'br' <Predicate = (!dmp_fsmState_V_load & tmp & !cond_i & !tmp_38_i & !or_cond_i)> <Delay = 0.00>
+ST_2 : Operation 61 [1/1] (0.00ns)   --->   "store i8 %tmp_keep_V_5, i8* @dmp_prevWord_keep_V, align 8" [src/mac_header_strip/mac_header_strip.hpp:51->src/mac_header_strip/mac_header_strip.cpp:83]   --->   Operation 61 'store' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_2 : Operation 62 [1/1] (0.00ns)   --->   "store i1 %tmp_last_V_2, i1* @dmp_prevWord_last_V, align 1" [src/mac_header_strip/mac_header_strip.hpp:51->src/mac_header_strip/mac_header_strip.cpp:83]   --->   Operation 62 'store' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_2 : Operation 63 [1/1] (0.00ns)   --->   "store i112 %tmp_user_V_4, i112* @dmp_prevWord_user_V, align 8" [src/mac_header_strip/mac_header_strip.hpp:51->src/mac_header_strip/mac_header_strip.cpp:83]   --->   Operation 63 'store' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_2 : Operation 64 [1/1] (0.00ns)   --->   "br label %._crit_edge13.new.i"   --->   Operation 64 'br' <Predicate = (!dmp_fsmState_V_load & tmp & dmp_wordCount_V_flag_1)> <Delay = 0.00>
+ST_2 : Operation 65 [1/1] (0.00ns)   --->   "br label %._crit_edge5.i" [src/mac_header_strip/mac_header_strip.cpp:88]   --->   Operation 65 'br' <Predicate = (!dmp_fsmState_V_load & tmp)> <Delay = 0.00>
+ST_2 : Operation 66 [1/1] (0.00ns)   --->   "br label %detect_mac_protocol.exit" [src/mac_header_strip/mac_header_strip.cpp:89]   --->   Operation 66 'br' <Predicate = (!dmp_fsmState_V_load)> <Delay = 0.00>
+ST_2 : Operation 67 [1/1] (0.00ns)   --->   "%tmp_118 = call i185 @_ssdm_op_BitConcatenate.i185.i112.i1.i8.i64(i112 %tmp_user_V, i1 %tmp_last_V, i8 %tmp_keep_V, i64 %tmp_data_V)" [src/mac_header_strip/mac_header_strip.cpp:92]   --->   Operation 67 'bitconcatenate' 'tmp_118' <Predicate = (dmp_fsmState_V_load & !tmp_i)> <Delay = 0.00>
+ST_2 : Operation 68 [1/1] (2.26ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i185P(i185* @ipDataFifo_V, i185 %tmp_118)" [src/mac_header_strip/mac_header_strip.cpp:92]   --->   Operation 68 'write' <Predicate = (dmp_fsmState_V_load & !tmp_i)> <Delay = 2.26> <Core = "FIFO_SRL">   --->   Core 36 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 185> <Depth = 0> <FIFO>
+ST_2 : Operation 69 [1/1] (0.00ns)   --->   "br label %._crit_edge14.i" [src/mac_header_strip/mac_header_strip.cpp:92]   --->   Operation 69 'br' <Predicate = (dmp_fsmState_V_load & !tmp_i)> <Delay = 0.00>
+ST_2 : Operation 70 [1/1] (0.00ns)   --->   "br label %detect_mac_protocol.exit" [src/mac_header_strip/mac_header_strip.cpp:94]   --->   Operation 70 'br' <Predicate = (dmp_fsmState_V_load)> <Delay = 0.00>
+ST_2 : Operation 71 [1/1] (0.00ns)   --->   "ret void"   --->   Operation 71 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.66ns, clock uncertainty: 0.832ns.
+
+ <State 1>: 3.36ns
+The critical path consists of the following:
+	'load' operation ('dmp_macType_V_load', src/mac_header_strip/mac_header_strip.cpp:74) on static variable 'dmp_macType_V' [19]  (0 ns)
+	'icmp' operation ('tmp_37_i', src/mac_header_strip/mac_header_strip.cpp:74) [39]  (1.1 ns)
+	'and' operation ('demorgan', src/mac_header_strip/mac_header_strip.cpp:74) [40]  (0.337 ns)
+	multiplexor before 'phi' operation ('dmp_macType_V_loc_1_s', src/mac_header_strip/mac_header_strip.cpp:74) with incoming values : ('dmp_macType_V_load', src/mac_header_strip/mac_header_strip.cpp:74) ('tmp_i_i', src/mac_header_strip/mac_header_strip.cpp:34->src/mac_header_strip/mac_header_strip.cpp:75) [49]  (0.835 ns)
+	'phi' operation ('dmp_macType_V_loc_1_s', src/mac_header_strip/mac_header_strip.cpp:74) with incoming values : ('dmp_macType_V_load', src/mac_header_strip/mac_header_strip.cpp:74) ('tmp_i_i', src/mac_header_strip/mac_header_strip.cpp:34->src/mac_header_strip/mac_header_strip.cpp:75) [49]  (0 ns)
+	'icmp' operation ('tmp_38_i', src/mac_header_strip/mac_header_strip.cpp:77) [50]  (1.1 ns)
+
+ <State 2>: 2.27ns
+The critical path consists of the following:
+	'load' operation ('tmp.keep.V', src/mac_header_strip/mac_header_strip.cpp:78) on static variable 'dmp_prevWord_keep_V' [21]  (0 ns)
+	fifo write on port 'ipDataFifo_V' (src/mac_header_strip/mac_header_strip.cpp:78) [58]  (2.27 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

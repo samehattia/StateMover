@@ -1,0 +1,103 @@
+<InterfaceSummary>
+<RtlPorts>
+<name>dataIn_V_data_V</name>
+<CType>
+<TypeName>ap_uint 64</TypeName>
+<TypeWidth>64</TypeWidth>
+<PhysicalWidth>64</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataIn_V_keep_V</name>
+<CType>
+<TypeName>ap_uint 8</TypeName>
+<TypeWidth>8</TypeWidth>
+<PhysicalWidth>8</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataIn_V_last_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataIn_V_user_V</name>
+<CType>
+<TypeName>ap_uint 112</TypeName>
+<TypeWidth>112</TypeWidth>
+<PhysicalWidth>112</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataOut_V_data_V</name>
+<CType>
+<TypeName>ap_uint 64</TypeName>
+<TypeWidth>64</TypeWidth>
+<PhysicalWidth>64</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataOut_V_keep_V</name>
+<CType>
+<TypeName>ap_uint 8</TypeName>
+<TypeWidth>8</TypeWidth>
+<PhysicalWidth>8</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataOut_V_last_V</name>
+<CType>
+<TypeName>ap_uint 1</TypeName>
+<TypeWidth>1</TypeWidth>
+<PhysicalWidth>1</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>dataOut_V_user_V</name>
+<CType>
+<TypeName>ap_uint 112</TypeName>
+<TypeWidth>112</TypeWidth>
+<PhysicalWidth>112</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>SrcMacAddress_V</name>
+<CType>
+<TypeName>ap_uint 48</TypeName>
+<TypeWidth>48</TypeWidth>
+<PhysicalWidth>48</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>DestMacAddress_V</name>
+<CType>
+<TypeName>ap_uint 48</TypeName>
+<TypeWidth>48</TypeWidth>
+<PhysicalWidth>48</PhysicalWidth>
+</CType>
+<CFractionWidth>0</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+</InterfaceSummary>
+

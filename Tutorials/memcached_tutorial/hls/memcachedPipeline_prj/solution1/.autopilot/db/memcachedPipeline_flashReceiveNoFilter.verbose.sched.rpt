@@ -1,0 +1,268 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_flashReceiveNoFilter'
+================================================================
+* Date:           Wed Oct 21 12:18:38 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.17|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 5.17ns
+ST_1: flashGetState_load [1/1] 0.00ns
+codeRepl:4  %flashGetState_load = load i1* @flashGetState, align 1
+
+ST_1: getValueLength_V_load [1/1] 0.00ns
+codeRepl:5  %getValueLength_V_load = load i16* @getValueLength_V, align 2
+
+ST_1: stg_5 [1/1] 0.00ns
+codeRepl:6  br i1 %flashGetState_load, label %3, label %0
+
+ST_1: tmp_17 [1/1] 0.00ns
+:0  %tmp_17 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i16P(i16* @flash_Disp2rec_V_V, i32 1)
+
+ST_1: stg_7 [1/1] 0.00ns
+:1  br i1 %tmp_17, label %1, label %._crit_edge56
+
+ST_1: tmp_18 [1/1] 0.00ns
+:0  %tmp_18 = call i1 @_ssdm_op_NbReadReq.axis.i64P(i64* %memRdData_V_V, i32 1)
+
+ST_1: stg_9 [1/1] 0.00ns
+:1  br i1 %tmp_18, label %2, label %._crit_edge56
+
+ST_1: tmp_V_11 [1/1] 2.91ns
+:0  %tmp_V_11 = call i16 @_ssdm_op_Read.ap_fifo.volatile.i16P(i16* @flash_Disp2rec_V_V)
+
+ST_1: tmp_V_12 [1/1] 0.00ns
+:1  %tmp_V_12 = call i64 @_ssdm_op_Read.axis.volatile.i64P(i64* %memRdData_V_V)
+
+ST_1: tmp_42 [1/1] 1.36ns
+:3  %tmp_42 = add i16 %tmp_V_11, -8
+
+ST_1: stg_13 [1/1] 0.89ns
+:4  store i16 %tmp_42, i16* @getValueLength_V, align 2
+
+ST_1: stg_14 [1/1] 0.89ns
+:8  store i1 true, i1* @flashGetState, align 1
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.axis.i64P(i64* %memRdData_V_V, i32 1)
+
+ST_1: stg_16 [1/1] 0.00ns
+:1  br i1 %tmp, label %._crit_edge59, label %._crit_edge58
+
+ST_1: tmp_V [1/1] 0.00ns
+._crit_edge59:0  %tmp_V = call i64 @_ssdm_op_Read.axis.volatile.i64P(i64* %memRdData_V_V)
+
+ST_1: tmp_56 [1/1] 0.00ns
+._crit_edge59:2  %tmp_56 = call i13 @_ssdm_op_PartSelect.i13.i16.i32.i32(i16 %getValueLength_V_load, i32 3, i32 15)
+
+ST_1: icmp [1/1] 1.29ns
+._crit_edge59:3  %icmp = icmp ne i13 %tmp_56, 0
+
+ST_1: tmp_s [1/1] 1.36ns
+._crit_edge59:4  %tmp_s = add i16 %getValueLength_V_load, -8
+
+ST_1: storemerge [1/1] 0.71ns
+._crit_edge59:5  %storemerge = select i1 %icmp, i16 %tmp_s, i16 0
+
+ST_1: stg_22 [1/1] 0.89ns
+._crit_edge59:6  store i16 %storemerge, i16* @getValueLength_V, align 2
+
+ST_1: tmp_41 [1/1] 1.26ns
+._crit_edge59:7  %tmp_41 = icmp eq i16 %storemerge, 0
+
+ST_1: stg_24 [1/1] 0.00ns
+._crit_edge59:8  br i1 %tmp_41, label %4, label %._crit_edge60
+
+ST_1: stg_25 [1/1] 0.89ns
+:0  store i1 false, i1* @flashGetState, align 1
+
+
+ <State 2>: 2.91ns
+ST_2: stg_26 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i64* %memRdData_V_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_27 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i64* @flashGetPath2remux_V_V, [8 x i8]* @str1390, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1391, [1 x i8]* @str1391, [8 x i8]* @str1390)
+
+ST_2: stg_28 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i16* @flash_Disp2rec_V_V, [8 x i8]* @str1374, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1375, [1 x i8]* @str1375, [8 x i8]* @str1374)
+
+ST_2: stg_29 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str191) nounwind
+
+ST_2: stg_30 [1/1] 2.91ns
+:2  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @flashGetPath2remux_V_V, i64 %tmp_V_12)
+
+ST_2: getCounter_load [1/1] 0.00ns
+:5  %getCounter_load = load i8* @getCounter, align 1
+
+ST_2: tmp_43 [1/1] 1.24ns
+:6  %tmp_43 = add i8 %getCounter_load, 1
+
+ST_2: stg_33 [1/1] 0.89ns
+:7  store i8 %tmp_43, i8* @getCounter, align 1
+
+ST_2: stg_34 [1/1] 0.00ns
+:9  br label %._crit_edge56
+
+ST_2: stg_35 [1/1] 0.00ns
+._crit_edge56:0  br label %._crit_edge55
+
+ST_2: stg_36 [1/1] 2.91ns
+._crit_edge59:1  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @flashGetPath2remux_V_V, i64 %tmp_V)
+
+ST_2: stg_37 [1/1] 0.89ns
+:1  store i8 0, i8* @getCounter, align 1
+
+ST_2: stg_38 [1/1] 0.00ns
+:2  br label %._crit_edge60
+
+ST_2: stg_39 [1/1] 0.00ns
+._crit_edge60:0  br label %._crit_edge58
+
+ST_2: stg_40 [1/1] 0.00ns
+._crit_edge58:0  br label %._crit_edge55
+
+ST_2: stg_41 [1/1] 0.00ns
+._crit_edge55:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

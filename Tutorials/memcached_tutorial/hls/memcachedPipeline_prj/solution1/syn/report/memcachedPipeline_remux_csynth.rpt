@@ -1,0 +1,265 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_remux'
+================================================================
+* Date:           Wed Oct 21 12:18:55 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      8.69|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       0|     218|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|    1316|
+|Register         |        -|      -|    1004|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|    1004|    1534|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |         Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |grp_fu_733_p2                  |     +    |      0|  0|   8|           8|           5|
+    |grp_fu_763_p2                  |     +    |      0|  0|  16|          16|           5|
+    |grp_fu_806_p2                  |     +    |      0|  0|   8|           8|           5|
+    |tmp_74_fu_959_p2               |     +    |      0|  0|   8|           5|           8|
+    |tmp_81_fu_1124_p2              |     +    |      0|  0|  13|           5|          13|
+    |grp_fu_738_p3                  |  Select  |      0|  0|   8|           1|           8|
+    |grp_fu_768_p3                  |  Select  |      0|  0|  16|           1|          16|
+    |grp_fu_812_p3                  |  Select  |      0|  0|   8|           1|           8|
+    |p_rmKeyLength_load_fu_1027_p3  |  Select  |      0|  0|   8|           1|           8|
+    |p_s_fu_1018_p3                 |  Select  |      0|  0|   2|           1|           2|
+    |storemerge18_cast_fu_986_p3    |  Select  |      0|  0|   2|           1|           2|
+    |storemerge1_fu_965_p3          |  Select  |      0|  0|   8|           1|           8|
+    |storemerge6_fu_1130_p3         |  Select  |      0|  0|  13|           1|          13|
+    |storemerge8_fu_933_p3          |  Select  |      0|  0|   4|           1|           1|
+    |ap_sig_bdd_121                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_129                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_259                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_272                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_275                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_356                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_530                 |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_815                 |    and   |      0|  0|   1|           1|           1|
+    |tmp_EOP_V_13_fu_898_p2         |    and   |      0|  0|   1|           1|           1|
+    |tmp_EOP_V_14_fu_927_p2         |    and   |      0|  0|   1|           1|           1|
+    |grp_fu_728_p2                  |   icmp   |      0|  0|   6|          16|           1|
+    |grp_fu_757_p2                  |   icmp   |      0|  0|   5|          13|           1|
+    |grp_fu_784_p2                  |   icmp   |      0|  0|   3|           8|           1|
+    |grp_fu_800_p2                  |   icmp   |      0|  0|   2|           5|           1|
+    |icmp9_fu_1118_p2               |   icmp   |      0|  0|   4|          10|           1|
+    |icmp_fu_879_p2                 |   icmp   |      0|  0|   2|           5|           1|
+    |tmp_124_fu_1062_p2             |   icmp   |      0|  0|   3|           8|           4|
+    |tmp_125_fu_1068_p2             |   icmp   |      0|  0|   3|           8|           3|
+    |tmp_127_fu_1080_p2             |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_48_fu_863_p2               |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_73_fu_1092_p2              |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_85_fu_886_p2               |   icmp   |      0|  0|   6|          16|           1|
+    |tmp_86_fu_892_p2               |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_88_fu_915_p2               |   icmp   |      0|  0|   6|          16|           1|
+    |tmp_89_fu_921_p2               |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_EOP_V_12_fu_942_p2         |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_EOP_V_fu_974_p2            |   icmp   |      0|  0|   3|           8|           1|
+    |tmp_s_fu_1046_p2               |   icmp   |      0|  0|   3|           8|           1|
+    |ap_sig_bdd_106                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_112                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_152                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_188                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_222                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_251                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_301                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_326                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_335                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_343                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_527                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_546                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_555                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_571                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_605                 |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_63                  |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_77                  |    or    |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_99                  |    or    |      0|  0|   1|           1|           1|
+    |tmp_126_fu_1074_p2             |    or    |      0|  0|   1|           1|           1|
+    |tmp_128_fu_1086_p2             |    or    |      0|  0|   1|           1|           1|
+    |not_tmp_EOP_V_fu_980_p2        |    xor   |      0|  0|   2|           1|           2|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |Total                          |          |      0|  0| 218|         251|         157|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------------------+-----+-----------+-----+-----------+
+    |                        Name                        | LUT | Input Size| Bits| Total Bits|
+    +----------------------------------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm1                                          |    2|          3|    2|          6|
+    |ap_reg_phiprechg_tmp_keyValid_V_1_reg_703pp0_it1    |    1|          3|    1|          3|
+    |ap_reg_phiprechg_tmp_key_V_10_reg_633pp0_it1        |   64|          3|   64|        192|
+    |ap_reg_phiprechg_tmp_key_V_1_reg_668pp0_it1         |   64|          3|   64|        192|
+    |ap_reg_phiprechg_tmp_key_V_2_reg_716pp0_it1         |   64|          3|   64|        192|
+    |ap_reg_phiprechg_tmp_valueValid_V_4_reg_644pp0_it1  |    1|          3|    1|          3|
+    |ap_reg_phiprechg_tmp_valueValid_V_reg_679pp0_it1    |    1|          3|    1|          3|
+    |ap_reg_phiprechg_tmp_value_V_5_reg_657pp0_it1       |   64|          3|   64|        192|
+    |ap_reg_phiprechg_tmp_value_V_reg_692pp0_it1         |   64|          3|   64|        192|
+    |p_Val2_7_phi_fu_325_p6                              |  124|          3|  124|        372|
+    |p_Val2_7_reg_322                                    |  124|          3|  124|        372|
+    |remuxState_flag_2_phi_fu_312_p6                     |    1|          3|    1|          3|
+    |remuxState_flag_s_phi_fu_369_p42                    |    1|          6|    1|          6|
+    |remuxState_new_1_phi_fu_436_p42                     |    3|          7|    3|         21|
+    |rmKeyLength_flag_5_phi_fu_348_p4                    |    1|          3|    1|          3|
+    |rmKeyLength_flag_s_phi_fu_502_p42                   |    1|          7|    1|          7|
+    |rmKeyLength_load_1_phi_fu_294_p4                    |    8|          3|    8|         24|
+    |rmKeyLength_load_s_phi_fu_264_p4                    |    8|          3|    8|         24|
+    |rmKeyLength_loc_2_phi_fu_337_p6                     |    8|          3|    8|         24|
+    |rmKeyLength_new_5_phi_fu_359_p4                     |    8|          3|    8|         24|
+    |rmKeyLength_new_s_phi_fu_571_p42                    |   16|          9|    8|         72|
+    |rmMdBuffer_metadata_V                               |  124|          3|  124|        372|
+    |rmValueLength                                       |   16|          2|   16|         32|
+    |tmp_84_phi_fu_273_p4                                |   16|          3|   16|         48|
+    |tmp_87_phi_fu_303_p4                                |   16|          3|   16|         48|
+    |tmp_keyValid_V_13_phi_fu_252_p4                     |    1|          3|    1|          3|
+    |tmp_keyValid_V_13_reg_249                           |    1|          3|    1|          3|
+    |tmp_keyValid_V_phi_fu_282_p4                        |    1|          3|    1|          3|
+    |tmp_keyValid_V_reg_279                              |    1|          3|    1|          3|
+    |valueStoreDram2merger_V_din                         |  512|          9|  256|       2304|
+    +----------------------------------------------------+-----+-----------+-----+-----------+
+    |Total                                               | 1316|        112| 1052|       4743|
+    +----------------------------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------+-----+----+-----+-----------+
+    |                        Name                        |  FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm0                                          |    1|   0|    1|          0|
+    |ap_CS_fsm1                                          |    2|   0|    2|          0|
+    |ap_done_reg                                         |    1|   0|    1|          0|
+    |ap_reg_phiprechg_tmp_keyValid_V_1_reg_703pp0_it1    |    1|   0|    1|          0|
+    |ap_reg_phiprechg_tmp_key_V_10_reg_633pp0_it1        |   64|   0|   64|          0|
+    |ap_reg_phiprechg_tmp_key_V_1_reg_668pp0_it1         |   64|   0|   64|          0|
+    |ap_reg_phiprechg_tmp_key_V_2_reg_716pp0_it1         |   64|   0|   64|          0|
+    |ap_reg_phiprechg_tmp_valueValid_V_4_reg_644pp0_it1  |    1|   0|    1|          0|
+    |ap_reg_phiprechg_tmp_valueValid_V_reg_679pp0_it1    |    1|   0|    1|          0|
+    |ap_reg_phiprechg_tmp_value_V_5_reg_657pp0_it1       |   64|   0|   64|          0|
+    |ap_reg_phiprechg_tmp_value_V_reg_692pp0_it1         |   64|   0|   64|          0|
+    |outputWord_metadata_V_1_reg_1304                    |  124|   0|  124|          0|
+    |outputWord_metadata_V_reg_1327                      |  124|   0|  124|          0|
+    |p_Val2_7_reg_322                                    |  124|   0|  124|          0|
+    |reg_822                                             |   64|   0|   64|          0|
+    |reg_829                                             |   64|   0|   64|          0|
+    |remuxState                                          |    3|   0|    3|          0|
+    |remuxState_load_reg_1263                            |    3|   0|    3|          0|
+    |rmKeyLength                                         |    8|   0|    8|          0|
+    |rmMdBuffer_metadata_V                               |  124|   0|  124|          0|
+    |rmValueLength                                       |   16|   0|   16|          0|
+    |tmp_128_reg_1349                                    |    1|   0|    1|          0|
+    |tmp_29_reg_1323                                     |    1|   0|    1|          0|
+    |tmp_30_reg_1288                                     |    1|   0|    1|          0|
+    |tmp_31_reg_1314                                     |    1|   0|    1|          0|
+    |tmp_32_reg_1271                                     |    1|   0|    1|          0|
+    |tmp_33_reg_1333                                     |    1|   0|    1|          0|
+    |tmp_34_reg_1292                                     |    1|   0|    1|          0|
+    |tmp_35_reg_1279                                     |    1|   0|    1|          0|
+    |tmp_36_reg_1300                                     |    1|   0|    1|          0|
+    |tmp_37_reg_1357                                     |    1|   0|    1|          0|
+    |tmp_38_reg_1368                                     |    1|   0|    1|          0|
+    |tmp_48_reg_1267                                     |    1|   0|    1|          0|
+    |tmp_71_reg_1275                                     |    1|   0|    1|          0|
+    |tmp_72_reg_1364                                     |    1|   0|    1|          0|
+    |tmp_73_reg_1353                                     |    1|   0|    1|          0|
+    |tmp_75_reg_1296                                     |    1|   0|    1|          0|
+    |tmp_EOP_V_12_reg_1318                               |    1|   0|    1|          0|
+    |tmp_EOP_V_13_reg_1283                               |    1|   0|    1|          0|
+    |tmp_EOP_V_14_reg_1309                               |    1|   0|    1|          0|
+    |tmp_EOP_V_reg_1337                                  |    1|   0|    1|          0|
+    |tmp_keyValid_V_13_reg_249                           |    1|   0|    1|          0|
+    |tmp_keyValid_V_reg_279                              |    1|   0|    1|          0|
+    |tmp_s_reg_1345                                      |    1|   0|    1|          0|
+    +----------------------------------------------------+-----+----+-----+-----------+
+    |Total                                               | 1004|   0| 1004|          0|
+    +----------------------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+-----+--------------+-------------------------+--------------+
+|            RTL Ports           | Dir | Bits|   Protocol   |      Source Object      |    C Type    |
++--------------------------------+-----+-----+--------------+-------------------------+--------------+
+|ap_clk                          |  in |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_rst                          |  in |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_start                        |  in |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_done                         | out |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_continue                     |  in |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_idle                         | out |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|ap_ready                        | out |    1| ap_ctrl_none | memcachedPipeline_remux | return value |
+|keyBuffer_V_V_dout              |  in |   64|    ap_fifo   |      keyBuffer_V_V      |    pointer   |
+|keyBuffer_V_V_empty_n           |  in |    1|    ap_fifo   |      keyBuffer_V_V      |    pointer   |
+|keyBuffer_V_V_read              | out |    1|    ap_fifo   |      keyBuffer_V_V      |    pointer   |
+|getPath2remux_V_V_dout          |  in |   64|    ap_fifo   |    getPath2remux_V_V    |    pointer   |
+|getPath2remux_V_V_empty_n       |  in |    1|    ap_fifo   |    getPath2remux_V_V    |    pointer   |
+|getPath2remux_V_V_read          | out |    1|    ap_fifo   |    getPath2remux_V_V    |    pointer   |
+|metadataBuffer_V_dout           |  in |  128|    ap_fifo   |     metadataBuffer_V    |    pointer   |
+|metadataBuffer_V_empty_n        |  in |    1|    ap_fifo   |     metadataBuffer_V    |    pointer   |
+|metadataBuffer_V_read           | out |    1|    ap_fifo   |     metadataBuffer_V    |    pointer   |
+|valueStoreDram2merger_V_din     | out |  256|    ap_fifo   | valueStoreDram2merger_V |    pointer   |
+|valueStoreDram2merger_V_full_n  |  in |    1|    ap_fifo   | valueStoreDram2merger_V |    pointer   |
+|valueStoreDram2merger_V_write   | out |    1|    ap_fifo   | valueStoreDram2merger_V |    pointer   |
++--------------------------------+-----+-----+--------------+-------------------------+--------------+
+

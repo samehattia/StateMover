@@ -1,0 +1,174 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'detect_mac_protocol'" level="0">
+<item name = "Date">Thu Oct 22 16:32:29 2020
+</item>
+<item name = "Version">2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)</item>
+<item name = "Project">macHeaderStrip_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku040-ffva1156-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">6.66, 3.364, 0.83</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">1, 1, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 136</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 150</column>
+<column name="Register">-, -, 400, -</column>
+<specialColumn name="Available">1200, 1920, 484800, 242400</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="ap_condition_100">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_155">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_202">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_210">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_221">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_244">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op10_read_state1">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op59_write_state2">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op68_write_state2">and, 0, 0, 2, 1, 1</column>
+<column name="demorgan_fu_224_p2">and, 0, 0, 2, 1, 1</column>
+<column name="or_cond_i_fu_277_p2">and, 0, 0, 2, 1, 1</column>
+<column name="tmp_nbreadreq_fu_86_p6">and, 0, 0, 2, 1, 0</column>
+<column name="cond_i_fu_205_p2">icmp, 0, 0, 8, 2, 1</column>
+<column name="tmp_35_i_fu_287_p2">icmp, 0, 0, 24, 48, 48</column>
+<column name="tmp_36_i_fu_211_p2">icmp, 0, 0, 8, 2, 1</column>
+<column name="tmp_37_i_fu_218_p2">icmp, 0, 0, 13, 16, 1</column>
+<column name="tmp_38_i_fu_265_p2">icmp, 0, 0, 13, 16, 1</column>
+<column name="tmp_39_i_fu_271_p2">icmp, 0, 0, 29, 64, 64</column>
+<column name="tmp_i_fu_321_p2">icmp, 0, 0, 13, 16, 1</column>
+<column name="ap_block_state1_pp0_stage0_iter0">or, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state2_pp0_stage0_iter1">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_iter1_fsm">15, 3, 2, 6</column>
+<column name="ap_done">9, 2, 1, 2</column>
+<column name="ap_phi_mux_dmp_macType_V_loc_1_s_phi_fu_122_p4">15, 3, 16, 48</column>
+<column name="ap_phi_mux_dmp_wordCount_V_flag_1_phi_fu_152_p4">15, 3, 1, 3</column>
+<column name="ap_phi_mux_dmp_wordCount_V_flag_phi_fu_131_p4">15, 3, 1, 3</column>
+<column name="ap_phi_mux_dmp_wordCount_V_new_1_phi_fu_164_p4">15, 3, 2, 6</column>
+<column name="ap_phi_mux_dmp_wordCount_V_new_s_phi_fu_141_p4">15, 3, 2, 6</column>
+<column name="dataIn_TDATA_blk_n">9, 2, 1, 2</column>
+<column name="dmp_macType_V">9, 2, 16, 32</column>
+<column name="ipDataFifo_V_blk_n">9, 2, 1, 2</column>
+<column name="ipDataFifo_V_din">15, 3, 185, 555</column>
+<column name="real_start">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_iter0_fsm">1, 0, 1, 0</column>
+<column name="ap_CS_iter1_fsm">2, 0, 2, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="cond_i_reg_413">1, 0, 1, 0</column>
+<column name="dmp_fsmState_V">1, 0, 1, 0</column>
+<column name="dmp_fsmState_V_load_reg_384">1, 0, 1, 0</column>
+<column name="dmp_macType_V">16, 0, 16, 0</column>
+<column name="dmp_prevWord_data_V">64, 0, 64, 0</column>
+<column name="dmp_prevWord_keep_V">8, 0, 8, 0</column>
+<column name="dmp_prevWord_last_V">1, 0, 1, 0</column>
+<column name="dmp_prevWord_user_V">112, 0, 112, 0</column>
+<column name="dmp_wordCount_V">2, 0, 2, 0</column>
+<column name="or_cond_i_reg_424">1, 0, 1, 0</column>
+<column name="start_once_reg">1, 0, 1, 0</column>
+<column name="tmp_38_i_reg_420">1, 0, 1, 0</column>
+<column name="tmp_data_V_reg_388">64, 0, 64, 0</column>
+<column name="tmp_i_reg_428">1, 0, 1, 0</column>
+<column name="tmp_keep_V_5_reg_398">8, 0, 8, 0</column>
+<column name="tmp_last_V_2_reg_403">1, 0, 1, 0</column>
+<column name="tmp_reg_394">1, 0, 1, 0</column>
+<column name="tmp_user_V_4_reg_408">112, 0, 112, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="start_full_n">in, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="start_out">out, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="start_write">out, 1, ap_ctrl_hs, detect_mac_protocol, return value</column>
+<column name="dataIn_TVALID">in, 1, axis, dataIn_V_user_V, pointer</column>
+<column name="dataIn_TREADY">out, 1, axis, dataIn_V_user_V, pointer</column>
+<column name="dataIn_TUSER">in, 112, axis, dataIn_V_user_V, pointer</column>
+<column name="ipDataFifo_V_din">out, 185, ap_fifo, ipDataFifo_V, pointer</column>
+<column name="ipDataFifo_V_full_n">in, 1, ap_fifo, ipDataFifo_V, pointer</column>
+<column name="ipDataFifo_V_write">out, 1, ap_fifo, ipDataFifo_V, pointer</column>
+<column name="dataIn_TDATA">in, 64, axis, dataIn_V_data_V, pointer</column>
+<column name="dataIn_TKEEP">in, 8, axis, dataIn_V_keep_V, pointer</column>
+<column name="dataIn_TLAST">in, 1, axis, dataIn_V_last_V, pointer</column>
+<column name="myMacAddress_V">in, 48, ap_stable, myMacAddress_V, scalar</column>
+</table>
+</item>
+</section>
+</profile>

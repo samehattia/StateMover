@@ -1,0 +1,144 @@
+==============================================================
+File generated on Wed Oct 14 13:20:24 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcku040-ffva1156-2-e'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.66ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'src/mac_header_strip/mac_header_strip.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 59903 ; free virtual = 177052
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 59903 ; free virtual = 177052
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 59883 ; free virtual = 177035
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'byteSwap16' into 'detect_mac_protocol' (src/mac_header_strip/mac_header_strip.cpp:75) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 59873 ; free virtual = 177026
+INFO: [XFORM 203-602] Inlining function 'byteSwap16' into 'detect_mac_protocol' (src/mac_header_strip/mac_header_strip.cpp:75) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'mac_header_strip', detected/extracted 2 process function(s): 
+	 'detect_mac_protocol'
+	 'strip_mac_header'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:145:47) to (src/mac_header_strip/mac_header_strip.cpp:151:4) in function 'strip_mac_header'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:154:39) to (src/mac_header_strip/mac_header_strip.cpp:177:5) in function 'strip_mac_header'... converting 18 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:179:11) to (src/mac_header_strip/mac_header_strip.cpp:198:5) in function 'strip_mac_header'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'strip_mac_header' (src/mac_header_strip/mac_header_strip.cpp:99)...8 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 59841 ; free virtual = 176996
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 59823 ; free virtual = 176978
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mac_header_strip' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'detect_mac_protocol' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'detect_mac_protocol'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 14.09 seconds; current allocated memory: 121.060 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 121.343 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'strip_mac_header' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'strip_mac_header'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+WARNING: [SCHED 204-70] Cannot meet target clock period from fifo read on port 'ipDataFifo_V' to 'br' operation (combination delay: 8.865 ns) to honor II or Latency constraint in region 'strip_mac_header'.
+WARNING: [SCHED 204-21] Estimated clock period (8.865ns) exceeds the target (target clock period: 6.66ns, clock uncertainty: 0.8325ns, effective delay budget: 5.8275ns).
+WARNING: [SCHED 204-21] The critical path in module 'strip_mac_header' consists of the following:
+	fifo read on port 'ipDataFifo_V' [27]  (2.27 ns)
+	'icmp' operation ('tmp_11_i', src/mac_header_strip/mac_header_strip.cpp:160) [127]  (0.782 ns)
+	'or' operation ('sel_tmp6_demorgan', src/mac_header_strip/mac_header_strip.cpp:162) [137]  (0.337 ns)
+	'or' operation ('sel_tmp13_demorgan', src/mac_header_strip/mac_header_strip.cpp:164) [140]  (0.337 ns)
+	'or' operation ('sel_tmp22_demorgan', src/mac_header_strip/mac_header_strip.cpp:166) [143]  (0.337 ns)
+	'or' operation ('sel_tmp33_demorgan', src/mac_header_strip/mac_header_strip.cpp:168) [146]  (0.337 ns)
+	'or' operation ('sel_tmp46_demorgan', src/mac_header_strip/mac_header_strip.cpp:170) [149]  (0 ns)
+	'xor' operation ('sel_tmp10', src/mac_header_strip/mac_header_strip.cpp:170) [150]  (0 ns)
+	'and' operation ('sel_tmp11', src/mac_header_strip/mac_header_strip.cpp:172) [151]  (0.337 ns)
+	'or' operation ('tmp8', src/mac_header_strip/mac_header_strip.cpp:174) [156]  (0.337 ns)
+	'or' operation ('or_cond4', src/mac_header_strip/mac_header_strip.cpp:174) [169]  (0.337 ns)
+	'select' operation ('newSel19_v', src/mac_header_strip/mac_header_strip.cpp:174) [172]  (0 ns)
+	'add' operation ('newSel', src/mac_header_strip/mac_header_strip.cpp:174) [174]  (1.28 ns)
+	'select' operation ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [176]  (0.337 ns)
+	multiplexor before 'phi' operation ('sentBytes_V_new_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0.918 ns)
+	'phi' operation ('sentBytes_V_new_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0 ns)
+	multiplexor before 'phi' operation ('sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0.918 ns)
+	'phi' operation ('sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0 ns)
+	'store' operation (src/mac_header_strip/mac_header_strip.cpp:132) of variable 'sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174 on static variable 'sentBytes_V' [252]  (0 ns)
+==============================================================
+File generated on Thu Oct 22 16:32:12 EDT 2020
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.66ns.
+INFO: [HLS 200-10] Setting target device to 'xcku040-ffva1156-2-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'src/mac_header_strip/mac_header_strip.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 49234 ; free virtual = 169576
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 49234 ; free virtual = 169576
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49211 ; free virtual = 169561
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'byteSwap16' into 'detect_mac_protocol' (src/mac_header_strip/mac_header_strip.cpp:75) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49201 ; free virtual = 169553
+INFO: [XFORM 203-602] Inlining function 'byteSwap16' into 'detect_mac_protocol' (src/mac_header_strip/mac_header_strip.cpp:75) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'mac_header_strip', detected/extracted 2 process function(s): 
+	 'detect_mac_protocol'
+	 'strip_mac_header'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:145:47) to (src/mac_header_strip/mac_header_strip.cpp:151:4) in function 'strip_mac_header'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:154:39) to (src/mac_header_strip/mac_header_strip.cpp:177:5) in function 'strip_mac_header'... converting 18 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:179:11) to (src/mac_header_strip/mac_header_strip.cpp:198:5) in function 'strip_mac_header'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'strip_mac_header' (src/mac_header_strip/mac_header_strip.cpp:99)...8 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49168 ; free virtual = 169521
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49153 ; free virtual = 169508
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mac_header_strip' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'detect_mac_protocol' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'detect_mac_protocol'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 16.3 seconds; current allocated memory: 121.544 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 121.836 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'strip_mac_header' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'strip_mac_header'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+WARNING: [SCHED 204-70] Cannot meet target clock period from fifo read on port 'ipDataFifo_V' to 'br' operation (combination delay: 8.865 ns) to honor II or Latency constraint in region 'strip_mac_header'.
+WARNING: [SCHED 204-21] Estimated clock period (8.865ns) exceeds the target (target clock period: 6.66ns, clock uncertainty: 0.8325ns, effective delay budget: 5.8275ns).
+WARNING: [SCHED 204-21] The critical path in module 'strip_mac_header' consists of the following:
+	fifo read on port 'ipDataFifo_V' [27]  (2.27 ns)
+	'icmp' operation ('tmp_11_i', src/mac_header_strip/mac_header_strip.cpp:160) [127]  (0.782 ns)
+	'or' operation ('sel_tmp6_demorgan', src/mac_header_strip/mac_header_strip.cpp:162) [137]  (0.337 ns)
+	'or' operation ('sel_tmp13_demorgan', src/mac_header_strip/mac_header_strip.cpp:164) [140]  (0.337 ns)
+	'or' operation ('sel_tmp22_demorgan', src/mac_header_strip/mac_header_strip.cpp:166) [143]  (0.337 ns)
+	'or' operation ('sel_tmp33_demorgan', src/mac_header_strip/mac_header_strip.cpp:168) [146]  (0.337 ns)
+	'or' operation ('sel_tmp46_demorgan', src/mac_header_strip/mac_header_strip.cpp:170) [149]  (0 ns)
+	'xor' operation ('sel_tmp10', src/mac_header_strip/mac_header_strip.cpp:170) [150]  (0 ns)
+	'and' operation ('sel_tmp11', src/mac_header_strip/mac_header_strip.cpp:172) [151]  (0.337 ns)
+	'or' operation ('tmp8', src/mac_header_strip/mac_header_strip.cpp:174) [156]  (0.337 ns)
+	'or' operation ('or_cond4', src/mac_header_strip/mac_header_strip.cpp:174) [169]  (0.337 ns)
+	'select' operation ('newSel19_v', src/mac_header_strip/mac_header_strip.cpp:174) [172]  (0 ns)
+	'add' operation ('newSel', src/mac_header_strip/mac_header_strip.cpp:174) [174]  (1.28 ns)
+	'select' operation ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [176]  (0.337 ns)
+	multiplexor before 'phi' operation ('sentBytes_V_new_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0.918 ns)
+	'phi' operation ('sentBytes_V_new_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0 ns)
+	multiplexor before 'phi' operation ('sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0.918 ns)
+	'phi' operation ('sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : ('dataLen_V_load', src/mac_header_strip/mac_header_strip.cpp:144) ('p_Result_4_i', src/mac_header_strip/mac_header_strip.cpp:131) ('newSel1', src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0 ns)
+	'store' operation (src/mac_header_strip/mac_header_strip.cpp:132) of variable 'sentBytes_V_new_10_i', src/mac_header_strip/mac_header_strip.cpp:174 on static variable 'sentBytes_V' [252]  (0 ns)

@@ -1,0 +1,687 @@
+<stg><name>memcachedPipeline_flashReceiveNoFilter</name>
+
+
+<trans_list>
+
+<trans id="50" from="1" to="2">
+<condition id="45">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="3" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="11" bw="1" op_0_bw="1">
+<![CDATA[
+codeRepl:4  %flashGetState_load = load i1* @flashGetState, align 1
+
+]]></node>
+<StgValue><ssdm name="flashGetState_load"/></StgValue>
+</operation>
+
+<operation id="4" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="12" bw="16" op_0_bw="16">
+<![CDATA[
+codeRepl:5  %getValueLength_V_load = load i16* @getValueLength_V, align 2
+
+]]></node>
+<StgValue><ssdm name="getValueLength_V_load"/></StgValue>
+</operation>
+
+<operation id="5" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="13" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+codeRepl:6  br i1 %flashGetState_load, label %3, label %0
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="6" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="0">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="15" bw="1" op_0_bw="1" op_1_bw="16" op_2_bw="32">
+<![CDATA[
+:0  %tmp_17 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i16P(i16* @flash_Disp2rec_V_V, i32 1)
+
+]]></node>
+<StgValue><ssdm name="tmp_17"/></StgValue>
+</operation>
+
+<operation id="7" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="0">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="16" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp_17, label %1, label %._crit_edge56
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="8" st_id="1" stage="1" lat="1">
+<core>AXI4Stream</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="28">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="18" bw="1" op_0_bw="1" op_1_bw="64" op_2_bw="32">
+<![CDATA[
+:0  %tmp_18 = call i1 @_ssdm_op_NbReadReq.axis.i64P(i64* %memRdData_V_V, i32 1)
+
+]]></node>
+<StgValue><ssdm name="tmp_18"/></StgValue>
+</operation>
+
+<operation id="9" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="28">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="19" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp_18, label %2, label %._crit_edge56
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="10" st_id="1" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="21" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+:0  %tmp_V_11 = call i16 @_ssdm_op_Read.ap_fifo.volatile.i16P(i16* @flash_Disp2rec_V_V)
+
+]]></node>
+<StgValue><ssdm name="tmp_V_11"/></StgValue>
+</operation>
+
+<operation id="11" st_id="1" stage="1" lat="1">
+<core>AXI4Stream</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="22" bw="64" op_0_bw="64" op_1_bw="64">
+<![CDATA[
+:1  %tmp_V_12 = call i64 @_ssdm_op_Read.axis.volatile.i64P(i64* %memRdData_V_V)
+
+]]></node>
+<StgValue><ssdm name="tmp_V_12"/></StgValue>
+</operation>
+
+<operation id="12" st_id="1" stage="1" lat="1">
+<core>AddSub</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="24" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+:3  %tmp_42 = add i16 %tmp_V_11, -8
+
+]]></node>
+<StgValue><ssdm name="tmp_42"/></StgValue>
+</operation>
+
+<operation id="13" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="25" bw="0" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+:4  store i16 %tmp_42, i16* @getValueLength_V, align 2
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="14" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="29" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:8  store i1 true, i1* @flashGetState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="15" st_id="1" stage="1" lat="1">
+<core>AXI4Stream</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="11">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="34" bw="1" op_0_bw="1" op_1_bw="64" op_2_bw="32">
+<![CDATA[
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.axis.i64P(i64* %memRdData_V_V, i32 1)
+
+]]></node>
+<StgValue><ssdm name="tmp"/></StgValue>
+</operation>
+
+<operation id="16" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="11">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="35" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+:1  br i1 %tmp, label %._crit_edge59, label %._crit_edge58
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="17" st_id="1" stage="1" lat="1">
+<core>AXI4Stream</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="37" bw="64" op_0_bw="64" op_1_bw="64">
+<![CDATA[
+._crit_edge59:0  %tmp_V = call i64 @_ssdm_op_Read.axis.volatile.i64P(i64* %memRdData_V_V)
+
+]]></node>
+<StgValue><ssdm name="tmp_V"/></StgValue>
+</operation>
+
+<operation id="18" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="39" bw="13" op_0_bw="13" op_1_bw="16" op_2_bw="32" op_3_bw="32">
+<![CDATA[
+._crit_edge59:2  %tmp_56 = call i13 @_ssdm_op_PartSelect.i13.i16.i32.i32(i16 %getValueLength_V_load, i32 3, i32 15)
+
+]]></node>
+<StgValue><ssdm name="tmp_56"/></StgValue>
+</operation>
+
+<operation id="19" st_id="1" stage="1" lat="1">
+<core>Cmp</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="40" bw="1" op_0_bw="13" op_1_bw="13">
+<![CDATA[
+._crit_edge59:3  %icmp = icmp ne i13 %tmp_56, 0
+
+]]></node>
+<StgValue><ssdm name="icmp"/></StgValue>
+</operation>
+
+<operation id="20" st_id="1" stage="1" lat="1">
+<core>AddSub</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="41" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+._crit_edge59:4  %tmp_s = add i16 %getValueLength_V_load, -8
+
+]]></node>
+<StgValue><ssdm name="tmp_s"/></StgValue>
+</operation>
+
+<operation id="21" st_id="1" stage="1" lat="1">
+<core>Sel</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="42" bw="16" op_0_bw="1" op_1_bw="16" op_2_bw="16">
+<![CDATA[
+._crit_edge59:5  %storemerge = select i1 %icmp, i16 %tmp_s, i16 0
+
+]]></node>
+<StgValue><ssdm name="storemerge"/></StgValue>
+</operation>
+
+<operation id="22" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="43" bw="0" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+._crit_edge59:6  store i16 %storemerge, i16* @getValueLength_V, align 2
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="23" st_id="1" stage="1" lat="1">
+<core>Cmp</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="44" bw="1" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+._crit_edge59:7  %tmp_41 = icmp eq i16 %storemerge, 0
+
+]]></node>
+<StgValue><ssdm name="tmp_41"/></StgValue>
+</operation>
+
+<operation id="24" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="45" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
+<![CDATA[
+._crit_edge59:8  br i1 %tmp_41, label %4, label %._crit_edge60
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="25" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="31">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+<literal name="tmp_41" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="47" bw="0" op_0_bw="1" op_1_bw="1">
+<![CDATA[
+:0  store i1 false, i1* @flashGetState, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="2" st_id="2">
+
+<operation id="26" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="7" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i64* %memRdData_V_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="27" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="8" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i64* @flashGetPath2remux_V_V, [8 x i8]* @str1390, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1391, [1 x i8]* @str1391, [8 x i8]* @str1390)
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="28" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="9" bw="0" op_0_bw="0" op_1_bw="16" op_2_bw="8" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="32" op_7_bw="8" op_8_bw="8" op_9_bw="8">
+<![CDATA[
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i16* @flash_Disp2rec_V_V, [8 x i8]* @str1374, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1375, [1 x i8]* @str1375, [8 x i8]* @str1374)
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="29" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="10" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="8">
+<![CDATA[
+codeRepl:3  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str191) nounwind
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="30" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="23" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
+<![CDATA[
+:2  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @flashGetPath2remux_V_V, i64 %tmp_V_12)
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="31" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="26" bw="8" op_0_bw="8">
+<![CDATA[
+:5  %getCounter_load = load i8* @getCounter, align 1
+
+]]></node>
+<StgValue><ssdm name="getCounter_load"/></StgValue>
+</operation>
+
+<operation id="32" st_id="2" stage="1" lat="1">
+<core>AddSub</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="27" bw="8" op_0_bw="8" op_1_bw="8">
+<![CDATA[
+:6  %tmp_43 = add i8 %getCounter_load, 1
+
+]]></node>
+<StgValue><ssdm name="tmp_43"/></StgValue>
+</operation>
+
+<operation id="33" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="28" bw="0" op_0_bw="8" op_1_bw="8">
+<![CDATA[
+:7  store i8 %tmp_43, i8* @getCounter, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="34" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="29">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+<literal name="tmp_17" val="1"/>
+<literal name="tmp_18" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="30" bw="0" op_0_bw="0">
+<![CDATA[
+:9  br label %._crit_edge56
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="35" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="32">
+<or_exp><and_exp><literal name="flashGetState_load" val="0"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="32" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge56:0  br label %._crit_edge55
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="36" st_id="2" stage="1" lat="1">
+<core>FIFO</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="30">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="38" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
+<![CDATA[
+._crit_edge59:1  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @flashGetPath2remux_V_V, i64 %tmp_V)
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="37" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="31">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+<literal name="tmp_41" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="48" bw="0" op_0_bw="8" op_1_bw="8">
+<![CDATA[
+:1  store i8 0, i8* @getCounter, align 1
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="38" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="31">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+<literal name="tmp_41" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="49" bw="0" op_0_bw="0">
+<![CDATA[
+:2  br label %._crit_edge60
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="39" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="33">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+<literal name="tmp" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="51" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge60:0  br label %._crit_edge58
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="40" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="34">
+<or_exp><and_exp><literal name="flashGetState_load" val="1"/>
+</and_exp></or_exp>
+</condition>
+
+<node id="53" bw="0" op_0_bw="0">
+<![CDATA[
+._crit_edge58:0  br label %._crit_edge55
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="41" st_id="2" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="24">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="55" bw="0">
+<![CDATA[
+._crit_edge55:0  ret void
+
+]]></node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+</ports>
+
+
+<dataflows>
+</dataflows>
+
+
+</stg>

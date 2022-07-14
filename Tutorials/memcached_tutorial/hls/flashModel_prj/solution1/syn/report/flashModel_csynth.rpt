@@ -1,0 +1,131 @@
+
+
+================================================================
+== Vivado HLS Report for 'flashModel'
+================================================================
+* Date:           Wed Oct 14 13:19:00 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        flashModel_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     3.183|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------+--------------------+-----+-----+-----+-----+----------+
+        |                       |                    |  Latency  |  Interval | Pipeline |
+        |        Instance       |       Module       | min | max | min | max |   Type   |
+        +-----------------------+--------------------+-----+-----+-----+-----+----------+
+        |flashMemAccess_U0      |flashMemAccess      |    2|    2|    1|    1| function |
+        |flashCmdAggregator_U0  |flashCmdAggregator  |    0|    0|    0|    0|   none   |
+        +-----------------------+--------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        3|      -|      62|      54|
+|Instance         |      228|      -|     191|     280|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |      231|      0|     253|     334|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |       19|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +-----------------------+--------------------+---------+-------+-----+-----+
+    |        Instance       |       Module       | BRAM_18K| DSP48E|  FF | LUT |
+    +-----------------------+--------------------+---------+-------+-----+-----+
+    |flashCmdAggregator_U0  |flashCmdAggregator  |        0|      0|    2|   57|
+    |flashMemAccess_U0      |flashMemAccess      |      228|      0|  189|  223|
+    +-----------------------+--------------------+---------+-------+-----+-----+
+    |Total                  |                    |      228|      0|  191|  280|
+    +-----------------------+--------------------+---------+-------+-----+-----+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------------+---------+----+----+------+-----+---------+
+    |           Name           | BRAM_18K| FF | LUT| Depth| Bits| Size:D*B|
+    +--------------------------+---------+----+----+------+-----+---------+
+    |flashAggregateMemCmd_1_U  |        3|  62|  54|    16|   46|      736|
+    +--------------------------+---------+----+----+------+-----+---------+
+    |Total                     |        3|  62|  54|    16|   46|      736|
+    +--------------------------+---------+----+----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+--------------+---------------+--------------+
+|       RTL Ports      | Dir | Bits|   Protocol   | Source Object |    C Type    |
++----------------------+-----+-----+--------------+---------------+--------------+
+|rdCmdIn_V_TDATA       |  in |   48|     axis     |   rdCmdIn_V   |    pointer   |
+|rdCmdIn_V_TVALID      |  in |    1|     axis     |   rdCmdIn_V   |    pointer   |
+|rdCmdIn_V_TREADY      | out |    1|     axis     |   rdCmdIn_V   |    pointer   |
+|rdDataOut_V_V_TDATA   | out |   64|     axis     | rdDataOut_V_V |    pointer   |
+|rdDataOut_V_V_TVALID  | out |    1|     axis     | rdDataOut_V_V |    pointer   |
+|rdDataOut_V_V_TREADY  |  in |    1|     axis     | rdDataOut_V_V |    pointer   |
+|wrCmdIn_V_TDATA       |  in |   48|     axis     |   wrCmdIn_V   |    pointer   |
+|wrCmdIn_V_TVALID      |  in |    1|     axis     |   wrCmdIn_V   |    pointer   |
+|wrCmdIn_V_TREADY      | out |    1|     axis     |   wrCmdIn_V   |    pointer   |
+|wrDataIn_V_V_TDATA    |  in |   64|     axis     |  wrDataIn_V_V |    pointer   |
+|wrDataIn_V_V_TVALID   |  in |    1|     axis     |  wrDataIn_V_V |    pointer   |
+|wrDataIn_V_V_TREADY   | out |    1|     axis     |  wrDataIn_V_V |    pointer   |
+|ap_clk                |  in |    1| ap_ctrl_none |   flashModel  | return value |
+|ap_rst_n              |  in |    1| ap_ctrl_none |   flashModel  | return value |
++----------------------+-----+-----+--------------+---------------+--------------+
+

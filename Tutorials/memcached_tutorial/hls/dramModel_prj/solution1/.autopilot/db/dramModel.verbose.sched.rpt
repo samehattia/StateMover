@@ -1,0 +1,165 @@
+
+
+================================================================
+== Vivado HLS Report for 'dramModel'
+================================================================
+* Date:           Wed Oct 14 13:04:51 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        dramModel_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     3.183|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    4|    4|    1|    1| dataflow |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 6, States = { 1 2 3 4 5 6 }
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 7 [2/2] (0.00ns)   --->   "call fastcc void @cmdAggregator(i40* %rdCmdIn_V, i40* %wrCmdIn_V) noinline"   --->   Operation 7 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 8 [1/2] (0.00ns)   --->   "call fastcc void @cmdAggregator(i40* %rdCmdIn_V, i40* %wrCmdIn_V) noinline"   --->   Operation 8 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 1.77>
+ST_3 : Operation 9 [3/3] (1.77ns)   --->   "call fastcc void @memAccess(i512* %rdDataOut_V_V, i512* %wrDataIn_V_V) noinline" [src/otherModules/dramModel/dramModel.cpp:116]   --->   Operation 9 'call' <Predicate = true> <Delay = 1.77> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 3.18>
+ST_4 : Operation 10 [2/3] (3.18ns)   --->   "call fastcc void @memAccess(i512* %rdDataOut_V_V, i512* %wrDataIn_V_V) noinline" [src/otherModules/dramModel/dramModel.cpp:116]   --->   Operation 10 'call' <Predicate = true> <Delay = 3.18> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 11 [1/3] (0.00ns)   --->   "call fastcc void @memAccess(i512* %rdDataOut_V_V, i512* %wrDataIn_V_V) noinline" [src/otherModules/dramModel/dramModel.cpp:116]   --->   Operation 11 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecDataflowPipeline(i32 -1, i32 0, [1 x i8]* @p_str) nounwind" [src/otherModules/dramModel/dramModel.cpp:95]   --->   Operation 12 'specdataflowpipeline' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 13 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecChannel([18 x i8]* @aggregateMemCmd_OC_V, i32 1, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 16, i32 16, i21* @aggregateMemCmd_V, i21* @aggregateMemCmd_V)"   --->   Operation 13 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i21* @aggregateMemCmd_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 14 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i40* %wrCmdIn_V), !map !88"   --->   Operation 15 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i40* %rdCmdIn_V), !map !95"   --->   Operation 16 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i512* %rdDataOut_V_V), !map !102"   --->   Operation 17 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i512* %wrDataIn_V_V), !map !106"   --->   Operation 18 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @dramModel_str) nounwind"   --->   Operation 19 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/otherModules/dramModel/dramModel.cpp:93]   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i40* %rdCmdIn_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 21 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %rdDataOut_V_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/otherModules/dramModel/dramModel.cpp:105]   --->   Operation 22 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i40* %wrCmdIn_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind"   --->   Operation 23 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %wrDataIn_V_V, [5 x i8]* @p_str2, i32 1, i32 1, [5 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind" [src/otherModules/dramModel/dramModel.cpp:107]   --->   Operation 24 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 25 [1/1] (0.00ns)   --->   "ret void" [src/otherModules/dramModel/dramModel.cpp:117]   --->   Operation 25 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.4ns, clock uncertainty: 0.8ns.
+
+ <State 1>: 0ns
+The critical path consists of the following:
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 1.77ns
+The critical path consists of the following:
+	'call' operation (src/otherModules/dramModel/dramModel.cpp:116) to 'memAccess' [25]  (1.77 ns)
+
+ <State 4>: 3.18ns
+The critical path consists of the following:
+	'call' operation (src/otherModules/dramModel/dramModel.cpp:116) to 'memAccess' [25]  (3.18 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

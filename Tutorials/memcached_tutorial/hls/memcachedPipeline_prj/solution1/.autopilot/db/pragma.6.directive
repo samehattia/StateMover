@@ -1,0 +1,46 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="response_f" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="response_f" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="response_r" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="response_r" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="binaryResponse" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="inData_rf"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="binaryResponse" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="binaryResponse" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="metadataBuffer_rf"/>
+<option name="depth" value="8"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="binaryResponse" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="valueBuffer_rf"/>
+<option name="depth" value="1024"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

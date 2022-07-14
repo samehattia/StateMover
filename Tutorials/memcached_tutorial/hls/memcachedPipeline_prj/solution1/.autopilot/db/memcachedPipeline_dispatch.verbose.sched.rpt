@@ -1,0 +1,217 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_dispatch'
+================================================================
+* Date:           Wed Oct 21 12:18:36 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      4.20|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 4.20ns
+ST_1: tmp19 [1/1] 0.00ns
+:5  %tmp19 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i45P(i45* @demux2getPath_V, i32 1)
+
+ST_1: stg_4 [1/1] 0.00ns
+:6  br i1 %tmp19, label %._crit_edge59, label %._crit_edge
+
+ST_1: tmp1 [1/1] 2.91ns
+._crit_edge59:0  %tmp1 = call i45 @_ssdm_op_Read.ap_fifo.volatile.i45P(i45* @demux2getPath_V)
+
+ST_1: getCtrlWord_address_V [1/1] 0.00ns
+._crit_edge59:1  %getCtrlWord_address_V = trunc i45 %tmp1 to i32
+
+ST_1: tmp_length_V_load_new6 [1/1] 0.00ns
+._crit_edge59:2  %tmp_length_V_load_new6 = call i13 @_ssdm_op_PartSelect.i13.i45.i32.i32(i45 %tmp1, i32 32, i32 44)
+
+ST_1: tmp [1/1] 0.00ns
+._crit_edge59:3  %tmp = call i7 @_ssdm_op_PartSelect.i7.i45.i32.i32(i45 %tmp1, i32 38, i32 44)
+
+ST_1: op2_assign [1/1] 0.00ns
+._crit_edge59:5  %op2_assign = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %tmp, i6 0)
+
+ST_1: tmp_162 [1/1] 1.29ns
+._crit_edge59:6  %tmp_162 = icmp ugt i13 %tmp_length_V_load_new6, %op2_assign
+
+ST_1: tmp_V [1/1] 0.00ns
+._crit_edge59:11  %tmp_V = call i12 @_ssdm_op_PartSelect.i12.i45.i32.i32(i45 %tmp1, i32 32, i32 43)
+
+
+ <State 2>: 2.91ns
+ST_2: stg_12 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecInterface(i40* %memRdCmd_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_13 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecInterface(i45* @demux2getPath_V, [8 x i8]* @str1470, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1471, [1 x i8]* @str1471, [8 x i8]* @str1470) nounwind
+
+ST_2: stg_14 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecInterface(i45* @demux2getPath_V, [8 x i8]* @str1466, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1467, [1 x i8]* @str1467, [8 x i8]* @str1466) nounwind
+
+ST_2: stg_15 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecInterface(i12* @disp2rec_V_V, [8 x i8]* @str1438, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1439, [1 x i8]* @str1439, [8 x i8]* @str1438)
+
+ST_2: stg_16 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str1128) nounwind
+
+ST_2: tmp_159 [1/1] 0.00ns
+._crit_edge59:4  %tmp_159 = zext i7 %tmp to i8
+
+ST_2: tmp_163 [1/1] 1.24ns
+._crit_edge59:7  %tmp_163 = add i8 1, %tmp_159
+
+ST_2: tmp_count_V [1/1] 0.71ns
+._crit_edge59:8  %tmp_count_V = select i1 %tmp_162, i8 %tmp_163, i8 %tmp_159
+
+ST_2: tmp_1 [1/1] 0.00ns
+._crit_edge59:9  %tmp_1 = call i40 @_ssdm_op_BitConcatenate.i40.i8.i32(i8 %tmp_count_V, i32 %getCtrlWord_address_V)
+
+ST_2: stg_21 [1/1] 0.00ns
+._crit_edge59:10  call void @_ssdm_op_Write.axis.volatile.i40P(i40* %memRdCmd_V, i40 %tmp_1)
+
+ST_2: stg_22 [1/1] 2.91ns
+._crit_edge59:12  call void @_ssdm_op_Write.ap_fifo.volatile.i12P(i12* @disp2rec_V_V, i12 %tmp_V)
+
+ST_2: stg_23 [1/1] 0.00ns
+._crit_edge59:13  br label %._crit_edge
+
+ST_2: stg_24 [1/1] 0.00ns
+._crit_edge:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

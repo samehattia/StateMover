@@ -1,0 +1,13 @@
+INFO: [Common 17-701] A license check has taken more than 10 seconds to complete. This may indicate that there is a performance issue with one or more license servers listed in XILINXD_LICENSE_FILE or LM_LICENSE_FILE, or that the license servers are just not responding at all. Try setting the FLEXLM_DIAGNOSTICS environment variable to 3 and running Vivado again to get more information.
+
+****** Vivado v2015.1 (64-bit)
+  **** SW Build 1215546 on Mon Apr 27 19:07:21 MDT 2015
+  **** IP Build 1209967 on Tue Apr 21 11:39:20 MDT 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+ERROR: [Common 17-356] Failed to install all user apps.
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/sameh/Xilinx/Vivado/2015.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 21 12:19:26 2020...

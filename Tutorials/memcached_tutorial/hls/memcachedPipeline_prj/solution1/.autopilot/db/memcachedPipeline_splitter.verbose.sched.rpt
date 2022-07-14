@@ -1,0 +1,315 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_splitter'
+================================================================
+* Date:           Wed Oct 21 12:18:33 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.31|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    2|    2|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 3
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+* FSM state operations: 
+
+ <State 1>: 5.31ns
+ST_1: tmp [1/1] 0.00ns
+codeRepl:22  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i256P(i256* @hashTable2splitter_V, i32 1) nounwind
+
+ST_1: stg_5 [1/1] 0.00ns
+codeRepl:23  br i1 %tmp, label %0, label %._crit_edge74
+
+ST_1: tmp112 [1/1] 2.91ns
+:0  %tmp112 = call i256 @_ssdm_op_Read.ap_fifo.volatile.i256P(i256* @hashTable2splitter_V) nounwind
+
+ST_1: tmp_SOP_V [1/1] 0.00ns
+:1  %tmp_SOP_V = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp112, i32 124)
+
+ST_1: p_Result_s [1/1] 0.00ns
+:0  %p_Result_s = call i32 @_ssdm_op_PartSelect.i32.i256.i32.i32(i256 %tmp112, i32 8, i32 39)
+
+ST_1: not_s [1/1] 1.50ns
+:1  %not_s = icmp ult i32 %p_Result_s, 2049
+
+ST_1: stg_10 [1/1] 0.89ns
+:3  br label %._crit_edge75
+
+
+ <State 2>: 2.49ns
+ST_2: is_validFlag_load [1/1] 0.00ns
+:2  %is_validFlag_load = load i1* @is_validFlag, align 1
+
+ST_2: dramOrFlash_V_load [1/1] 0.00ns
+:3  %dramOrFlash_V_load = load i1* @dramOrFlash_V, align 1
+
+ST_2: stg_13 [1/1] 0.89ns
+:4  br i1 %tmp_SOP_V, label %1, label %._crit_edge75
+
+ST_2: stg_14 [1/1] 0.00ns
+:2  store i1 %not_s, i1* @dramOrFlash_V, align 1
+
+ST_2: is_validFlag_flag [1/1] 0.00ns
+._crit_edge75:0  %is_validFlag_flag = phi i1 [ true, %1 ], [ false, %0 ]
+
+ST_2: is_validFlag_loc [1/1] 0.00ns
+._crit_edge75:1  %is_validFlag_loc = phi i1 [ true, %1 ], [ %is_validFlag_load, %0 ]
+
+ST_2: dramOrFlash_V_loc [1/1] 0.00ns
+._crit_edge75:2  %dramOrFlash_V_loc = phi i1 [ %not_s, %1 ], [ %dramOrFlash_V_load, %0 ]
+
+ST_2: stg_18 [1/1] 0.89ns
+._crit_edge75:3  br i1 %is_validFlag_loc, label %2, label %._crit_edge76
+
+ST_2: stg_19 [1/1] 0.00ns
+:0  br i1 %dramOrFlash_V_loc, label %4, label %3
+
+ST_2: tmp_2 [1/1] 0.00ns
+._crit_edge78:0  %tmp_2 = call i1 @_ssdm_op_BitSelect.i1.i256.i32(i256 %tmp112, i32 127)
+
+ST_2: p_is_validFlag_flag [1/1] 0.71ns
+._crit_edge78:1  %p_is_validFlag_flag = or i1 %tmp_2, %is_validFlag_flag
+
+ST_2: not_din_EOP_V_assign_load_2_ne [1/1] 0.71ns
+._crit_edge78:2  %not_din_EOP_V_assign_load_2_ne = xor i1 %tmp_2, true
+
+ST_2: stg_23 [1/1] 0.89ns
+._crit_edge78:3  br label %._crit_edge76
+
+ST_2: is_validFlag_flag_2 [1/1] 0.00ns
+._crit_edge76:0  %is_validFlag_flag_2 = phi i1 [ %p_is_validFlag_flag, %._crit_edge78 ], [ %is_validFlag_flag, %._crit_edge75 ]
+
+ST_2: is_validFlag_new_2 [1/1] 0.00ns
+._crit_edge76:1  %is_validFlag_new_2 = phi i1 [ %not_din_EOP_V_assign_load_2_ne, %._crit_edge78 ], [ true, %._crit_edge75 ]
+
+ST_2: stg_26 [1/1] 0.00ns
+._crit_edge76:2  br i1 %is_validFlag_flag_2, label %mergeST, label %._crit_edge76.new
+
+ST_2: stg_27 [1/1] 0.00ns
+mergeST:0  store i1 %is_validFlag_new_2, i1* @is_validFlag, align 1
+
+
+ <State 3>: 2.91ns
+ST_3: stg_28 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1314, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1315, [1 x i8]* @str1315, [8 x i8]* @str1314) nounwind
+
+ST_3: stg_29 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1310, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1311, [1 x i8]* @str1311, [8 x i8]* @str1310) nounwind
+
+ST_3: stg_30 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1306, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1307, [1 x i8]* @str1307, [8 x i8]* @str1306) nounwind
+
+ST_3: stg_31 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1302, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1303, [1 x i8]* @str1303, [8 x i8]* @str1302) nounwind
+
+ST_3: stg_32 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1298, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1299, [1 x i8]* @str1299, [8 x i8]* @str1298) nounwind
+
+ST_3: stg_33 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1294, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1295, [1 x i8]* @str1295, [8 x i8]* @str1294) nounwind
+
+ST_3: stg_34 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreDram_V, [8 x i8]* @str1290, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1291, [1 x i8]* @str1291, [8 x i8]* @str1290) nounwind
+
+ST_3: stg_35 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1286, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1287, [1 x i8]* @str1287, [8 x i8]* @str1286) nounwind
+
+ST_3: stg_36 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1282, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1283, [1 x i8]* @str1283, [8 x i8]* @str1282) nounwind
+
+ST_3: stg_37 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1278, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1279, [1 x i8]* @str1279, [8 x i8]* @str1278) nounwind
+
+ST_3: stg_38 [1/1] 0.00ns
+codeRepl:10  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1274, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1275, [1 x i8]* @str1275, [8 x i8]* @str1274) nounwind
+
+ST_3: stg_39 [1/1] 0.00ns
+codeRepl:11  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1270, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1271, [1 x i8]* @str1271, [8 x i8]* @str1270) nounwind
+
+ST_3: stg_40 [1/1] 0.00ns
+codeRepl:12  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1266, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1267, [1 x i8]* @str1267, [8 x i8]* @str1266) nounwind
+
+ST_3: stg_41 [1/1] 0.00ns
+codeRepl:13  call void (...)* @_ssdm_op_SpecInterface(i256* @splitter2valueStoreFlash_V, [8 x i8]* @str1262, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1263, [1 x i8]* @str1263, [8 x i8]* @str1262) nounwind
+
+ST_3: stg_42 [1/1] 0.00ns
+codeRepl:14  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1230, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1231, [1 x i8]* @str1231, [8 x i8]* @str1230) nounwind
+
+ST_3: stg_43 [1/1] 0.00ns
+codeRepl:15  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1226, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1227, [1 x i8]* @str1227, [8 x i8]* @str1226) nounwind
+
+ST_3: stg_44 [1/1] 0.00ns
+codeRepl:16  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1222, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1223, [1 x i8]* @str1223, [8 x i8]* @str1222) nounwind
+
+ST_3: stg_45 [1/1] 0.00ns
+codeRepl:17  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1218, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1219, [1 x i8]* @str1219, [8 x i8]* @str1218) nounwind
+
+ST_3: stg_46 [1/1] 0.00ns
+codeRepl:18  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1214, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1215, [1 x i8]* @str1215, [8 x i8]* @str1214) nounwind
+
+ST_3: stg_47 [1/1] 0.00ns
+codeRepl:19  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1210, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1211, [1 x i8]* @str1211, [8 x i8]* @str1210) nounwind
+
+ST_3: stg_48 [1/1] 0.00ns
+codeRepl:20  call void (...)* @_ssdm_op_SpecInterface(i256* @hashTable2splitter_V, [8 x i8]* @str1206, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1207, [1 x i8]* @str1207, [8 x i8]* @str1206) nounwind
+
+ST_3: stg_49 [1/1] 0.00ns
+codeRepl:21  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str11) nounwind
+
+ST_3: stg_50 [1/1] 2.91ns
+:0  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @splitter2valueStoreFlash_V, i256 %tmp112) nounwind
+
+ST_3: stg_51 [1/1] 0.00ns
+:1  br label %._crit_edge78
+
+ST_3: stg_52 [1/1] 2.91ns
+:0  call void @_ssdm_op_Write.ap_fifo.volatile.i256P(i256* @splitter2valueStoreDram_V, i256 %tmp112) nounwind
+
+ST_3: stg_53 [1/1] 0.00ns
+:1  br label %._crit_edge78
+
+ST_3: stg_54 [1/1] 0.00ns
+mergeST:1  br label %._crit_edge76.new
+
+ST_3: stg_55 [1/1] 0.00ns
+._crit_edge76.new:0  br label %._crit_edge74
+
+ST_3: stg_56 [1/1] 0.00ns
+._crit_edge74:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

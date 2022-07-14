@@ -1,0 +1,67 @@
+Step 0: Clone StateMover under ~/, compile CSR_SIM and add StateMover to the path
+
+	bash$ cd ~
+	bash git clone https://github.com/samehattia/StateMover
+
+	bash$ cd ~/StateMover/CSR_SIM/
+	bash$ make
+
+	bash$ export PATH="$PATH:/home/$USER/StateMover/Scripts"
+
+Step 1: Go to the design directory and implement the design using Vivado
+
+	# This will create the Vivado project under the "counter" directory
+	bash$ make hardware_create_project
+	
+	# This will generate the bitstreams, the logic and ram location files, 
+	# and the implementation netlist under the "counter" directory
+	bash$ make hardware_implement
+
+Step 2: Open StateMover Console and program the FPGA with the design
+
+	# This will open a vivado tcl console and source our StateMover tcl script
+	bash$ StateMover
+	
+	# Program the FPGA with the bitstream
+	SM(vivado)% program
+
+Step 2: Compile and run the simulation on Modelsim
+
+	bash$ make
+
+Step 3: Dump the simulation state
+
+	# This will run the simulation for 2.5s (hardware time)
+	# The counter (incremented every second) will be incremented by 2 
+	vsim> run 2500ms 
+
+	# This will interrupt the task 
+	# and create the sim_state.dump file containing the task simulation state
+	vsim> force sys_tb.dump 1, 0 10
+	vsim> run 10us
+
+Step 4: Write back the simulation state to the FPGA
+
+	SM(vivado)% writeback sim_state.dump
+
+	# Since we are not using breakpoints in this tutorial, set it to FFFF_FFFF
+	SM(vivado)% set_breakpoint FFFF_FFFF
+	
+	# Run the design
+	SM(vivado)% run
+
+Step 5: Stop the task and read back the hardware state
+
+	SM(vivado)% stop
+
+	# This will only read back the RP 
+	
+	# This will generate a partial readback file (counter/inst_count.rdbk)
+	# and hw_state.dump file containing the task hardware state
+	# You can also use "readback" to do a full readback
+	SM(vivado)% readback_partial
+
+Step 6: Load the hardware state in Modelsim
+
+	vsim> force sys_tb.load 1,0 10
+	vsim> run -all

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="readWriteConverterOffset" xd:componentRef="readWriteConverterOffset" xd:initiationInterval="2" xd:clockPeriod="6.660" xd:sequential="true" xd:hostMachine="64" xd:reset="all">
+  <xd:arg xd:name="memWrCmd.address" xd:originalName="memWrCmd" xd:direction="in" xd:interfaceRef="memWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="memWrCmd.count" xd:originalName="memWrCmd" xd:direction="in" xd:interfaceRef="memWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="memWrData" xd:originalName="memWrData" xd:direction="in" xd:interfaceRef="memWrData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="dmWrCmd.btt" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="22:0" xd:dataWidth="23"/>
+  <xd:arg xd:name="dmWrCmd.type" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="23:23" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmWrCmd.dsa" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="29:24" xd:dataWidth="6"/>
+  <xd:arg xd:name="dmWrCmd.eof" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="30:30" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmWrCmd.drr" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:31" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmWrCmd.startAddress" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="63:32" xd:dataWidth="32"/>
+  <xd:arg xd:name="dmWrCmd.tag" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="67:64" xd:dataWidth="4"/>
+  <xd:arg xd:name="dmWrCmd.rsvd" xd:originalName="dmWrCmd" xd:direction="out" xd:interfaceRef="dmWrCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="71:68" xd:dataWidth="4"/>
+  <xd:arg xd:name="dmWrData.data" xd:originalName="dmWrData" xd:direction="out" xd:interfaceRef="dmWrData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="511:0" xd:dataWidth="512"/>
+  <xd:arg xd:name="dmWrData.keep" xd:originalName="dmWrData" xd:direction="out" xd:interfaceRef="dmWrData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="575:512" xd:dataWidth="64"/>
+  <xd:arg xd:name="dmWrData.last" xd:originalName="dmWrData" xd:direction="out" xd:interfaceRef="dmWrData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="576:576" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmWrStatus" xd:originalName="dmWrStatus" xd:direction="in" xd:interfaceRef="dmWrStatus_V_V" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="memRdCmd.address" xd:originalName="memRdCmd" xd:direction="in" xd:interfaceRef="memRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:0" xd:dataWidth="32"/>
+  <xd:arg xd:name="memRdCmd.count" xd:originalName="memRdCmd" xd:direction="in" xd:interfaceRef="memRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="39:32" xd:dataWidth="8"/>
+  <xd:arg xd:name="memRdData" xd:originalName="memRdData" xd:direction="out" xd:interfaceRef="memRdData_V_V" xd:busTypeRef="axis" xd:dataWidth="512"/>
+  <xd:arg xd:name="dmRdCmd.btt" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="22:0" xd:dataWidth="23"/>
+  <xd:arg xd:name="dmRdCmd.type" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="23:23" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmRdCmd.dsa" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="29:24" xd:dataWidth="6"/>
+  <xd:arg xd:name="dmRdCmd.eof" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="30:30" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmRdCmd.drr" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="31:31" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmRdCmd.startAddress" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="63:32" xd:dataWidth="32"/>
+  <xd:arg xd:name="dmRdCmd.tag" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="67:64" xd:dataWidth="4"/>
+  <xd:arg xd:name="dmRdCmd.rsvd" xd:originalName="dmRdCmd" xd:direction="out" xd:interfaceRef="dmRdCmd_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="71:68" xd:dataWidth="4"/>
+  <xd:arg xd:name="dmRdData.data" xd:originalName="dmRdData" xd:direction="in" xd:interfaceRef="dmRdData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="511:0" xd:dataWidth="512"/>
+  <xd:arg xd:name="dmRdData.keep" xd:originalName="dmRdData" xd:direction="in" xd:interfaceRef="dmRdData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="575:512" xd:dataWidth="64"/>
+  <xd:arg xd:name="dmRdData.last" xd:originalName="dmRdData" xd:direction="in" xd:interfaceRef="dmRdData_V" xd:busTypeRef="axis" xd:dataPack="true" xd:bitMapping="576:576" xd:dataWidth="1"/>
+  <xd:arg xd:name="dmRdStatus" xd:originalName="dmRdStatus" xd:direction="in" xd:interfaceRef="dmRdStatus_V_V" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="dmRdAddrPosted" xd:originalName="dmRdAddrPosted" xd:direction="in" xd:interfaceRef="dmRdAddrPosted_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="1" xd:worst-case="1" xd:average-case="1"/>
+  <xd:resourceEstimates xd:LUT="752" xd:FF="280" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

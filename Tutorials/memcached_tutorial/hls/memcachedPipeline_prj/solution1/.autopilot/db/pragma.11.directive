@@ -1,0 +1,53 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="bobj" label="">
+<pragma name="LATENCY">
+<option name="min" value="1"/>
+<option name="max" value="10"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="bobj" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="bobj" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="bobj" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashKeyResizer" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashKeyResizer" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hashKeyResizer" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+<option name="enable_flush" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="hash" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="hash" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="resizedKey"/>
+<option name="depth" value="8"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

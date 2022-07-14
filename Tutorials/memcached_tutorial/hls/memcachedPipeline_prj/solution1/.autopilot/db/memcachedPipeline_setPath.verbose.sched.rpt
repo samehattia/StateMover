@@ -1,0 +1,585 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_setPath'
+================================================================
+* Date:           Wed Oct 21 12:18:36 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.61|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 5.40ns
+ST_1: setState_load [1/1] 0.00ns
+codeRepl:10  %setState_load = load i3* @setState, align 1
+
+ST_1: counter_load [1/1] 0.00ns
+codeRepl:14  %counter_load = load i8* @counter, align 1
+
+ST_1: stg_5 [1/1] 1.17ns
+codeRepl:15  switch i3 %setState_load, label %._crit_edge206 [
+    i3 0, label %0
+    i3 1, label %3
+    i3 3, label %4
+    i3 -4, label %5
+    i3 2, label %6
+    i3 -3, label %7
+    i3 -2, label %8
+  ]
+
+ST_1: stg_6 [1/1] 0.89ns
+:0  store i8 0, i8* @counter, align 1
+
+ST_1: stg_7 [1/1] 1.07ns
+:3  store i3 0, i3* @setState, align 1
+
+ST_1: stg_8 [1/1] 0.89ns
+:4  br label %._crit_edge206
+
+ST_1: stg_9 [1/1] 0.89ns
+:0  store i8 0, i8* @counter, align 1
+
+ST_1: stg_10 [1/1] 1.07ns
+:2  store i3 2, i3* @setState, align 1
+
+ST_1: stg_11 [1/1] 0.89ns
+:3  br label %._crit_edge206
+
+ST_1: tmp_79 [1/1] 0.00ns
+:0  %tmp_79 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i66P(i66* @demux2setPathValue_V, i32 1)
+
+ST_1: stg_13 [1/1] 0.89ns
+:1  br i1 %tmp_79, label %_ifconv1, label %._crit_edge206
+
+ST_1: tmp_5 [1/1] 2.91ns
+_ifconv1:0  %tmp_5 = call i66 @_ssdm_op_Read.ap_fifo.volatile.i66P(i66* @demux2setPathValue_V)
+
+ST_1: tmp_462 [1/1] 0.00ns
+_ifconv1:1  %tmp_462 = trunc i66 %tmp_5 to i64
+
+ST_1: tmp_463 [1/1] 0.00ns
+_ifconv1:2  %tmp_463 = call i1 @_ssdm_op_BitSelect.i1.i66.i32(i66 %tmp_5, i32 65)
+
+ST_1: tmp_464 [1/1] 0.00ns
+_ifconv1:3  %tmp_464 = trunc i8 %counter_load to i4
+
+ST_1: Lo_assign_6 [1/1] 0.00ns
+_ifconv1:4  %Lo_assign_6 = call i14 @_ssdm_op_BitConcatenate.i14.i8.i6(i8 %counter_load, i6 0)
+
+ST_1: Hi_assign_s [1/1] 0.00ns
+_ifconv1:5  %Hi_assign_s = or i14 %Lo_assign_6, 63
+
+ST_1: tmp_465 [1/1] 1.28ns
+_ifconv1:7  %tmp_465 = icmp ugt i14 %Lo_assign_6, %Hi_assign_s
+
+ST_1: tmp_466 [1/1] 0.00ns
+_ifconv1:8  %tmp_466 = call i10 @_ssdm_op_BitConcatenate.i10.i4.i6(i4 %tmp_464, i6 0)
+
+ST_1: tmp_467 [1/1] 0.00ns
+_ifconv1:9  %tmp_467 = trunc i14 %Hi_assign_s to i10
+
+ST_1: tmp_468 [1/1] 1.30ns
+_ifconv1:10  %tmp_468 = sub i10 511, %tmp_466
+
+ST_1: tmp_469 [1/1] 0.71ns
+_ifconv1:11  %tmp_469 = select i1 %tmp_465, i10 %tmp_466, i10 %tmp_467
+
+ST_1: tmp_470 [1/1] 0.71ns
+_ifconv1:12  %tmp_470 = select i1 %tmp_465, i10 %tmp_467, i10 %tmp_466
+
+ST_1: tmp_471 [1/1] 0.71ns
+_ifconv1:13  %tmp_471 = select i1 %tmp_465, i10 %tmp_468, i10 %tmp_466
+
+ST_1: tmp_472 [1/1] 1.30ns
+_ifconv1:14  %tmp_472 = sub i10 511, %tmp_469
+
+ST_1: tmp_156 [1/1] 1.34ns
+_ifconv1:28  %tmp_156 = icmp eq i8 %counter_load, 7
+
+ST_1: storemerge [1/1] 0.71ns
+_ifconv1:29  %storemerge = select i1 %tmp_463, i3 -2, i3 -3
+
+ST_1: tmp_89 [1/1] 0.71ns
+_ifconv1:30  %tmp_89 = or i1 %tmp_463, %tmp_156
+
+ST_1: storemerge6 [1/1] 0.71ns
+_ifconv1:31  %storemerge6 = select i1 %tmp_89, i3 %storemerge, i3 2
+
+ST_1: stg_32 [1/1] 1.07ns
+_ifconv1:32  store i3 %storemerge6, i3* @setState, align 1
+
+ST_1: tmp_158 [1/1] 1.24ns
+_ifconv1:33  %tmp_158 = add i8 %counter_load, 1
+
+ST_1: stg_34 [1/1] 0.89ns
+_ifconv1:34  store i8 %tmp_158, i8* @counter, align 1
+
+ST_1: stg_35 [1/1] 0.89ns
+:0  store i8 0, i8* @counter, align 1
+
+ST_1: stg_36 [1/1] 1.07ns
+:4  store i3 2, i3* @setState, align 1
+
+ST_1: stg_37 [1/1] 0.89ns
+:5  br label %._crit_edge206
+
+ST_1: stg_38 [1/1] 0.89ns
+:0  store i8 0, i8* @counter, align 1
+
+ST_1: stg_39 [1/1] 1.07ns
+:5  store i3 0, i3* @setState, align 1
+
+ST_1: stg_40 [1/1] 0.89ns
+:6  br label %._crit_edge206
+
+ST_1: tmp_78 [1/1] 0.00ns
+:0  %tmp_78 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i66P(i66* @demux2setPathValue_V, i32 1)
+
+ST_1: stg_42 [1/1] 0.89ns
+:1  br i1 %tmp_78, label %_ifconv, label %._crit_edge206
+
+ST_1: tmp_s [1/1] 1.24ns
+_ifconv:0  %tmp_s = add i8 %counter_load, 1
+
+ST_1: stg_44 [1/1] 0.89ns
+_ifconv:1  store i8 %tmp_s, i8* @counter, align 1
+
+ST_1: tmp_2 [1/1] 2.91ns
+_ifconv:2  %tmp_2 = call i66 @_ssdm_op_Read.ap_fifo.volatile.i66P(i66* @demux2setPathValue_V)
+
+ST_1: tmp_439 [1/1] 0.00ns
+_ifconv:3  %tmp_439 = trunc i66 %tmp_2 to i64
+
+ST_1: tmp_440 [1/1] 0.00ns
+_ifconv:4  %tmp_440 = call i1 @_ssdm_op_BitSelect.i1.i66.i32(i66 %tmp_2, i32 65)
+
+ST_1: tmp_441 [1/1] 0.00ns
+_ifconv:5  %tmp_441 = trunc i8 %tmp_s to i4
+
+ST_1: Lo_assign [1/1] 0.00ns
+_ifconv:6  %Lo_assign = call i14 @_ssdm_op_BitConcatenate.i14.i8.i6(i8 %tmp_s, i6 0)
+
+ST_1: Hi_assign [1/1] 0.00ns
+_ifconv:7  %Hi_assign = or i14 %Lo_assign, 63
+
+ST_1: tmp_442 [1/1] 1.28ns
+_ifconv:9  %tmp_442 = icmp ugt i14 %Lo_assign, %Hi_assign
+
+ST_1: tmp_443 [1/1] 0.00ns
+_ifconv:10  %tmp_443 = call i10 @_ssdm_op_BitConcatenate.i10.i4.i6(i4 %tmp_441, i6 0)
+
+ST_1: tmp_444 [1/1] 0.00ns
+_ifconv:11  %tmp_444 = trunc i14 %Hi_assign to i10
+
+ST_1: tmp_445 [1/1] 1.30ns
+_ifconv:12  %tmp_445 = sub i10 511, %tmp_443
+
+ST_1: tmp_446 [1/1] 0.71ns
+_ifconv:13  %tmp_446 = select i1 %tmp_442, i10 %tmp_443, i10 %tmp_444
+
+ST_1: tmp_447 [1/1] 0.71ns
+_ifconv:14  %tmp_447 = select i1 %tmp_442, i10 %tmp_444, i10 %tmp_443
+
+ST_1: tmp_448 [1/1] 0.71ns
+_ifconv:15  %tmp_448 = select i1 %tmp_442, i10 %tmp_445, i10 %tmp_443
+
+ST_1: tmp_449 [1/1] 1.30ns
+_ifconv:16  %tmp_449 = sub i10 511, %tmp_446
+
+ST_1: tmp_155 [1/1] 1.34ns
+_ifconv:30  %tmp_155 = icmp eq i8 %tmp_s, 7
+
+ST_1: storemerge4 [1/1] 0.71ns
+_ifconv:31  %storemerge4 = select i1 %tmp_440, i3 3, i3 -4
+
+ST_1: tmp_88 [1/1] 0.71ns
+_ifconv:32  %tmp_88 = or i1 %tmp_440, %tmp_155
+
+ST_1: storemerge5 [1/1] 0.71ns
+_ifconv:33  %storemerge5 = select i1 %tmp_88, i3 %storemerge4, i3 1
+
+ST_1: stg_63 [1/1] 1.07ns
+_ifconv:34  store i3 %storemerge5, i3* @setState, align 1
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i45P(i45* @demux2setPathMetadata_V, i32 1)
+
+ST_1: stg_65 [1/1] 0.89ns
+:1  br i1 %tmp, label %1, label %._crit_edge206
+
+ST_1: tmp_80 [1/1] 0.00ns
+:0  %tmp_80 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i66P(i66* @demux2setPathValue_V, i32 1)
+
+ST_1: stg_67 [1/1] 0.89ns
+:1  br i1 %tmp_80, label %._crit_edge209, label %._crit_edge206
+
+ST_1: tmp2 [1/1] 2.91ns
+._crit_edge209:0  %tmp2 = call i45 @_ssdm_op_Read.ap_fifo.volatile.i45P(i45* @demux2setPathMetadata_V)
+
+ST_1: tmp_485 [1/1] 0.00ns
+._crit_edge209:1  %tmp_485 = trunc i45 %tmp2 to i32
+
+ST_1: tmp_length_V_load_new7 [1/1] 0.00ns
+._crit_edge209:3  %tmp_length_V_load_new7 = call i13 @_ssdm_op_PartSelect.i13.i45.i32.i32(i45 %tmp2, i32 32, i32 44)
+
+ST_1: tmp_90 [1/1] 0.00ns
+._crit_edge209:4  %tmp_90 = call i7 @_ssdm_op_PartSelect.i7.i45.i32.i32(i45 %tmp2, i32 38, i32 44)
+
+ST_1: op2_assign [1/1] 0.00ns
+._crit_edge209:6  %op2_assign = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %tmp_90, i6 0)
+
+ST_1: tmp_154 [1/1] 1.29ns
+._crit_edge209:7  %tmp_154 = icmp ugt i13 %tmp_length_V_load_new7, %op2_assign
+
+ST_1: tmp_1 [1/1] 2.91ns
+._crit_edge209:11  %tmp_1 = call i66 @_ssdm_op_Read.ap_fifo.volatile.i66P(i66* @demux2setPathValue_V)
+
+ST_1: tmp_486 [1/1] 0.00ns
+._crit_edge209:12  %tmp_486 = call i1 @_ssdm_op_BitSelect.i1.i66.i32(i66 %tmp_1, i32 64)
+
+ST_1: stg_76 [1/1] 0.89ns
+._crit_edge209:13  br i1 %tmp_486, label %2, label %._crit_edge206
+
+ST_1: tmp_487 [1/1] 0.00ns
+:0  %tmp_487 = trunc i66 %tmp_1 to i64
+
+ST_1: p_Result_63 [1/1] 0.00ns
+:1  %p_Result_63 = zext i64 %tmp_487 to i512
+
+ST_1: stg_79 [1/1] 1.07ns
+:2  store i3 1, i3* @setState, align 1
+
+ST_1: stg_80 [1/1] 0.89ns
+:3  br label %._crit_edge206
+
+
+ <State 2>: 5.61ns
+ST_2: stg_81 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i512* %memWrData_V_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_82 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i40* %memWrCmd_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_83 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i1* @filterPopSet_V_V, [8 x i8]* @str1498, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1499, [1 x i8]* @str1499, [8 x i8]* @str1498)
+
+ST_2: stg_84 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i45* @demux2setPathMetadata_V, [8 x i8]* @str1462, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1463, [1 x i8]* @str1463, [8 x i8]* @str1462) nounwind
+
+ST_2: stg_85 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i45* @demux2setPathMetadata_V, [8 x i8]* @str1458, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1459, [1 x i8]* @str1459, [8 x i8]* @str1458) nounwind
+
+ST_2: stg_86 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i66* @demux2setPathValue_V, [8 x i8]* @str1450, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1451, [1 x i8]* @str1451, [8 x i8]* @str1450) nounwind
+
+ST_2: stg_87 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i66* @demux2setPathValue_V, [8 x i8]* @str1446, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1447, [1 x i8]* @str1447, [8 x i8]* @str1446) nounwind
+
+ST_2: stg_88 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i66* @demux2setPathValue_V, [8 x i8]* @str1442, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1443, [1 x i8]* @str1443, [8 x i8]* @str1442) nounwind
+
+ST_2: stg_89 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str127, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1128, [1 x i8]* @p_str1128, [1 x i8]* @p_str1128) nounwind
+
+ST_2: stg_90 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str1128) nounwind
+
+ST_2: p_Val2_s [1/1] 0.00ns
+codeRepl:11  %p_Val2_s = load i512* @setValueBuffer_V, align 16
+
+ST_2: setCtrlWord_address_V [1/1] 0.00ns
+codeRepl:12  %setCtrlWord_address_V = load i32* @setMdBuffer_address_V, align 4
+
+ST_2: tmp_count_V [1/1] 0.00ns
+codeRepl:13  %tmp_count_V = load i8* @setNumOfWords, align 1
+
+ST_2: stg_94 [1/1] 0.00ns
+:1  call void @_ssdm_op_Write.axis.volatile.i512P(i512* %memWrData_V_V, i512 %p_Val2_s)
+
+ST_2: stg_95 [1/1] 1.66ns
+:2  call void @_ssdm_op_Write.ap_fifo.volatile.i1P(i1* @filterPopSet_V_V, i1 true)
+
+ST_2: stg_96 [1/1] 0.00ns
+:1  call void @_ssdm_op_Write.axis.volatile.i512P(i512* %memWrData_V_V, i512 %p_Val2_s)
+
+ST_2: loc_V_5 [1/1] 0.00ns
+_ifconv1:6  %loc_V_5 = zext i64 %tmp_462 to i512
+
+ST_2: tmp_473 [1/1] 0.00ns
+_ifconv1:15  %tmp_473 = zext i10 %tmp_471 to i512
+
+ST_2: tmp_474 [1/1] 0.00ns
+_ifconv1:16  %tmp_474 = zext i10 %tmp_470 to i512
+
+ST_2: tmp_475 [1/1] 0.00ns
+_ifconv1:17  %tmp_475 = zext i10 %tmp_472 to i512
+
+ST_2: tmp_476 [1/1] 2.58ns
+_ifconv1:18  %tmp_476 = shl i512 %loc_V_5, %tmp_473
+
+ST_2: tmp_477 [1/1] 0.00ns
+_ifconv1:19  %tmp_477 = call i512 @llvm.part.select.i512(i512 %tmp_476, i32 511, i32 0)
+
+ST_2: tmp_478 [1/1] 0.71ns
+_ifconv1:20  %tmp_478 = select i1 %tmp_465, i512 %tmp_477, i512 %tmp_476
+
+ST_2: tmp_479 [1/1] 0.82ns
+_ifconv1:21  %tmp_479 = shl i512 -1, %tmp_474
+
+ST_2: tmp_480 [1/1] 0.82ns
+_ifconv1:22  %tmp_480 = lshr i512 -1, %tmp_475
+
+ST_2: p_demorgan [1/1] 0.71ns
+_ifconv1:23  %p_demorgan = and i512 %tmp_479, %tmp_480
+
+ST_2: tmp_481 [1/1] 0.71ns
+_ifconv1:24  %tmp_481 = xor i512 %p_demorgan, -1
+
+ST_2: tmp_482 [1/1] 0.71ns
+_ifconv1:25  %tmp_482 = and i512 %p_Val2_s, %tmp_481
+
+ST_2: tmp_483 [1/1] 0.71ns
+_ifconv1:26  %tmp_483 = and i512 %tmp_478, %p_demorgan
+
+ST_2: p_Result_62 [1/1] 0.71ns
+_ifconv1:27  %p_Result_62 = or i512 %tmp_482, %tmp_483
+
+ST_2: stg_111 [1/1] 0.89ns
+_ifconv1:35  br label %._crit_edge206
+
+ST_2: tmp_4 [1/1] 0.00ns
+:1  %tmp_4 = call i40 @_ssdm_op_BitConcatenate.i40.i8.i32(i8 %tmp_count_V, i32 %setCtrlWord_address_V)
+
+ST_2: stg_113 [1/1] 0.00ns
+:2  call void @_ssdm_op_Write.axis.volatile.i40P(i40* %memWrCmd_V, i40 %tmp_4)
+
+ST_2: stg_114 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.axis.volatile.i512P(i512* %memWrData_V_V, i512 %p_Val2_s)
+
+ST_2: tmp_3 [1/1] 0.00ns
+:1  %tmp_3 = call i40 @_ssdm_op_BitConcatenate.i40.i8.i32(i8 %tmp_count_V, i32 %setCtrlWord_address_V)
+
+ST_2: stg_116 [1/1] 0.00ns
+:2  call void @_ssdm_op_Write.axis.volatile.i40P(i40* %memWrCmd_V, i40 %tmp_3)
+
+ST_2: stg_117 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.axis.volatile.i512P(i512* %memWrData_V_V, i512 %p_Val2_s)
+
+ST_2: stg_118 [1/1] 1.66ns
+:4  call void @_ssdm_op_Write.ap_fifo.volatile.i1P(i1* @filterPopSet_V_V, i1 true)
+
+ST_2: loc_V [1/1] 0.00ns
+_ifconv:8  %loc_V = zext i64 %tmp_439 to i512
+
+ST_2: tmp_450 [1/1] 0.00ns
+_ifconv:17  %tmp_450 = zext i10 %tmp_448 to i512
+
+ST_2: tmp_451 [1/1] 0.00ns
+_ifconv:18  %tmp_451 = zext i10 %tmp_447 to i512
+
+ST_2: tmp_452 [1/1] 0.00ns
+_ifconv:19  %tmp_452 = zext i10 %tmp_449 to i512
+
+ST_2: tmp_453 [1/1] 2.58ns
+_ifconv:20  %tmp_453 = shl i512 %loc_V, %tmp_450
+
+ST_2: tmp_454 [1/1] 0.00ns
+_ifconv:21  %tmp_454 = call i512 @llvm.part.select.i512(i512 %tmp_453, i32 511, i32 0)
+
+ST_2: tmp_455 [1/1] 0.71ns
+_ifconv:22  %tmp_455 = select i1 %tmp_442, i512 %tmp_454, i512 %tmp_453
+
+ST_2: tmp_456 [1/1] 0.82ns
+_ifconv:23  %tmp_456 = shl i512 -1, %tmp_451
+
+ST_2: tmp_457 [1/1] 0.82ns
+_ifconv:24  %tmp_457 = lshr i512 -1, %tmp_452
+
+ST_2: p_demorgan1 [1/1] 0.71ns
+_ifconv:25  %p_demorgan1 = and i512 %tmp_456, %tmp_457
+
+ST_2: tmp_458 [1/1] 0.71ns
+_ifconv:26  %tmp_458 = xor i512 %p_demorgan1, -1
+
+ST_2: tmp_459 [1/1] 0.71ns
+_ifconv:27  %tmp_459 = and i512 %p_Val2_s, %tmp_458
+
+ST_2: tmp_460 [1/1] 0.71ns
+_ifconv:28  %tmp_460 = and i512 %tmp_455, %p_demorgan1
+
+ST_2: p_Result_s [1/1] 0.71ns
+_ifconv:29  %p_Result_s = or i512 %tmp_459, %tmp_460
+
+ST_2: stg_133 [1/1] 0.89ns
+_ifconv:35  br label %._crit_edge206
+
+ST_2: stg_134 [1/1] 0.00ns
+._crit_edge209:2  store i32 %tmp_485, i32* @setMdBuffer_address_V, align 4
+
+ST_2: tmp_151 [1/1] 0.00ns
+._crit_edge209:5  %tmp_151 = zext i7 %tmp_90 to i8
+
+ST_2: tmp_157 [1/1] 1.24ns
+._crit_edge209:8  %tmp_157 = add i8 1, %tmp_151
+
+ST_2: storemerge1 [1/1] 0.71ns
+._crit_edge209:9  %storemerge1 = select i1 %tmp_154, i8 %tmp_157, i8 %tmp_151
+
+ST_2: stg_138 [1/1] 0.00ns
+._crit_edge209:10  store i8 %storemerge1, i8* @setNumOfWords, align 1
+
+ST_2: setValueBuffer_V_flag_4 [1/1] 0.00ns
+._crit_edge206:0  %setValueBuffer_V_flag_4 = phi i1 [ false, %codeRepl ], [ false, %8 ], [ false, %7 ], [ false, %5 ], [ false, %4 ], [ true, %._crit_edge209 ], [ true, %2 ], [ true, %1 ], [ true, %0 ], [ true, %_ifconv ], [ false, %3 ], [ true, %_ifconv1 ], [ false, %6 ]
+
+ST_2: setValueBuffer_V_new_4 [1/1] 0.00ns
+._crit_edge206:1  %setValueBuffer_V_new_4 = phi i512 [ undef, %codeRepl ], [ undef, %8 ], [ undef, %7 ], [ undef, %5 ], [ undef, %4 ], [ 0, %._crit_edge209 ], [ %p_Result_63, %2 ], [ 0, %1 ], [ 0, %0 ], [ %p_Result_s, %_ifconv ], [ undef, %3 ], [ %p_Result_62, %_ifconv1 ], [ undef, %6 ]
+
+ST_2: stg_141 [1/1] 0.00ns
+._crit_edge206:2  br i1 %setValueBuffer_V_flag_4, label %mergeST, label %._crit_edge206.new
+
+ST_2: stg_142 [1/1] 0.00ns
+mergeST:0  store i512 %setValueBuffer_V_new_4, i512* @setValueBuffer_V, align 16
+
+ST_2: stg_143 [1/1] 0.00ns
+mergeST:1  br label %._crit_edge206.new
+
+ST_2: stg_144 [1/1] 0.00ns
+._crit_edge206.new:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

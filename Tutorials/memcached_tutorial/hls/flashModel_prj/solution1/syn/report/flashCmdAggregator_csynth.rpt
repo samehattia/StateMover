@@ -1,0 +1,139 @@
+
+
+================================================================
+== Vivado HLS Report for 'flashCmdAggregator'
+================================================================
+* Date:           Wed Oct 14 13:19:00 2020
+
+* Version:        2018.3 (Build 2405991 on Thu Dec 06 23:56:15 MST 2018)
+* Project:        flashModel_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.40|     2.265|        0.80|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    0|    0|    0|    0|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|       6|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|      51|
+|Register         |        -|      -|       2|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       2|      57|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |ap_condition_69                 |    and   |      0|  0|   2|           1|           1|
+    |ap_predicate_op12_write_state1  |    and   |      0|  0|   2|           1|           1|
+    |ap_block_state1                 |    or    |      0|  0|   2|           1|           1|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+    |Total                           |          |      0|  0|   6|           3|           3|
+    +--------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_done                       |   9|          2|    1|          2|
+    |flashAggregateMemCmd_1_blk_n  |   9|          2|    1|          2|
+    |flashAggregateMemCmd_1_din    |  15|          3|   46|        138|
+    |rdCmdIn_V_TDATA_blk_n         |   9|          2|    1|          2|
+    |wrCmdIn_V_TDATA_blk_n         |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         |  51|         11|   50|        146|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------+---+----+-----+-----------+
+    |     Name    | FF| LUT| Bits| Const Bits|
+    +-------------+---+----+-----+-----------+
+    |ap_CS_fsm    |  1|   0|    1|          0|
+    |ap_done_reg  |  1|   0|    1|          0|
+    +-------------+---+----+-----+-----------+
+    |Total        |  2|   0|    2|          0|
+    +-------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------+-----+-----+------------+------------------------+--------------+
+|           RTL Ports           | Dir | Bits|  Protocol  |      Source Object     |    C Type    |
++-------------------------------+-----+-----+------------+------------------------+--------------+
+|ap_clk                         |  in |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_rst                         |  in |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_start                       |  in |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_done                        | out |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_continue                    |  in |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_idle                        | out |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|ap_ready                       | out |    1| ap_ctrl_hs |   flashCmdAggregator   | return value |
+|rdCmdIn_V_TDATA                |  in |   48|    axis    |        rdCmdIn_V       |    pointer   |
+|rdCmdIn_V_TVALID               |  in |    1|    axis    |        rdCmdIn_V       |    pointer   |
+|rdCmdIn_V_TREADY               | out |    1|    axis    |        rdCmdIn_V       |    pointer   |
+|wrCmdIn_V_TDATA                |  in |   48|    axis    |        wrCmdIn_V       |    pointer   |
+|wrCmdIn_V_TVALID               |  in |    1|    axis    |        wrCmdIn_V       |    pointer   |
+|wrCmdIn_V_TREADY               | out |    1|    axis    |        wrCmdIn_V       |    pointer   |
+|flashAggregateMemCmd_1_din     | out |   46|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
+|flashAggregateMemCmd_1_full_n  |  in |    1|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
+|flashAggregateMemCmd_1_write   | out |    1|   ap_fifo  | flashAggregateMemCmd_1 |    pointer   |
++-------------------------------+-----+-----+------------+------------------------+--------------+
+

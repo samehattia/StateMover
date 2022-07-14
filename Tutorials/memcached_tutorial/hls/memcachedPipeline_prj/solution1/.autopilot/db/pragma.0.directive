@@ -1,0 +1,275 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="ap_none" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="flushReq"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="ap_none" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="flushAck"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="ap_none" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="flushDone"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="hashTableMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="hashTableMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="hashTableMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="hashTableMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="dramValueStoreMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="dramValueStoreMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="dramValueStoreMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="dramValueStoreMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashValueStoreMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashValueStoreMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashValueStoreMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="flashValueStoreMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="inData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="outData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="hashTableMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="hashTableMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="hashTableMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="hashTableMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="flashValueStoreMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="flashValueStoreMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="flashValueStoreMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="flashValueStoreMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dramValueStoreMemRdCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dramValueStoreMemRdData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dramValueStoreMemWrCmd"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dramValueStoreMemWrData"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="addressReturnOut"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="addressAssignDramIn"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="addressAssignFlashIn"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATAFLOW">
+<option name="interval" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="requestParser2hashTable"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="hashTable2splitter"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="merger2responseFormatter"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="splitter2valueStoreFlash"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="splitter2valueStoreDram"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="valueStoreFlash2merger"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="DATA_PACK">
+<option name="variable" positionalBoolean="4" value="valueStoreDram2merger"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="requestParser2hashTable"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="hashTable2splitter"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="merger2responseFormatter"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="splitter2valueStoreFlash"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="splitter2valueStoreDram"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="valueStoreFlash2merger"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="memcachedPipeline" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="valueStoreDram2merger"/>
+<option name="depth" value="16"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

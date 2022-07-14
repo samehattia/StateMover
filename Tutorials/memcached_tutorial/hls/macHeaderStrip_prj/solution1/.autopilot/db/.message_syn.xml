@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_631" tag="SCHEDULE" content="Option &apos;relax_ii_for_timing&apos; is enabled, will increase II to preserve clock frequency constraints."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;src/mac_header_strip/mac_header_strip.cpp&apos; ..."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 49234 ; free virtual = 169576"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 438.012 ; gain = 0.145 ; free physical = 49234 ; free virtual = 169576"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1467" tag="" content="Starting code transformations ..."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Standard Transforms Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49211 ; free virtual = 169561"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1472" tag="" content="Checking synthesizability ..."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;byteSwap16&apos; into &apos;detect_mac_protocol&apos; (src/mac_header_strip/mac_header_strip.cpp:75) automatically."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Synthesizability Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49201 ; free virtual = 169553"/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;byteSwap16&apos; into &apos;detect_mac_protocol&apos; (src/mac_header_strip/mac_header_strip.cpp:75) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-712]" key="XFORM_DATAFLOW_TRANSFORM_230" tag="DATAFLOW" content="Applying dataflow to function &apos;mac_header_strip&apos;, detected/extracted 2 process function(s): 
+	 &apos;detect_mac_protocol&apos;
+	 &apos;strip_mac_header&apos;."/>
+	<Message severity="INFO" prefix="[XFORM 203-401]" key="XFORM_IFCONV_STATUS_239" tag="" content="Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:145:47) to (src/mac_header_strip/mac_header_strip.cpp:151:4) in function &apos;strip_mac_header&apos;... converting 3 basic blocks."/>
+	<Message severity="INFO" prefix="[XFORM 203-401]" key="XFORM_IFCONV_STATUS_239" tag="" content="Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:154:39) to (src/mac_header_strip/mac_header_strip.cpp:177:5) in function &apos;strip_mac_header&apos;... converting 18 basic blocks."/>
+	<Message severity="INFO" prefix="[XFORM 203-401]" key="XFORM_IFCONV_STATUS_239" tag="" content="Performing if-conversion on hyperblock from (src/mac_header_strip/mac_header_strip.cpp:179:11) to (src/mac_header_strip/mac_header_strip.cpp:198:5) in function &apos;strip_mac_header&apos;... converting 8 basic blocks."/>
+	<Message severity="INFO" prefix="[XFORM 203-11]" key="XFORM_EXPR_BALANCE_STATUS_178" tag="" content="Balancing expressions in function &apos;strip_mac_header&apos; (src/mac_header_strip/mac_header_strip.cpp:99)...8 expression(s) balanced."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Pre-synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49168 ; free virtual = 169521"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 565.867 ; gain = 128.000 ; free physical = 49153 ; free virtual = 169508"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1317" tag="" content="Starting hardware synthesis ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1385" tag="" content="Synthesizing &apos;mac_header_strip&apos; ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;detect_mac_protocol&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_46" tag="" content="Pipelining function &apos;detect_mac_protocol&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 1, Depth = 2."/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 16.3 seconds; current allocated memory: 121.544 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.04 seconds; current allocated memory: 121.836 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;strip_mac_header&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_46" tag="" content="Pipelining function &apos;strip_mac_header&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 1, Depth = 3."/>
+	<Message severity="WARNING" prefix="[SCHED 204-70]" key="SCHED_FREQ_CONSTRAINT_NOT_MET_33_1" tag="SDX_KERNEL,SCHEDULE" content="Cannot meet target clock period from fifo read on port &apos;ipDataFifo_V&apos; to &apos;br&apos; operation (combination delay: 8.865 ns) to honor II or Latency constraint in region &apos;strip_mac_header&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_76" tag="SDX_KERNEL,SCHEDULE" content="Estimated clock period (8.865ns) exceeds the target (target clock period: 6.66ns, clock uncertainty: 0.8325ns, effective delay budget: 5.8275ns)."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_74" tag="SDX_KERNEL,SCHEDULE" content="The critical path in module &apos;strip_mac_header&apos; consists of the following:
+	fifo read on port &apos;ipDataFifo_V&apos; [27]  (2.27 ns)
+	&apos;icmp&apos; operation (&apos;tmp_11_i&apos;, src/mac_header_strip/mac_header_strip.cpp:160) [127]  (0.782 ns)
+	&apos;or&apos; operation (&apos;sel_tmp6_demorgan&apos;, src/mac_header_strip/mac_header_strip.cpp:162) [137]  (0.337 ns)
+	&apos;or&apos; operation (&apos;sel_tmp13_demorgan&apos;, src/mac_header_strip/mac_header_strip.cpp:164) [140]  (0.337 ns)
+	&apos;or&apos; operation (&apos;sel_tmp22_demorgan&apos;, src/mac_header_strip/mac_header_strip.cpp:166) [143]  (0.337 ns)
+	&apos;or&apos; operation (&apos;sel_tmp33_demorgan&apos;, src/mac_header_strip/mac_header_strip.cpp:168) [146]  (0.337 ns)
+	&apos;or&apos; operation (&apos;sel_tmp46_demorgan&apos;, src/mac_header_strip/mac_header_strip.cpp:170) [149]  (0 ns)
+	&apos;xor&apos; operation (&apos;sel_tmp10&apos;, src/mac_header_strip/mac_header_strip.cpp:170) [150]  (0 ns)
+	&apos;and&apos; operation (&apos;sel_tmp11&apos;, src/mac_header_strip/mac_header_strip.cpp:172) [151]  (0.337 ns)
+	&apos;or&apos; operation (&apos;tmp8&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [156]  (0.337 ns)
+	&apos;or&apos; operation (&apos;or_cond4&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [169]  (0.337 ns)
+	&apos;select&apos; operation (&apos;newSel19_v&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [172]  (0 ns)
+	&apos;add&apos; operation (&apos;newSel&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [174]  (1.28 ns)
+	&apos;select&apos; operation (&apos;newSel1&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [176]  (0.337 ns)
+	multiplexor before &apos;phi&apos; operation (&apos;sentBytes_V_new_i&apos;, src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : (&apos;dataLen_V_load&apos;, src/mac_header_strip/mac_header_strip.cpp:144) (&apos;p_Result_4_i&apos;, src/mac_header_strip/mac_header_strip.cpp:131) (&apos;newSel1&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0.918 ns)
+	&apos;phi&apos; operation (&apos;sentBytes_V_new_i&apos;, src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : (&apos;dataLen_V_load&apos;, src/mac_header_strip/mac_header_strip.cpp:144) (&apos;p_Result_4_i&apos;, src/mac_header_strip/mac_header_strip.cpp:131) (&apos;newSel1&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [200]  (0 ns)
+	multiplexor before &apos;phi&apos; operation (&apos;sentBytes_V_new_10_i&apos;, src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : (&apos;dataLen_V_load&apos;, src/mac_header_strip/mac_header_strip.cpp:144) (&apos;p_Result_4_i&apos;, src/mac_header_strip/mac_header_strip.cpp:131) (&apos;newSel1&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0.918 ns)
+	&apos;phi&apos; operation (&apos;sentBytes_V_new_10_i&apos;, src/mac_header_strip/mac_header_strip.cpp:174) with incoming values : (&apos;dataLen_V_load&apos;, src/mac_header_strip/mac_header_strip.cpp:144) (&apos;p_Result_4_i&apos;, src/mac_header_strip/mac_header_strip.cpp:131) (&apos;newSel1&apos;, src/mac_header_strip/mac_header_strip.cpp:174) [249]  (0 ns)
+	&apos;store&apos; operation (src/mac_header_strip/mac_header_strip.cpp:132) of variable &apos;sentBytes_V_new_10_i&apos;, src/mac_header_strip/mac_header_strip.cpp:174 on static variable &apos;sentBytes_V&apos; [252]  (0 ns)"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.18 seconds; current allocated memory: 122.565 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.14 seconds; current allocated memory: 123.617 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;mac_header_strip&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.24 seconds; current allocated memory: 123.813 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.13 seconds; current allocated memory: 124.040 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;detect_mac_protocol&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_fsmState_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_macType_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_prevWord_data_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_prevWord_keep_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_prevWord_last_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_prevWord_user_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dmp_wordCount_V&apos; is power-on initialization."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;detect_mac_protocol&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.19 seconds; current allocated memory: 124.696 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;strip_mac_header&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;cics_wasLast&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;dataLen_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;sentBytes_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;cics_prevWord_data_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;cics_prevWord_keep_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;cics_wordCount_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;destMacAddress_V&apos; is power-on initialization."/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;srcMacAddress_V&apos; is power-on initialization."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;strip_mac_header&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.22 seconds; current allocated memory: 127.746 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;mac_header_strip&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/dataIn_V_data_V&apos; to &apos;axis&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/dataIn_V_keep_V&apos; to &apos;axis&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/dataIn_V_last_V&apos; to &apos;axis&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/dataIn_V_user_V&apos; to &apos;axis&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/IPdataOut_V_data_V&apos; to &apos;axis&apos; (register, both mode)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/IPdataOut_V_keep_V&apos; to &apos;axis&apos; (register, both mode)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/IPdataOut_V_last_V&apos; to &apos;axis&apos; (register, both mode)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/IPdataOut_V_user_V&apos; to &apos;axis&apos; (register, both mode)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;mac_header_strip/myMacAddress_V&apos; to &apos;ap_stable&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on function &apos;mac_header_strip&apos; to &apos;ap_ctrl_none&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;mac_header_strip&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.72 seconds; current allocated memory: 132.000 MB."/>
+	<Message severity="INFO" prefix="[RTMG 210-285]" key="RTMG_285_1799" tag="" content="Implementing FIFO &apos;ipDataFifo_V_U(fifo_w185_d4_A)&apos; using Shift Registers."/>
+	<Message severity="INFO" prefix="[RTMG 210-285]" key="RTMG_285_1799" tag="" content="Implementing FIFO &apos;start_for_strip_mac_header_U0_U(start_for_strip_mac_header_U0)&apos; using Shift Registers."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished generating all RTL models Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 629.867 ; gain = 192.000 ; free physical = 49124 ; free virtual = 169487"/>
+	<Message severity="INFO" prefix="[SYSC 207-301]" key="SYSC_301_1065" tag="" content="Generating SystemC RTL for mac_header_strip."/>
+	<Message severity="INFO" prefix="[VHDL 208-304]" key="VHDL_304_1066" tag="" content="Generating VHDL RTL for mac_header_strip."/>
+	<Message severity="INFO" prefix="[VLOG 209-307]" key="VLOG_307_1067" tag="" content="Generating Verilog RTL for mac_header_strip."/>
+</Messages>

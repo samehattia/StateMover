@@ -1,0 +1,26 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="memcachedPipeline_prj"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcku040:-ffva1156:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="6.66" default="false"/>
+    </clockList>
+    <config>
+        <config_rtl reset="all" reset_async="1"/>
+        <schedule model="memcachedPipeline"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="A 4 stage memcached pipeline with SSD &amp; DRAM value stores supporting only the binary protocol" vendor="xilinx.labs" library="" version="1.07" driver_input_dir="" display_name="Combined Binary Flash/DRAM Memcached Pipeline" taxonomy=""/>
+    </ExportDesign>
+</AutoPilot:solution>
+

@@ -1,0 +1,747 @@
+
+
+================================================================
+== Vivado HLS Report for 'memcachedPipeline_ht_compare'
+================================================================
+* Date:           Wed Oct 21 12:18:30 2020
+
+* Version:        2015.1 (Build 1215546 on Mon Apr 27 19:24:50 PM 2015)
+* Project:        memcachedPipeline_prj
+* Solution:       solution1
+* Product family: kintexu
+* Target device:  xcku040-ffva1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |   6.66|      5.85|        0.83|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1200|   1920|  484800|  242400|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 1
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 5.85ns
+ST_1: guard_variable_for_ht_compare_s [1/1] 0.00ns
+codeRepl:18  %guard_variable_for_ht_compare_s = load i1* @guard_variable_for_ht_compare_s, align 1
+
+ST_1: stg_4 [1/1] 0.00ns
+._crit_edge230.0:0  store i1 true, i1* @guard_variable_for_ht_compare_s, align 1
+
+ST_1: stg_5 [1/1] 0.89ns
+._crit_edge230.0:1  br label %._crit_edge229
+
+ST_1: cmpState_load [1/1] 0.00ns
+._crit_edge229:9  %cmpState_load = load i2* @cmpState, align 1
+
+ST_1: cmp_keyLength_load [1/1] 0.00ns
+._crit_edge229:14  %cmp_keyLength_load = load i8* @cmp_keyLength, align 1
+
+ST_1: tmp_72 [1/1] 0.00ns
+:0  %tmp_72 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i130P(i130* @memRd2comp_V, i32 1)
+
+ST_1: stg_9 [1/1] 0.00ns
+:1  br i1 %tmp_72, label %._crit_edge240, label %._crit_edge239
+
+ST_1: tmp_4 [1/1] 2.91ns
+._crit_edge240:0  %tmp_4 = call i130 @_ssdm_op_Read.ap_fifo.volatile.i130P(i130* @memRd2comp_V)
+
+ST_1: tmp_294 [1/1] 1.34ns
+._crit_edge240:2  %tmp_294 = icmp ugt i8 %cmp_keyLength_load, 16
+
+ST_1: tmp_295 [1/1] 1.24ns
+._crit_edge240:3  %tmp_295 = add i8 %cmp_keyLength_load, -16
+
+ST_1: storemerge [1/1] 0.71ns
+._crit_edge240:4  %storemerge = select i1 %tmp_294, i8 %tmp_295, i8 0
+
+ST_1: stg_14 [1/1] 0.89ns
+._crit_edge240:5  store i8 %storemerge, i8* @cmp_keyLength, align 1
+
+ST_1: tmp_296 [1/1] 1.34ns
+._crit_edge240:6  %tmp_296 = icmp eq i8 %storemerge, 0
+
+ST_1: stg_16 [1/1] 0.00ns
+._crit_edge240:7  br i1 %tmp_296, label %6, label %._crit_edge241
+
+ST_1: stg_17 [1/1] 0.89ns
+:4  store i2 0, i2* @cmpState, align 1
+
+ST_1: tmp_71 [1/1] 0.00ns
+:0  %tmp_71 = call i1 @_ssdm_op_NbReadReq.axis.i512P(i512* %memRdData_V_V, i32 1)
+
+ST_1: tmp_73 [1/1] 0.00ns
+:0  %tmp_73 = call i1 @_ssdm_op_NbReadReq.ap_fifo.i130P(i130* @memRd2comp_V, i32 1)
+
+ST_1: tmp_V_99 [1/1] 0.00ns
+._crit_edge236.0:0  %tmp_V_99 = call i512 @_ssdm_op_Read.axis.volatile.i512P(i512* %memRdData_V_V)
+
+ST_1: tmp_1 [1/1] 2.91ns
+._crit_edge236.0:1  %tmp_1 = call i130 @_ssdm_op_Read.ap_fifo.volatile.i130P(i130* @memRd2comp_V)
+
+ST_1: tmp_data_V [1/1] 0.00ns
+._crit_edge236.0:2  %tmp_data_V = trunc i130 %tmp_1 to i128
+
+ST_1: tmp_400 [1/1] 0.00ns
+._crit_edge236.0:3  %tmp_400 = trunc i512 %tmp_V_99 to i128
+
+ST_1: tmp_297 [1/1] 2.03ns
+._crit_edge236.0:4  %tmp_297 = icmp eq i128 %tmp_400, %tmp_data_V
+
+ST_1: p_Result_316_1 [1/1] 0.00ns
+._crit_edge236.0:8  %p_Result_316_1 = call i128 @_ssdm_op_PartSelect.i128.i512.i32.i32(i512 %tmp_V_99, i32 128, i32 255)
+
+ST_1: tmp_644_1 [1/1] 2.03ns
+._crit_edge236.0:9  %tmp_644_1 = icmp eq i128 %p_Result_316_1, %tmp_data_V
+
+ST_1: p_Result_316_2 [1/1] 0.00ns
+._crit_edge236.0:13  %p_Result_316_2 = call i128 @_ssdm_op_PartSelect.i128.i512.i32.i32(i512 %tmp_V_99, i32 256, i32 383)
+
+ST_1: tmp_644_2 [1/1] 2.03ns
+._crit_edge236.0:14  %tmp_644_2 = icmp eq i128 %p_Result_316_2, %tmp_data_V
+
+ST_1: p_Result_316_3 [1/1] 0.00ns
+._crit_edge236.0:18  %p_Result_316_3 = call i128 @_ssdm_op_PartSelect.i128.i512.i32.i32(i512 %tmp_V_99, i32 384, i32 511)
+
+ST_1: tmp_644_3 [1/1] 2.03ns
+._crit_edge236.0:19  %tmp_644_3 = icmp eq i128 %p_Result_316_3, %tmp_data_V
+
+ST_1: tmp_298 [1/1] 1.34ns
+._crit_edge236.0:25  %tmp_298 = icmp ugt i8 %cmp_keyLength_load, 16
+
+ST_1: tmp_299 [1/1] 1.24ns
+._crit_edge236.0:26  %tmp_299 = add i8 -16, %cmp_keyLength_load
+
+ST_1: storemerge3 [1/1] 0.71ns
+._crit_edge236.0:27  %storemerge3 = select i1 %tmp_298, i8 %tmp_299, i8 0
+
+ST_1: stg_34 [1/1] 0.89ns
+._crit_edge236.0:28  store i8 %storemerge3, i8* @cmp_keyLength, align 1
+
+ST_1: tmp_300 [1/1] 1.34ns
+._crit_edge236.0:29  %tmp_300 = icmp eq i8 %storemerge3, 0
+
+ST_1: stg_36 [1/1] 0.00ns
+._crit_edge236.0:30  br i1 %tmp_300, label %4, label %._crit_edge238
+
+ST_1: stg_37 [1/1] 0.89ns
+:4  store i2 0, i2* @cmpState, align 1
+
+ST_1: tmp_70 [1/1] 0.00ns
+:0  %tmp_70 = call i1 @_ssdm_op_NbReadReq.axis.i512P(i512* %memRdData_V_V, i32 1)
+
+ST_1: tmp_V [1/1] 0.00ns
+_ifconv:0  %tmp_V = call i512 @_ssdm_op_Read.axis.volatile.i512P(i512* %memRdData_V_V)
+
+ST_1: tmp_398 [1/1] 0.00ns
+_ifconv:1  %tmp_398 = trunc i512 %tmp_V to i8
+
+ST_1: tmp_292 [1/1] 1.34ns
+_ifconv:2  %tmp_292 = icmp eq i8 %tmp_398, 0
+
+ST_1: tmp_293 [1/1] 1.34ns
+_ifconv:3  %tmp_293 = icmp eq i8 %tmp_398, %cmp_keyLength_load
+
+ST_1: p_Result_1 [1/1] 0.00ns
+_ifconv:8  %p_Result_1 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %tmp_V, i32 128, i32 135)
+
+ST_1: tmp_637_1 [1/1] 1.34ns
+_ifconv:9  %tmp_637_1 = icmp eq i8 %p_Result_1, 0
+
+ST_1: tmp_639_1 [1/1] 1.34ns
+_ifconv:10  %tmp_639_1 = icmp eq i8 %p_Result_1, %cmp_keyLength_load
+
+ST_1: p_Result_2 [1/1] 0.00ns
+_ifconv:15  %p_Result_2 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %tmp_V, i32 256, i32 263)
+
+ST_1: tmp_637_2 [1/1] 1.34ns
+_ifconv:16  %tmp_637_2 = icmp eq i8 %p_Result_2, 0
+
+ST_1: tmp_639_2 [1/1] 1.34ns
+_ifconv:17  %tmp_639_2 = icmp eq i8 %p_Result_2, %cmp_keyLength_load
+
+ST_1: p_Result_3 [1/1] 0.00ns
+_ifconv:22  %p_Result_3 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %tmp_V, i32 384, i32 391)
+
+ST_1: tmp_637_3 [1/1] 1.34ns
+_ifconv:23  %tmp_637_3 = icmp eq i8 %p_Result_3, 0
+
+ST_1: tmp_639_3 [1/1] 1.34ns
+_ifconv:24  %tmp_639_3 = icmp eq i8 %p_Result_3, %cmp_keyLength_load
+
+ST_1: stg_52 [1/1] 0.89ns
+_ifconv:30  store i2 -2, i2* @cmpState, align 1
+
+ST_1: tmp [1/1] 0.00ns
+:0  %tmp = call i1 @_ssdm_op_NbReadReq.ap_fifo.i64P(i64* @memRd2compMd_V, i32 1)
+
+ST_1: tmp16 [1/1] 2.91ns
+.loopexit.loopexit:0  %tmp16 = call i64 @_ssdm_op_Read.ap_fifo.volatile.i64P(i64* @memRd2compMd_V)
+
+ST_1: tmp_397 [1/1] 0.00ns
+.loopexit.loopexit:1  %tmp_397 = trunc i64 %tmp16 to i8
+
+ST_1: tmp_metadata_V_load_new [1/1] 0.00ns
+.loopexit.loopexit:3  %tmp_metadata_V_load_new = call i32 @_ssdm_op_PartSelect.i32.i64.i32.i32(i64 %tmp16, i32 8, i32 39)
+
+ST_1: tmp_keyLength_V_load_new [1/1] 0.00ns
+.loopexit.loopexit:5  %tmp_keyLength_V_load_new = call i8 @_ssdm_op_PartSelect.i8.i64.i32.i32(i64 %tmp16, i32 40, i32 47)
+
+ST_1: tmp_valueLength_V_load_new [1/1] 0.00ns
+.loopexit.loopexit:7  %tmp_valueLength_V_load_new = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %tmp16, i32 48, i32 63)
+
+ST_1: stg_59 [1/1] 0.89ns
+.loopexit.loopexit:9  store i8 %tmp_keyLength_V_load_new, i8* @cmp_keyLength, align 1
+
+ST_1: tmp_s [1/1] 1.34ns
+.loopexit.loopexit:10  %tmp_s = icmp eq i8 %tmp_397, 8
+
+ST_1: storemerge2 [1/1] 0.71ns
+.loopexit.loopexit:11  %storemerge2 = select i1 %tmp_s, i2 -1, i2 1
+
+ST_1: stg_62 [1/1] 0.89ns
+.loopexit.loopexit:12  store i2 %storemerge2, i2* @cmpState, align 1
+
+ST_1: stg_63 [1/1] 0.89ns
+.loopexit.loopexit:13  br label %._crit_edge231
+
+
+ <State 2>: 4.52ns
+ST_2: stg_64 [1/1] 0.00ns
+codeRepl:0  call void (...)* @_ssdm_op_SpecInterface(i512* %memRdData_V_V, [5 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_2: stg_65 [1/1] 0.00ns
+codeRepl:1  call void (...)* @_ssdm_op_SpecInterface(i8* @comp2memWrStatus_V_bin, [8 x i8]* @str1947, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1948, [1 x i8]* @str1948, [8 x i8]* @str1947)
+
+ST_2: stg_66 [1/1] 0.00ns
+codeRepl:2  call void (...)* @_ssdm_op_SpecInterface(i512* @comp2memWrMemData_V_V, [8 x i8]* @str1714, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1715, [1 x i8]* @str1715, [8 x i8]* @str1714)
+
+ST_2: stg_67 [1/1] 0.00ns
+codeRepl:3  call void (...)* @_ssdm_op_SpecInterface(i64* @comp2memWrMd_V, [8 x i8]* @str1710, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1711, [1 x i8]* @str1711, [8 x i8]* @str1710) nounwind
+
+ST_2: stg_68 [1/1] 0.00ns
+codeRepl:4  call void (...)* @_ssdm_op_SpecInterface(i64* @comp2memWrMd_V, [8 x i8]* @str1706, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1707, [1 x i8]* @str1707, [8 x i8]* @str1706) nounwind
+
+ST_2: stg_69 [1/1] 0.00ns
+codeRepl:5  call void (...)* @_ssdm_op_SpecInterface(i64* @comp2memWrMd_V, [8 x i8]* @str1702, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1703, [1 x i8]* @str1703, [8 x i8]* @str1702) nounwind
+
+ST_2: stg_70 [1/1] 0.00ns
+codeRepl:6  call void (...)* @_ssdm_op_SpecInterface(i64* @comp2memWrMd_V, [8 x i8]* @str1698, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1699, [1 x i8]* @str1699, [8 x i8]* @str1698) nounwind
+
+ST_2: stg_71 [1/1] 0.00ns
+codeRepl:7  call void (...)* @_ssdm_op_SpecInterface(i130* @comp2memWrKey_V, [8 x i8]* @str1694, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1695, [1 x i8]* @str1695, [8 x i8]* @str1694) nounwind
+
+ST_2: stg_72 [1/1] 0.00ns
+codeRepl:8  call void (...)* @_ssdm_op_SpecInterface(i130* @comp2memWrKey_V, [8 x i8]* @str1690, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1691, [1 x i8]* @str1691, [8 x i8]* @str1690) nounwind
+
+ST_2: stg_73 [1/1] 0.00ns
+codeRepl:9  call void (...)* @_ssdm_op_SpecInterface(i130* @comp2memWrKey_V, [8 x i8]* @str1686, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1687, [1 x i8]* @str1687, [8 x i8]* @str1686) nounwind
+
+ST_2: stg_74 [1/1] 0.00ns
+codeRepl:10  call void (...)* @_ssdm_op_SpecInterface(i64* @memRd2compMd_V, [8 x i8]* @str1666, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1667, [1 x i8]* @str1667, [8 x i8]* @str1666) nounwind
+
+ST_2: stg_75 [1/1] 0.00ns
+codeRepl:11  call void (...)* @_ssdm_op_SpecInterface(i64* @memRd2compMd_V, [8 x i8]* @str1662, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1663, [1 x i8]* @str1663, [8 x i8]* @str1662) nounwind
+
+ST_2: stg_76 [1/1] 0.00ns
+codeRepl:12  call void (...)* @_ssdm_op_SpecInterface(i64* @memRd2compMd_V, [8 x i8]* @str1658, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1659, [1 x i8]* @str1659, [8 x i8]* @str1658) nounwind
+
+ST_2: stg_77 [1/1] 0.00ns
+codeRepl:13  call void (...)* @_ssdm_op_SpecInterface(i64* @memRd2compMd_V, [8 x i8]* @str1654, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1655, [1 x i8]* @str1655, [8 x i8]* @str1654) nounwind
+
+ST_2: stg_78 [1/1] 0.00ns
+codeRepl:14  call void (...)* @_ssdm_op_SpecInterface(i130* @memRd2comp_V, [8 x i8]* @str1650, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1651, [1 x i8]* @str1651, [8 x i8]* @str1650) nounwind
+
+ST_2: stg_79 [1/1] 0.00ns
+codeRepl:15  call void (...)* @_ssdm_op_SpecInterface(i130* @memRd2comp_V, [8 x i8]* @str1646, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1647, [1 x i8]* @str1647, [8 x i8]* @str1646) nounwind
+
+ST_2: stg_80 [1/1] 0.00ns
+codeRepl:16  call void (...)* @_ssdm_op_SpecInterface(i130* @memRd2comp_V, [8 x i8]* @str1642, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @str1643, [1 x i8]* @str1643, [8 x i8]* @str1642) nounwind
+
+ST_2: stg_81 [1/1] 0.00ns
+codeRepl:17  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 2, i32 1, i32 0, [1 x i8]* @p_str336) nounwind
+
+ST_2: statusOutput_bin_free_V_0_load [1/1] 0.00ns
+codeRepl:19  %statusOutput_bin_free_V_0_load = load i1* @statusOutput_bin_free_V_0, align 1
+
+ST_2: statusOutput_bin_match_V_0_loa [1/1] 0.00ns
+codeRepl:20  %statusOutput_bin_match_V_0_loa = load i1* @statusOutput_bin_match_V_0, align 1
+
+ST_2: statusOutput_bin_free_V_1_load [1/1] 0.00ns
+codeRepl:21  %statusOutput_bin_free_V_1_load = load i1* @statusOutput_bin_free_V_1, align 1
+
+ST_2: statusOutput_bin_match_V_1_loa [1/1] 0.00ns
+codeRepl:22  %statusOutput_bin_match_V_1_loa = load i1* @statusOutput_bin_match_V_1, align 1
+
+ST_2: statusOutput_bin_free_V_2_load [1/1] 0.00ns
+codeRepl:23  %statusOutput_bin_free_V_2_load = load i1* @statusOutput_bin_free_V_2, align 1
+
+ST_2: statusOutput_bin_match_V_2_loa [1/1] 0.00ns
+codeRepl:24  %statusOutput_bin_match_V_2_loa = load i1* @statusOutput_bin_match_V_2, align 1
+
+ST_2: statusOutput_bin_free_V_3_load [1/1] 0.00ns
+codeRepl:25  %statusOutput_bin_free_V_3_load = load i1* @statusOutput_bin_free_V_3, align 1
+
+ST_2: statusOutput_bin_match_V_3_loa [1/1] 0.00ns
+codeRepl:26  %statusOutput_bin_match_V_3_loa = load i1* @statusOutput_bin_match_V_3, align 1
+
+ST_2: stg_90 [1/1] 0.89ns
+codeRepl:27  br i1 %guard_variable_for_ht_compare_s, label %._crit_edge229, label %._crit_edge230.0
+
+ST_2: statusOutput_bin_free_V_0_flag [1/1] 0.00ns
+._crit_edge229:0  %statusOutput_bin_free_V_0_flag = phi i1 [ true, %._crit_edge230.0 ], [ false, %codeRepl ]
+
+ST_2: statusOutput_bin_free_V_0_loc [1/1] 0.00ns
+._crit_edge229:1  %statusOutput_bin_free_V_0_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_free_V_0_load, %codeRepl ]
+
+ST_2: statusOutput_bin_match_V_0_loc [1/1] 0.00ns
+._crit_edge229:2  %statusOutput_bin_match_V_0_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_match_V_0_loa, %codeRepl ]
+
+ST_2: statusOutput_bin_free_V_1_loc [1/1] 0.00ns
+._crit_edge229:3  %statusOutput_bin_free_V_1_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_free_V_1_load, %codeRepl ]
+
+ST_2: statusOutput_bin_match_V_1_loc [1/1] 0.00ns
+._crit_edge229:4  %statusOutput_bin_match_V_1_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_match_V_1_loa, %codeRepl ]
+
+ST_2: statusOutput_bin_free_V_2_loc [1/1] 0.00ns
+._crit_edge229:5  %statusOutput_bin_free_V_2_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_free_V_2_load, %codeRepl ]
+
+ST_2: statusOutput_bin_match_V_2_loc [1/1] 0.00ns
+._crit_edge229:6  %statusOutput_bin_match_V_2_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_match_V_2_loa, %codeRepl ]
+
+ST_2: statusOutput_bin_free_V_3_loc [1/1] 0.00ns
+._crit_edge229:7  %statusOutput_bin_free_V_3_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_free_V_3_load, %codeRepl ]
+
+ST_2: statusOutput_bin_match_V_3_loc [1/1] 0.00ns
+._crit_edge229:8  %statusOutput_bin_match_V_3_loc = phi i1 [ false, %._crit_edge230.0 ], [ %statusOutput_bin_match_V_3_loa, %codeRepl ]
+
+ST_2: tmp_operation_V [1/1] 0.00ns
+._crit_edge229:10  %tmp_operation_V = load i8* @cmp_inDataMd_operation_V, align 1
+
+ST_2: tmp_metadata_V [1/1] 0.00ns
+._crit_edge229:11  %tmp_metadata_V = load i32* @cmp_inDataMd_metadata_V, align 4
+
+ST_2: tmp_keyLength_V [1/1] 0.00ns
+._crit_edge229:12  %tmp_keyLength_V = load i8* @cmp_inDataMd_keyLength_V, align 1
+
+ST_2: tmp_valueLength_V [1/1] 0.00ns
+._crit_edge229:13  %tmp_valueLength_V = load i16* @cmp_inDataMd_valueLength_V, align 2
+
+ST_2: stg_104 [1/1] 1.11ns
+._crit_edge229:15  switch i2 %cmpState_load, label %._crit_edge231 [
+    i2 0, label %0
+    i2 1, label %1
+    i2 -2, label %2
+    i2 -1, label %5
+  ]
+
+ST_2: stg_105 [1/1] 2.91ns
+._crit_edge240:1  call void @_ssdm_op_Write.ap_fifo.volatile.i130P(i130* @comp2memWrKey_V, i130 %tmp_4)
+
+ST_2: tmp_6 [1/1] 0.00ns
+:0  %tmp_6 = call i64 @_ssdm_op_BitConcatenate.i64.i16.i8.i32.i8(i16 %tmp_valueLength_V, i8 %tmp_keyLength_V, i32 %tmp_metadata_V, i8 %tmp_operation_V)
+
+ST_2: stg_107 [1/1] 2.91ns
+:1  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @comp2memWrMd_V, i64 %tmp_6)
+
+ST_2: tmp_bin_1 [1/1] 0.00ns
+:2  %tmp_bin_1 = call i8 @_ssdm_op_BitConcatenate.i8.i1.i1.i1.i1.i1.i1.i1.i1(i1 %statusOutput_bin_match_V_3_loc, i1 %statusOutput_bin_match_V_2_loc, i1 %statusOutput_bin_match_V_1_loc, i1 %statusOutput_bin_match_V_0_loc, i1 %statusOutput_bin_free_V_3_loc, i1 %statusOutput_bin_free_V_2_loc, i1 %statusOutput_bin_free_V_1_loc, i1 %statusOutput_bin_free_V_0_loc)
+
+ST_2: stg_109 [1/1] 2.91ns
+:3  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* @comp2memWrStatus_V_bin, i8 %tmp_bin_1)
+
+ST_2: stg_110 [1/1] 0.00ns
+:5  br label %._crit_edge241
+
+ST_2: stg_111 [1/1] 0.00ns
+._crit_edge241:0  br label %._crit_edge239
+
+ST_2: stg_112 [1/1] 0.89ns
+._crit_edge239:0  br label %._crit_edge231
+
+ST_2: stg_113 [1/1] 0.89ns
+:1  br i1 %tmp_71, label %3, label %._crit_edge231
+
+ST_2: stg_114 [1/1] 0.89ns
+:1  br i1 %tmp_73, label %._crit_edge236.0, label %._crit_edge231
+
+ST_2: not_tmp_s [1/1] 0.71ns
+._crit_edge236.0:5  %not_tmp_s = xor i1 %tmp_297, true
+
+ST_2: statusOutput_bin_free_V_0_flag_3 [1/1] 0.71ns
+._crit_edge236.0:6  %statusOutput_bin_free_V_0_flag_3 = or i1 %statusOutput_bin_free_V_0_flag, %not_tmp_s
+
+ST_2: statusOutput_bin_match_V_0_loc_1 [1/1] 0.71ns
+._crit_edge236.0:7  %statusOutput_bin_match_V_0_loc_1 = and i1 %tmp_297, %statusOutput_bin_match_V_0_loc
+
+ST_2: not_tmp_644_1 [1/1] 0.71ns
+._crit_edge236.0:10  %not_tmp_644_1 = xor i1 %tmp_644_1, true
+
+ST_2: statusOutput_bin_match_V_1_fla_2 [1/1] 0.71ns
+._crit_edge236.0:11  %statusOutput_bin_match_V_1_fla_2 = or i1 %statusOutput_bin_free_V_0_flag, %not_tmp_644_1
+
+ST_2: statusOutput_bin_match_V_1_loc_1 [1/1] 0.71ns
+._crit_edge236.0:12  %statusOutput_bin_match_V_1_loc_1 = and i1 %tmp_644_1, %statusOutput_bin_match_V_1_loc
+
+ST_2: not_tmp_644_2 [1/1] 0.71ns
+._crit_edge236.0:15  %not_tmp_644_2 = xor i1 %tmp_644_2, true
+
+ST_2: statusOutput_bin_free_V_0_flag_1 [1/1] 0.71ns
+._crit_edge236.0:16  %statusOutput_bin_free_V_0_flag_1 = or i1 %statusOutput_bin_free_V_0_flag, %not_tmp_644_2
+
+ST_2: statusOutput_bin_match_V_2_loc_1 [1/1] 0.71ns
+._crit_edge236.0:17  %statusOutput_bin_match_V_2_loc_1 = and i1 %tmp_644_2, %statusOutput_bin_match_V_2_loc
+
+ST_2: not_tmp_644_3 [1/1] 0.71ns
+._crit_edge236.0:20  %not_tmp_644_3 = xor i1 %tmp_644_3, true
+
+ST_2: statusOutput_bin_match_V_3_fla_2 [1/1] 0.71ns
+._crit_edge236.0:21  %statusOutput_bin_match_V_3_fla_2 = or i1 %statusOutput_bin_free_V_0_flag, %not_tmp_644_3
+
+ST_2: statusOutput_bin_match_V_3_loc_1 [1/1] 0.71ns
+._crit_edge236.0:22  %statusOutput_bin_match_V_3_loc_1 = and i1 %tmp_644_3, %statusOutput_bin_match_V_3_loc
+
+ST_2: stg_127 [1/1] 2.91ns
+._crit_edge236.0:23  call void @_ssdm_op_Write.ap_fifo.volatile.i512P(i512* @comp2memWrMemData_V_V, i512 %tmp_V_99)
+
+ST_2: stg_128 [1/1] 2.91ns
+._crit_edge236.0:24  call void @_ssdm_op_Write.ap_fifo.volatile.i130P(i130* @comp2memWrKey_V, i130 %tmp_1)
+
+ST_2: tmp_3 [1/1] 0.00ns
+:0  %tmp_3 = call i64 @_ssdm_op_BitConcatenate.i64.i16.i8.i32.i8(i16 %tmp_valueLength_V, i8 %tmp_keyLength_V, i32 %tmp_metadata_V, i8 %tmp_operation_V)
+
+ST_2: stg_130 [1/1] 2.91ns
+:1  call void @_ssdm_op_Write.ap_fifo.volatile.i64P(i64* @comp2memWrMd_V, i64 %tmp_3)
+
+ST_2: tmp_bin [1/1] 0.00ns
+:2  %tmp_bin = call i8 @_ssdm_op_BitConcatenate.i8.i1.i1.i1.i1.i1.i1.i1.i1(i1 %statusOutput_bin_match_V_3_loc_1, i1 %statusOutput_bin_match_V_2_loc_1, i1 %statusOutput_bin_match_V_1_loc_1, i1 %statusOutput_bin_match_V_0_loc_1, i1 %statusOutput_bin_free_V_3_loc, i1 %statusOutput_bin_free_V_2_loc, i1 %statusOutput_bin_free_V_1_loc, i1 %statusOutput_bin_free_V_0_loc)
+
+ST_2: stg_132 [1/1] 2.91ns
+:3  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* @comp2memWrStatus_V_bin, i8 %tmp_bin)
+
+ST_2: stg_133 [1/1] 0.00ns
+:5  br label %._crit_edge238
+
+ST_2: stg_134 [1/1] 0.89ns
+._crit_edge238:0  br label %._crit_edge231
+
+ST_2: stg_135 [1/1] 0.89ns
+:1  br i1 %tmp_70, label %_ifconv, label %._crit_edge231
+
+ST_2: statusOutput_bin_free_V_0_flag_2 [1/1] 0.71ns
+_ifconv:4  %statusOutput_bin_free_V_0_flag_2 = or i1 %tmp_292, %statusOutput_bin_free_V_0_flag
+
+ST_2: not_tmp_1 [1/1] 0.71ns
+_ifconv:5  %not_tmp_1 = xor i1 %tmp_292, true
+
+ST_2: statusOutput_bin_match_V_0_fla [1/1] 0.71ns
+_ifconv:6  %statusOutput_bin_match_V_0_fla = and i1 %tmp_293, %not_tmp_1
+
+ST_2: statusOutput_bin_match_V_0_fla_1 [1/1] 0.71ns
+_ifconv:7  %statusOutput_bin_match_V_0_fla_1 = or i1 %statusOutput_bin_free_V_0_flag, %statusOutput_bin_match_V_0_fla
+
+ST_2: statusOutput_bin_free_V_1_flag_2 [1/1] 0.71ns
+_ifconv:11  %statusOutput_bin_free_V_1_flag_2 = or i1 %tmp_637_1, %statusOutput_bin_free_V_0_flag
+
+ST_2: not_tmp_637_1 [1/1] 0.71ns
+_ifconv:12  %not_tmp_637_1 = xor i1 %tmp_637_1, true
+
+ST_2: statusOutput_bin_match_V_1_fla [1/1] 0.71ns
+_ifconv:13  %statusOutput_bin_match_V_1_fla = and i1 %tmp_639_1, %not_tmp_637_1
+
+ST_2: statusOutput_bin_match_V_1_fla_1 [1/1] 0.71ns
+_ifconv:14  %statusOutput_bin_match_V_1_fla_1 = or i1 %statusOutput_bin_free_V_0_flag, %statusOutput_bin_match_V_1_fla
+
+ST_2: statusOutput_bin_free_V_2_flag_2 [1/1] 0.71ns
+_ifconv:18  %statusOutput_bin_free_V_2_flag_2 = or i1 %tmp_637_2, %statusOutput_bin_free_V_0_flag
+
+ST_2: not_tmp_637_2 [1/1] 0.71ns
+_ifconv:19  %not_tmp_637_2 = xor i1 %tmp_637_2, true
+
+ST_2: statusOutput_bin_match_V_2_fla [1/1] 0.71ns
+_ifconv:20  %statusOutput_bin_match_V_2_fla = and i1 %tmp_639_2, %not_tmp_637_2
+
+ST_2: statusOutput_bin_match_V_2_fla_1 [1/1] 0.71ns
+_ifconv:21  %statusOutput_bin_match_V_2_fla_1 = or i1 %statusOutput_bin_free_V_0_flag, %statusOutput_bin_match_V_2_fla
+
+ST_2: statusOutput_bin_free_V_3_flag_2 [1/1] 0.71ns
+_ifconv:25  %statusOutput_bin_free_V_3_flag_2 = or i1 %tmp_637_3, %statusOutput_bin_free_V_0_flag
+
+ST_2: not_tmp_637_3 [1/1] 0.71ns
+_ifconv:26  %not_tmp_637_3 = xor i1 %tmp_637_3, true
+
+ST_2: statusOutput_bin_match_V_3_fla [1/1] 0.71ns
+_ifconv:27  %statusOutput_bin_match_V_3_fla = and i1 %tmp_639_3, %not_tmp_637_3
+
+ST_2: statusOutput_bin_match_V_3_fla_1 [1/1] 0.71ns
+_ifconv:28  %statusOutput_bin_match_V_3_fla_1 = or i1 %statusOutput_bin_free_V_0_flag, %statusOutput_bin_match_V_3_fla
+
+ST_2: stg_152 [1/1] 2.91ns
+_ifconv:29  call void @_ssdm_op_Write.ap_fifo.volatile.i512P(i512* @comp2memWrMemData_V_V, i512 %tmp_V)
+
+ST_2: stg_153 [1/1] 0.89ns
+_ifconv:31  br label %._crit_edge231
+
+ST_2: stg_154 [1/1] 0.89ns
+:1  br i1 %tmp, label %.loopexit.loopexit, label %._crit_edge231
+
+ST_2: stg_155 [1/1] 0.00ns
+.loopexit.loopexit:2  store i8 %tmp_397, i8* @cmp_inDataMd_operation_V, align 4
+
+ST_2: stg_156 [1/1] 0.00ns
+.loopexit.loopexit:4  store i32 %tmp_metadata_V_load_new, i32* @cmp_inDataMd_metadata_V, align 4
+
+ST_2: stg_157 [1/1] 0.00ns
+.loopexit.loopexit:6  store i8 %tmp_keyLength_V_load_new, i8* @cmp_inDataMd_keyLength_V, align 4
+
+ST_2: stg_158 [1/1] 0.00ns
+.loopexit.loopexit:8  store i16 %tmp_valueLength_V_load_new, i16* @cmp_inDataMd_valueLength_V, align 2
+
+ST_2: statusOutput_bin_free_V_0_flag_4 [1/1] 0.00ns
+._crit_edge231:0  %statusOutput_bin_free_V_0_flag_4 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_free_V_0_flag_2, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_free_V_0_new_4 [1/1] 0.00ns
+._crit_edge231:1  %statusOutput_bin_free_V_0_new_4 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %tmp_292, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_match_V_0_fla_2 [1/1] 0.00ns
+._crit_edge231:2  %statusOutput_bin_match_V_0_fla_2 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_match_V_0_fla_1, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag_3, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_match_V_0_new_7 [1/1] 0.00ns
+._crit_edge231:3  %statusOutput_bin_match_V_0_new_7 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %statusOutput_bin_match_V_0_fla, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_free_V_1_flag_4 [1/1] 0.00ns
+._crit_edge231:4  %statusOutput_bin_free_V_1_flag_4 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_free_V_1_flag_2, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_free_V_1_new_4 [1/1] 0.00ns
+._crit_edge231:5  %statusOutput_bin_free_V_1_new_4 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %tmp_637_1, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_match_V_1_fla_3 [1/1] 0.00ns
+._crit_edge231:6  %statusOutput_bin_match_V_1_fla_3 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_match_V_1_fla_1, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_match_V_1_fla_2, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_match_V_1_new_7 [1/1] 0.00ns
+._crit_edge231:7  %statusOutput_bin_match_V_1_new_7 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %statusOutput_bin_match_V_1_fla, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_free_V_2_flag_4 [1/1] 0.00ns
+._crit_edge231:8  %statusOutput_bin_free_V_2_flag_4 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_free_V_2_flag_2, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_free_V_2_new_4 [1/1] 0.00ns
+._crit_edge231:9  %statusOutput_bin_free_V_2_new_4 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %tmp_637_2, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_match_V_2_fla_2 [1/1] 0.00ns
+._crit_edge231:10  %statusOutput_bin_match_V_2_fla_2 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_match_V_2_fla_1, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag_1, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_match_V_2_new_7 [1/1] 0.00ns
+._crit_edge231:11  %statusOutput_bin_match_V_2_new_7 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %statusOutput_bin_match_V_2_fla, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_free_V_3_flag_4 [1/1] 0.00ns
+._crit_edge231:12  %statusOutput_bin_free_V_3_flag_4 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_free_V_3_flag_2, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_free_V_3_new_4 [1/1] 0.00ns
+._crit_edge231:13  %statusOutput_bin_free_V_3_new_4 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %tmp_637_3, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: statusOutput_bin_match_V_3_fla_3 [1/1] 0.00ns
+._crit_edge231:14  %statusOutput_bin_match_V_3_fla_3 = phi i1 [ %statusOutput_bin_free_V_0_flag, %._crit_edge229 ], [ %statusOutput_bin_free_V_0_flag, %._crit_edge239 ], [ true, %.loopexit.loopexit ], [ %statusOutput_bin_free_V_0_flag, %0 ], [ %statusOutput_bin_match_V_3_fla_1, %_ifconv ], [ %statusOutput_bin_free_V_0_flag, %1 ], [ %statusOutput_bin_match_V_3_fla_2, %._crit_edge238 ], [ %statusOutput_bin_free_V_0_flag, %3 ], [ %statusOutput_bin_free_V_0_flag, %2 ]
+
+ST_2: statusOutput_bin_match_V_3_new_7 [1/1] 0.00ns
+._crit_edge231:15  %statusOutput_bin_match_V_3_new_7 = phi i1 [ false, %._crit_edge229 ], [ false, %._crit_edge239 ], [ false, %.loopexit.loopexit ], [ false, %0 ], [ %statusOutput_bin_match_V_3_fla, %_ifconv ], [ false, %1 ], [ false, %._crit_edge238 ], [ false, %3 ], [ false, %2 ]
+
+ST_2: stg_175 [1/1] 0.00ns
+._crit_edge231:16  br i1 %statusOutput_bin_match_V_3_fla_3, label %mergeST240, label %._crit_edge231.new241
+
+ST_2: stg_176 [1/1] 0.00ns
+mergeST240:0  store i1 %statusOutput_bin_match_V_3_new_7, i1* @statusOutput_bin_match_V_3, align 1
+
+ST_2: stg_177 [1/1] 0.00ns
+mergeST240:1  br label %._crit_edge231.new241
+
+ST_2: stg_178 [1/1] 0.00ns
+._crit_edge231.new241:0  br i1 %statusOutput_bin_free_V_3_flag_4, label %mergeST238, label %._crit_edge231.new239
+
+ST_2: stg_179 [1/1] 0.00ns
+mergeST238:0  store i1 %statusOutput_bin_free_V_3_new_4, i1* @statusOutput_bin_free_V_3, align 1
+
+ST_2: stg_180 [1/1] 0.00ns
+mergeST238:1  br label %._crit_edge231.new239
+
+ST_2: stg_181 [1/1] 0.00ns
+._crit_edge231.new239:0  br i1 %statusOutput_bin_match_V_2_fla_2, label %mergeST236, label %._crit_edge231.new237
+
+ST_2: stg_182 [1/1] 0.00ns
+mergeST236:0  store i1 %statusOutput_bin_match_V_2_new_7, i1* @statusOutput_bin_match_V_2, align 1
+
+ST_2: stg_183 [1/1] 0.00ns
+mergeST236:1  br label %._crit_edge231.new237
+
+ST_2: stg_184 [1/1] 0.00ns
+._crit_edge231.new237:0  br i1 %statusOutput_bin_free_V_2_flag_4, label %mergeST234, label %._crit_edge231.new235
+
+ST_2: stg_185 [1/1] 0.00ns
+mergeST234:0  store i1 %statusOutput_bin_free_V_2_new_4, i1* @statusOutput_bin_free_V_2, align 1
+
+ST_2: stg_186 [1/1] 0.00ns
+mergeST234:1  br label %._crit_edge231.new235
+
+ST_2: stg_187 [1/1] 0.00ns
+._crit_edge231.new235:0  br i1 %statusOutput_bin_match_V_1_fla_3, label %mergeST232, label %._crit_edge231.new233
+
+ST_2: stg_188 [1/1] 0.00ns
+mergeST232:0  store i1 %statusOutput_bin_match_V_1_new_7, i1* @statusOutput_bin_match_V_1, align 1
+
+ST_2: stg_189 [1/1] 0.00ns
+mergeST232:1  br label %._crit_edge231.new233
+
+ST_2: stg_190 [1/1] 0.00ns
+._crit_edge231.new233:0  br i1 %statusOutput_bin_free_V_1_flag_4, label %mergeST230, label %._crit_edge231.new231
+
+ST_2: stg_191 [1/1] 0.00ns
+mergeST230:0  store i1 %statusOutput_bin_free_V_1_new_4, i1* @statusOutput_bin_free_V_1, align 1
+
+ST_2: stg_192 [1/1] 0.00ns
+mergeST230:1  br label %._crit_edge231.new231
+
+ST_2: stg_193 [1/1] 0.00ns
+._crit_edge231.new231:0  br i1 %statusOutput_bin_match_V_0_fla_2, label %mergeST228, label %._crit_edge231.new229
+
+ST_2: stg_194 [1/1] 0.00ns
+mergeST228:0  store i1 %statusOutput_bin_match_V_0_new_7, i1* @statusOutput_bin_match_V_0, align 1
+
+ST_2: stg_195 [1/1] 0.00ns
+mergeST228:1  br label %._crit_edge231.new229
+
+ST_2: stg_196 [1/1] 0.00ns
+._crit_edge231.new229:0  br i1 %statusOutput_bin_free_V_0_flag_4, label %mergeST, label %._crit_edge231.new
+
+ST_2: stg_197 [1/1] 0.00ns
+mergeST:0  store i1 %statusOutput_bin_free_V_0_new_4, i1* @statusOutput_bin_free_V_0, align 1
+
+ST_2: stg_198 [1/1] 0.00ns
+mergeST:1  br label %._crit_edge231.new
+
+ST_2: stg_199 [1/1] 0.00ns
+._crit_edge231.new:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
